@@ -1,13 +1,13 @@
 {#
   Hero Slideshow Component
-  
+
   Variables (from twilight.json):
   - component.autoplay (boolean): Auto-rotate slides
   - component.slideshow_speed (string): Slide interval in ms (e.g., "5000")
   - component.slideshow_transition (string): "true" = fade, "false" = slide
   - component.text_position (string): Mobile text position ("under_img" | "in_img")
   - component.dots_position (string): Dots position ("under_img" | "in_img")
-  - component.space_dots_up (string): Dots bottom offset in px
+  - component.space_dots_up (number): Dots bottom offset in px
   - component.bg_color_dots (string): Pagination dot color hex
   - component.bg_color_arrow (string): Navigation arrow color hex
   - component.space_on (number): Top margin in px
@@ -15,11 +15,29 @@
   - component.dpl_parallax (boolean): Enable parallax on desktop
   - component.height_img_dk (string): Desktop image height (e.g., "778px")
   - component.height_img_mb (string): Mobile image height (e.g., "auto")
-  - component.video_height (string): Video container padding-top percentage
-  - component.auto_playvideo (boolean): Autoplay video slides
-  - component.layout (string): Layout mode
-  - component.blocks (array): Slide blocks with block.type = "image" | "lookbook" | "Video"
+  - component.layout (string): Layout mode ("default" | "full")
+  - component.blocks (array): Image slide blocks
   - position (number): Component sort index from twilight.json
+
+  Block fields:
+  - block.image_slide: Desktop image URL
+  - block.image_slide_mb: Mobile image URL
+  - block.header_silde: Main heading text
+  - block.sub_header_silde: Subheading text
+  - block.image_des: Description text
+  - block.button_slide: Button text
+  - block.link_button: Button URL
+  - block.alignment: Text alignment (left | center | right)
+  - block.color_header: Heading color
+  - block.color_sub_header: Subheading color
+  - block.color_des: Description color
+  - block.font_size_header: Heading font size
+  - block.font_size_sub_header: Subheading font size
+  - block.font_size_des: Description font size
+  - block.font_size_button: Button font size
+  - block.button_slide_bg: Button background color
+  - block.button_slide_border: Button border color
+  - block.button_slide_color: Button text color
 #}
 <section class="home-slideshow" id="slideshow-{{ position }}">
   <div class="slideshow">
@@ -28,10 +46,6 @@
       {% if component.slideshow_transition == 'true' %}effect="fade"{% endif %}>
       <div slot="items">
         {% for block in component.blocks %}
-
-        {% if block.type == 'image' %}
-
-        {% if block.dpl_slide_img %}
         <div class="swiper-slide slider{% if loop.first %} height_slider{% endif %}" id="slide-{{ loop.index }}">
           <div class="lazy-images-contain">
             <a href="{{ block.link_button }}" title="{{ block.header_silde }}">
@@ -95,119 +109,6 @@
             </div>
           </div>
         </div>
-        {% endif %}
-
-        {% elseif block.type == 'lookbook' %}
-
-        <div class="swiper-slide slider {% if block.lb_product_1 is not empty or block.lb_product_2 is not empty or block.lb_product_3 is not empty or block.lb_product_4 is not empty %}has-lookbook{% endif %}" id="slide-{{ loop.index }}">
-          <div class="lazy-images-contain">
-
-            {% if block.lb_image_slide is not empty %}
-            {% set img_url_lb = block.lb_image_slide %}
-            {% set img_url_mb_lb = block.image_slide_mb_lb %}
-
-            {% if component.dpl_parallax %}
-            <div class="parallax-image" style="background-image: url({{ img_url_lb }});height:{{ component.height_img_dk }}; background-attachment: fixed;background-position: center; background-repeat: no-repeat; background-size: cover;"></div>
-            <img src="{{ img_url_lb }}" alt=""
-                 class="lazyload not-parallax"
-                 data-src="{{ img_url_lb }}">
-            {% else %}
-            <img src="{{ img_url_lb }}" alt=""
-                 class="lazyload images-desktop"
-                 data-src="{{ img_url_lb }}">
-            {% endif %}
-
-            {% if block.image_slide_mb_lb is not empty %}
-            <img src="{{ img_url_mb_lb }}" alt="{{ block.header_silde | e }}"
-                 class="images-mobile lazyload"
-                 data-src="{{ img_url_mb_lb }}">
-            {% else %}
-            <img src="{{ img_url_lb }}" alt="{{ block.header_silde | e }}"
-                 class="images-mobile lazyload"
-                 data-src="{{ img_url_lb }}">
-            {% endif %}
-
-            {% else %}
-            <span class="not_img">1470 x 778px</span>
-            {% endif %}
-
-            {% if block.lb_product_1 is not empty %}
-            <div class="lookbook-item" style="top:{{ block.top_position_1 }}%; left:{{ block.left_position_1 }}%;">
-              <span class="glyphicon pr-lb item_1_{{ loop.index }}" data-handle="{{ block.lb_product_1 }}">+</span>
-            </div>
-            {% endif %}
-
-            {% if block.lb_product_2 is not empty %}
-            <div class="lookbook-item" style="top:{{ block.top_position_2 }}%; left:{{ block.left_position_2 }}%;">
-              <span class="glyphicon pr-lb item_2_{{ loop.index }}" data-handle="{{ block.lb_product_2 }}">+</span>
-            </div>
-            {% endif %}
-
-            {% if block.lb_product_3 is not empty %}
-            <div class="lookbook-item" style="top:{{ block.top_position_3 }}%; left:{{ block.left_position_3 }}%;">
-              <span class="glyphicon pr-lb item_3_{{ loop.index }}" data-handle="{{ block.lb_product_3 }}">+</span>
-            </div>
-            {% endif %}
-
-            {% if block.lb_product_4 is not empty %}
-            <div class="lookbook-item" style="top:{{ block.top_position_4 }}%; left:{{ block.left_position_4 }}%;">
-              <span class="glyphicon pr-lb item_4_{{ loop.index }}" data-handle="{{ block.lb_product_4 }}">+</span>
-            </div>
-            {% endif %}
-
-            <style type="text/css">
-              #slide-{{ loop.index }} .item_1_{{ loop.index }}{
-                color:{{ block.dots_color_1 }};
-                background: {{ block.dots_bg_color_1 }};
-              }
-              #slide-{{ loop.index }} .item_1_{{ loop.index }}:before{
-                color: {{ block.dots_bg_color_1 }};
-              }
-              #slide-{{ loop.index }} .item_2_{{ loop.index }}{
-                color:{{ block.dots_color_2 }};
-                background: {{ block.dots_bg_color_2 }};
-              }
-              #slide-{{ loop.index }} .item_2_{{ loop.index }}:before{
-                color: {{ block.dots_bg_color_2 }};
-              }
-              #slide-{{ loop.index }} .item_3_{{ loop.index }}{
-                color:{{ block.dots_color_3 }};
-                background: {{ block.dots_bg_color_3 }};
-              }
-              #slide-{{ loop.index }} .item_3_{{ loop.index }}:before{
-                color: {{ block.dots_bg_color_3 }};
-              }
-              #slide-{{ loop.index }} .item_4_{{ loop.index }}{
-                color:{{ block.dots_color_4 }};
-                background: {{ block.dots_bg_color_4 }};
-              }
-              #slide-{{ loop.index }} .item_4_{{ loop.index }}:before{
-                color: {{ block.dots_bg_color_4 }};
-              }
-            </style>
-          </div>
-        </div>
-
-        {% elseif block.type == 'Video' %}
-
-        {% if block.style_video == 'youtube' %}
-        <div class="swiper-slide slider slide_video embed-responsive" id="slide-{{ loop.index }}">
-          <div class="fluid-width-video-wrapper">
-            <iframe class="youtube-player" id="player_{{ loop.index }}" width="100%" height="100%" data-video-id="{{ block.video_link }}" src="https://www.youtube.com/embed/{{ block.video_link }}?enablejsapi=1&rel=0&autoplay=0&mute=1" frameborder="0" allowfullscreen=""></iframe>
-          </div>
-        </div>
-        {% else %}
-        <div class="swiper-slide slider slide_mp4" id="slide-{{ loop.index }}">
-          <div class="fluid-width-video-wrapper">
-            <video autoplay muted playsinline class="video">
-              <source type="video/mp4" src="{{ block.video_mp4_link }}">
-            </video>
-          </div>
-        </div>
-        {% endif %}
-
-        {% endif %}
-
         {% endfor %}
       </div>
     </salla-slider>
@@ -223,8 +124,6 @@
   .home-slideshow .swiper-button-prev svg {
     fill: {{ component.bg_color_arrow }};
   }
-
-  .fluid-width-video-wrapper { padding-top: {{ component.video_height }} !important; }
 
   @media (min-width: 1367px) {
     .home-slideshow .not-parallax {

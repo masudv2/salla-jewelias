@@ -55,6 +55,7 @@ class NavigationMenu extends HTMLElement {
     * @returns {String}
     */
     getMobileMenu(menu, displayAllText) {
+        if (!menu) return '';
         const menuImage = menu.image ? `<img src="${menu.image}" class="rounded-full" width="48" height="48" alt="${menu.title}" />` : '';
 
         return `
@@ -87,6 +88,7 @@ class NavigationMenu extends HTMLElement {
     * @returns {String}
     */
     getDesktopMenu(menu, isRootMenu, additionalClasses = '') {
+        if (!menu) return '';
         return `
         <li class="${this.getDesktopClasses(menu, isRootMenu)} ${additionalClasses}" ${menu.attrs} data-menu-item>
             <a href="${menu.url}" aria-label="${menu.title || 'category'}" ${menu.link_attrs}>
