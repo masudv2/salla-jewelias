@@ -6,8 +6,8 @@
     "repository": "https://github.com/masudv2/salla-jewelias",
     "author_email": "masud@rancyn.com",
     "description": {
-        "en": "Premium jewelry & luxury accessories Salla theme, 1:1 port from the Shopify Jewelias theme.",
-        "ar": "قالب مجوهرات وإكسسوارات فاخرة لمنصة سلة، منقول من قالب Jewelias على شوبيفاي."
+        "ar": "مجموعة كبيرة من المزايا لدعم تجارتك وتقديم تجربة تسوق مثيرة لعملائك",
+        "en": "A wide range of features to support your business and provide an exciting shopping experience for your customers"
     },
     "features": [
         "mega-menu",
@@ -26,7 +26,8 @@
         "component-store-features",
         "component-youtube",
         "menu-images",
-        "filters"
+        "filters",
+        "component-random-testimonials"
     ],
     "settings": [
         {
@@ -275,15 +276,43 @@
                     "label": "سرعة تبديل الشرائح",
                     "icon": "sicon-timer",
                     "selected": [
-                        { "label": "5 ثواني", "value": "5000", "key": "a1b2c3d4-0001-4000-8000-000000000001" }
+                        {
+                            "label": "5 ثواني",
+                            "value": "5000",
+                            "key": "a1b2c3d4-0001-4000-8000-000000000001"
+                        }
                     ],
                     "options": [
-                        { "label": "5 ثواني", "value": "5000", "key": "a1b2c3d4-0001-4000-8000-000000000001" },
-                        { "label": "6 ثواني", "value": "6000", "key": "a1b2c3d4-0001-4000-8000-000000000002" },
-                        { "label": "7 ثواني", "value": "7000", "key": "a1b2c3d4-0001-4000-8000-000000000003" },
-                        { "label": "8 ثواني", "value": "8000", "key": "a1b2c3d4-0001-4000-8000-000000000004" },
-                        { "label": "9 ثواني", "value": "9000", "key": "a1b2c3d4-0001-4000-8000-000000000005" },
-                        { "label": "10 ثواني", "value": "10000", "key": "a1b2c3d4-0001-4000-8000-000000000006" }
+                        {
+                            "label": "5 ثواني",
+                            "value": "5000",
+                            "key": "a1b2c3d4-0001-4000-8000-000000000001"
+                        },
+                        {
+                            "label": "6 ثواني",
+                            "value": "6000",
+                            "key": "a1b2c3d4-0001-4000-8000-000000000002"
+                        },
+                        {
+                            "label": "7 ثواني",
+                            "value": "7000",
+                            "key": "a1b2c3d4-0001-4000-8000-000000000003"
+                        },
+                        {
+                            "label": "8 ثواني",
+                            "value": "8000",
+                            "key": "a1b2c3d4-0001-4000-8000-000000000004"
+                        },
+                        {
+                            "label": "9 ثواني",
+                            "value": "9000",
+                            "key": "a1b2c3d4-0001-4000-8000-000000000005"
+                        },
+                        {
+                            "label": "10 ثواني",
+                            "value": "10000",
+                            "key": "a1b2c3d4-0001-4000-8000-000000000006"
+                        }
                     ],
                     "source": "Manual",
                     "required": true
@@ -295,11 +324,23 @@
                     "label": "تأثير الانتقال",
                     "icon": "sicon-shuffle",
                     "selected": [
-                        { "label": "تلاشي", "value": "true", "key": "a1b2c3d4-0002-4000-8000-000000000001" }
+                        {
+                            "label": "تلاشي",
+                            "value": "true",
+                            "key": "a1b2c3d4-0002-4000-8000-000000000001"
+                        }
                     ],
                     "options": [
-                        { "label": "انزلاق", "value": "false", "key": "a1b2c3d4-0002-4000-8000-000000000002" },
-                        { "label": "تلاشي", "value": "true", "key": "a1b2c3d4-0002-4000-8000-000000000001" }
+                        {
+                            "label": "انزلاق",
+                            "value": "false",
+                            "key": "a1b2c3d4-0002-4000-8000-000000000002"
+                        },
+                        {
+                            "label": "تلاشي",
+                            "value": "true",
+                            "key": "a1b2c3d4-0002-4000-8000-000000000001"
+                        }
                     ],
                     "source": "Manual",
                     "required": true
@@ -391,12 +432,28 @@
                             "label": "موضع النص",
                             "icon": "sicon-format-text-alt",
                             "selected": [
-                                { "label": "يسار", "value": "left", "key": "a1b2c3d4-0003-4000-8000-000000000001" }
+                                {
+                                    "label": "يسار",
+                                    "value": "left",
+                                    "key": "a1b2c3d4-0003-4000-8000-000000000001"
+                                }
                             ],
                             "options": [
-                                { "label": "يسار", "value": "left", "key": "a1b2c3d4-0003-4000-8000-000000000001" },
-                                { "label": "وسط", "value": "center", "key": "a1b2c3d4-0003-4000-8000-000000000002" },
-                                { "label": "يمين", "value": "right", "key": "a1b2c3d4-0003-4000-8000-000000000003" }
+                                {
+                                    "label": "يسار",
+                                    "value": "left",
+                                    "key": "a1b2c3d4-0003-4000-8000-000000000001"
+                                },
+                                {
+                                    "label": "وسط",
+                                    "value": "center",
+                                    "key": "a1b2c3d4-0003-4000-8000-000000000002"
+                                },
+                                {
+                                    "label": "يمين",
+                                    "value": "right",
+                                    "key": "a1b2c3d4-0003-4000-8000-000000000003"
+                                }
                             ],
                             "source": "Manual",
                             "required": false
@@ -459,12 +516,36 @@
                             "searchable": true,
                             "source": "custom",
                             "sources": [
-                                { "label": "منتج", "key": "products", "value": "products" },
-                                { "label": "تصنيف", "key": "categories", "value": "categories" },
-                                { "label": "ماركة تجارية", "key": "brands", "value": "brands" },
-                                { "label": "صفحة تعريفية", "key": "pages", "value": "pages" },
-                                { "label": "التخفيضات", "key": "offers_link", "value": "offers_link" },
-                                { "label": "رابط خارجي", "key": "custom", "value": "custom" }
+                                {
+                                    "label": "منتج",
+                                    "key": "products",
+                                    "value": "products"
+                                },
+                                {
+                                    "label": "تصنيف",
+                                    "key": "categories",
+                                    "value": "categories"
+                                },
+                                {
+                                    "label": "ماركة تجارية",
+                                    "key": "brands",
+                                    "value": "brands"
+                                },
+                                {
+                                    "label": "صفحة تعريفية",
+                                    "key": "pages",
+                                    "value": "pages"
+                                },
+                                {
+                                    "label": "التخفيضات",
+                                    "key": "offers_link",
+                                    "value": "offers_link"
+                                },
+                                {
+                                    "label": "رابط خارجي",
+                                    "key": "custom",
+                                    "value": "custom"
+                                }
                             ]
                         },
                         {
@@ -586,12 +667,36 @@
                             "searchable": true,
                             "source": "custom",
                             "sources": [
-                                { "label": "منتج", "key": "products", "value": "products" },
-                                { "label": "تصنيف", "key": "categories", "value": "categories" },
-                                { "label": "ماركة تجارية", "key": "brands", "value": "brands" },
-                                { "label": "صفحة تعريفية", "key": "pages", "value": "pages" },
-                                { "label": "التخفيضات", "key": "offers_link", "value": "offers_link" },
-                                { "label": "رابط خارجي", "key": "custom", "value": "custom" }
+                                {
+                                    "label": "منتج",
+                                    "key": "products",
+                                    "value": "products"
+                                },
+                                {
+                                    "label": "تصنيف",
+                                    "key": "categories",
+                                    "value": "categories"
+                                },
+                                {
+                                    "label": "ماركة تجارية",
+                                    "key": "brands",
+                                    "value": "brands"
+                                },
+                                {
+                                    "label": "صفحة تعريفية",
+                                    "key": "pages",
+                                    "value": "pages"
+                                },
+                                {
+                                    "label": "التخفيضات",
+                                    "key": "offers_link",
+                                    "value": "offers_link"
+                                },
+                                {
+                                    "label": "رابط خارجي",
+                                    "key": "custom",
+                                    "value": "custom"
+                                }
                             ]
                         }
                     ]
@@ -632,13 +737,33 @@
                     "label": "عدد العناصر في الصف",
                     "icon": "sicon-layout-grid-rearrange",
                     "selected": [
-                        { "label": "3", "value": "3", "key": "b1c2d3e4-0001-4000-8000-000000000001" }
+                        {
+                            "label": "3",
+                            "value": "3",
+                            "key": "b1c2d3e4-0001-4000-8000-000000000001"
+                        }
                     ],
                     "options": [
-                        { "label": "2", "value": "2", "key": "b1c2d3e4-0001-4000-8000-000000000002" },
-                        { "label": "3", "value": "3", "key": "b1c2d3e4-0001-4000-8000-000000000001" },
-                        { "label": "4", "value": "4", "key": "b1c2d3e4-0001-4000-8000-000000000003" },
-                        { "label": "5", "value": "5", "key": "b1c2d3e4-0001-4000-8000-000000000004" }
+                        {
+                            "label": "2",
+                            "value": "2",
+                            "key": "b1c2d3e4-0001-4000-8000-000000000002"
+                        },
+                        {
+                            "label": "3",
+                            "value": "3",
+                            "key": "b1c2d3e4-0001-4000-8000-000000000001"
+                        },
+                        {
+                            "label": "4",
+                            "value": "4",
+                            "key": "b1c2d3e4-0001-4000-8000-000000000003"
+                        },
+                        {
+                            "label": "5",
+                            "value": "5",
+                            "key": "b1c2d3e4-0001-4000-8000-000000000004"
+                        }
                     ],
                     "source": "Manual",
                     "required": true
@@ -750,13 +875,33 @@
                     "label": "عدد المنتجات في الصف",
                     "icon": "sicon-layout-grid-rearrange",
                     "selected": [
-                        { "label": "5", "value": "5", "key": "c1d2e3f4-0001-4000-8000-000000000001" }
+                        {
+                            "label": "5",
+                            "value": "5",
+                            "key": "c1d2e3f4-0001-4000-8000-000000000001"
+                        }
                     ],
                     "options": [
-                        { "label": "3", "value": "3", "key": "c1d2e3f4-0001-4000-8000-000000000002" },
-                        { "label": "4", "value": "4", "key": "c1d2e3f4-0001-4000-8000-000000000003" },
-                        { "label": "5", "value": "5", "key": "c1d2e3f4-0001-4000-8000-000000000001" },
-                        { "label": "6", "value": "6", "key": "c1d2e3f4-0001-4000-8000-000000000004" }
+                        {
+                            "label": "3",
+                            "value": "3",
+                            "key": "c1d2e3f4-0001-4000-8000-000000000002"
+                        },
+                        {
+                            "label": "4",
+                            "value": "4",
+                            "key": "c1d2e3f4-0001-4000-8000-000000000003"
+                        },
+                        {
+                            "label": "5",
+                            "value": "5",
+                            "key": "c1d2e3f4-0001-4000-8000-000000000001"
+                        },
+                        {
+                            "label": "6",
+                            "value": "6",
+                            "key": "c1d2e3f4-0001-4000-8000-000000000004"
+                        }
                     ],
                     "source": "Manual",
                     "required": true
@@ -867,13 +1012,33 @@
                     "label": "عدد المنتجات في الصف",
                     "icon": "sicon-layout-grid-rearrange",
                     "selected": [
-                        { "label": "5", "value": "5", "key": "d1e2f3a4-0001-4000-8000-000000000001" }
+                        {
+                            "label": "5",
+                            "value": "5",
+                            "key": "d1e2f3a4-0001-4000-8000-000000000001"
+                        }
                     ],
                     "options": [
-                        { "label": "3", "value": "3", "key": "d1e2f3a4-0001-4000-8000-000000000002" },
-                        { "label": "4", "value": "4", "key": "d1e2f3a4-0001-4000-8000-000000000003" },
-                        { "label": "5", "value": "5", "key": "d1e2f3a4-0001-4000-8000-000000000001" },
-                        { "label": "6", "value": "6", "key": "d1e2f3a4-0001-4000-8000-000000000004" }
+                        {
+                            "label": "3",
+                            "value": "3",
+                            "key": "d1e2f3a4-0001-4000-8000-000000000002"
+                        },
+                        {
+                            "label": "4",
+                            "value": "4",
+                            "key": "d1e2f3a4-0001-4000-8000-000000000003"
+                        },
+                        {
+                            "label": "5",
+                            "value": "5",
+                            "key": "d1e2f3a4-0001-4000-8000-000000000001"
+                        },
+                        {
+                            "label": "6",
+                            "value": "6",
+                            "key": "d1e2f3a4-0001-4000-8000-000000000004"
+                        }
                     ],
                     "source": "Manual",
                     "required": true
@@ -1011,12 +1176,36 @@
                             "searchable": true,
                             "source": "custom",
                             "sources": [
-                                { "label": "منتج", "key": "products", "value": "products" },
-                                { "label": "تصنيف", "key": "categories", "value": "categories" },
-                                { "label": "ماركة تجارية", "key": "brands", "value": "brands" },
-                                { "label": "صفحة تعريفية", "key": "pages", "value": "pages" },
-                                { "label": "التخفيضات", "key": "offers_link", "value": "offers_link" },
-                                { "label": "رابط خارجي", "key": "custom", "value": "custom" }
+                                {
+                                    "label": "منتج",
+                                    "key": "products",
+                                    "value": "products"
+                                },
+                                {
+                                    "label": "تصنيف",
+                                    "key": "categories",
+                                    "value": "categories"
+                                },
+                                {
+                                    "label": "ماركة تجارية",
+                                    "key": "brands",
+                                    "value": "brands"
+                                },
+                                {
+                                    "label": "صفحة تعريفية",
+                                    "key": "pages",
+                                    "value": "pages"
+                                },
+                                {
+                                    "label": "التخفيضات",
+                                    "key": "offers_link",
+                                    "value": "offers_link"
+                                },
+                                {
+                                    "label": "رابط خارجي",
+                                    "key": "custom",
+                                    "value": "custom"
+                                }
                             ]
                         },
                         {
@@ -1026,12 +1215,28 @@
                             "label": "موضع المحتوى",
                             "icon": "sicon-format-text-alt",
                             "selected": [
-                                { "label": "أسفل", "value": "bottom", "key": "e1f2a3b4-0001-4000-8000-000000000001" }
+                                {
+                                    "label": "أسفل",
+                                    "value": "bottom",
+                                    "key": "e1f2a3b4-0001-4000-8000-000000000001"
+                                }
                             ],
                             "options": [
-                                { "label": "أعلى", "value": "top", "key": "e1f2a3b4-0001-4000-8000-000000000002" },
-                                { "label": "وسط", "value": "middle", "key": "e1f2a3b4-0001-4000-8000-000000000003" },
-                                { "label": "أسفل", "value": "bottom", "key": "e1f2a3b4-0001-4000-8000-000000000001" }
+                                {
+                                    "label": "أعلى",
+                                    "value": "top",
+                                    "key": "e1f2a3b4-0001-4000-8000-000000000002"
+                                },
+                                {
+                                    "label": "وسط",
+                                    "value": "middle",
+                                    "key": "e1f2a3b4-0001-4000-8000-000000000003"
+                                },
+                                {
+                                    "label": "أسفل",
+                                    "value": "bottom",
+                                    "key": "e1f2a3b4-0001-4000-8000-000000000001"
+                                }
                             ],
                             "source": "Manual",
                             "required": false
@@ -1221,12 +1426,36 @@
                             "searchable": true,
                             "source": "custom",
                             "sources": [
-                                { "label": "منتج", "key": "products", "value": "products" },
-                                { "label": "تصنيف", "key": "categories", "value": "categories" },
-                                { "label": "ماركة تجارية", "key": "brands", "value": "brands" },
-                                { "label": "صفحة تعريفية", "key": "pages", "value": "pages" },
-                                { "label": "التخفيضات", "key": "offers_link", "value": "offers_link" },
-                                { "label": "رابط خارجي", "key": "custom", "value": "custom" }
+                                {
+                                    "label": "منتج",
+                                    "key": "products",
+                                    "value": "products"
+                                },
+                                {
+                                    "label": "تصنيف",
+                                    "key": "categories",
+                                    "value": "categories"
+                                },
+                                {
+                                    "label": "ماركة تجارية",
+                                    "key": "brands",
+                                    "value": "brands"
+                                },
+                                {
+                                    "label": "صفحة تعريفية",
+                                    "key": "pages",
+                                    "value": "pages"
+                                },
+                                {
+                                    "label": "التخفيضات",
+                                    "key": "offers_link",
+                                    "value": "offers_link"
+                                },
+                                {
+                                    "label": "رابط خارجي",
+                                    "key": "custom",
+                                    "value": "custom"
+                                }
                             ]
                         },
                         {
@@ -1258,12 +1487,28 @@
                             "label": "موضع العنوان",
                             "icon": "sicon-format-text-alt",
                             "selected": [
-                                { "label": "أسفل", "value": "bottom", "key": "f1a2b3c4-0001-4000-8000-000000000001" }
+                                {
+                                    "label": "أسفل",
+                                    "value": "bottom",
+                                    "key": "f1a2b3c4-0001-4000-8000-000000000001"
+                                }
                             ],
                             "options": [
-                                { "label": "أعلى", "value": "top", "key": "f1a2b3c4-0001-4000-8000-000000000002" },
-                                { "label": "وسط", "value": "middle", "key": "f1a2b3c4-0001-4000-8000-000000000003" },
-                                { "label": "أسفل", "value": "bottom", "key": "f1a2b3c4-0001-4000-8000-000000000001" }
+                                {
+                                    "label": "أعلى",
+                                    "value": "top",
+                                    "key": "f1a2b3c4-0001-4000-8000-000000000002"
+                                },
+                                {
+                                    "label": "وسط",
+                                    "value": "middle",
+                                    "key": "f1a2b3c4-0001-4000-8000-000000000003"
+                                },
+                                {
+                                    "label": "أسفل",
+                                    "value": "bottom",
+                                    "key": "f1a2b3c4-0001-4000-8000-000000000001"
+                                }
                             ],
                             "source": "Manual",
                             "required": false
@@ -1409,13 +1654,33 @@
                     "label": "عدد المنتجات في الصف",
                     "icon": "sicon-layout-grid-rearrange",
                     "selected": [
-                        { "label": "5", "value": "5", "key": "a2b3c4d5-0001-4000-8000-000000000001" }
+                        {
+                            "label": "5",
+                            "value": "5",
+                            "key": "a2b3c4d5-0001-4000-8000-000000000001"
+                        }
                     ],
                     "options": [
-                        { "label": "3", "value": "3", "key": "a2b3c4d5-0001-4000-8000-000000000002" },
-                        { "label": "4", "value": "4", "key": "a2b3c4d5-0001-4000-8000-000000000003" },
-                        { "label": "5", "value": "5", "key": "a2b3c4d5-0001-4000-8000-000000000001" },
-                        { "label": "6", "value": "6", "key": "a2b3c4d5-0001-4000-8000-000000000004" }
+                        {
+                            "label": "3",
+                            "value": "3",
+                            "key": "a2b3c4d5-0001-4000-8000-000000000002"
+                        },
+                        {
+                            "label": "4",
+                            "value": "4",
+                            "key": "a2b3c4d5-0001-4000-8000-000000000003"
+                        },
+                        {
+                            "label": "5",
+                            "value": "5",
+                            "key": "a2b3c4d5-0001-4000-8000-000000000001"
+                        },
+                        {
+                            "label": "6",
+                            "value": "6",
+                            "key": "a2b3c4d5-0001-4000-8000-000000000004"
+                        }
                     ],
                     "source": "Manual",
                     "required": true
@@ -1490,12 +1755,36 @@
                     "searchable": true,
                     "source": "custom",
                     "sources": [
-                        { "label": "منتج", "key": "products", "value": "products" },
-                        { "label": "تصنيف", "key": "categories", "value": "categories" },
-                        { "label": "ماركة تجارية", "key": "brands", "value": "brands" },
-                        { "label": "صفحة تعريفية", "key": "pages", "value": "pages" },
-                        { "label": "التخفيضات", "key": "offers_link", "value": "offers_link" },
-                        { "label": "رابط خارجي", "key": "custom", "value": "custom" }
+                        {
+                            "label": "منتج",
+                            "key": "products",
+                            "value": "products"
+                        },
+                        {
+                            "label": "تصنيف",
+                            "key": "categories",
+                            "value": "categories"
+                        },
+                        {
+                            "label": "ماركة تجارية",
+                            "key": "brands",
+                            "value": "brands"
+                        },
+                        {
+                            "label": "صفحة تعريفية",
+                            "key": "pages",
+                            "value": "pages"
+                        },
+                        {
+                            "label": "التخفيضات",
+                            "key": "offers_link",
+                            "value": "offers_link"
+                        },
+                        {
+                            "label": "رابط خارجي",
+                            "key": "custom",
+                            "value": "custom"
+                        }
                     ]
                 },
                 {
@@ -1658,12 +1947,36 @@
                             "searchable": true,
                             "source": "custom",
                             "sources": [
-                                { "label": "منتج", "key": "products", "value": "products" },
-                                { "label": "تصنيف", "key": "categories", "value": "categories" },
-                                { "label": "ماركة تجارية", "key": "brands", "value": "brands" },
-                                { "label": "صفحة تعريفية", "key": "pages", "value": "pages" },
-                                { "label": "التخفيضات", "key": "offers_link", "value": "offers_link" },
-                                { "label": "رابط خارجي", "key": "custom", "value": "custom" }
+                                {
+                                    "label": "منتج",
+                                    "key": "products",
+                                    "value": "products"
+                                },
+                                {
+                                    "label": "تصنيف",
+                                    "key": "categories",
+                                    "value": "categories"
+                                },
+                                {
+                                    "label": "ماركة تجارية",
+                                    "key": "brands",
+                                    "value": "brands"
+                                },
+                                {
+                                    "label": "صفحة تعريفية",
+                                    "key": "pages",
+                                    "value": "pages"
+                                },
+                                {
+                                    "label": "التخفيضات",
+                                    "key": "offers_link",
+                                    "value": "offers_link"
+                                },
+                                {
+                                    "label": "رابط خارجي",
+                                    "key": "custom",
+                                    "value": "custom"
+                                }
                             ]
                         }
                     ]
@@ -1780,12 +2093,36 @@
                             "searchable": true,
                             "source": "custom",
                             "sources": [
-                                { "label": "منتج", "key": "products", "value": "products" },
-                                { "label": "تصنيف", "key": "categories", "value": "categories" },
-                                { "label": "ماركة تجارية", "key": "brands", "value": "brands" },
-                                { "label": "صفحة تعريفية", "key": "pages", "value": "pages" },
-                                { "label": "التخفيضات", "key": "offers_link", "value": "offers_link" },
-                                { "label": "رابط خارجي", "key": "custom", "value": "custom" }
+                                {
+                                    "label": "منتج",
+                                    "key": "products",
+                                    "value": "products"
+                                },
+                                {
+                                    "label": "تصنيف",
+                                    "key": "categories",
+                                    "value": "categories"
+                                },
+                                {
+                                    "label": "ماركة تجارية",
+                                    "key": "brands",
+                                    "value": "brands"
+                                },
+                                {
+                                    "label": "صفحة تعريفية",
+                                    "key": "pages",
+                                    "value": "pages"
+                                },
+                                {
+                                    "label": "التخفيضات",
+                                    "key": "offers_link",
+                                    "value": "offers_link"
+                                },
+                                {
+                                    "label": "رابط خارجي",
+                                    "key": "custom",
+                                    "value": "custom"
+                                }
                             ]
                         }
                     ]
@@ -1975,12 +2312,28 @@
                     "label": "عدد الصور في الصف",
                     "icon": "sicon-layout-grid-rearrange",
                     "selected": [
-                        { "label": "5", "value": "5", "key": "b2c3d4e5-0001-4000-8000-000000000001" }
+                        {
+                            "label": "5",
+                            "value": "5",
+                            "key": "b2c3d4e5-0001-4000-8000-000000000001"
+                        }
                     ],
                     "options": [
-                        { "label": "3", "value": "3", "key": "b2c3d4e5-0001-4000-8000-000000000002" },
-                        { "label": "4", "value": "4", "key": "b2c3d4e5-0001-4000-8000-000000000003" },
-                        { "label": "5", "value": "5", "key": "b2c3d4e5-0001-4000-8000-000000000001" }
+                        {
+                            "label": "3",
+                            "value": "3",
+                            "key": "b2c3d4e5-0001-4000-8000-000000000002"
+                        },
+                        {
+                            "label": "4",
+                            "value": "4",
+                            "key": "b2c3d4e5-0001-4000-8000-000000000003"
+                        },
+                        {
+                            "label": "5",
+                            "value": "5",
+                            "key": "b2c3d4e5-0001-4000-8000-000000000001"
+                        }
                     ],
                     "source": "Manual",
                     "required": false
@@ -2020,10 +2373,26 @@
                             "searchable": true,
                             "source": "custom",
                             "sources": [
-                                { "label": "منتج", "key": "products", "value": "products" },
-                                { "label": "تصنيف", "key": "categories", "value": "categories" },
-                                { "label": "صفحة تعريفية", "key": "pages", "value": "pages" },
-                                { "label": "رابط خارجي", "key": "custom", "value": "custom" }
+                                {
+                                    "label": "منتج",
+                                    "key": "products",
+                                    "value": "products"
+                                },
+                                {
+                                    "label": "تصنيف",
+                                    "key": "categories",
+                                    "value": "categories"
+                                },
+                                {
+                                    "label": "صفحة تعريفية",
+                                    "key": "pages",
+                                    "value": "pages"
+                                },
+                                {
+                                    "label": "رابط خارجي",
+                                    "key": "custom",
+                                    "value": "custom"
+                                }
                             ]
                         }
                     ]
@@ -2094,9 +2463,5 @@
             ]
         }
     ],
-    "support_url": "https://salla.com/",
-    "description": {
-        "ar": "مجموعة كبيرة من المزايا لدعم تجارتك وتقديم تجربة تسوق مثيرة لعملائك",
-        "en": "A wide range of features to support your business and provide an exciting shopping experience for your customers"
-    }
+    "support_url": "https://salla.com/"
 }
