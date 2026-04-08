@@ -1,0 +1,2102 @@
+{
+    "name": {
+        "ar": "جوالياس",
+        "en": "Jewelias"
+    },
+    "repository": "https://github.com/masudv2/salla-jewelias",
+    "author_email": "masud@rancyn.com",
+    "description": {
+        "en": "Premium jewelry & luxury accessories Salla theme, 1:1 port from the Shopify Jewelias theme.",
+        "ar": "قالب مجوهرات وإكسسوارات فاخرة لمنصة سلة، منقول من قالب Jewelias على شوبيفاي."
+    },
+    "features": [
+        "mega-menu",
+        "fonts",
+        "color",
+        "breadcrumb",
+        "unite-cards-height",
+        "component-featured-products",
+        "component-fixed-banner",
+        "component-fixed-products",
+        "component-products-slider",
+        "component-photos-slider",
+        "component-parallax-background",
+        "component-testimonials",
+        "component-square-photos",
+        "component-store-features",
+        "component-youtube",
+        "menu-images",
+        "filters"
+    ],
+    "settings": [
+        {
+            "id": "squar_photo_bg_image_size",
+            "type": "items",
+            "format": "dropdown-list",
+            "label": "طريقة عرض الصور في قسم قائمة عناصر ",
+            "description": null,
+            "labelHTML": null,
+            "icon": "sicon-list",
+            "selected": [
+                {
+                    "label": "اظهار الصورة كاملةً في المنتصف (Contain)",
+                    "value": "contain",
+                    "key": "f4adec13-6e4c-654b-b978-b2807935ced9"
+                }
+            ],
+            "options": [
+                {
+                    "label": "تغطية الصورة كامل المساحة مع المحافظة على أبعاد الصورة (Cover)",
+                    "value": "cover",
+                    "key": "e9c8ea8f-c5c6-234e-935-3bce269afde4"
+                },
+                {
+                    "label": "اظهار الصورة كاملةً في المنتصف (Contain)",
+                    "value": "contain",
+                    "key": "f4adec13-6e4c-654b-b978-b2807935ced9"
+                }
+            ],
+            "source": "Manual",
+            "required": true
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "وضع عمودي للمنتجات في مربع المنتجات الثابتة في الصفحة الرئيسية",
+            "description": null,
+            "id": "vertical_fixed_products",
+            "format": "switch",
+            "required": false,
+            "value": false,
+            "selected": false
+        },
+        {
+            "type": "boolean",
+            "id": "is_more_button_enabled",
+            "label": "عرض (زر الكل) في الصفحة الرئيسية",
+            "format": "switch"
+        },
+        {
+            "type": "static",
+            "id": "static-line1",
+            "format": "line"
+        },
+        {
+            "type": "static",
+            "format": "title",
+            "id": "static-label2",
+            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات أعلى الصفحة</h6></div>",
+            "variant": "h6"
+        },
+        {
+            "id": "header_is_sticky",
+            "label": "تثبت القائمة الرئيسية أعلى الصفحة عند التمرير لأسفل",
+            "description": "يُنصح بالغاء تفعيلها في حالة وجود عناصر كثيرة في القائمة المنسدلة",
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "شريط علوي داكن",
+            "description": null,
+            "id": "topnav_is_dark",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": false
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "عرض روابط الصفحات الهامة في الشريط العلوي",
+            "description": "مثل صفحة الهبوط ، المدونة ،الصفحات التعريفية",
+            "id": "important_links",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "تفعيل قائمة المزيد في القائمة الرئيسية",
+            "description": "عند تفعيلها، ستظهر الروابط الإضافية في قائمة منسدلة تسمى 'المزيد' عند عدم وجود مساحة كافية",
+            "id": "enable_more_menu",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "static",
+            "id": "static-line3",
+            "format": "line"
+        },
+        {
+            "type": "static",
+            "format": "title",
+            "id": "static-label4",
+            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات أسفل الصفحة</h6></div>",
+            "variant": "h6"
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "الوضع الداكن",
+            "description": null,
+            "id": "footer_is_dark",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": false
+        },
+        {
+            "type": "static",
+            "id": "static-line5",
+            "format": "line"
+        },
+        {
+            "type": "static",
+            "format": "title",
+            "id": "static-label6",
+            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات صفحة المنتج</h6></div>",
+            "variant": "h6"
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "تفعيل إشعار الإضافة للسلة المحسن",
+            "description": null,
+            "id": "enable_add_product_toast",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "تثبيت زر الإضافة والكمية أسفل شاشة الجوال",
+            "description": null,
+            "id": "sticky_add_to_cart",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "اظهار الوسوم",
+            "description": null,
+            "id": "show_tags",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "id": "slider_background_size",
+            "type": "items",
+            "format": "dropdown-list",
+            "label": "طريقة عرض الصور في سليدر صور المنتج",
+            "description": null,
+            "labelHTML": null,
+            "icon": "sicon-list",
+            "selected": [
+                {
+                    "label": "اظهار الصورة كاملةً في المنتصف (Contain)",
+                    "value": "contain",
+                    "key": "f4adec13-6e4c-433b-b141-b2807935ced9"
+                }
+            ],
+            "options": [
+                {
+                    "label": "تغطية الصورة كامل المساحة مع المحافظة على أبعاد الصورة (Cover)",
+                    "value": "cover",
+                    "key": "e9c8ea8f-c5c6-438e-9d45-3bce269afde4"
+                },
+                {
+                    "label": "اظهار الصورة كاملةً في المنتصف (Contain)",
+                    "value": "contain",
+                    "key": "f4adec13-6e4c-433b-b141-b2807935ced9"
+                }
+            ],
+            "source": "Manual",
+            "required": true
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "تكبير الصور في سليدر صور المنتج",
+            "description": "هذه الخاصية تمكنك من تكبير الصورة لتسهل رؤية المزيد من التفاصيل بها",
+            "id": "imageZoom",
+            "format": "switch",
+            "required": false,
+            "value": false,
+            "selected": false
+        }
+    ],
+    "components": [
+        {
+            "key": "16294973-425d-4884-aa52-48ca703ffd1c",
+            "title": {
+                "en": "Hero Slideshow",
+                "ar": "عرض الصور المتحركة"
+            },
+            "icon": "sicon-image-carousel",
+            "path": "home.hero-slideshow",
+            "fields": [
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "static-desc",
+                    "value": "<div><h6>Jewelias Hero Slideshow - Full-width image/video slider with text overlays</h6></div>"
+                },
+                {
+                    "type": "boolean",
+                    "icon": "sicon-toggle-off",
+                    "label": "التشغيل التلقائي",
+                    "id": "autoplay",
+                    "format": "switch",
+                    "required": false,
+                    "value": true,
+                    "selected": true
+                },
+                {
+                    "id": "slideshow_speed",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "label": "سرعة تبديل الشرائح",
+                    "icon": "sicon-timer",
+                    "selected": [
+                        { "label": "5 ثواني", "value": "5000", "key": "a1b2c3d4-0001-4000-8000-000000000001" }
+                    ],
+                    "options": [
+                        { "label": "5 ثواني", "value": "5000", "key": "a1b2c3d4-0001-4000-8000-000000000001" },
+                        { "label": "6 ثواني", "value": "6000", "key": "a1b2c3d4-0001-4000-8000-000000000002" },
+                        { "label": "7 ثواني", "value": "7000", "key": "a1b2c3d4-0001-4000-8000-000000000003" },
+                        { "label": "8 ثواني", "value": "8000", "key": "a1b2c3d4-0001-4000-8000-000000000004" },
+                        { "label": "9 ثواني", "value": "9000", "key": "a1b2c3d4-0001-4000-8000-000000000005" },
+                        { "label": "10 ثواني", "value": "10000", "key": "a1b2c3d4-0001-4000-8000-000000000006" }
+                    ],
+                    "source": "Manual",
+                    "required": true
+                },
+                {
+                    "id": "slideshow_transition",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "label": "تأثير الانتقال",
+                    "icon": "sicon-shuffle",
+                    "selected": [
+                        { "label": "تلاشي", "value": "true", "key": "a1b2c3d4-0002-4000-8000-000000000001" }
+                    ],
+                    "options": [
+                        { "label": "انزلاق", "value": "false", "key": "a1b2c3d4-0002-4000-8000-000000000002" },
+                        { "label": "تلاشي", "value": "true", "key": "a1b2c3d4-0002-4000-8000-000000000001" }
+                    ],
+                    "source": "Manual",
+                    "required": true
+                },
+                {
+                    "type": "string",
+                    "format": "color",
+                    "id": "bg_color_dots",
+                    "label": "لون النقاط",
+                    "icon": "sicon-color-palette",
+                    "value": "#ffffff",
+                    "required": false
+                },
+                {
+                    "type": "string",
+                    "format": "color",
+                    "id": "bg_color_arrow",
+                    "label": "لون الأسهم",
+                    "icon": "sicon-color-palette",
+                    "value": "#ffffff",
+                    "required": false
+                },
+                {
+                    "type": "number",
+                    "format": "number",
+                    "id": "space_on",
+                    "label": "المسافة من الأعلى",
+                    "icon": "sicon-ruler",
+                    "value": 0,
+                    "minimum": 0,
+                    "maximum": 100,
+                    "required": false
+                },
+                {
+                    "type": "number",
+                    "format": "number",
+                    "id": "space_below",
+                    "label": "المسافة من الأسفل",
+                    "icon": "sicon-ruler",
+                    "value": 25,
+                    "minimum": 0,
+                    "maximum": 100,
+                    "required": false
+                },
+                {
+                    "id": "slides",
+                    "type": "collection",
+                    "format": "collection",
+                    "required": true,
+                    "minLength": 1,
+                    "maxLength": 10,
+                    "item_label": "شريحة",
+                    "value": [
+                        {
+                            "slides.image": null,
+                            "slides.image_mobile": null,
+                            "slides.sub_header": "Soliquem Duscipitor",
+                            "slides.header": "Soliquem Duscipitor",
+                            "slides.description": "",
+                            "slides.button_text": "Shop Now",
+                            "slides.button_link__type": "custom"
+                        }
+                    ],
+                    "fields": [
+                        {
+                            "type": "string",
+                            "icon": "sicon-image",
+                            "value": null,
+                            "id": "slides.image",
+                            "label": "صورة الشريحة",
+                            "format": "image",
+                            "required": true,
+                            "description": "* المقاس المناسب: 1880×470 بكسل"
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-image",
+                            "value": null,
+                            "id": "slides.image_mobile",
+                            "label": "صورة الجوال",
+                            "format": "image",
+                            "required": false,
+                            "description": "صورة مخصصة للجوال (اختياري)"
+                        },
+                        {
+                            "id": "slides.alignment",
+                            "type": "items",
+                            "format": "dropdown-list",
+                            "label": "موضع النص",
+                            "icon": "sicon-format-text-alt",
+                            "selected": [
+                                { "label": "يسار", "value": "left", "key": "a1b2c3d4-0003-4000-8000-000000000001" }
+                            ],
+                            "options": [
+                                { "label": "يسار", "value": "left", "key": "a1b2c3d4-0003-4000-8000-000000000001" },
+                                { "label": "وسط", "value": "center", "key": "a1b2c3d4-0003-4000-8000-000000000002" },
+                                { "label": "يمين", "value": "right", "key": "a1b2c3d4-0003-4000-8000-000000000003" }
+                            ],
+                            "source": "Manual",
+                            "required": false
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-format-text-alt",
+                            "label": "العنوان الفرعي",
+                            "multilanguage": true,
+                            "id": "slides.sub_header",
+                            "value": "Soliquem Duscipitor",
+                            "required": false,
+                            "format": "text",
+                            "placeholder": "أدخل العنوان الفرعي هنا...",
+                            "maxLength": 100
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-format-text-alt",
+                            "label": "العنوان الرئيسي",
+                            "multilanguage": true,
+                            "id": "slides.header",
+                            "value": "Soliquem Duscipitor",
+                            "required": false,
+                            "format": "text",
+                            "placeholder": "أدخل العنوان الرئيسي هنا...",
+                            "maxLength": 100
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-typography",
+                            "label": "الوصف",
+                            "multilanguage": true,
+                            "id": "slides.description",
+                            "value": null,
+                            "format": "textarea",
+                            "required": false,
+                            "placeholder": "أدخل الوصف هنا...",
+                            "maxLength": 255
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-format-text-alt",
+                            "label": "نص الزر",
+                            "multilanguage": true,
+                            "id": "slides.button_text",
+                            "value": "Shop Now",
+                            "required": false,
+                            "format": "text",
+                            "placeholder": "نص الزر..."
+                        },
+                        {
+                            "type": "items",
+                            "icon": "sicon-link",
+                            "label": "رابط الزر",
+                            "id": "slides.button_link",
+                            "value": null,
+                            "required": false,
+                            "format": "variable-list",
+                            "searchable": true,
+                            "source": "custom",
+                            "sources": [
+                                { "label": "منتج", "key": "products", "value": "products" },
+                                { "label": "تصنيف", "key": "categories", "value": "categories" },
+                                { "label": "ماركة تجارية", "key": "brands", "value": "brands" },
+                                { "label": "صفحة تعريفية", "key": "pages", "value": "pages" },
+                                { "label": "التخفيضات", "key": "offers_link", "value": "offers_link" },
+                                { "label": "رابط خارجي", "key": "custom", "value": "custom" }
+                            ]
+                        },
+                        {
+                            "type": "string",
+                            "format": "color",
+                            "id": "slides.color_header",
+                            "label": "لون العنوان",
+                            "icon": "sicon-color-palette",
+                            "value": "#000000",
+                            "required": false
+                        },
+                        {
+                            "type": "string",
+                            "format": "color",
+                            "id": "slides.button_bg",
+                            "label": "لون خلفية الزر",
+                            "icon": "sicon-color-palette",
+                            "value": "#d41d42",
+                            "required": false
+                        },
+                        {
+                            "type": "string",
+                            "format": "color",
+                            "id": "slides.button_color",
+                            "label": "لون نص الزر",
+                            "icon": "sicon-color-palette",
+                            "value": "#ffffff",
+                            "required": false
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "1666cec1-031c-4fc9-99fe-18acec926777",
+            "title": {
+                "en": "Promotion Bar",
+                "ar": "شريط العروض"
+            },
+            "icon": "sicon-megaphone",
+            "path": "home.promotion-bar",
+            "fields": [
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "static-desc",
+                    "value": "<div><h6>Jewelias Promotion Bar - Top banner with 3 promotional messages</h6></div>"
+                },
+                {
+                    "type": "string",
+                    "format": "color",
+                    "id": "bg_promotion_color",
+                    "label": "لون الخلفية",
+                    "icon": "sicon-color-palette",
+                    "value": "#ffffff",
+                    "required": false
+                },
+                {
+                    "type": "string",
+                    "format": "color",
+                    "id": "text_promotion_color",
+                    "label": "لون النص",
+                    "icon": "sicon-color-palette",
+                    "value": "#000000",
+                    "required": false
+                },
+                {
+                    "type": "string",
+                    "format": "color",
+                    "id": "border_promotion_color",
+                    "label": "لون الحدود",
+                    "icon": "sicon-color-palette",
+                    "value": "#e0e0e0",
+                    "required": false
+                },
+                {
+                    "id": "items",
+                    "type": "collection",
+                    "format": "collection",
+                    "required": true,
+                    "minLength": 1,
+                    "maxLength": 5,
+                    "item_label": "عنصر ترويج",
+                    "value": [
+                        {
+                            "items.text": "Free Delivery Worldwide",
+                            "items.link__type": "custom"
+                        },
+                        {
+                            "items.text": "Free Returns InStore",
+                            "items.link__type": "custom"
+                        },
+                        {
+                            "items.text": "Rewards Program",
+                            "items.link__type": "custom"
+                        }
+                    ],
+                    "fields": [
+                        {
+                            "type": "string",
+                            "icon": "sicon-format-text-alt",
+                            "label": "النص",
+                            "multilanguage": true,
+                            "id": "items.text",
+                            "value": null,
+                            "required": true,
+                            "format": "text",
+                            "placeholder": "أدخل نص العرض...",
+                            "maxLength": 100
+                        },
+                        {
+                            "type": "items",
+                            "icon": "sicon-link",
+                            "label": "الرابط",
+                            "id": "items.link",
+                            "value": null,
+                            "required": false,
+                            "format": "variable-list",
+                            "searchable": true,
+                            "source": "custom",
+                            "sources": [
+                                { "label": "منتج", "key": "products", "value": "products" },
+                                { "label": "تصنيف", "key": "categories", "value": "categories" },
+                                { "label": "ماركة تجارية", "key": "brands", "value": "brands" },
+                                { "label": "صفحة تعريفية", "key": "pages", "value": "pages" },
+                                { "label": "التخفيضات", "key": "offers_link", "value": "offers_link" },
+                                { "label": "رابط خارجي", "key": "custom", "value": "custom" }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "ab542be3-31dc-48b8-8ed4-356e8226048a",
+            "title": {
+                "en": "List Collections",
+                "ar": "قائمة التصنيفات"
+            },
+            "icon": "sicon-layout-grid-rearrange",
+            "path": "home.list-collections",
+            "fields": [
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "static-desc",
+                    "value": "<div><h6>Jewelias Collection List - Display store collections in a grid layout</h6></div>"
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "عنوان القسم",
+                    "multilanguage": true,
+                    "id": "title",
+                    "value": null,
+                    "required": false,
+                    "format": "text",
+                    "placeholder": "أدخل عنوان القسم...",
+                    "maxLength": 200
+                },
+                {
+                    "id": "items_per_row",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "label": "عدد العناصر في الصف",
+                    "icon": "sicon-layout-grid-rearrange",
+                    "selected": [
+                        { "label": "3", "value": "3", "key": "b1c2d3e4-0001-4000-8000-000000000001" }
+                    ],
+                    "options": [
+                        { "label": "2", "value": "2", "key": "b1c2d3e4-0001-4000-8000-000000000002" },
+                        { "label": "3", "value": "3", "key": "b1c2d3e4-0001-4000-8000-000000000001" },
+                        { "label": "4", "value": "4", "key": "b1c2d3e4-0001-4000-8000-000000000003" },
+                        { "label": "5", "value": "5", "key": "b1c2d3e4-0001-4000-8000-000000000004" }
+                    ],
+                    "source": "Manual",
+                    "required": true
+                },
+                {
+                    "id": "categories",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "label": "حدد التصنيفات",
+                    "icon": "sicon-keyboard_arrow_down",
+                    "selected": [],
+                    "options": [],
+                    "source": "categories",
+                    "multichoice": true,
+                    "searchable": true,
+                    "required": false
+                }
+            ]
+        },
+        {
+            "key": "20a5059c-7804-4701-98cd-2aa07f67cc38",
+            "title": {
+                "en": "New Products",
+                "ar": "المنتجات الجديدة"
+            },
+            "icon": "sicon-star",
+            "path": "home.new-products",
+            "fields": [
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "static-desc",
+                    "value": "<div><h6>Jewelias New Products - Display newest products from a collection</h6></div>"
+                },
+                {
+                    "type": "boolean",
+                    "icon": "sicon-toggle-off",
+                    "label": "تفعيل القسم",
+                    "id": "enabled",
+                    "format": "switch",
+                    "required": false,
+                    "value": true,
+                    "selected": true
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "العنوان",
+                    "multilanguage": true,
+                    "id": "title",
+                    "value": {
+                        "ar": "منتجات جديدة",
+                        "en": "New Products"
+                    },
+                    "required": false,
+                    "format": "text",
+                    "placeholder": "أدخل العنوان هنا...",
+                    "maxLength": 200
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-typography",
+                    "label": "نص توضيحي",
+                    "multilanguage": true,
+                    "id": "description",
+                    "value": null,
+                    "format": "textarea",
+                    "required": false,
+                    "placeholder": "أدخل الوصف هنا...",
+                    "maxLength": 256
+                },
+                {
+                    "id": "collection",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "label": "التصنيف المستخدم",
+                    "icon": "sicon-keyboard_arrow_down",
+                    "selected": [],
+                    "options": [],
+                    "source": "categories",
+                    "searchable": true,
+                    "required": true
+                },
+                {
+                    "type": "number",
+                    "format": "number",
+                    "id": "product_limit",
+                    "label": "عدد المنتجات المعروضة",
+                    "icon": "sicon-pencil-ruler",
+                    "value": 8,
+                    "minimum": 1,
+                    "maximum": 50,
+                    "required": false
+                },
+                {
+                    "type": "boolean",
+                    "icon": "sicon-toggle-off",
+                    "label": "عرض زر المزيد",
+                    "id": "show_more_button",
+                    "format": "switch",
+                    "required": false,
+                    "value": true,
+                    "selected": true
+                },
+                {
+                    "id": "products_per_row",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "label": "عدد المنتجات في الصف",
+                    "icon": "sicon-layout-grid-rearrange",
+                    "selected": [
+                        { "label": "5", "value": "5", "key": "c1d2e3f4-0001-4000-8000-000000000001" }
+                    ],
+                    "options": [
+                        { "label": "3", "value": "3", "key": "c1d2e3f4-0001-4000-8000-000000000002" },
+                        { "label": "4", "value": "4", "key": "c1d2e3f4-0001-4000-8000-000000000003" },
+                        { "label": "5", "value": "5", "key": "c1d2e3f4-0001-4000-8000-000000000001" },
+                        { "label": "6", "value": "6", "key": "c1d2e3f4-0001-4000-8000-000000000004" }
+                    ],
+                    "source": "Manual",
+                    "required": true
+                },
+                {
+                    "type": "number",
+                    "format": "number",
+                    "id": "space_on",
+                    "label": "المسافة من الأعلى",
+                    "icon": "sicon-ruler",
+                    "value": 0,
+                    "minimum": 0,
+                    "maximum": 100,
+                    "required": false
+                },
+                {
+                    "type": "number",
+                    "format": "number",
+                    "id": "space_below",
+                    "label": "المسافة من الأسفل",
+                    "icon": "sicon-ruler",
+                    "value": 0,
+                    "minimum": 0,
+                    "maximum": 100,
+                    "required": false
+                }
+            ]
+        },
+        {
+            "key": "a4d30984-0cee-4f34-8556-f3f8f7b5eb19",
+            "title": {
+                "en": "Featured Products",
+                "ar": "المنتجات المميزة"
+            },
+            "icon": "sicon-diamond",
+            "path": "home.featured-products",
+            "fields": [
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "static-desc",
+                    "value": "<div><h6>Jewelias Featured Products - Showcase featured products in a slider</h6></div>"
+                },
+                {
+                    "type": "boolean",
+                    "icon": "sicon-toggle-off",
+                    "label": "تفعيل القسم",
+                    "id": "enabled",
+                    "format": "switch",
+                    "required": false,
+                    "value": true,
+                    "selected": true
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "العنوان",
+                    "multilanguage": true,
+                    "id": "title",
+                    "value": {
+                        "ar": "منتجات مميزة",
+                        "en": "Featured Products"
+                    },
+                    "required": false,
+                    "format": "text",
+                    "placeholder": "أدخل العنوان هنا...",
+                    "maxLength": 200
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-typography",
+                    "label": "نص توضيحي",
+                    "multilanguage": true,
+                    "id": "description",
+                    "value": null,
+                    "format": "textarea",
+                    "required": false,
+                    "placeholder": "أدخل الوصف هنا...",
+                    "maxLength": 256
+                },
+                {
+                    "id": "collection",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "label": "التصنيف المستخدم",
+                    "icon": "sicon-keyboard_arrow_down",
+                    "selected": [],
+                    "options": [],
+                    "source": "categories",
+                    "searchable": true,
+                    "required": true
+                },
+                {
+                    "type": "number",
+                    "format": "number",
+                    "id": "product_limit",
+                    "label": "عدد المنتجات المعروضة",
+                    "icon": "sicon-pencil-ruler",
+                    "value": 10,
+                    "minimum": 1,
+                    "maximum": 50,
+                    "required": false
+                },
+                {
+                    "id": "products_per_row",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "label": "عدد المنتجات في الصف",
+                    "icon": "sicon-layout-grid-rearrange",
+                    "selected": [
+                        { "label": "5", "value": "5", "key": "d1e2f3a4-0001-4000-8000-000000000001" }
+                    ],
+                    "options": [
+                        { "label": "3", "value": "3", "key": "d1e2f3a4-0001-4000-8000-000000000002" },
+                        { "label": "4", "value": "4", "key": "d1e2f3a4-0001-4000-8000-000000000003" },
+                        { "label": "5", "value": "5", "key": "d1e2f3a4-0001-4000-8000-000000000001" },
+                        { "label": "6", "value": "6", "key": "d1e2f3a4-0001-4000-8000-000000000004" }
+                    ],
+                    "source": "Manual",
+                    "required": true
+                },
+                {
+                    "type": "number",
+                    "format": "number",
+                    "id": "space_on",
+                    "label": "المسافة من الأعلى",
+                    "icon": "sicon-ruler",
+                    "value": 0,
+                    "minimum": 0,
+                    "maximum": 100,
+                    "required": false
+                },
+                {
+                    "type": "number",
+                    "format": "number",
+                    "id": "space_below",
+                    "label": "المسافة من الأسفل",
+                    "icon": "sicon-ruler",
+                    "value": 0,
+                    "minimum": 0,
+                    "maximum": 100,
+                    "required": false
+                }
+            ]
+        },
+        {
+            "key": "8ea5cd11-cd53-4256-bbdd-fc45dc3aa1ac",
+            "title": {
+                "en": "Banner Top",
+                "ar": "بنر علوي"
+            },
+            "icon": "sicon-image",
+            "path": "home.banner-top",
+            "fields": [
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "static-desc",
+                    "value": "<div><h6>Jewelias Top Banners - Up to 3 banner images with text overlays</h6></div>"
+                },
+                {
+                    "type": "boolean",
+                    "icon": "sicon-toggle-off",
+                    "label": "تفعيل القسم",
+                    "id": "enabled",
+                    "format": "switch",
+                    "required": false,
+                    "value": true,
+                    "selected": true
+                },
+                {
+                    "type": "boolean",
+                    "icon": "sicon-toggle-off",
+                    "label": "عرض محتوى البنر",
+                    "id": "show_content",
+                    "format": "switch",
+                    "required": false,
+                    "value": true,
+                    "selected": true
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-typography",
+                    "label": "محتوى البنر",
+                    "multilanguage": true,
+                    "id": "content_text",
+                    "value": null,
+                    "format": "textarea",
+                    "required": false,
+                    "placeholder": "أدخل محتوى البنر هنا...",
+                    "maxLength": 500
+                },
+                {
+                    "type": "number",
+                    "format": "number",
+                    "id": "space_on",
+                    "label": "المسافة من الأعلى",
+                    "icon": "sicon-ruler",
+                    "value": 0,
+                    "minimum": 0,
+                    "maximum": 100,
+                    "required": false
+                },
+                {
+                    "type": "number",
+                    "format": "number",
+                    "id": "space_below",
+                    "label": "المسافة من الأسفل",
+                    "icon": "sicon-ruler",
+                    "value": 25,
+                    "minimum": 0,
+                    "maximum": 100,
+                    "required": false
+                },
+                {
+                    "id": "banners",
+                    "type": "collection",
+                    "format": "collection",
+                    "required": true,
+                    "minLength": 1,
+                    "maxLength": 3,
+                    "item_label": "بنر",
+                    "value": [
+                        {
+                            "banners.image": null,
+                            "banners.link__type": "custom",
+                            "banners.sub_heading": "Accessories",
+                            "banners.heading": "Curabitur",
+                            "banners.description": "Maecenas quam odio pellentesque eget laoreet.",
+                            "banners.content_position__value": "bottom"
+                        }
+                    ],
+                    "fields": [
+                        {
+                            "type": "string",
+                            "icon": "sicon-image",
+                            "value": null,
+                            "id": "banners.image",
+                            "label": "صورة البنر",
+                            "format": "image",
+                            "required": true,
+                            "description": "* المقاس المناسب: 370×435 بكسل"
+                        },
+                        {
+                            "type": "items",
+                            "icon": "sicon-link",
+                            "label": "رابط الصورة",
+                            "id": "banners.link",
+                            "value": null,
+                            "required": false,
+                            "format": "variable-list",
+                            "searchable": true,
+                            "source": "custom",
+                            "sources": [
+                                { "label": "منتج", "key": "products", "value": "products" },
+                                { "label": "تصنيف", "key": "categories", "value": "categories" },
+                                { "label": "ماركة تجارية", "key": "brands", "value": "brands" },
+                                { "label": "صفحة تعريفية", "key": "pages", "value": "pages" },
+                                { "label": "التخفيضات", "key": "offers_link", "value": "offers_link" },
+                                { "label": "رابط خارجي", "key": "custom", "value": "custom" }
+                            ]
+                        },
+                        {
+                            "id": "banners.content_position",
+                            "type": "items",
+                            "format": "dropdown-list",
+                            "label": "موضع المحتوى",
+                            "icon": "sicon-format-text-alt",
+                            "selected": [
+                                { "label": "أسفل", "value": "bottom", "key": "e1f2a3b4-0001-4000-8000-000000000001" }
+                            ],
+                            "options": [
+                                { "label": "أعلى", "value": "top", "key": "e1f2a3b4-0001-4000-8000-000000000002" },
+                                { "label": "وسط", "value": "middle", "key": "e1f2a3b4-0001-4000-8000-000000000003" },
+                                { "label": "أسفل", "value": "bottom", "key": "e1f2a3b4-0001-4000-8000-000000000001" }
+                            ],
+                            "source": "Manual",
+                            "required": false
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-format-text-alt",
+                            "label": "العنوان الفرعي",
+                            "multilanguage": true,
+                            "id": "banners.sub_heading",
+                            "value": "Accessories",
+                            "required": false,
+                            "format": "text",
+                            "placeholder": "أدخل العنوان الفرعي..."
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-format-text-alt",
+                            "label": "العنوان الرئيسي",
+                            "multilanguage": true,
+                            "id": "banners.heading",
+                            "value": "Curabitur",
+                            "required": false,
+                            "format": "text",
+                            "placeholder": "أدخل العنوان..."
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-typography",
+                            "label": "الوصف",
+                            "multilanguage": true,
+                            "id": "banners.description",
+                            "value": null,
+                            "format": "text",
+                            "required": false,
+                            "placeholder": "أدخل الوصف..."
+                        },
+                        {
+                            "type": "string",
+                            "format": "color",
+                            "id": "banners.color_heading",
+                            "label": "لون العنوان",
+                            "icon": "sicon-color-palette",
+                            "value": "#ffffff",
+                            "required": false
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "a73a02ae-886e-4e89-bf43-f3b879252597",
+            "title": {
+                "en": "Weekly Special",
+                "ar": "عروض الأسبوع"
+            },
+            "icon": "sicon-calendar-date",
+            "path": "home.weekly-special",
+            "fields": [
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "static-desc",
+                    "value": "<div><h6>Jewelias Weekly Special - Promotional blocks with images, text, and promo codes</h6></div>"
+                },
+                {
+                    "type": "boolean",
+                    "icon": "sicon-toggle-off",
+                    "label": "تفعيل القسم",
+                    "id": "enabled",
+                    "format": "switch",
+                    "required": false,
+                    "value": true,
+                    "selected": true
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "العنوان",
+                    "multilanguage": true,
+                    "id": "title",
+                    "value": {
+                        "ar": "عروض الأسبوع",
+                        "en": "Weekly's Special"
+                    },
+                    "required": false,
+                    "format": "text",
+                    "placeholder": "أدخل العنوان هنا...",
+                    "maxLength": 200
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-typography",
+                    "label": "نص توضيحي",
+                    "multilanguage": true,
+                    "id": "description",
+                    "value": null,
+                    "format": "text",
+                    "required": false,
+                    "placeholder": "أدخل الوصف هنا...",
+                    "maxLength": 256
+                },
+                {
+                    "type": "number",
+                    "format": "number",
+                    "id": "space_on",
+                    "label": "المسافة من الأعلى",
+                    "icon": "sicon-ruler",
+                    "value": 0,
+                    "minimum": 0,
+                    "maximum": 100,
+                    "required": false
+                },
+                {
+                    "type": "number",
+                    "format": "number",
+                    "id": "space_below",
+                    "label": "المسافة من الأسفل",
+                    "icon": "sicon-ruler",
+                    "value": 25,
+                    "minimum": 0,
+                    "maximum": 100,
+                    "required": false
+                },
+                {
+                    "id": "items",
+                    "type": "collection",
+                    "format": "collection",
+                    "required": true,
+                    "minLength": 1,
+                    "maxLength": 3,
+                    "item_label": "عرض",
+                    "value": [
+                        {
+                            "items.image": null,
+                            "items.link__type": "custom",
+                            "items.img_sub_heading": "Shop Bridal",
+                            "items.img_heading": "Accessories",
+                            "items.content_heading": "Bridal jewelry & accessories",
+                            "items.promotion_text": "Sale 10% off on Selected Items.",
+                            "items.promotion_code": "- CODE: HAIR10 -",
+                            "items.content_desc": "",
+                            "items.button_text": "Shop Now"
+                        },
+                        {
+                            "items.image": null,
+                            "items.link__type": "custom",
+                            "items.img_sub_heading": "Shop Bridal",
+                            "items.img_heading": "Accessories",
+                            "items.content_heading": "Bridal jewelry & accessories",
+                            "items.promotion_text": "Sale 10% off on Selected Items.",
+                            "items.promotion_code": "- CODE: HAIR10 -",
+                            "items.content_desc": "",
+                            "items.button_text": "Shop Now"
+                        },
+                        {
+                            "items.image": null,
+                            "items.link__type": "custom",
+                            "items.img_sub_heading": "Shop Bridal",
+                            "items.img_heading": "Accessories",
+                            "items.content_heading": "Bridal jewelry & accessories",
+                            "items.promotion_text": "Sale 10% off on Selected Items.",
+                            "items.promotion_code": "- CODE: HAIR10 -",
+                            "items.content_desc": "",
+                            "items.button_text": "Shop Now"
+                        }
+                    ],
+                    "fields": [
+                        {
+                            "type": "string",
+                            "icon": "sicon-image",
+                            "value": null,
+                            "id": "items.image",
+                            "label": "الصورة",
+                            "format": "image",
+                            "required": true,
+                            "description": "* المقاس المناسب: 720×570 بكسل"
+                        },
+                        {
+                            "type": "items",
+                            "icon": "sicon-link",
+                            "label": "الرابط",
+                            "id": "items.link",
+                            "value": null,
+                            "required": false,
+                            "format": "variable-list",
+                            "searchable": true,
+                            "source": "custom",
+                            "sources": [
+                                { "label": "منتج", "key": "products", "value": "products" },
+                                { "label": "تصنيف", "key": "categories", "value": "categories" },
+                                { "label": "ماركة تجارية", "key": "brands", "value": "brands" },
+                                { "label": "صفحة تعريفية", "key": "pages", "value": "pages" },
+                                { "label": "التخفيضات", "key": "offers_link", "value": "offers_link" },
+                                { "label": "رابط خارجي", "key": "custom", "value": "custom" }
+                            ]
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-format-text-alt",
+                            "label": "عنوان فرعي للصورة",
+                            "multilanguage": true,
+                            "id": "items.img_sub_heading",
+                            "value": "Shop Bridal",
+                            "required": false,
+                            "format": "text",
+                            "placeholder": "عنوان فرعي..."
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-format-text-alt",
+                            "label": "عنوان الصورة",
+                            "multilanguage": true,
+                            "id": "items.img_heading",
+                            "value": "Accessories",
+                            "required": false,
+                            "format": "text",
+                            "placeholder": "عنوان الصورة..."
+                        },
+                        {
+                            "id": "items.heading_position",
+                            "type": "items",
+                            "format": "dropdown-list",
+                            "label": "موضع العنوان",
+                            "icon": "sicon-format-text-alt",
+                            "selected": [
+                                { "label": "أسفل", "value": "bottom", "key": "f1a2b3c4-0001-4000-8000-000000000001" }
+                            ],
+                            "options": [
+                                { "label": "أعلى", "value": "top", "key": "f1a2b3c4-0001-4000-8000-000000000002" },
+                                { "label": "وسط", "value": "middle", "key": "f1a2b3c4-0001-4000-8000-000000000003" },
+                                { "label": "أسفل", "value": "bottom", "key": "f1a2b3c4-0001-4000-8000-000000000001" }
+                            ],
+                            "source": "Manual",
+                            "required": false
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-format-text-alt",
+                            "label": "عنوان المحتوى",
+                            "multilanguage": true,
+                            "id": "items.content_heading",
+                            "value": "Bridal jewelry & accessories",
+                            "required": false,
+                            "format": "text",
+                            "placeholder": "عنوان المحتوى..."
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-typography",
+                            "label": "نص العرض",
+                            "multilanguage": true,
+                            "id": "items.promotion_text",
+                            "value": "Sale 10% off on Selected Items.",
+                            "format": "textarea",
+                            "required": false,
+                            "placeholder": "نص العرض..."
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-typography",
+                            "label": "كود الخصم",
+                            "multilanguage": true,
+                            "id": "items.promotion_code",
+                            "value": "- CODE: HAIR10 -",
+                            "format": "textarea",
+                            "required": false,
+                            "placeholder": "كود الخصم..."
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-typography",
+                            "label": "نص الوصف",
+                            "multilanguage": true,
+                            "id": "items.content_desc",
+                            "value": null,
+                            "format": "textarea",
+                            "required": false,
+                            "placeholder": "نص وصف إضافي..."
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-format-text-alt",
+                            "label": "نص الزر",
+                            "multilanguage": true,
+                            "id": "items.button_text",
+                            "value": "Shop Now",
+                            "required": false,
+                            "format": "text",
+                            "placeholder": "نص الزر..."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "5fe63ca0-d3c2-4b50-aee7-c4f4fbbb5f03",
+            "title": {
+                "en": "Editor's Picks",
+                "ar": "اختيارات المحرر"
+            },
+            "icon": "sicon-heart",
+            "path": "home.editors-picks",
+            "fields": [
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "static-desc",
+                    "value": "<div><h6>Jewelias Editor's Picks - Curated product collection slider</h6></div>"
+                },
+                {
+                    "type": "boolean",
+                    "icon": "sicon-toggle-off",
+                    "label": "تفعيل القسم",
+                    "id": "enabled",
+                    "format": "switch",
+                    "required": false,
+                    "value": true,
+                    "selected": true
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "العنوان",
+                    "multilanguage": true,
+                    "id": "title",
+                    "value": {
+                        "ar": "اختيارات المحرر",
+                        "en": "Editor's Picks"
+                    },
+                    "required": false,
+                    "format": "text",
+                    "placeholder": "أدخل العنوان هنا...",
+                    "maxLength": 200
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-typography",
+                    "label": "نص توضيحي",
+                    "multilanguage": true,
+                    "id": "description",
+                    "value": null,
+                    "format": "textarea",
+                    "required": false,
+                    "placeholder": "أدخل الوصف هنا...",
+                    "maxLength": 256
+                },
+                {
+                    "id": "collection",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "label": "التصنيف المستخدم",
+                    "icon": "sicon-keyboard_arrow_down",
+                    "selected": [],
+                    "options": [],
+                    "source": "categories",
+                    "searchable": true,
+                    "required": true
+                },
+                {
+                    "type": "number",
+                    "format": "number",
+                    "id": "product_limit",
+                    "label": "عدد المنتجات المعروضة",
+                    "icon": "sicon-pencil-ruler",
+                    "value": 10,
+                    "minimum": 1,
+                    "maximum": 50,
+                    "required": false
+                },
+                {
+                    "id": "products_per_row",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "label": "عدد المنتجات في الصف",
+                    "icon": "sicon-layout-grid-rearrange",
+                    "selected": [
+                        { "label": "5", "value": "5", "key": "a2b3c4d5-0001-4000-8000-000000000001" }
+                    ],
+                    "options": [
+                        { "label": "3", "value": "3", "key": "a2b3c4d5-0001-4000-8000-000000000002" },
+                        { "label": "4", "value": "4", "key": "a2b3c4d5-0001-4000-8000-000000000003" },
+                        { "label": "5", "value": "5", "key": "a2b3c4d5-0001-4000-8000-000000000001" },
+                        { "label": "6", "value": "6", "key": "a2b3c4d5-0001-4000-8000-000000000004" }
+                    ],
+                    "source": "Manual",
+                    "required": true
+                },
+                {
+                    "type": "number",
+                    "format": "number",
+                    "id": "space_on",
+                    "label": "المسافة من الأعلى",
+                    "icon": "sicon-ruler",
+                    "value": 15,
+                    "minimum": 0,
+                    "maximum": 100,
+                    "required": false
+                },
+                {
+                    "type": "number",
+                    "format": "number",
+                    "id": "space_below",
+                    "label": "المسافة من الأسفل",
+                    "icon": "sicon-ruler",
+                    "value": 0,
+                    "minimum": 0,
+                    "maximum": 100,
+                    "required": false
+                }
+            ]
+        },
+        {
+            "key": "c66a879e-1b80-4dac-be52-28f0b2ef47db",
+            "title": {
+                "en": "Banner Bottom",
+                "ar": "بنر سفلي"
+            },
+            "icon": "sicon-photo-landscape",
+            "path": "home.banner-bottom",
+            "fields": [
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "static-desc",
+                    "value": "<div><h6>Jewelias Bottom Banner - Single full-width promotional banner image</h6></div>"
+                },
+                {
+                    "type": "boolean",
+                    "icon": "sicon-toggle-off",
+                    "label": "تفعيل القسم",
+                    "id": "enabled",
+                    "format": "switch",
+                    "required": false,
+                    "value": true,
+                    "selected": true
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-image",
+                    "value": null,
+                    "id": "image",
+                    "label": "صورة البنر",
+                    "format": "image",
+                    "required": true,
+                    "description": "* المقاس المناسب: 930×100 بكسل"
+                },
+                {
+                    "type": "items",
+                    "icon": "sicon-link",
+                    "label": "رابط الصورة",
+                    "id": "link",
+                    "value": null,
+                    "required": false,
+                    "format": "variable-list",
+                    "searchable": true,
+                    "source": "custom",
+                    "sources": [
+                        { "label": "منتج", "key": "products", "value": "products" },
+                        { "label": "تصنيف", "key": "categories", "value": "categories" },
+                        { "label": "ماركة تجارية", "key": "brands", "value": "brands" },
+                        { "label": "صفحة تعريفية", "key": "pages", "value": "pages" },
+                        { "label": "التخفيضات", "key": "offers_link", "value": "offers_link" },
+                        { "label": "رابط خارجي", "key": "custom", "value": "custom" }
+                    ]
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "عنوان الصورة",
+                    "multilanguage": true,
+                    "id": "title",
+                    "value": {
+                        "ar": "Diamond Forever",
+                        "en": "Diamond Forever"
+                    },
+                    "required": false,
+                    "format": "text",
+                    "placeholder": "عنوان الصورة..."
+                },
+                {
+                    "type": "number",
+                    "format": "number",
+                    "id": "space_on",
+                    "label": "المسافة من الأعلى",
+                    "icon": "sicon-ruler",
+                    "value": 15,
+                    "minimum": 0,
+                    "maximum": 100,
+                    "required": false
+                },
+                {
+                    "type": "number",
+                    "format": "number",
+                    "id": "space_below",
+                    "label": "المسافة من الأسفل",
+                    "icon": "sicon-ruler",
+                    "value": 40,
+                    "minimum": 0,
+                    "maximum": 100,
+                    "required": false
+                }
+            ]
+        },
+        {
+            "key": "914853bb-c540-4d95-a60c-aa2f77ab1cb0",
+            "title": {
+                "en": "Custom Slider",
+                "ar": "سلايدر مخصص"
+            },
+            "icon": "sicon-list-play",
+            "path": "home.custom-slider",
+            "fields": [
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "static-desc",
+                    "value": "<div><h6>Jewelias Custom Slider - Category/collection cards with images and links</h6></div>"
+                },
+                {
+                    "type": "boolean",
+                    "icon": "sicon-toggle-off",
+                    "label": "تفعيل القسم",
+                    "id": "enabled",
+                    "format": "switch",
+                    "required": false,
+                    "value": true,
+                    "selected": true
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "العنوان",
+                    "multilanguage": true,
+                    "id": "title",
+                    "value": {
+                        "ar": "التصنيفات",
+                        "en": "Collections"
+                    },
+                    "required": false,
+                    "format": "text",
+                    "placeholder": "أدخل العنوان هنا...",
+                    "maxLength": 200
+                },
+                {
+                    "type": "number",
+                    "format": "number",
+                    "id": "space_on",
+                    "label": "المسافة من الأعلى",
+                    "icon": "sicon-ruler",
+                    "value": 0,
+                    "minimum": 0,
+                    "maximum": 100,
+                    "required": false
+                },
+                {
+                    "type": "number",
+                    "format": "number",
+                    "id": "space_below",
+                    "label": "المسافة من الأسفل",
+                    "icon": "sicon-ruler",
+                    "value": 60,
+                    "minimum": 0,
+                    "maximum": 100,
+                    "required": false
+                },
+                {
+                    "id": "items",
+                    "type": "collection",
+                    "format": "collection",
+                    "required": true,
+                    "minLength": 1,
+                    "maxLength": 10,
+                    "item_label": "شريحة",
+                    "value": [
+                        {
+                            "items.image": null,
+                            "items.heading": "Loremous",
+                            "items.collection_text": "Collections",
+                            "items.link__type": "custom"
+                        }
+                    ],
+                    "fields": [
+                        {
+                            "type": "string",
+                            "icon": "sicon-image",
+                            "value": null,
+                            "id": "items.image",
+                            "label": "الصورة",
+                            "format": "image",
+                            "required": false,
+                            "description": "* المقاس المناسب: 96×96 بكسل"
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-format-text-alt",
+                            "label": "العنوان",
+                            "multilanguage": true,
+                            "id": "items.heading",
+                            "value": "Loremous",
+                            "required": false,
+                            "format": "text",
+                            "placeholder": "عنوان الشريحة..."
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-format-text-alt",
+                            "label": "نص التصنيف",
+                            "multilanguage": true,
+                            "id": "items.collection_text",
+                            "value": "Collections",
+                            "required": false,
+                            "format": "text",
+                            "placeholder": "نص التصنيف..."
+                        },
+                        {
+                            "type": "items",
+                            "icon": "sicon-link",
+                            "label": "الرابط",
+                            "id": "items.link",
+                            "value": null,
+                            "required": false,
+                            "format": "variable-list",
+                            "searchable": true,
+                            "source": "custom",
+                            "sources": [
+                                { "label": "منتج", "key": "products", "value": "products" },
+                                { "label": "تصنيف", "key": "categories", "value": "categories" },
+                                { "label": "ماركة تجارية", "key": "brands", "value": "brands" },
+                                { "label": "صفحة تعريفية", "key": "pages", "value": "pages" },
+                                { "label": "التخفيضات", "key": "offers_link", "value": "offers_link" },
+                                { "label": "رابط خارجي", "key": "custom", "value": "custom" }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "1398468e-ba1a-416d-87e3-8eda124856a4",
+            "title": {
+                "en": "Brands",
+                "ar": "العلامات التجارية"
+            },
+            "icon": "sicon-award-ribbon",
+            "path": "home.brands",
+            "fields": [
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "static-desc",
+                    "value": "<div><h6>Jewelias Brands Slider - Display brand logos in a carousel</h6></div>"
+                },
+                {
+                    "type": "boolean",
+                    "icon": "sicon-toggle-off",
+                    "label": "تفعيل القسم",
+                    "id": "enabled",
+                    "format": "switch",
+                    "required": false,
+                    "value": true,
+                    "selected": true
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "العنوان",
+                    "multilanguage": true,
+                    "id": "title",
+                    "value": {
+                        "ar": "أفضل العلامات التجارية",
+                        "en": "Top Brands"
+                    },
+                    "required": false,
+                    "format": "text",
+                    "placeholder": "أدخل العنوان هنا...",
+                    "maxLength": 200
+                },
+                {
+                    "type": "number",
+                    "format": "number",
+                    "id": "space_on",
+                    "label": "المسافة من الأعلى",
+                    "icon": "sicon-ruler",
+                    "value": 0,
+                    "minimum": 0,
+                    "maximum": 100,
+                    "required": false
+                },
+                {
+                    "type": "number",
+                    "format": "number",
+                    "id": "space_below",
+                    "label": "المسافة من الأسفل",
+                    "icon": "sicon-ruler",
+                    "value": 25,
+                    "minimum": 0,
+                    "maximum": 100,
+                    "required": false
+                },
+                {
+                    "id": "items",
+                    "type": "collection",
+                    "format": "collection",
+                    "required": true,
+                    "minLength": 1,
+                    "maxLength": 10,
+                    "item_label": "علامة تجارية",
+                    "value": [
+                        {
+                            "items.image": null,
+                            "items.title": "Loremous",
+                            "items.link__type": "custom"
+                        }
+                    ],
+                    "fields": [
+                        {
+                            "type": "string",
+                            "icon": "sicon-image",
+                            "value": null,
+                            "id": "items.image",
+                            "label": "شعار العلامة",
+                            "format": "image",
+                            "required": true,
+                            "description": "* المقاس المناسب: 210×74 بكسل"
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-format-text-alt",
+                            "label": "اسم العلامة",
+                            "multilanguage": true,
+                            "id": "items.title",
+                            "value": "Loremous",
+                            "required": false,
+                            "format": "text",
+                            "placeholder": "اسم العلامة التجارية..."
+                        },
+                        {
+                            "type": "items",
+                            "icon": "sicon-link",
+                            "label": "الرابط",
+                            "id": "items.link",
+                            "value": null,
+                            "required": false,
+                            "format": "variable-list",
+                            "searchable": true,
+                            "source": "custom",
+                            "sources": [
+                                { "label": "منتج", "key": "products", "value": "products" },
+                                { "label": "تصنيف", "key": "categories", "value": "categories" },
+                                { "label": "ماركة تجارية", "key": "brands", "value": "brands" },
+                                { "label": "صفحة تعريفية", "key": "pages", "value": "pages" },
+                                { "label": "التخفيضات", "key": "offers_link", "value": "offers_link" },
+                                { "label": "رابط خارجي", "key": "custom", "value": "custom" }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "d4b2114c-d7fe-4e82-beb1-46a543d0bf3e",
+            "title": {
+                "en": "Testimonials",
+                "ar": "آراء العملاء"
+            },
+            "icon": "sicon-chat-bubbles",
+            "path": "home.testimonials",
+            "fields": [
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "static-desc",
+                    "value": "<div><h6>Jewelias Testimonials - Customer reviews and quotes in a slider</h6></div>"
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "العنوان",
+                    "multilanguage": true,
+                    "id": "title",
+                    "value": {
+                        "ar": "آراء العملاء",
+                        "en": "Testimonials"
+                    },
+                    "required": false,
+                    "format": "text",
+                    "placeholder": "أدخل العنوان هنا...",
+                    "maxLength": 200
+                },
+                {
+                    "id": "items",
+                    "type": "collection",
+                    "format": "collection",
+                    "required": true,
+                    "minLength": 1,
+                    "maxLength": 9,
+                    "item_label": "شهادة",
+                    "value": [
+                        {
+                            "items.quote": "Add customer reviews and testimonials to showcase your store's happy customers.",
+                            "items.author": "Author's name"
+                        },
+                        {
+                            "items.quote": "Add customer reviews and testimonials to showcase your store's happy customers.",
+                            "items.author": "Author's name"
+                        },
+                        {
+                            "items.quote": "Add customer reviews and testimonials to showcase your store's happy customers.",
+                            "items.author": "Author's name"
+                        }
+                    ],
+                    "fields": [
+                        {
+                            "type": "string",
+                            "icon": "sicon-typography",
+                            "label": "نص الشهادة",
+                            "multilanguage": true,
+                            "id": "items.quote",
+                            "value": null,
+                            "format": "textarea",
+                            "required": true,
+                            "placeholder": "أدخل نص الشهادة هنا..."
+                        },
+                        {
+                            "type": "string",
+                            "icon": "sicon-format-text-alt",
+                            "label": "اسم الكاتب",
+                            "multilanguage": true,
+                            "id": "items.author",
+                            "value": null,
+                            "required": false,
+                            "format": "text",
+                            "placeholder": "اسم الكاتب..."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "f198702f-852f-401a-ae63-0edff27020ac",
+            "title": {
+                "en": "Instagram Feed",
+                "ar": "انستقرام"
+            },
+            "icon": "sicon-camera",
+            "path": "home.instagram-feed",
+            "fields": [
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "static-desc",
+                    "value": "<div><h6>Jewelias Instagram Feed - Display Instagram images in a gallery grid</h6></div>"
+                },
+                {
+                    "type": "boolean",
+                    "icon": "sicon-toggle-off",
+                    "label": "تفعيل القسم",
+                    "id": "enabled",
+                    "format": "switch",
+                    "required": false,
+                    "value": true,
+                    "selected": true
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "العنوان",
+                    "multilanguage": true,
+                    "id": "title",
+                    "value": {
+                        "ar": "#Jewelias",
+                        "en": "#Jewelias"
+                    },
+                    "required": false,
+                    "format": "text",
+                    "placeholder": "أدخل العنوان هنا...",
+                    "maxLength": 200
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-typography",
+                    "label": "الوصف",
+                    "multilanguage": true,
+                    "id": "description",
+                    "value": null,
+                    "format": "text",
+                    "required": false,
+                    "placeholder": "أدخل الوصف هنا...",
+                    "maxLength": 256
+                },
+                {
+                    "type": "boolean",
+                    "icon": "sicon-toggle-off",
+                    "label": "عرض زر الانستقرام",
+                    "id": "show_button",
+                    "format": "switch",
+                    "required": false,
+                    "value": true,
+                    "selected": true
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "نص الزر",
+                    "multilanguage": true,
+                    "id": "button_text",
+                    "value": {
+                        "ar": "انضم لمجتمعنا",
+                        "en": "Join Our Community"
+                    },
+                    "required": false,
+                    "format": "text",
+                    "placeholder": "نص الزر..."
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-link",
+                    "label": "رابط الزر",
+                    "id": "button_link",
+                    "value": null,
+                    "required": false,
+                    "format": "text",
+                    "placeholder": "https://instagram.com/..."
+                },
+                {
+                    "type": "number",
+                    "format": "number",
+                    "id": "image_limit",
+                    "label": "عدد الصور المعروضة",
+                    "icon": "sicon-pencil-ruler",
+                    "value": 10,
+                    "minimum": 1,
+                    "maximum": 20,
+                    "required": false
+                },
+                {
+                    "id": "images_per_row",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "label": "عدد الصور في الصف",
+                    "icon": "sicon-layout-grid-rearrange",
+                    "selected": [
+                        { "label": "5", "value": "5", "key": "b2c3d4e5-0001-4000-8000-000000000001" }
+                    ],
+                    "options": [
+                        { "label": "3", "value": "3", "key": "b2c3d4e5-0001-4000-8000-000000000002" },
+                        { "label": "4", "value": "4", "key": "b2c3d4e5-0001-4000-8000-000000000003" },
+                        { "label": "5", "value": "5", "key": "b2c3d4e5-0001-4000-8000-000000000001" }
+                    ],
+                    "source": "Manual",
+                    "required": false
+                },
+                {
+                    "id": "items",
+                    "type": "collection",
+                    "format": "collection",
+                    "required": true,
+                    "minLength": 1,
+                    "maxLength": 20,
+                    "item_label": "صورة",
+                    "value": [
+                        {
+                            "items.image": null,
+                            "items.link__type": "custom"
+                        }
+                    ],
+                    "fields": [
+                        {
+                            "type": "string",
+                            "icon": "sicon-image",
+                            "value": null,
+                            "id": "items.image",
+                            "label": "الصورة",
+                            "format": "image",
+                            "required": true
+                        },
+                        {
+                            "type": "items",
+                            "icon": "sicon-link",
+                            "label": "الرابط",
+                            "id": "items.link",
+                            "value": null,
+                            "required": false,
+                            "format": "variable-list",
+                            "searchable": true,
+                            "source": "custom",
+                            "sources": [
+                                { "label": "منتج", "key": "products", "value": "products" },
+                                { "label": "تصنيف", "key": "categories", "value": "categories" },
+                                { "label": "صفحة تعريفية", "key": "pages", "value": "pages" },
+                                { "label": "رابط خارجي", "key": "custom", "value": "custom" }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "193e978e-23ad-4e0c-bab8-b7e27ecf3a78",
+            "title": {
+                "en": "Featured Blog",
+                "ar": "المدونة المميزة"
+            },
+            "icon": "sicon-article",
+            "path": "home.featured-blog",
+            "fields": [
+                {
+                    "type": "static",
+                    "format": "description",
+                    "id": "static-desc",
+                    "value": "<div><h6>Jewelias Featured Blog - Display recent blog articles on the homepage</h6></div>"
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "العنوان",
+                    "multilanguage": true,
+                    "id": "title",
+                    "value": {
+                        "ar": "آخر المقالات",
+                        "en": "Blog Posts"
+                    },
+                    "required": false,
+                    "format": "text",
+                    "placeholder": "أدخل العنوان هنا...",
+                    "maxLength": 200
+                },
+                {
+                    "type": "number",
+                    "format": "number",
+                    "id": "post_limit",
+                    "label": "عدد المقالات",
+                    "icon": "sicon-pencil-ruler",
+                    "value": 3,
+                    "minimum": 3,
+                    "maximum": 12,
+                    "required": false
+                },
+                {
+                    "type": "boolean",
+                    "icon": "sicon-toggle-off",
+                    "label": "عرض اسم الكاتب",
+                    "id": "show_author",
+                    "format": "switch",
+                    "required": false,
+                    "value": false,
+                    "selected": false
+                },
+                {
+                    "type": "boolean",
+                    "icon": "sicon-toggle-off",
+                    "label": "عرض التاريخ",
+                    "id": "show_date",
+                    "format": "switch",
+                    "required": false,
+                    "value": true,
+                    "selected": true
+                }
+            ]
+        }
+    ],
+    "support_url": "https://salla.com/",
+    "description": {
+        "ar": "مجموعة كبيرة من المزايا لدعم تجارتك وتقديم تجربة تسوق مثيرة لعملائك",
+        "en": "A wide range of features to support your business and provide an exciting shopping experience for your customers"
+    }
+}

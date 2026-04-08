@@ -1,0 +1,244 @@
+{#
+  Jewelias Footer
+  Ported from Shopify Liquid (footer.liquid) to Salla Twig
+#}
+
+{# ── Footer Top Settings ── #}
+{% set footer_top_bg = theme.settings.get('footer_top_bg')|default('#f2f2f2') %}
+{% set footer_top_border = theme.settings.get('footer_top_border')|default('#dddddd') %}
+{% set footer_top_heading_color = theme.settings.get('footer_top_heading_color')|default('#f0f0f0') %}
+{% set footer_top_color = theme.settings.get('footer_top_color')|default('#191919') %}
+{% set footer_top_icon_bg = theme.settings.get('footer_top_icon_bg')|default('#ffffff') %}
+{% set footer_icon_color = theme.settings.get('footer_icon_color')|default('#5e5e5e') %}
+
+{# ── Newsletter Settings ── #}
+{% set footer_newsletter_btn_bg = theme.settings.get('footer_newsletter_btn_bg')|default('#0f0f0f') %}
+{% set footer_newsletter_btn_border = theme.settings.get('footer_newsletter_btn_border')|default('#0f0f0f') %}
+{% set footer_newsletter_btn_text = theme.settings.get('footer_newsletter_btn_text')|default('#ffffff') %}
+{% set footer_newsletter_btn_bg_hover = theme.settings.get('footer_newsletter_btn_bg_hover')|default('#0f0f0f') %}
+{% set footer_newsletter_btn_border_hover = theme.settings.get('footer_newsletter_btn_border_hover')|default('#0f0f0f') %}
+{% set footer_newsletter_btn_text_hover = theme.settings.get('footer_newsletter_btn_text_hover')|default('#ffffff') %}
+{% set footer_newsletter_input_bg = theme.settings.get('footer_newsletter_input_bg')|default('#ffffff') %}
+{% set footer_newsletter_input_border = theme.settings.get('footer_newsletter_input_border')|default('#ffffff') %}
+{% set footer_newsletter_input_text = theme.settings.get('footer_newsletter_input_text')|default('#d6d6d6') %}
+
+{# ── Footer Middle Settings ── #}
+{% set footer_middle_bg = theme.settings.get('footer_middle_bg')|default('#0f0f0f') %}
+{% set footer_middle_heading_color = theme.settings.get('footer_middle_heading_color')|default('#ffffff') %}
+{% set footer_middle_color = theme.settings.get('footer_middle_color')|default('#ffffff') %}
+{% set footer_middle_link_color = theme.settings.get('footer_middle_link_color')|default('#b8b8b8') %}
+{% set footer_middle_link_color_hover = theme.settings.get('footer_middle_link_color_hover')|default('#ffffff') %}
+
+{# ── Footer Bottom Settings ── #}
+{% set bg_ft_bt = theme.settings.get('bg_ft_bt')|default('#323232') %}
+{% set color_ft_bt = theme.settings.get('color_ft_bt')|default('#b8b8b8') %}
+{% set color_ft_bt_link = theme.settings.get('color_ft_bt_link')|default('#b8b8b8') %}
+{% set color_ft_bt_link_hover = theme.settings.get('color_ft_bt_link_hover')|default('#ffffff') %}
+
+{% set footer_get_in_touch_phone = theme.settings.get('footer_get_in_touch_phone')|default('') %}
+{% set footer_get_in_touch_email = theme.settings.get('footer_get_in_touch_email')|default('') %}
+
+<style>
+  .footer .footer-top {
+    background: {{ footer_top_bg }};
+    border-top: 1px solid {{ footer_top_border }};
+    color: {{ footer_top_color }};
+  }
+  .footer .footer-top h3 {
+    color: {{ footer_top_heading_color }};
+  }
+  .footer .footer-top .bg-icon {
+    background: {{ footer_top_icon_bg }};
+  }
+  .footer .footer-top .bg-icon svg {
+    fill: {{ footer_icon_color }};
+  }
+  .footer .footer-top .footer-top-column + .footer-top-column {
+    border-left: 1px solid {{ footer_top_border }};
+  }
+  .footer .footer-top .newsletter .btn {
+    background-color: {{ footer_newsletter_btn_bg }};
+    border: 1px solid {{ footer_newsletter_btn_border }};
+    color: {{ footer_newsletter_btn_text }};
+  }
+  .footer .footer-top .newsletter .btn:hover {
+    background-color: {{ footer_newsletter_btn_bg_hover }};
+    border: 1px solid {{ footer_newsletter_btn_border_hover }};
+    color: {{ footer_newsletter_btn_text_hover }};
+  }
+  .footer .footer-top .newsletter .input-group-field {
+    background: {{ footer_newsletter_input_bg }};
+    border: 1px solid {{ footer_newsletter_input_border }};
+    color: {{ footer_newsletter_input_text }};
+  }
+  .footer .footer-top .column-footer .newsletter .input-group-field::-webkit-input-placeholder {
+    color: {{ footer_newsletter_input_text }};
+    opacity: 0.6;
+  }
+  .footer .footer-top .column-footer .newsletter .input-group-field::-moz-placeholder {
+    color: {{ footer_newsletter_input_text }};
+    opacity: 0.6;
+  }
+  .footer .footer-top .column-footer .newsletter .input-group-field:-ms-input-placeholder {
+    color: {{ footer_newsletter_input_text }};
+    opacity: 0.6;
+  }
+
+  .footer .footer-middle {
+    background: {{ footer_middle_bg }};
+    color: {{ footer_middle_color }};
+  }
+  .footer .footer-middle h3 {
+    color: {{ footer_middle_heading_color }};
+  }
+  .footer .footer-middle .column-footer ul li a {
+    color: {{ footer_middle_link_color }};
+  }
+  .footer .footer-middle .column-footer .footer-social ul li a {
+    color: {{ footer_middle_color }};
+  }
+
+  .footer-bottom {
+    background: {{ bg_ft_bt }};
+    color: {{ color_ft_bt }};
+  }
+  .footer-bottom a {
+    color: {{ color_ft_bt_link }};
+  }
+  .footer-bottom a:hover {
+    color: {{ color_ft_bt_link_hover }};
+  }
+  .footer .footer-bottom .footer_address p {
+    color: {{ color_ft_bt }};
+  }
+
+  @media (min-width: 1025px) {
+    .footer .footer-middle .column-footer ul li a:hover {
+      color: {{ footer_middle_link_color_hover }};
+    }
+    .footer .footer-middle .column-footer ul li a:hover span {
+      border-bottom: 1px solid {{ footer_middle_link_color_hover }};
+    }
+  }
+  @media (max-width: 767px) {
+    .footer .footer-top .footer-top-column + .footer-top-column {
+      border-left: none;
+      border-top: 1px solid {{ footer_top_border }};
+    }
+  }
+</style>
+
+{# ═══════════════════ Footer ═══════════════════ #}
+<footer class="footer">
+
+  {# ── Footer Top: Newsletter, Find Store, Get In Touch ── #}
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+
+        {# Newsletter #}
+        <div class="col-12 col-md-4 col-lg-7 footer-top-column col-1">
+          <div class="footer-newsletter">
+            <h3>{{ theme.settings.get('footer_newsletter_title')|default(trans('common.elements.newsletter')) }}</h3>
+            <salla-newsletter></salla-newsletter>
+          </div>
+        </div>
+
+        {# Find Store #}
+        {% set footer_find_store_link = theme.settings.get('footer_find_store_link') %}
+        {% if footer_find_store_link %}
+        <div class="col-12 col-md-4 col-lg-2 footer-top-column col-2">
+          <div class="footer-find-store">
+            <h3>{{ theme.settings.get('footer_find_store_title')|default('Find Stores') }}</h3>
+            <div class="block-content">
+              <a href="{{ footer_find_store_link }}" title="{{ theme.settings.get('footer_find_store_title')|default('Find Stores') }}">
+                <span class="bg-icon"><i class="sicon-location"></i></span>
+              </a>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+        {# Get In Touch #}
+        <div class="col-12 col-md-4 col-lg-3 footer-top-column col-3">
+          <div class="get-in-touch">
+            <h3>{{ theme.settings.get('footer_get_in_touch_title')|default('Get In Touch') }}</h3>
+            <div class="block-content">
+              {% if footer_get_in_touch_phone %}
+              <div class="call item-block">
+                <span class="bg-icon"><a href="tel:{{ footer_get_in_touch_phone }}"><i class="sicon-phone"></i></a></span>
+                <span class="text">{{ theme.settings.get('footer_get_in_touch_call_label')|default('Call') }}</span>
+              </div>
+              {% endif %}
+              {% if footer_get_in_touch_email %}
+              <div class="email item-block">
+                <span class="bg-icon"><a href="mailto:{{ footer_get_in_touch_email }}"><i class="sicon-email"></i></a></span>
+                <span class="text">{{ theme.settings.get('footer_get_in_touch_email_label')|default('Email') }}</span>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  {# ── Footer Middle: Menu Columns + Social ── #}
+  <div class="footer-middle">
+    <div class="container">
+      <div class="row">
+
+        {# Menu Columns via Salla #}
+        <div class="col-12 col-md-4 col-lg-3 column-footer">
+          <salla-menu source="footer"></salla-menu>
+        </div>
+
+        <div class="col-12 col-md-4 col-lg-3 column-footer">
+          <salla-contacts></salla-contacts>
+        </div>
+
+        <div class="col-12 col-md-4 col-lg-3 column-footer">
+          {# Additional store info #}
+          {% if store.description %}
+            <h3 class="foot-title">{{ store.name }}</h3>
+            <div class="footer-description">{{ store.description|raw }}</div>
+          {% endif %}
+        </div>
+
+        {# Social + Language/Currency #}
+        <div class="col-12 col-md-12 col-lg-3 column-footer no-dropdown">
+          <div class="footer-social">
+            <salla-social></salla-social>
+          </div>
+
+          {% if store.settings.is_multilingual or store.settings.currencies_enabled %}
+          <div class="ft-multi-cur lang-currency-groups">
+            <button type="button" onclick="salla.event.dispatch('localization::open')" class="btn--rounded-gray">
+              <span>{{ user.language.name }}</span>
+              <span class="mx-1.5">|</span>
+              <span>{{ currency.symbol }}</span>
+            </button>
+          </div>
+          {% endif %}
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  {# ── Footer Bottom: Address + Payment Icons ── #}
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="row">
+        <div class="footer_address column-left col-12 col-md-12 col-lg-8 col-xl-6">
+          <span class="text-sm copyright-text">{% hook copyright %}</span>
+        </div>
+        <div class="payment-icons column-right col-12 col-md-12 col-lg-8 col-xl-6">
+          <salla-payments></salla-payments>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</footer>

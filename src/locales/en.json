@@ -1,0 +1,77 @@
+{
+  "blocks": {
+    "header": {
+      "main_menu": "Main Menu",
+      "search": "Search",
+      "wishlist": "Wishlist",
+      "cart": "Cart",
+      "account": "Account"
+    },
+    "home": {
+      "shop_now": "Shop Now",
+      "view_all": "View All",
+      "read_more": "Read More",
+      "display_all": "Display All",
+      "show_more": "Show More",
+      "new_products": "New Products",
+      "featured_products": "Featured Products",
+      "editors_picks": "Editor's Picks",
+      "weekly_special": "Weekly Special",
+      "collections": "Collections",
+      "brands": "Brands",
+      "testimonials": "Testimonials",
+      "follow_us": "Follow Us",
+      "from_our_blog": "From Our Blog",
+      "top_categories": "Top Categories",
+      "shop_by_category": "Shop by Category",
+      "promotion": "Promotion",
+      "sale": "Sale",
+      "new_label": "New",
+      "sold_out": "Sold Out",
+      "add_to_cart": "Add to Cart",
+      "quick_view": "Quick View",
+      "compare": "Compare",
+      "wishlist_add": "Add to Wishlist",
+      "no_products": "No products found"
+    },
+    "footer": {
+      "pages_links": "Quick Links",
+      "contact": "Contact Us",
+      "newsletter": "Newsletter",
+      "newsletter_placeholder": "Enter your email address",
+      "subscribe": "Subscribe",
+      "follow_us": "Follow Us",
+      "copyright": "All Rights Reserved",
+      "about_us": "About Us",
+      "customer_service": "Customer Service",
+      "information": "Information"
+    },
+    "appBanner": {
+      "download_now": "download now"
+    }
+  },
+  "pages": {
+    "cart": {
+      "cart_options": "Cart Options"
+    },
+    "order": {
+      "can_edit_or_delete_your_review_within": "You can edit or delete your review within",
+      "edit_period_ended": "The period to edit the review has ended",
+      "delete_period_ended": "The period to delete the review has ended",
+      "days_since_added": "days since it was added",
+      "option_name": "Option name",
+      "option_content": "Content"
+    }
+  },
+  "common": {
+    "elements": {
+      "tax_number": "Tax Number",
+      "read_more": "Read More",
+      "close": "Close",
+      "menu": "Menu",
+      "loading": "Loading..."
+    },
+    "bank_offer_sub_title_multiple": "Pay for your purchases via one of the following bank cards and get the specified discount",
+    "bank_offer_sub_title_single": "Pay for your purchases via :bank_name bank card and get discount"
+  }
+}

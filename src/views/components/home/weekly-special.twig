@@ -1,0 +1,119 @@
+{#
+  Weekly Special Component
+
+  Variables (component.*):
+    show_weekly_special    (boolean) - Toggle section visibility
+    space_on               (number)  - Margin top in px
+    space_below            (number)  - Margin bottom in px
+    weekly_special_title   (string)  - Section title
+    weekly_special_desc    (string)  - Section description text
+
+  Blocks (component.blocks[]):
+    ws_img                          (string)  - Image URL
+    ws_link                         (string)  - Link URL
+    ws_img_sub_heading              (string)  - Image overlay sub heading
+    font_size_img_sub_heading       (string)  - Sub heading font size
+    color_img_sub_heading           (string)  - Sub heading color
+    ws_img_heading                  (string)  - Image overlay heading
+    font_size_img_heading           (string)  - Heading font size
+    color_img_heading               (string)  - Heading color
+    ws_img_heading_position         (string)  - Heading position: top|middle|bottom
+    ws_content_heading              (string)  - Content heading
+    font_size_content_heading       (string)  - Content heading font size
+    color_content_heading           (string)  - Content heading color
+    ws_content_promotion_text       (string)  - Promotion text
+    font_size_content_promotion_text (string) - Promotion text font size
+    color_content_promotion_text    (string)  - Promotion text color
+    ws_content_promotion_code       (string)  - Promotion code
+    font_size_content_promotion_code (string) - Promotion code font size
+    color_content_promotion_code    (string)  - Promotion code color
+    ws_content_desc                 (string)  - Content description
+    font_size_content_desc          (string)  - Description font size
+    color_content_desc              (string)  - Description color
+    ws_content_btn_text             (string)  - Button text
+
+  position - Component sort index
+#}
+{% if component.show_weekly_special %}
+<section class="homepage-weekly-special" id="section-{{ position }}">
+  <div class="container medium">
+    {% if component.weekly_special_title %}
+    <div class="widget-title">
+      <h3>
+        {{ component.weekly_special_title }}
+      </h3>
+      {% if component.weekly_special_desc %}
+        <p class="desc-text">{{ component.weekly_special_desc }}</p>
+      {% endif %}
+    </div>
+    {% endif %}
+    <div class="row-bt">
+      {% for block in component.blocks %}
+      <div class="item column col column-{{ loop.index }} {% if component.blocks|length == 2 %} two-col{% elseif component.blocks|length == 3 %} three-col {% else %} one-col{% endif %}">
+        <div class="item-img">
+         <a href="{{ block.ws_link }}" title="{{ block.ws_img_heading }}">
+              {% if block.ws_img %}
+              <img src="{{ block.ws_img }}" alt="{{ block.ws_img_heading }}"
+                   class="lazyload">
+              {% else %}
+              <span class="not_img">720 x 570px</span>
+              {% endif %}
+              <figcaption class="{% if block.ws_img_heading_position == 'top' %} position-top{% elseif block.ws_img_heading_position == 'bottom' %} position-bottom {% else %} position-middle{% endif %}">
+                {% if block.ws_img_sub_heading %}
+                <h5 class="sub-heading" style="font-size: {{ block.font_size_img_sub_heading }};color: {{ block.color_img_sub_heading }}; border-bottom: 1px solid {{ block.color_img_sub_heading }};">
+                  {{ block.ws_img_sub_heading }}
+                </h5>
+                {% endif %}
+
+                {% if block.ws_img_heading %}
+                <h3 class="heading" style="font-size: {{ block.font_size_img_heading }};color: {{ block.color_img_heading }};">
+                  {{ block.ws_img_heading }}
+                </h3>
+                {% endif %}
+              </figcaption>
+            </a>
+        </div>
+        <div class="item-content">
+          {% if block.ws_content_heading %}
+          <h2 style="font-size: {{ block.font_size_content_heading }};color: {{ block.color_content_heading }};">
+            {{ block.ws_content_heading }}
+          </h2>
+          {% endif %}
+          <div class="promotion">
+            {% if block.ws_content_promotion_text %}
+            <span class="promotion-text" style="font-size: {{ block.font_size_content_promotion_text }};color: {{ block.color_content_promotion_text }};">
+              {{ block.ws_content_promotion_text }}
+            </span>
+            {% endif %}
+
+            {% if block.ws_content_promotion_code %}
+            <span class="promotion-code" style="font-size: {{ block.font_size_content_promotion_code }};color: {{ block.color_content_promotion_code }};">
+              {{ block.ws_content_promotion_code }}
+            </span>
+            {% endif %}
+          </div>
+
+          {% if block.ws_content_desc %}
+          <p class="desc-text" style="font-size: {{ block.font_size_content_desc }};color: {{ block.color_content_desc }};">
+            {{ block.ws_content_desc }}
+          </p>
+          {% endif %}
+
+          {% if block.ws_content_btn_text %}
+          <a class="btn" href="{{ block.ws_link }}">{{ block.ws_content_btn_text }}</a>
+          {% endif %}
+
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<style>
+  #section-{{ position }}{
+    margin-top: {{ component.space_on }}px;
+    margin-bottom: {{ component.space_below }}px;
+  }
+</style>

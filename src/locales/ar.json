@@ -1,0 +1,77 @@
+{
+  "blocks": {
+    "header": {
+      "main_menu": "القائمة الرئيسية",
+      "search": "بحث",
+      "wishlist": "المفضلة",
+      "cart": "السلة",
+      "account": "حسابي"
+    },
+    "home": {
+      "shop_now": "تسوق الآن",
+      "view_all": "عرض الكل",
+      "read_more": "اقرأ المزيد",
+      "display_all": "عرض الجميع",
+      "show_more": "عرض المزيد",
+      "new_products": "منتجات جديدة",
+      "featured_products": "منتجات مميزة",
+      "editors_picks": "اختيارات المحرر",
+      "weekly_special": "عرض الأسبوع",
+      "collections": "المجموعات",
+      "brands": "الماركات",
+      "testimonials": "آراء العملاء",
+      "follow_us": "تابعنا",
+      "from_our_blog": "من مدونتنا",
+      "top_categories": "أبرز التصنيفات",
+      "shop_by_category": "تسوق حسب التصنيف",
+      "promotion": "عرض خاص",
+      "sale": "تخفيض",
+      "new_label": "جديد",
+      "sold_out": "نفذت الكمية",
+      "add_to_cart": "أضف للسلة",
+      "quick_view": "عرض سريع",
+      "compare": "مقارنة",
+      "wishlist_add": "أضف للمفضلة",
+      "no_products": "لا توجد منتجات"
+    },
+    "footer": {
+      "pages_links": "روابط سريعة",
+      "contact": "تواصل معنا",
+      "newsletter": "النشرة البريدية",
+      "newsletter_placeholder": "أدخل بريدك الإلكتروني",
+      "subscribe": "اشترك",
+      "follow_us": "تابعنا",
+      "copyright": "جميع الحقوق محفوظة",
+      "about_us": "من نحن",
+      "customer_service": "خدمة العملاء",
+      "information": "معلومات"
+    },
+    "appBanner": {
+      "download_now": "حمله الان"
+    }
+  },
+  "pages": {
+    "cart": {
+      "cart_options": "خيارات السلة"
+    },
+    "order": {
+      "can_edit_or_delete_your_review_within": "يمكنك تعديل أو حذف تقييمك خلال",
+      "edit_period_ended": "تم انتهاء المدة المحددة لتعديل التقييم",
+      "delete_period_ended": "تم انتهاء المدة المحددة لحذف التقييم",
+      "days_since_added": "أيام من إضافته",
+      "option_name": "الخيار",
+      "option_content": "المحتوى"
+    }
+  },
+  "common": {
+    "elements": {
+      "tax_number": "الرقم الضريبي",
+      "read_more": "اقرأ المزيد",
+      "close": "إغلاق",
+      "menu": "القائمة",
+      "loading": "جاري التحميل..."
+    },
+    "bank_offer_sub_title_multiple": "ادفع قيمة مشترياتك عبر أحد البطاقات البنكة التالية واحصل على الخصم المحدد",
+    "bank_offer_sub_title_single": "ادفع قيمة مشترياتك عبر أحد بطاقات بنك :bank_name واحصل على خصم بنسبة "
+  }
+}

@@ -1,0 +1,429 @@
+{#
+  Jewelias Header + Navigation
+  Ported from Shopify Liquid (header.liquid + navigation.liquid) to Salla Twig
+#}
+
+{# ── Header Settings ── #}
+{% set bg_header_color = theme.settings.get('bg_header_color')|default('#0f0f0f') %}
+{% set header_text_color = theme.settings.get('header_text_color')|default('#fff') %}
+{% set bg_header_search_color = theme.settings.get('bg_header_search_color')|default('#ffffff') %}
+{% set header_search_text_color = theme.settings.get('header_search_text_color')|default('#5a5a5a') %}
+{% set header_search_icon_color = theme.settings.get('header_search_icon_color')|default('#333333') %}
+{% set logo_text_color = theme.settings.get('logo_text_color')|default('#000') %}
+{% set min_height_logo = theme.settings.get('min_height_logo')|default('25px') %}
+{% set min_height_logo_dk = theme.settings.get('min_height_logo_dk')|default('32px') %}
+
+{# ── Navigation Settings ── #}
+{% set nav_bg_color = theme.settings.get('nav_bg_color')|default('#323232') %}
+{% set nav_top_menu_color = theme.settings.get('nav_top_menu_color')|default('#fff') %}
+{% set nav_hover_color = theme.settings.get('nav_hover_color')|default('#fff') %}
+{% set nav_dropdown_bg_color = theme.settings.get('nav_dropdown_bg_color')|default('#fff') %}
+{% set nav_dropdown_link_color = theme.settings.get('nav_dropdown_link_color')|default('#505050') %}
+{% set nav_dropdown_link_color_hover = theme.settings.get('nav_dropdown_link_color_hover')|default('#fff') %}
+{% set nav_dropdown_title_color = theme.settings.get('nav_dropdown_title_color')|default('#191919') %}
+{% set nav_dropdown_title_color_hover = theme.settings.get('nav_dropdown_title_color_hover')|default('#000000') %}
+{% set nav_dropdown_border_color = theme.settings.get('nav_dropdown_border_color')|default('#dddddd') %}
+{% set alignment_nav = theme.settings.get('alignment_nav')|default('right') %}
+
+{# ── Cart Settings ── #}
+{% set cart_icon_color = theme.settings.get('cart_icon_color')|default('#fff') %}
+{% set cart_count_bg_color = theme.settings.get('cart_count_bg_color')|default('#e02858') %}
+{% set cart_count_color = theme.settings.get('cart_count_color')|default('#fff') %}
+
+{# ── Label Settings ── #}
+{% set color_lb_sale = theme.settings.get('color_lb_sale')|default('#fff') %}
+{% set bg_lb_sale = theme.settings.get('bg_lb_sale')|default('#e02858') %}
+{% set color_lb_hot = theme.settings.get('color_lb_hot')|default('#fff') %}
+{% set bg_lb_hot = theme.settings.get('bg_lb_hot')|default('#f79555') %}
+{% set color_lb_new = theme.settings.get('color_lb_new')|default('#fff') %}
+{% set bg_lb_new = theme.settings.get('bg_lb_new')|default('#1fade6') %}
+{% set sale_color = theme.settings.get('sale_color')|default('#e02858') %}
+
+<style>
+  /* ========== Header Bottom ========== */
+  .header-wrapper {
+    background: {{ bg_header_color }};
+  }
+  .header-wrapper .logo-title {
+    color: {{ header_text_color }};
+    font-size: 20px;
+  }
+  .header-wrapper svg {
+    width: 16px;
+    height: 16px;
+  }
+  .header-wrapper .column-right .text_order,
+  .header-wrapper a.userToggle,
+  .header-wrapper .wishlist-text a {
+    color: {{ header_text_color }};
+  }
+  .header-wrapper .column-right > div {
+    border-left: 1px solid {{ header_text_color }};
+  }
+  .header-wrapper .column-right > div a:hover span:before,
+  .header-wrapper .column-right .customer-links .userToggle.is-open span:before {
+    background: {{ header_text_color }};
+  }
+  .header-wrapper .column-right .customer-links .userToggle svg {
+    fill: {{ header_text_color }};
+  }
+  .header-wrapper .column-right .header-search .search-form .input-group-field {
+    color: {{ header_search_text_color }};
+    background: {{ bg_header_search_color }};
+  }
+  .header-wrapper .column-right .header-search .search-form .input-group-field::-webkit-input-placeholder {
+    color: {{ header_search_text_color }};
+    opacity: 0.6;
+  }
+  .header-wrapper .column-right .header-search .search-form .input-group-field::-moz-placeholder {
+    color: {{ header_search_text_color }};
+    opacity: 0.6;
+  }
+  .header-wrapper .column-right .header-search .search-form .input-group-field:-ms-input-placeholder {
+    color: {{ header_search_text_color }};
+  }
+  .header-wrapper .column-right .header-search .search-form .btn-search svg {
+    fill: {{ header_search_icon_color }};
+  }
+
+  @media (max-width: 1024px) {
+    .header-wrapper .logo img {
+      max-height: {{ min_height_logo }};
+    }
+    .header-wrapper .icon-menu .icon-line,
+    .header-wrapper .icon-menu .icon-line:before,
+    .header-wrapper .icon-menu .icon-line:after {
+      background: {{ header_text_color }};
+    }
+    .header-wrapper .menu-mobile svg {
+      fill: {{ header_text_color }};
+    }
+  }
+  @media (min-width: 1025px) {
+    .header-wrapper .logo img {
+      height: {{ min_height_logo_dk }};
+    }
+  }
+  .logo a.logo-title {
+    color: {{ logo_text_color }};
+  }
+
+  /* ========== Navigation ========== */
+  .wrapper-navigation .wrapper-right .top-cart .cartToggle svg,
+  .wrapper-navigation .wrapper-right .searchToggle svg {
+    fill: {{ cart_icon_color }};
+  }
+  .wrapper-navigation .wrapper-right .top-cart .cartToggle .cartCount {
+    background: {{ cart_count_bg_color }};
+    color: {{ cart_count_color }};
+  }
+  .wrapper-navigation .site-nav .icon_sale {
+    color: {{ color_lb_sale }};
+    background: {{ bg_lb_sale }};
+  }
+  .wrapper-navigation .site-nav .icon_hot {
+    color: {{ color_lb_hot }};
+    background: {{ bg_lb_hot }};
+  }
+  .wrapper-navigation .site-nav .icon_new {
+    color: {{ color_lb_new }};
+    background: {{ bg_lb_new }};
+  }
+
+  /* Navigation Background */
+  .wrapper-navigation {
+    background-color: {{ nav_bg_color }};
+  }
+  .wrapper-navigation-sticky.fix-top {
+    background-color: {{ nav_bg_color }};
+  }
+  .wrapper-navigation .icon-menu .icon-line,
+  .wrapper-navigation .icon-menu .icon-line:before,
+  .wrapper-navigation .icon-menu .icon-line:after {
+    background: {{ nav_top_menu_color }};
+  }
+  .wrapper-navigation .wrapper-left .categories-title {
+    color: {{ nav_top_menu_color }};
+  }
+  .wrapper-navigation .wrapper-left .icon-menu .openmnu {
+    fill: {{ nav_top_menu_color }};
+  }
+
+  .icon-nav .icon-line,
+  .icon-nav .icon-line:before,
+  .icon-nav .icon-line:after {
+    background-color: {{ nav_top_menu_color }};
+  }
+  .site-nav > li > a {
+    color: {{ nav_top_menu_color }};
+  }
+  .site-nav li a .fa {
+    color: {{ nav_top_menu_color }};
+    opacity: .5;
+    font-size: 20px;
+  }
+  .site-nav li:hover > a .fa {
+    opacity: 1;
+  }
+  .site-nav > li:hover > a,
+  .site-nav > li:focus > a {
+    color: {{ nav_hover_color }};
+  }
+  .site-nav .no-mega-menu li a .fa {
+    color: {{ nav_dropdown_link_color }};
+  }
+
+  /* Dropdown Menu */
+  .site-nav-dropdown li > a,
+  .mega-menu .inner .dropdow-lv2 li > a {
+    color: {{ nav_dropdown_link_color }};
+  }
+  .no-mega-menu .site-nav-dropdown li > a:hover > span,
+  .mega-menu .inner .inner-wrap .dropdow-lv2 li > a:hover > span,
+  .mega-menu .top-brands .brandgrid li a:hover {
+    background-image: linear-gradient({{ nav_dropdown_bg_color }} 97%, {{ nav_dropdown_link_color_hover }} 3%);
+    background-repeat: repeat-x;
+    background-position-y: 0px;
+  }
+  .wrapper-navigation .nav-bar .mega-menu .site-nav-dropdown.style_1 > .container > .row::before {
+    background: {{ nav_dropdown_border_color }};
+  }
+  .mega-menu .top-brands .brand-view-all > a {
+    color: {{ nav_dropdown_link_color_hover }};
+  }
+  .mega-menu .top-brands .brand-view-all > a > span {
+    border-bottom: 1px solid {{ nav_dropdown_link_color_hover }};
+  }
+  .mega-menu .top-brands .brand-view-all > a > span:after {
+    color: {{ nav_dropdown_link_color_hover }};
+  }
+  .mega-menu .inner > a,
+  .mega-menu .inner .inner-wrap > a,
+  .mega-menu .featured-product h3,
+  .mega-menu .featured-product .product-title,
+  .mega-menu .cate-title,
+  .mega-menu .top-brands .top-brands-heading,
+  .mega-menu .style_2 .banner-last h3 {
+    color: {{ nav_dropdown_title_color }};
+  }
+  .mega-menu .inner .inner-wrap > a:hover {
+    color: {{ nav_dropdown_title_color_hover }};
+  }
+  .site-nav-dropdown li > a:hover,
+  .site-nav-dropdown li > a:focus,
+  .mega-menu .inner > a:hover,
+  .mega-menu .inner > a:focus,
+  .mega-menu .cate-title:hover,
+  .mega-menu .cate-title:focus {
+    color: {{ nav_dropdown_link_color_hover }};
+  }
+  .mega-menu .inner .dropdow-lv2 li > a:hover {
+    color: {{ nav_dropdown_link_color_hover }};
+  }
+  .site-nav-dropdown .site-nav-dropdown a,
+  .mega-menu .cate-shop-now {
+    color: {{ nav_dropdown_link_color }};
+  }
+  .site-nav-dropdown .site-nav-dropdown li a:hover,
+  .mega-menu .cate-shop-now:hover,
+  .mega-menu .cate-shop-now:focus {
+    color: {{ nav_dropdown_link_color_hover }};
+  }
+  .wrapper-navigation .site-nav .dropdow-lv2,
+  .site-nav .site-nav-dropdown,
+  .mega-menu:hover > a:before {
+    background-color: {{ nav_dropdown_bg_color }};
+  }
+  .no-mega-menu .site-nav-dropdown li a,
+  .site-nav-dropdown .site-nav-dropdown li a {
+    color: {{ nav_dropdown_link_color }};
+  }
+  .no-mega-menu .site-nav-dropdown li:hover > a,
+  .no-mega-menu .site-nav-dropdown li:focus > a {
+    color: {{ nav_dropdown_link_color_hover }};
+  }
+  .site-nav > li > a.sale {
+    color: {{ sale_color }};
+  }
+
+  .is-sticky .header-bottom {
+    z-index: 100 !important;
+  }
+
+  /* Fixed Menu */
+  .fixed_top .fix-top .header-logo-fix .logo-title {
+    color: {{ nav_top_menu_color }};
+  }
+  .fixed_top .header-search .searchToggle {
+    border-left: 1px solid {{ nav_top_menu_color }};
+  }
+  .fixed_top .header-search .searchToggle svg {
+    fill: {{ nav_top_menu_color }};
+  }
+  .fixed_top .fix-top .wrapper-right .top-cart {
+    border-left: 1px solid {{ nav_top_menu_color }};
+  }
+
+  @media (min-width: 1025px) {
+    .nav-bar .site-nav {
+      text-align: {{ alignment_nav }};
+    }
+    .site-nav .mega-menu .hl-shuffle-container {
+      display: block;
+      -webkit-column-count: 3;
+      column-count: 3;
+      margin: 0 -10px;
+    }
+    .site-nav .mega-menu .style_3 .hl-shuffle-container {
+      -webkit-column-count: 5;
+      column-count: 5;
+    }
+    .site-nav .mega-menu .hl-shuffle-container .inner {
+      break-inside: avoid-column;
+      page-break-inside: avoid;
+      -webkit-column-break-inside: avoid;
+      max-width: 100%;
+    }
+    .fixed_top .wrapper-right .top-cart {
+      border-left: 1px solid {{ nav_top_menu_color }};
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .wrapper-navigation .wrapper-left .nav-bar {
+      background: #fff;
+    }
+    .wrapper-navigation .site-nav .mega-menu .site-nav-dropdown .inner {
+      border-top-color: {{ nav_dropdown_border_color }};
+    }
+    .wrapper-navigation .site-nav .style_4 .banner,
+    .wrapper-navigation .site-nav .mega-menu .column-right {
+      border-top: 1px solid {{ nav_dropdown_border_color }};
+      padding-top: 21px;
+    }
+    .fixed_top .fix-top .wrapper-right .top-cart {
+      border-left: none;
+    }
+  }
+</style>
+
+{# ═══════════════════ Header ═══════════════════ #}
+<header class="site-header" role="banner">
+  <div class="header-wrapper">
+    <div class="container">
+
+      {# Mobile: hamburger + search toggle #}
+      <div class="menu-mobile mobile-items">
+        <a href="#mobile-menu" class="menuToggle icon-menu" id="showLeftPush" aria-label="Open menu">
+          <span class="icon-line"></span>
+        </a>
+        <a href="javascript:void(0)" class="searchToggle">
+          <i class="sicon-search"></i>
+        </a>
+      </div>
+
+      {# Logo #}
+      <div class="hd-items column-left logo" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="url" content="{{ store.url }}">
+        <a class="icon-menu" href="javascript:void(0)">
+          <span class="icon-line"></span>
+        </a>
+
+        {% if store.logo %}
+          <a href="{{ store.url }}">
+            <img itemprop="logo"
+                 src="{{ store.logo|cdn(150) }}"
+                 alt="{{ store.name }}"
+                 class="logo-desktop"
+                 fetchpriority="high"
+                 loading="eager">
+            <img src="{{ store.logo|cdn(100) }}"
+                 alt="{{ store.name }}"
+                 class="logo-mobile"
+                 itemprop="logo"
+                 loading="eager">
+          </a>
+        {% else %}
+          <a class="logo-title" href="{{ store.url }}">{{ store.name }}</a>
+        {% endif %}
+      </div>
+
+      {# Right Column: Account, Wishlist, Search #}
+      <div class="hd-items column-right">
+        <div class="customer-links">
+          {% if user.type == 'user' %}
+            <salla-user-menu avatar-only show-header></salla-user-menu>
+          {% else %}
+            <a href="javascript:void(0)" class="userToggle" onclick="salla.event.dispatch('login::open')">
+              <i class="sicon-user-circle"></i>
+              <span>{{ trans('common.elements.login') }}</span>
+            </a>
+          {% endif %}
+        </div>
+
+        <div class="wishlist-text">
+          <a href="{{ link('/wishlist') }}">
+            <span class="wish_list">
+              <i class="sicon-heart"></i>
+            </span>
+          </a>
+        </div>
+
+        <div class="header-search">
+          <salla-search></salla-search>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+{# ═══════════════════ Navigation ═══════════════════ #}
+<div class="wrapper-navigation">
+  <div class="wrapper-navigation-sticky fix-top">
+    <div class="row">
+
+      {# Fixed-scroll logo #}
+      <div class="header-logo-fix">
+        {% if store.logo %}
+          <a href="/">
+            <img src="{{ store.logo|cdn(48) }}" alt="{{ store.name }}" itemprop="logo">
+          </a>
+        {% else %}
+          <a class="logo-title" href="/">{{ store.name }}</a>
+        {% endif %}
+      </div>
+
+      <div class="container">
+        {# Desktop Navigation #}
+        <div class="wrapper-left">
+          <a href="javascript:void(0)" class="close-menu">
+            <i class="sicon-cancel"></i>
+          </a>
+          <nav class="nav-bar" role="navigation">
+            <custom-main-menu></custom-main-menu>
+            <div class="hd-option"></div>
+          </nav>
+        </div>
+
+        {# Cart #}
+        <div class="wrapper-right">
+          <div class="top-cart">
+            <salla-cart-summary>
+              <i slot="icon" class="header-btn__icon icon sicon-shopping-bag"></i>
+            </salla-cart-summary>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{# Mobile Menu (Salla component) #}
+<salla-menu source="header"></salla-menu>
+
+{# Localization Modal #}
+{% if store.settings.is_multilingual or store.settings.currencies_enabled %}
+  <salla-localization-modal></salla-localization-modal>
+{% endif %}

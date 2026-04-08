@@ -1,0 +1,84 @@
+{#
+  New Products Component
+
+  Variables (from twilight.json):
+  - component.show_slider_new_products (boolean): Enable section
+  - component.space_on (number): Top margin in px
+  - component.space_below (number): Bottom margin in px
+  - component.slider_new_title (string): Section heading text
+  - component.slider_new_desc_text (string): Section description text
+  - component.slider_new_limit_all (number): Max products to display
+  - component.new_collection_results_per_row (string): Products per row ("3"|"4"|"5"|"6")
+  - component.display_infinite_scrolling_homepage (boolean): Show "Show More" button
+  - component.products (array): Product objects from the selected collection
+  - component.collection (object): Source collection data
+  - position (number): Component sort index from twilight.json
+#}
+{% if component.show_slider_new_products %}
+<div class="homepage-new-products {% if component.display_infinite_scrolling_homepage %}show-more {% else %}no-more{% endif %}" id="section-{{ position }}" data-new-arrivals-product>
+  <div class="container">
+    {% if component.slider_new_title is not empty %}
+    <div class="widget-title">
+      <h3 class="box-title">
+        {{ component.slider_new_title }}
+      </h3>
+      {% if component.slider_new_desc_text is not empty %}
+        <p class="desc-text">{{ component.slider_new_desc_text }}</p>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    <div class="widget-product">
+      {% if component.new_collection_results_per_row is not empty and component.new_collection_results_per_row != '5' %}
+      {% set product_grid = (12 / component.new_collection_results_per_row) | round(0, 'floor') %}
+      {% set columns = true %}
+      {% endif %}
+
+      <div class="products-grid row five-items" data-products-to-show="{{ component.slider_new_limit_all }}" data-total-products="{{ component.products | length }}">
+        {% for product in component.products %}
+        <div class="item {% if theme.product_image_border %}grid-item-border {% endif %}{% if theme.product_image_crop %}crop_image {% else %}no_crop_image {% endif %}grid-item col-6 col-sm-4 {% if product_grid is defined and product_grid == 3 %} col-md-4{% endif %} {% if columns is defined and columns %} col-xl-{{ product_grid }}{% else %} col{% endif %}">
+          {% include 'pages.partials.product.card' with { product: product } %}
+        </div>
+
+        {% else %}
+        {% for i in 1..component.slider_new_limit_all | default(8) %}
+        <div class="item grid-item col-6 col-sm-3{% if product_grid is defined and product_grid == 3 %} col-md-3{% endif %} {% if columns is defined and columns %} col-lg-{{ product_grid }}{% else %} col{% endif %}">
+          <div class="grid-view-item no-product">
+            <a href="#" class="grid-view-item__link">
+              <div class="grid-view-item__image">
+                <div class="placeholder-svg"></div>
+              </div>
+              <div class="product-title"><span>{{ trans('blocks.home.product_name') | default('Your product\'s name') }}</span></div>
+            </a>
+            <div class="price-box">
+              <span> $250.00 </span>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        {% endfor %}
+      </div>
+
+      {% if component.display_infinite_scrolling_homepage and component.collection is not empty %}
+      <div class="infinite-scrolling-homepage wow fadeIn">
+        <a class="btn btn--secondary-accent btn--big btn-product-show-more"
+           data-collection="{{ component.collection.slug }}"
+           data-limit="{{ component.slider_new_limit_all }}"
+           data-page="2"
+           data-total="{{ component.products | length }}"
+           href="#"
+           {% if (component.products | length) <= (component.slider_new_limit_all | default(8)) %}disabled="disabled"{% endif %}>
+          {{ trans('blocks.home.show_more') | default('Show More') }}
+        </a>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endif %}
+<style>
+  #section-{{ position }} {
+    margin-top: {{ component.space_on }}px;
+    margin-bottom: {{ component.space_below }}px;
+  }
+</style>

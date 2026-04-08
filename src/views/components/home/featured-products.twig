@@ -1,0 +1,74 @@
+{#
+  Featured Products Component
+
+  Variables (from twilight.json):
+  - component.show_slider_featured_products (boolean): Enable section
+  - component.space_on (number): Top margin in px
+  - component.space_below (number): Bottom margin in px
+  - component.slider_featured_title (string): Section heading text
+  - component.slider_featured_desc_text (string): Section description text
+  - component.slider_featured_limit_all (number): Max products to display
+  - component.featured_collection_results_per_row (string): Products per row ("3"|"4"|"5"|"6")
+  - component.products (array): Product objects from the selected collection
+  - position (number): Component sort index from twilight.json
+#}
+{% if component.show_slider_featured_products %}
+<div class="homepage-featured-products" id="section-{{ position }}">
+  <div class="container">
+    {% if component.slider_featured_title is not empty %}
+    <div class="widget-title">
+      <h3 class="box-title">
+        {{ component.slider_featured_title }}
+      </h3>
+      {% if component.slider_featured_desc_text is not empty %}
+        <p class="desc-text">{{ component.slider_featured_desc_text }}</p>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    <div class="widget-product">
+      {% if component.featured_collection_results_per_row is not empty and component.featured_collection_results_per_row != '4' %}
+      {% set product_grid = (12 / component.featured_collection_results_per_row) | round(0, 'floor') %}
+      {% set columns = true %}
+      {% endif %}
+
+      <salla-slider id="featured-products-slider-{{ position }}" type="carousel" show-controls="true" loop
+        slides-per-view="{{ component.featured_collection_results_per_row | default(4) }}"
+        breakpoints='{"320":{"slidesPerView":2},"768":{"slidesPerView":3},"1024":{"slidesPerView":3},"1200":{"slidesPerView":{{ component.featured_collection_results_per_row | default(4) }}}}'>
+        <div slot="items">
+          <div class="products-grid row five-items">
+            {% for product in component.products %}
+            <div class="swiper-slide item {% if theme.product_image_border %}grid-item-border {% endif %}{% if theme.product_image_crop %}crop_image {% else %}no_crop_image {% endif %}grid-item col-6 col-md-4 col-lg-3{% if product_grid is defined and product_grid == 3 %} col-xl-3{% endif %} {% if columns is defined and columns %} col-xl-{{ product_grid }}{% else %} col-xl{% endif %}">
+              {% include 'pages.partials.product.card' with { product: product } %}
+            </div>
+
+            {% else %}
+            {% for i in 1..component.slider_featured_limit_all | default(10) %}
+            <div class="swiper-slide item grid-item col-6 col-md-4 col-lg-3{% if product_grid is defined and product_grid == 3 %} col-xl-3{% endif %} {% if columns is defined and columns %} col-xl-{{ product_grid }}{% else %} col-xl{% endif %}">
+              <div class="grid-view-item no-product">
+                <a href="#" class="grid-view-item__link">
+                  <div class="grid-view-item__image">
+                    <div class="placeholder-svg"></div>
+                  </div>
+                  <div class="product-title"><span>{{ trans('blocks.home.product_name') | default('Your product\'s name') }}</span></div>
+                </a>
+                <div class="price-box">
+                  <span> $250.00 </span>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+            {% endfor %}
+          </div>
+        </div>
+      </salla-slider>
+    </div>
+  </div>
+</div>
+{% endif %}
+<style>
+  #section-{{ position }} {
+    margin-top: {{ component.space_on }}px;
+    margin-bottom: {{ component.space_below }}px;
+  }
+</style>

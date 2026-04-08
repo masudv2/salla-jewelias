@@ -1,0 +1,71 @@
+{#
+  Custom Slider Component
+
+  Variables (component.*):
+    display_custom_slider  (boolean) - Toggle section visibility
+    space_on               (number)  - Margin top in px
+    space_below            (number)  - Margin bottom in px
+    custom_slider_title    (string)  - Section title
+
+  Blocks (component.blocks[]):
+    ct_slider_img              (string) - Slide image URL
+    ct_slider_heading          (string) - Slide heading text
+    ct_slider_collection_text  (string) - Collection link text
+    ct_slider_link             (string) - Collection link URL
+
+  position - Component sort index
+#}
+{% if component.display_custom_slider %}
+<section class="custom-slider-brand-wrapper" id="section-{{ position }}">
+  <div class="container">
+    {% if component.custom_slider_title %}
+    <div class="widget-title">
+      <h3>
+        {{ component.custom_slider_title }}
+      </h3>
+    </div>
+    {% endif %}
+
+    <div class="row-bt">
+      <div class="col-12">
+        <salla-slider type="carousel" loop="true" show-controls="true">
+          <div slot="items">
+            {% for block in component.blocks %}
+            <div class="swiper-slide">
+              <div id="custom_slider-{{ loop.index }}" class="item col-6 col-md-4 col-lg-3 col4">
+                <div class="left-col">
+                  {% if block.ct_slider_heading %}
+                  <h3 class="heading">{{ block.ct_slider_heading }}</h3>
+                  {% endif %}
+
+                  {% if block.ct_slider_collection_text %}
+                  <a class="collection-link" title="{{ block.ct_slider_heading }}" href="{{ block.ct_slider_link }}">
+                    {{ block.ct_slider_collection_text }}
+                  </a>
+                  {% endif %}
+                </div>
+                <div class="right-col">
+                  {% if block.ct_slider_img %}
+                  <img src="{{ block.ct_slider_img }}" alt="{{ block.ct_slider_heading }}"
+                       class="lazyload">
+                  {% else %}
+                  <span class="not_img">96 x 96px</span>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </salla-slider>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  #section-{{ position }}{
+    margin-top: {{ component.space_on }}px;
+    margin-bottom: {{ component.space_below }}px;
+  }
+</style>
+{% endif %}

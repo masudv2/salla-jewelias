@@ -1,0 +1,53 @@
+{#
+  Promotion Bar Component
+
+  Variables (from twilight.json):
+  - component.bg_promotion_color (string): Background color hex
+  - component.text_promotion_color (string): Text color hex
+  - component.border_promotion_color (string): Border/divider color hex
+  - component.text_1 (string): First promo text
+  - component.link_1 (string): First promo link URL
+  - component.text_2 (string): Second promo text
+  - component.link_2 (string): Second promo link URL
+  - component.text_3 (string): Third promo text
+  - component.link_3 (string): Third promo link URL
+  - position (number): Component sort index from twilight.json
+#}
+<style>
+  {% set bg_promotion_color = component.bg_promotion_color %}
+  {% set text_promotion_color = component.text_promotion_color %}
+  {% set border_promotion_color = component.border_promotion_color %}
+
+  .promotion-bar {
+    background: {{ bg_promotion_color }};
+  }
+  .promotion-bar .block-item-list:before,
+  .promotion-bar .block-item-list:after {
+    background: {{ border_promotion_color }};
+  }
+  .promotion-bar .block-item a {
+    color: {{ text_promotion_color }};
+  }
+</style>
+
+<div class="promotion-bar">
+  <div class="container">
+    <div class="block-item-list">
+      <div class="block-item">
+        <a href="{{ component.link_1 }}" title="">
+          {{ component.text_1 | default(trans('blocks.home.free_delivery') | default('Free Delivery Worldwide')) }}
+        </a>
+      </div>
+      <div class="block-item">
+        <a href="{{ component.link_2 }}" title="">
+          {{ component.text_2 | default(trans('blocks.home.free_returns') | default('Free Returns InStore')) }}
+        </a>
+      </div>
+      <div class="block-item">
+        <a href="{{ component.link_3 }}" title="">
+          {{ component.text_3 | default(trans('blocks.home.rewards_program') | default('Rewards Program')) }}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

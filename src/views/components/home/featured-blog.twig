@@ -1,0 +1,125 @@
+{#
+| Variable                   | Type    | Description                              |
+|----------------------------|---------|------------------------------------------|
+| component.title            | string  | Section heading text                     |
+| component.post_limit       | int     | Max number of posts to display           |
+| component.blog_show_author | bool    | Whether to show the author name          |
+| component.blog_show_date   | bool    | Whether to show the publish date         |
+| component.show_view_all    | bool    | Whether to show "View All" button        |
+| component.blog_url         | string  | URL to the full blog listing page        |
+| blog.latest_posts          | array   | Array of latest blog post objects        |
+| blog.latest_posts[].title  | string  | Article title                            |
+| blog.latest_posts[].url    | string  | Article URL                              |
+| blog.latest_posts[].image  | string  | Article featured image URL               |
+| blog.latest_posts[].excerpt| string  | Article excerpt text                     |
+| blog.latest_posts[].author | string  | Article author name                      |
+| blog.latest_posts[].published_at | date | Article publish date                  |
+| position                   | string  | Unique section identifier                |
+#}
+<div class="page-width feature-blog blog-page">
+  <div class="container">
+  {% if component.title %}
+  <div class="widget-title">
+      <h3>
+          <span>{{ component.title|default(trans('blocks.home.blog_posts')|default('Blog posts')) }}</span>
+      </h3>
+  </div>
+  {% endif %}
+
+  {% set articles = blog.latest_posts|default([]) %}
+  {% set post_limit = component.post_limit|default(3) %}
+
+  {% if articles|length > 0 %}
+  <div class="content-blog">
+      <ul class="list-blog blog-grid row">
+          {% for article in articles|slice(0, post_limit) %}
+          <li class="col-md-6 col-xl-6">
+              <h3 class="article-title">
+                  <a href="{{ article.url }}">
+                      {{ article.title }}
+                  </a>
+              </h3>
+              <div class="blog_author">
+                  {% if component.blog_show_date %}
+                  <span class="article__date">
+                      {{ trans('blocks.home.posted_on')|default('Posted on') }} {{ article.published_at|date('M d, Y') }}
+                  </span>
+                  {% endif %}
+                  {% if component.blog_show_author and article.author %}
+                  <span class="article__author">{{ trans('blocks.home.by')|default('by') }} {{ article.author }}</span>
+                  {% endif %}
+              </div>
+              <div class="article-details">
+                  {% if article.image %}
+                  <div class="article-img">
+                      <a href="{{ article.url }}">
+                        <img src="{{ article.image }}"
+                             class="images-one"
+                             loading="lazy"
+                             alt="{{ article.title | e }}">
+                      </a>
+                  </div>
+                  {% endif %}
+                  <div class="rte article-excerpt">
+                      <div class="des">
+                          {{ article.excerpt|striptags|slice(0, 200) }}{% if article.excerpt|length > 200 %}...{% endif %}
+                      </div>
+                      <p class="button">
+                        <a href="{{ article.url }}" class="read-more-btn btn-secondary">
+                          {{ trans('blocks.home.read_more')|default('Read more') }}
+                        </a>
+                      </p>
+                  </div>
+              </div>
+          </li>
+          {% endfor %}
+      </ul>
+  </div>
+  {% else %}
+  {# Placeholder when no blog posts are available #}
+  <div class="content-blog">
+      <ul class="list-blog blog-grid row">
+          {% for i in 1..post_limit %}
+          <li class="col-md-6 col-xl-6">
+              <h3 class="article-title">
+                  <a href="#">{{ trans('blocks.home.sample_post_title')|default('Sample Blog Post') }}</a>
+              </h3>
+              <div class="blog_author">
+                  <span class="article__date">{{ trans('blocks.home.posted_on')|default('Posted on') }} {{ 'now'|date('M d, Y') }}</span>
+              </div>
+              <div class="article-details">
+                  <div class="article-img">
+                      <a href="#">
+                        <img src="{{ 'images/placeholder-blog.svg' | asset }}"
+                             class="images-one"
+                             loading="lazy"
+                             alt="Placeholder">
+                      </a>
+                  </div>
+                  <div class="rte article-excerpt">
+                      <div class="des">
+                          {{ trans('blocks.home.sample_post_excerpt')|default('Add blog posts to showcase your store news and updates.') }}
+                      </div>
+                      <p class="button">
+                        <a href="#" class="read-more-btn btn-secondary">
+                          {{ trans('blocks.home.read_more')|default('Read more') }}
+                        </a>
+                      </p>
+                  </div>
+              </div>
+          </li>
+          {% endfor %}
+      </ul>
+  </div>
+  {% endif %}
+
+  {% if component.show_view_all and component.blog_url %}
+  <hr class="hr--invisible" aria-hidden="true">
+  <div class="text-center">
+      <a href="{{ component.blog_url }}" class="btn" aria-label="{{ trans('blocks.home.view_all_blogs')|default('View all blog posts') }}">
+          {{ trans('blocks.home.view_all')|default('View all') }}
+      </a>
+  </div>
+  {% endif %}
+  </div>
+</div>
