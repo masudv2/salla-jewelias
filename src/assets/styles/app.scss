@@ -69,25 +69,8 @@
 @import './03-elements/radio';
 @import './03-elements/radio-images';
 
-/**
- * JEWELIAS THEME
- * Ported from Shopify Jewelias theme.
- * Variables..............Design tokens, mixins, and helpers.
- * Base...................Reset, typography, form overrides, common styles.
- * Components.............All component styles (products, header, nav, footer, etc).
- * Responsive.............Media query overrides for all breakpoints.
- */
-@import './jewelias/variables';
-@import './jewelias/base';
-@import './jewelias/components';
-@import './jewelias/responsive';
-
-@import './04-components/header';
-@import './04-components/footer';
-@import './04-components/menus';
 @import './04-components/user-menu';
 @import './04-components/user-pages';
-@import './04-components/slider';
 @import './04-components/product';
 @import './04-components/brands';
 @import './04-components/no-content-placeholder';
@@ -105,3 +88,15 @@
 
 @import 'lite-youtube-embed/src/lite-yt-embed.css';
 @import 'mmenu-light/dist/mmenu-light.css';
+
+/**
+ * JEWELIAS THEME (loaded last to override Salla defaults)
+ * Variables..............Design tokens, mixins, and helpers.
+ * Base...................Reset, typography, form overrides, common styles.
+ * Components.............All component styles (products, header, nav, footer, etc).
+ * Responsive.............Media query overrides for all breakpoints.
+ */
+@import './jewelias/variables';
+@import './jewelias/base';
+@import './jewelias/components';
+@import './jewelias/responsive';
