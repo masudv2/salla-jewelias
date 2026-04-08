@@ -1,102 +1,398 @@
-/*
- * IMPORTANT NOTE: Theme based on Tailwindcss but for the purpose of simplifing the DOM we use
- * tailwind classes with @apply directive in the SCSS files
-*/
-
-/**
- * SETTINGS
- * Tailwind.............Import tailwind.
- * Fonts................Any font files.
- * Global...............Project-specific, globally available variables.
- * Breakpoints..........Mixins and variables for responsive styles.
- *
- * GENERIC
- * Common...............All commn styles and assistan classes and common style fixes
- * Reset................Reset specific elements to make them easier to style in other contexts.
- * Animations...........Some of animations from anime.css
- * Lazyload.............Lazyload placeholder styles
- * RTL..................Specific styles for RTL.
- * LTR..................Specific styles for LTR.
- *
- * ELEMENTS
- * Forms................Element-level form styling.
- * Buttons..............Specific styles for buttons.
- * Radio................Specific styles for custom radio button.
- * Radio Images.........Specific styles for radio images, used in product options.
- *
- * COMPONENTS
- * Header...............Specific styles for header styles.
- * Footer...............Specific styles for footer styles.
- * Menu.................Specific styles for main menu and mobile menu styles.
- * User Menu............Specific styles for user menu dropdown.
- * User Pages...........Specific styles for user pages like profile, notifications, orders...
- * Home Blocks..........Specific styles for home blocks.
- * Slider...............Specific styles for sliders.
- * Product..............Specific styles for single product page and it's elements.
- * Brands...............Specific styles for brands page.
- * Placeholder..........Specific styles for no content placeholders.
- * Gifting..............Specific styles for gifting system.
- * Loyalty..............Specific styles for loyalty system.
- *
- * UTILITIES
- * Chat Bots............Specific styles for chats bots widget.
- * Swal.................Specific styles for Sweet Alert addon.
- * Safari Fixes.........Specific styles for Safari Browser.
- *
- * EMBEDED ADDONS
- * Lite Youtube Embed...Specific styles for lite-youtube-embed addon.
- * Swiper...............Specific styles for swiper slider addon.
- * MMenu................Specific styles for mmenu addon.
- *
-*/
-
 @import './01-settings/tailwind';
 @import './01-settings/fonts';
-@import './01-settings/global';
-@import './01-settings/breakpoints';
 
-@import './02-generic/reset';
-@import './02-generic/common';
-@import './02-generic/tooltip';
-@import './02-generic/animations';
-@import './02-generic/lazyload';
-@import './02-generic/rtl';
-@import './02-generic/ltr';
-@import './02-generic/mixins';
+:root {
+  --jw-ink: #0D0D0D;
+  --jw-graphite: #2A2A2A;
+  --jw-steel: #6B6B6B;
+  --jw-mist: #A0A0A0;
+  --jw-fog: #E8E8E8;
+  --jw-snow: #F6F6F6;
+  --jw-white: #FFFFFF;
+  --jw-amber: #C6975B;
+  --jw-amber-soft: #DDB87E;
+  --jw-blush: #E8D5C4;
+  --jw-font-serif: 'DM Serif Display', serif;
+  --jw-font-sans: 'Outfit', sans-serif;
+  --jw-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --jw-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --jw-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
 
-@import './03-elements/form';
-@import './03-elements/buttons';
-@import './03-elements/radio';
-@import './03-elements/radio-images';
+*, *::before, *::after { box-sizing: border-box; }
 
-@import './04-components/user-menu';
-@import './04-components/user-pages';
-@import './04-components/product';
-@import './04-components/brands';
-@import './04-components/no-content-placeholder';
-@import './04-components/gifting';
-@import './04-components/loyalty';
-@import './04-components/virtooal';
-@import './04-components/landing-page';
-@import './04-components/filters';
-@import './04-components/add-product-toast';
+body {
+  font-family: var(--jw-font-sans);
+  color: var(--jw-ink);
+  background: var(--jw-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
 
-@import './05-utilities/chat-bots';
-@import './05-utilities/swal';
-@import './05-utilities/safari-fixes';
-@import './05-utilities/font-customization';
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
 
-@import 'lite-youtube-embed/src/lite-yt-embed.css';
-@import 'mmenu-light/dist/mmenu-light.css';
+/* ═══════════════════════════════════════════
+   ANNOUNCEMENT BAR
+   ═══════════════════════════════════════════ */
+.jw-announce {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  overflow: hidden;
+}
 
-/**
- * JEWELIAS THEME (loaded last to override Salla defaults)
- * Variables..............Design tokens, mixins, and helpers.
- * Base...................Reset, typography, form overrides, common styles.
- * Components.............All component styles (products, header, nav, footer, etc).
- * Responsive.............Media query overrides for all breakpoints.
- */
-@import './jewelias/variables';
-@import './jewelias/base';
-@import './jewelias/components';
-@import './jewelias/responsive';
+.jw-announce-track {
+  display: flex;
+  gap: 60px;
+  animation: jwMarquee 25s linear infinite;
+  white-space: nowrap;
+}
+
+@keyframes jwMarquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.jw-announce-item {
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 300;
+  flex-shrink: 0;
+}
+
+.jw-announce-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  align-self: center;
+}
+
+/* ═══════════════════════════════════════════
+   HEADER
+   ═══════════════════════════════════════════ */
+.jw-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--jw-fog);
+}
+
+.jw-header-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 48px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  height: 72px;
+}
+
+.jw-nav {
+  display: flex;
+  gap: 36px;
+}
+
+.jw-nav-right {
+  justify-content: flex-end;
+}
+
+.jw-nav-link {
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: var(--jw-steel);
+  transition: color 0.3s;
+}
+
+.jw-nav-link:hover {
+  color: var(--jw-ink);
+}
+
+.jw-logo {
+  text-align: center;
+  font-family: var(--jw-font-serif);
+  font-size: 1.8rem;
+  color: var(--jw-ink);
+  letter-spacing: 0.04em;
+}
+
+.jw-logo img {
+  height: 36px;
+  width: auto;
+}
+
+.jw-icon-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: background 0.3s;
+}
+
+.jw-icon-btn:hover {
+  background: var(--jw-snow);
+}
+
+.jw-icon-btn svg,
+.jw-icon-btn i {
+  font-size: 19px;
+  color: var(--jw-ink);
+}
+
+.jw-icon-btn .jw-badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  min-width: 16px;
+  height: 16px;
+  background: var(--jw-amber);
+  border-radius: 50%;
+  font-size: 0.55rem;
+  color: var(--jw-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  padding: 0 4px;
+}
+
+/* Mobile menu toggle */
+.jw-menu-toggle {
+  display: none;
+}
+
+/* ═══════════════════════════════════════════
+   HERO SLIDER
+   ═══════════════════════════════════════════ */
+.jw-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 88vh;
+}
+
+.jw-hero-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 80px 80px 10%;
+}
+
+.jw-hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--jw-snow);
+  padding: 8px 18px;
+  border-radius: 100px;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--jw-steel);
+  font-weight: 400;
+  width: fit-content;
+  margin-bottom: 36px;
+  opacity: 0;
+  animation: jwSlideIn 0.6s var(--jw-ease) 0.2s forwards;
+}
+
+.jw-hero-tag-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--jw-amber);
+}
+
+.jw-hero-title {
+  font-family: var(--jw-font-serif);
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  line-height: 1.1;
+  color: var(--jw-ink);
+  margin: 0 0 28px;
+  opacity: 0;
+  animation: jwSlideIn 0.8s var(--jw-ease) 0.35s forwards;
+}
+
+.jw-hero-title em {
+  font-style: italic;
+  color: var(--jw-amber);
+}
+
+.jw-hero-desc {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--jw-steel);
+  font-weight: 300;
+  max-width: 440px;
+  margin: 0 0 44px;
+  opacity: 0;
+  animation: jwSlideIn 0.8s var(--jw-ease) 0.5s forwards;
+}
+
+.jw-hero-actions {
+  display: flex;
+  gap: 16px;
+  opacity: 0;
+  animation: jwSlideIn 0.8s var(--jw-ease) 0.65s forwards;
+}
+
+@keyframes jwSlideIn {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.jw-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 36px;
+  color: var(--jw-white);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border-radius: 60px;
+  transition: all 0.4s var(--jw-ease);
+}
+
+.jw-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.jw-btn-primary i {
+  font-size: 14px;
+  transition: transform 0.3s;
+}
+
+.jw-btn-primary:hover i {
+  transform: translateX(3px);
+}
+
+.jw-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 36px;
+  border: 1.5px solid var(--jw-fog);
+  color: var(--jw-ink);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border-radius: 60px;
+  transition: all 0.3s var(--jw-ease);
+}
+
+.jw-btn-ghost:hover {
+  border-color: var(--jw-ink);
+  background: var(--jw-snow);
+}
+
+.jw-hero-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.jw-hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.06);
+  animation: jwHeroImg 1.2s var(--jw-ease) 0.3s forwards;
+}
+
+@keyframes jwHeroImg {
+  to { opacity: 1; transform: scale(1); }
+}
+
+.jw-hero-float {
+  position: absolute;
+  bottom: 48px;
+  left: -30px;
+  background: var(--jw-white);
+  padding: 20px 28px;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  opacity: 0;
+  animation: jwFloatIn 0.6s var(--jw-spring) 1s forwards;
+}
+
+@keyframes jwFloatIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.jw-float-icon {
+  width: 44px;
+  height: 44px;
+  background: var(--jw-amber);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--jw-white);
+  font-size: 20px;
+}
+
+.jw-float-text {
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+.jw-float-sub {
+  font-size: 0.72rem;
+  color: var(--jw-steel);
+  font-weight: 300;
+  margin-top: 2px;
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .jw-hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+  .jw-hero-text { padding: 60px 32px; }
+  .jw-hero-image { height: 50vh; }
+  .jw-hero-float { display: none; }
+  .jw-header-inner { padding: 0 24px; }
+}
+
+@media (max-width: 768px) {
+  .jw-header-inner {
+    grid-template-columns: auto 1fr auto;
+    padding: 0 16px;
+    height: 60px;
+  }
+  .jw-nav:not(.jw-nav-right) { display: none; }
+  .jw-menu-toggle { display: flex; }
+  .jw-logo { font-size: 1.5rem; }
+  .jw-hero-text { padding: 40px 20px; }
+  .jw-hero-title { font-size: 2.2rem; }
+  .jw-hero-desc { font-size: 0.92rem; }
+  .jw-hero-actions { flex-direction: column; }
+  .jw-btn-primary, .jw-btn-ghost { justify-content: center; }
+  .jw-announce-item { font-size: 0.6rem; letter-spacing: 0.15em; }
+}

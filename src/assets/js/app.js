@@ -14,21 +14,10 @@ class App extends AppHelpers {
     this.commonThings();
     this.initiateNotifier();
     this.initiateMobileMenu();
-    if (header_is_sticky) {
-      this.initiateStickyMenu();
-    }
     this.initAddToCart();
     this.initiateDropdowns();
     this.initiateModals();
     this.initiateCollapse();
-    
-    // Ensure #more-menu-dropdown exists before running changeMenuDirection
-    const menuDirInterval = setInterval(() => {
-      if (document.querySelector('#more-menu-dropdown')) {
-        this.changeMenuDirection();
-        clearInterval(menuDirInterval);
-      }
-    }, 100);
 
     initTootTip();
     this.loadModalImgOnclick();

@@ -1,379 +1,67 @@
-{#
-  Hero Slideshow Component
+{% set tag_text = component.tag_text|default('Summer 2026') %}
+{% set title = component.title|default('Where Art Meets <em>Elegance</em>') %}
+{% set description = component.description|default('Discover handcrafted jewelry designed for those who appreciate the extraordinary.') %}
+{% set btn_text = component.btn_text|default('Shop Collection') %}
+{% set btn_link = component.btn_link|default('#') %}
+{% set btn_bg = component.btn_bg|default('#0D0D0D') %}
+{% set btn2_text = component.btn2_text|default('Our Story') %}
+{% set btn2_link = component.btn2_link|default('#') %}
+{% set show_btn2 = component.show_btn2|default(true) %}
+{% set hero_image = component.hero_image|default('') %}
+{% set hero_bg_color = component.hero_bg_color|default('#E8D5C4') %}
+{% set float_title = component.float_title|default('Certified Authentic') %}
+{% set float_desc = component.float_desc|default('Every piece comes with certificate') %}
+{% set show_float = component.show_float|default(true) %}
 
-  Variables (from twilight.json):
-  - component.autoplay (boolean): Auto-rotate slides
-  - component.slideshow_speed (string): Slide interval in ms (e.g., "5000")
-  - component.slideshow_transition (string): "true" = fade, "false" = slide
-  - component.text_position (string): Mobile text position ("under_img" | "in_img")
-  - component.dots_position (string): Dots position ("under_img" | "in_img")
-  - component.space_dots_up (number): Dots bottom offset in px
-  - component.bg_color_dots (string): Pagination dot color hex
-  - component.bg_color_arrow (string): Navigation arrow color hex
-  - component.space_on (number): Top margin in px
-  - component.space_below (number): Bottom margin in px
-  - component.dpl_parallax (boolean): Enable parallax on desktop
-  - component.height_img_dk (string): Desktop image height (e.g., "778px")
-  - component.height_img_mb (string): Mobile image height (e.g., "auto")
-  - component.layout (string): Layout mode ("default" | "full")
-  - component.blocks (array): Image slide blocks
-  - position (number): Component sort index from twilight.json
+<section class="jw-hero" id="hero-{{ position }}">
+  <div class="jw-hero-text">
+    {% if tag_text %}
+    <div class="jw-hero-tag">
+      <span class="jw-hero-tag-dot"></span>
+      {{ tag_text }}
+    </div>
+    {% endif %}
 
-  Block fields:
-  - block.image_slide: Desktop image URL
-  - block.image_slide_mb: Mobile image URL
-  - block.header_silde: Main heading text
-  - block.sub_header_silde: Subheading text
-  - block.image_des: Description text
-  - block.button_slide: Button text
-  - block.link_button: Button URL
-  - block.alignment: Text alignment (left | center | right)
-  - block.color_header: Heading color
-  - block.color_sub_header: Subheading color
-  - block.color_des: Description color
-  - block.font_size_header: Heading font size
-  - block.font_size_sub_header: Subheading font size
-  - block.font_size_des: Description font size
-  - block.font_size_button: Button font size
-  - block.button_slide_bg: Button background color
-  - block.button_slide_border: Button border color
-  - block.button_slide_color: Button text color
-#}
-<section class="home-slideshow" id="slideshow-{{ position }}">
-  <div class="slideshow">
-    <salla-slider id="hero-slider-{{ position }}" type="carousel" show-controls="true" loop
-      {% if component.autoplay %}auto-play auto-play-speed="{{ component.slideshow_speed }}"{% endif %}
-      {% if component.slideshow_transition == 'true' %}effect="fade"{% endif %}>
-      <div slot="items">
-        {% for block in component.blocks %}
-        <div class="swiper-slide slider{% if loop.first %} height_slider{% endif %}" id="slide-{{ loop.index }}">
-          <div class="lazy-images-contain">
-            <a href="{{ block.link_button }}" title="{{ block.header_silde }}">
-              {% if block.image_slide is not empty %}
+    <h1 class="jw-hero-title">{{ title|raw }}</h1>
 
-              {% set img_url = block.image_slide %}
-              {% set img_url_mb = block.image_slide_mb %}
+    {% if description %}
+    <p class="jw-hero-desc">{{ description }}</p>
+    {% endif %}
 
-              {% if component.dpl_parallax %}
-              <div class="parallax-image" style="background-image: url({{ img_url }});height:{{ component.height_img_dk }}; background-attachment: fixed;background-position: center; background-repeat: no-repeat; background-size: cover;"></div>
+    <div class="jw-hero-actions">
+      {% if btn_text %}
+      <a href="{{ btn_link }}" class="jw-btn-primary" style="background:{{ btn_bg }};">
+        {{ btn_text }}
+        <i class="sicon-keyboard_arrow_left rtl:hidden"></i>
+        <i class="sicon-keyboard_arrow_right ltr:hidden"></i>
+      </a>
+      {% endif %}
 
-              <img src="{{ img_url }}" alt="{{ block.header_silde | e }}"
-                   class="not-parallax lazyload"
-                   data-src="{{ img_url }}">
+      {% if show_btn2 and btn2_text %}
+      <a href="{{ btn2_link }}" class="jw-btn-ghost">
+        {{ btn2_text }}
+      </a>
+      {% endif %}
+    </div>
+  </div>
 
-              {% else %}
+  <div class="jw-hero-image" style="background:{{ hero_bg_color }};">
+    {% if hero_image %}
+      <img src="{{ hero_image }}" alt="{{ tag_text }}">
+    {% else %}
+      <img src="https://images.unsplash.com/photo-1515562141589-67f0d569b538?w=1200&q=85" alt="Jewelias">
+    {% endif %}
 
-              <img src="{{ img_url }}" alt="{{ block.header_silde | e }}"
-                   class="images-desktop lazyload"
-                   data-src="{{ img_url }}">
-              {% endif %}
-
-              {% if block.image_slide_mb is not empty %}
-              <img src="{{ img_url_mb }}" alt="{{ block.header_silde | e }}"
-                   class="images-mobile lazyload"
-                   data-src="{{ img_url_mb }}">
-              {% else %}
-              <img src="{{ img_url }}" alt="{{ block.header_silde | e }}"
-                   class="images-mobile lazyload"
-                   data-src="{{ img_url }}">
-              {% endif %}
-
-              {% else %}
-              <span class="not_img">1470 x 778px</span>
-              {% endif %}
-            </a>
-            <div class="container caption-wrap{% if block.alignment == 'center' %} slide-center{% elseif block.alignment == 'right' %} slide-right {% else %} slide-left{% endif %}">
-              <div class="content">
-                {% if block.sub_header_silde is not empty %}
-                <h5 class="sub-slide-header" style="font-size:{{ block.font_size_sub_header }}; color:{{ block.color_sub_header }}; border-bottom: 1px solid {{ block.color_sub_header }}">
-                  {{ block.sub_header_silde }}
-                </h5>
-                {% endif %}
-                {% if block.header_silde is not empty %}
-                <h2 class="slide-header" style="font-size:{{ block.font_size_header }}; color:{{ block.color_header }}">
-                  {{ block.header_silde }}
-                </h2>
-                {% endif %}
-                {% if block.image_des is not empty %}
-                <div class="slide-des" style="font-size:{{ block.font_size_des }}; color:{{ block.color_des }}">
-                  {{ block.image_des }}
-                </div>
-                {% endif %}
-                {% if block.button_slide is not empty %}
-                <a class="button-slide btn" href="{{ block.link_button }}"
-                   style="font-size:{{ block.font_size_button }}; background: {{ block.button_slide_bg }}; border: 1px solid {{ block.button_slide_border }}; color: {{ block.button_slide_color }};">
-                  {{ block.button_slide }}
-                </a>
-                {% endif %}
-              </div>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
+    {% if show_float %}
+    <div class="jw-hero-float">
+      <div class="jw-float-icon">
+        <i class="sicon-shield-check"></i>
       </div>
-    </salla-slider>
+      <div>
+        <div class="jw-float-text">{{ float_title }}</div>
+        <div class="jw-float-sub">{{ float_desc }}</div>
+      </div>
+    </div>
+    {% endif %}
   </div>
 </section>
-
-<style>
-  .home-slideshow .swiper-button-next,
-  .home-slideshow .swiper-button-prev {
-    border-color: {{ component.bg_color_arrow }};
-  }
-  .home-slideshow .swiper-button-next svg,
-  .home-slideshow .swiper-button-prev svg {
-    fill: {{ component.bg_color_arrow }};
-  }
-
-  @media (min-width: 1367px) {
-    .home-slideshow .not-parallax {
-      display: none;
-    }
-  }
-
-  @media (max-width: 1366px) {
-    .home-slideshow .parallax-image {
-      display: none;
-    }
-  }
-
-  @media (min-width: 768px) {
-    {% if component.dots_position == 'in_img' %}
-    #slideshow-{{ position }} .swiper-pagination {
-      position: absolute;
-      left: 0;
-      bottom: 110px;
-      margin: 0;
-      width: 100%;
-    }
-
-    #slideshow-{{ position }} .swiper-pagination-bullet {
-      border-width: 1px;
-      background: {{ component.bg_color_dots }};
-      border-color: {{ component.bg_color_dots }};
-    }
-
-    #slideshow-{{ position }} .swiper-button-next,
-    #slideshow-{{ position }} .swiper-button-prev {
-      border-color: {{ component.bg_color_arrow }};
-    }
-
-    #slideshow-{{ position }} .swiper-button-next svg,
-    #slideshow-{{ position }} .swiper-button-prev svg {
-      fill: {{ component.bg_color_arrow }};
-    }
-
-    #slideshow-{{ position }} .swiper-pagination-bullet-active {
-      background: transparent;
-    }
-
-    {% else %}
-    #slideshow-{{ position }} .swiper-button-next,
-    #slideshow-{{ position }} .swiper-button-prev {
-      top: calc(36% - 21px);
-    }
-    #slideshow-{{ position }} .swiper-pagination-bullet {
-      border-width: 1px;
-      background: #c5c5c5;
-      border-color: #c5c5c5;
-    }
-    #slideshow-{{ position }} .swiper-pagination-bullet-active {
-      background: transparent;
-    }
-    {% endif %}
-  }
-
-  {% if component.dpl_parallax %}
-
-  @media (min-width: 768px) and (max-width: 1024px) {
-    {% if component.dots_position == 'in_img' %}
-    #slideshow-{{ position }} .swiper-button-next,
-    #slideshow-{{ position }} .swiper-button-prev {
-      top: calc(38% - 21px);
-    }
-    {% endif %}
-  }
-
-  @media (min-width: 1367px) {
-    #slideshow-{{ position }} .lazy-images-contain img {
-      height: {{ component.height_img_dk }};
-      object-fit: cover;
-    }
-  }
-
-  {% else %}
-  @media (min-width: 1025px) {
-    #slideshow-{{ position }} .lazy-images-contain img {
-      height: {{ component.height_img_dk }};
-      object-fit: cover;
-    }
-    {% if component.dots_position == 'in_img' %}
-    #slideshow-{{ position }} .swiper-button-next,
-    #slideshow-{{ position }} .swiper-button-prev {
-      top: calc(36% - 21px);
-    }
-    #slideshow-{{ position }} .swiper-pagination {
-      bottom: {{ component.space_dots_up }}px;
-    }
-    {% endif %}
-  }
-  {% endif %}
-
-  @media (max-width: 1024px) {
-    #slideshow-{{ position }} .lazy-images-contain img {
-      height: {{ component.height_img_mb }};
-      object-fit: cover;
-    }
-  }
-
-  @media (max-width: 767px) {
-    .home-slideshow .not-parallax {
-      display: none;
-    }
-
-    {% if component.text_position == 'under_img' %}
-    #slideshow-{{ position }} .caption-wrap {
-      transform: none;
-      -webkit-transform: none;
-      -ms-transform: none;
-      text-align: center !important;
-      position: relative;
-      top: auto;
-      left: auto;
-      right: auto;
-      display: inline-block;
-      width: 100%;
-      padding: 20px 10px;
-    }
-
-    #slideshow-{{ position }} .caption-wrap:after {
-      display: block;
-      content: "";
-      visibility: hidden;
-      clear: both;
-    }
-    #slideshow-{{ position }} .caption-wrap .content h2 {
-      font-size: 24px !important;
-      margin-bottom: 15px;
-      color: {{ theme.page_title_color }} !important;
-      line-height: 36px;
-    }
-
-    #slideshow-{{ position }} .caption-wrap .content .sub-slide-header {
-      margin-bottom: 18px;
-      color: {{ theme.page_title_color }} !important;
-      border-bottom: 1px solid {{ theme.page_title_color }} !important;
-    }
-    #slideshow-{{ position }} .caption-wrap .content .slide-des {
-      margin-bottom: 20px;
-      font-size: 12px !important;
-      color: {{ theme.body_color }} !important;
-      display: block;
-    }
-    #slideshow-{{ position }} .caption-wrap .content .button-slide {
-      margin: auto;
-      font-size: 12px !important;
-      max-width: 210px;
-      padding: 7px 15px 5px;
-      line-height: 22px;
-      height: inherit;
-    }
-    #slideshow-{{ position }} .swiper-pagination {
-      position: absolute;
-      left: 0;
-      bottom: -10px;
-      margin: 0;
-      width: 100%;
-    }
-    {% else %}
-
-    #slideshow-{{ position }} .caption-wrap .content .button-slide {
-      max-width: max-content;
-      height: 36px;
-      line-height: 36px;
-      width: auto;
-      padding: 0 40px;
-    }
-    #slideshow-{{ position }} .caption-wrap .content .sub-slide-header {
-      margin-bottom: 10px;
-    }
-
-    {% endif %}
-
-    {% if component.dots_position == 'in_img' and component.text_position == 'in_img' %}
-    #slideshow-{{ position }} .swiper-pagination {
-      position: absolute;
-      left: 0;
-      bottom: 10px;
-      margin: 0;
-      width: 100%;
-    }
-
-    #slideshow-{{ position }} .swiper-pagination-bullet {
-      border-width: 1px;
-      background: {{ component.bg_color_dots }};
-      border-color: {{ component.bg_color_dots }};
-    }
-
-    #slideshow-{{ position }} .swiper-button-next,
-    #slideshow-{{ position }} .swiper-button-prev {
-      border-color: {{ component.bg_color_arrow }};
-    }
-
-    #slideshow-{{ position }} .swiper-button-next svg,
-    #slideshow-{{ position }} .swiper-button-prev svg {
-      fill: {{ component.bg_color_arrow }};
-    }
-
-    #slideshow-{{ position }} .swiper-pagination-bullet-active {
-      background: transparent;
-    }
-    {% else %}
-    #slideshow-{{ position }} .swiper-pagination-bullet {
-      background: #c5c5c5;
-      border-color: #c5c5c5;
-    }
-    #slideshow-{{ position }} .swiper-pagination-bullet-active {
-      background: transparent;
-    }
-    {% endif %}
-
-    {% if component.text_position == 'in_img' and component.dots_position == 'under_img' %}
-    #slideshow-{{ position }} .swiper-pagination {
-      position: absolute;
-      left: 0;
-      bottom: -22px;
-      margin: 0;
-      width: 100%;
-    }
-    {% endif %}
-  }
-
-  {% if component.layout == 'default' %}
-  #slideshow-{{ position }} .caption-wrap {
-    max-width: 850px;
-  }
-
-  #slideshow-{{ position }} .caption-wrap .slide-des {
-    max-width: 410px;
-  }
-
-  #slideshow-{{ position }} .swiper-button-prev {
-    left: 5%;
-  }
-
-  #slideshow-{{ position }} .swiper-button-next {
-    right: 5%;
-  }
-  {% endif %}
-
-  #slideshow-{{ position }} {
-    margin-top: {{ component.space_on }}px;
-    margin-bottom: {{ component.space_below }}px;
-  }
-  {% if component.text_position == 'under_img' %}
-  #slideshow-{{ position }} salla-slider:not(.s-slider-initialized) {
-    padding-bottom: 47px;
-  }
-  {% endif %}
-</style>

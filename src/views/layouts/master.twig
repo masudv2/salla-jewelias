@@ -68,10 +68,7 @@
 
 
     <script data-cfasync="false">
-        window.header_is_sticky = "{{theme.settings.get('header_is_sticky', 'Default Value')}}"
-        window.imageZoom = "{{theme.settings.get('imageZoom')}}"
         window.can_access_wallet = {{ user.can_access_wallet | json_encode }}
-        window.enable_more_menu = "{{ theme.settings.get('enable_more_menu', true) }}"
         window.enable_add_product_toast = "{{ theme.settings.get('enable_add_product_toast', true) }}"
     </script>
     
@@ -80,7 +77,7 @@
     {% block styles %}{% endblock %}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Arimo:wght@400;700&family=Tinos:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ 'app.css' | asset }}">
     <link rel="stylesheet" href="{{ theme.font.path|cdn }}"/>
     <link rel="stylesheet" href="{{ 'fonts/sallaicons.css'|cdn }}"/>
@@ -88,16 +85,10 @@
     <style>
         :root {
             --font-main: '{{theme.font.name}}';
-            --font-display: 'Playfair Display', serif;
             --color-primary: {{ theme.color.primary }};
             --color-primary-dark: {{ theme.color.darker(0.15) }};
             --color-primary-light: {{ theme.color.lighter(0.15) }};
             --color-primary-reverse: {{ theme.color.reverse_text }};
-            --color-gold: #C9A96E;
-            --color-gold-dark: #8B6914;
-            --color-gold-light: #F5DFB5;
-            --color-onyx: #1A1A1A;
-            --color-pearl: #F5F0EB;
         }
     </style>
     {# tracking services, custom css feature. #}
