@@ -79,6 +79,172 @@
             "icon": "sicon-format-text-alt"
         },
         {
+            "type": "boolean",
+            "icon": "sicon-eye",
+            "label": "إظهار الشريط الإعلاني",
+            "id": "announce_show",
+            "format": "switch",
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-slider",
+            "label": "استخدام سلايدر بدل النص المتحرك",
+            "id": "announce_use_slider",
+            "format": "switch",
+            "value": false,
+            "selected": false
+        },
+        {
+            "type": "string",
+            "format": "text",
+            "id": "announce_link",
+            "label": "رابط النص الإعلاني",
+            "icon": "sicon-link",
+            "value": ""
+        },
+        {
+            "type": "static",
+            "id": "static-ann-features",
+            "format": "line"
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-cursor",
+            "label": "إظهار زر الإجراء (CTA)",
+            "id": "announce_show_cta",
+            "format": "switch",
+            "value": false,
+            "selected": false
+        },
+        {
+            "type": "string",
+            "format": "text",
+            "id": "announce_btn_label",
+            "label": "نص الزر",
+            "value": "SHOP NOW",
+            "multilanguage": true,
+            "icon": "sicon-cursor"
+        },
+        {
+            "type": "string",
+            "format": "text",
+            "id": "announce_btn_link",
+            "label": "رابط الزر",
+            "icon": "sicon-link",
+            "value": ""
+        },
+        {
+            "type": "string",
+            "format": "color",
+            "id": "announce_btn_color",
+            "label": "لون الزر",
+            "icon": "sicon-color-palette",
+            "value": "#DDB87E"
+        },
+        {
+            "type": "static",
+            "id": "static-ann-toggles",
+            "format": "line"
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-share",
+            "label": "إظهار أيقونات التواصل الاجتماعي",
+            "id": "announce_show_social",
+            "format": "switch",
+            "value": false,
+            "selected": false
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-globe",
+            "label": "إظهار اللغة والعملة",
+            "id": "announce_show_locale",
+            "format": "switch",
+            "value": false,
+            "selected": false
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-close",
+            "label": "إظهار زر الإغلاق",
+            "id": "announce_show_close",
+            "format": "switch",
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "static",
+            "id": "static-ann-countdown",
+            "format": "line"
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-clock",
+            "label": "إظهار العد التنازلي",
+            "id": "announce_show_countdown",
+            "format": "switch",
+            "value": false,
+            "selected": false
+        },
+        {
+            "type": "number",
+            "id": "announce_cd_year",
+            "label": "سنة انتهاء العد التنازلي",
+            "icon": "sicon-calendar",
+            "value": 2026,
+            "minimum": 2024,
+            "maximum": 2030,
+            "format": "number"
+        },
+        {
+            "type": "number",
+            "id": "announce_cd_month",
+            "label": "شهر الانتهاء",
+            "icon": "sicon-calendar",
+            "value": 12,
+            "minimum": 1,
+            "maximum": 12,
+            "format": "number"
+        },
+        {
+            "type": "number",
+            "id": "announce_cd_day",
+            "label": "يوم الانتهاء",
+            "icon": "sicon-calendar",
+            "value": 31,
+            "minimum": 1,
+            "maximum": 31,
+            "format": "number"
+        },
+        {
+            "type": "number",
+            "id": "announce_cd_hour",
+            "label": "ساعة الانتهاء",
+            "icon": "sicon-clock",
+            "value": 0,
+            "minimum": 0,
+            "maximum": 23,
+            "format": "number"
+        },
+        {
+            "type": "number",
+            "id": "announce_cd_minute",
+            "label": "دقيقة الانتهاء",
+            "icon": "sicon-clock",
+            "value": 0,
+            "minimum": 0,
+            "maximum": 59,
+            "format": "number"
+        },
+        {
+            "type": "static",
+            "id": "static-ann-end",
+            "format": "line"
+        },
+        {
             "id": "logo_height",
             "type": "number",
             "format": "number",

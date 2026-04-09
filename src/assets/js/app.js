@@ -15,6 +15,7 @@ class App extends AppHelpers {
     this.initiateNotifier();
     this.initiateMobileMenu();
     this.initAddToCart();
+    this.initAnnouncementBar();
     this.initiateDropdowns();
     this.initiateModals();
     this.initiateCollapse();
@@ -261,6 +262,55 @@ isElementLoaded(selector){
    * These actions are responsible for pressing "add to cart" button,
    * they can be from any page, especially when mega-menu is enabled
    */
+  initAnnouncementBar() {
+    const bar = document.getElementById('jw-announce');
+    if (!bar) return;
+
+    // Close button
+    const closeBtn = document.getElementById('jw-announce-close');
+    if (closeBtn) {
+      if (sessionStorage.getItem('jw-ann-closed')) { bar.style.display = 'none'; return; }
+      closeBtn.addEventListener('click', () => { bar.style.display = 'none'; sessionStorage.setItem('jw-ann-closed', '1'); });
+    }
+
+    // Slider
+    const slider = document.getElementById('jw-ann-slider');
+    if (slider) {
+      const slides = slider.querySelector('.jw-announce-slides');
+      const total = slides.children.length;
+      if (total < 2) return;
+      let cur = 0;
+      const isRtl = document.documentElement.dir === 'rtl';
+      const goTo = (i) => { cur = ((i % total) + total) % total; slides.style.transform = `translateX(${isRtl ? '' : '-'}${cur * 100}%)`; };
+      const prev = document.getElementById('jw-ann-prev');
+      const next = document.getElementById('jw-ann-next');
+      if (prev) prev.addEventListener('click', () => goTo(cur - 1));
+      if (next) next.addEventListener('click', () => goTo(cur + 1));
+      let autoId = setInterval(() => goTo(cur + 1), 4000);
+      bar.addEventListener('mouseenter', () => clearInterval(autoId));
+      bar.addEventListener('mouseleave', () => { autoId = setInterval(() => goTo(cur + 1), 4000); });
+    }
+
+    // Countdown
+    const cdEl = document.getElementById('jw-countdown');
+    if (cdEl) {
+      const target = new Date(bar.dataset.cdTarget).getTime();
+      const update = () => {
+        const diff = Math.max(0, target - Date.now());
+        const d = Math.floor(diff / 86400000);
+        const h = Math.floor((diff % 86400000) / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        const s = Math.floor((diff % 60000) / 1000);
+        cdEl.querySelector('[data-cd="d"]').textContent = String(d).padStart(2, '0');
+        cdEl.querySelector('[data-cd="h"]').textContent = String(h).padStart(2, '0');
+        cdEl.querySelector('[data-cd="m"]').textContent = String(m).padStart(2, '0');
+        cdEl.querySelector('[data-cd="s"]').textContent = String(s).padStart(2, '0');
+      };
+      update();
+      setInterval(update, 1000);
+    }
+  }
+
   initAddToCart() {
     salla.cart.event.onUpdated(summary => {
       document.querySelectorAll('[data-cart-total]').forEach(el => el.innerHTML = salla.money(summary.total));

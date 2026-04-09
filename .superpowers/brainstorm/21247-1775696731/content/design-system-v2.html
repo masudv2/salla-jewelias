@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glow — Design System v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.2.3/dist/lenis.min.js"></script>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html.lenis, html.lenis body { height: auto; }
+  .lenis.lenis-smooth { scroll-behavior: auto !important; }
+  .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+
+  :root {
+    --glow-ink: #1A1A1A;
+    --glow-charcoal: #3D3D3D;
+    --glow-stone: #7A7A7A;
+    --glow-mist: #B8B8B8;
+    --glow-cloud: #EBEBEB;
+    --glow-pearl: #F5F3F0;
+    --glow-white: #FFFFFF;
+    --glow-rose: #C4836A;
+    --glow-rose-soft: #D9A892;
+    --glow-sage: #8FA68C;
+    --glow-cream: #F0E6D8;
+    --glow-blush: #F2E0D6;
+    --glow-danger: #C04040;
+
+    --font-display: 'Instrument Serif', serif;
+    --font-body: 'Inter', sans-serif;
+    --font-accent: 'Space Grotesk', sans-serif;
+
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+
+    --r-sm: 6px;
+    --r-md: 12px;
+    --r-lg: 20px;
+    --r-xl: 32px;
+    --r-pill: 100px;
+  }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--glow-ink);
+    background: var(--glow-white);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  .ds-page { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+
+  /* ══════════════════════════════════════════
+     SCROLL REVEAL SYSTEM
+     ══════════════════════════════════════════ */
+  .rv { opacity: 0; transform: translateY(40px); transition: opacity 0.8s var(--ease-smooth), transform 0.8s var(--ease-smooth); }
+  .rv.vis { opacity: 1; transform: translateY(0); }
+  .rv-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.8s var(--ease-smooth), transform 0.8s var(--ease-smooth); }
+  .rv-left.vis { opacity: 1; transform: translateX(0); }
+  .rv-right { opacity: 0; transform: translateX(40px); transition: opacity 0.8s var(--ease-smooth), transform 0.8s var(--ease-smooth); }
+  .rv-right.vis { opacity: 1; transform: translateX(0); }
+  .rv-scale { opacity: 0; transform: scale(0.92); transition: opacity 0.8s var(--ease-smooth), transform 0.8s var(--ease-smooth); }
+  .rv-scale.vis { opacity: 1; transform: scale(1); }
+  .rv-d1 { transition-delay: 0.08s; }
+  .rv-d2 { transition-delay: 0.16s; }
+  .rv-d3 { transition-delay: 0.24s; }
+  .rv-d4 { transition-delay: 0.32s; }
+  .rv-d5 { transition-delay: 0.40s; }
+  .rv-d6 { transition-delay: 0.48s; }
+  .rv-d7 { transition-delay: 0.56s; }
+
+  /* ══════════════════════════════════════════
+     TEXT SPLIT REVEAL
+     ══════════════════════════════════════════ */
+  .split-line {
+    display: block;
+    overflow: hidden;
+  }
+  .split-line .split-inner {
+    display: block;
+    transform: translateY(110%);
+    transition: transform 0.9s var(--ease-smooth);
+  }
+  .split-line.vis .split-inner {
+    transform: translateY(0);
+  }
+
+  /* ══════════════════════════════════════════
+     HERO / HEADER
+     ══════════════════════════════════════════ */
+  .ds-hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 20px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .ds-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 30%, var(--glow-blush) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 70%, rgba(143,166,140,0.12) 0%, transparent 50%);
+    z-index: 0;
+  }
+  .ds-hero > * { position: relative; z-index: 1; }
+  .ds-hero-tag {
+    font-family: var(--font-accent);
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--glow-rose);
+    font-weight: 500;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.8s var(--ease-smooth) 0.3s forwards;
+  }
+  .ds-hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 20px;
+  }
+  .ds-hero h1 em {
+    font-style: italic;
+    color: var(--glow-rose);
+  }
+  .ds-hero-sub {
+    font-size: 1.05rem;
+    color: var(--glow-stone);
+    font-weight: 300;
+    max-width: 440px;
+    margin: 0 auto 40px;
+    opacity: 0;
+    animation: fadeUp 0.8s var(--ease-smooth) 0.8s forwards;
+  }
+  .ds-hero-scroll {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeUp 0.8s var(--ease-smooth) 1.2s forwards;
+  }
+  .ds-hero-scroll span {
+    font-family: var(--font-accent);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--glow-mist);
+  }
+  .scroll-line {
+    width: 1px;
+    height: 48px;
+    background: var(--glow-cloud);
+    position: relative;
+    overflow: hidden;
+  }
+  .scroll-line::after {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--glow-rose);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scrollPulse {
+    0% { top: -100%; }
+    50% { top: 100%; }
+    100% { top: 100%; }
+  }
+
+  /* ══════════════════════════════════════════
+     SECTION STYLES
+     ══════════════════════════════════════════ */
+  .ds-section {
+    padding: 100px 0;
+    border-bottom: 1px solid var(--glow-cloud);
+  }
+  .ds-section:last-child { border-bottom: none; }
+  .ds-section-title {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 400;
+    margin-bottom: 6px;
+  }
+  .ds-section-sub {
+    font-family: var(--font-accent);
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--glow-stone);
+    margin-bottom: 48px;
+  }
+
+  /* ══════════════════════════════════════════
+     TYPOGRAPHY
+     ══════════════════════════════════════════ */
+  .type-grid {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 32px 40px;
+    align-items: baseline;
+  }
+  .type-label {
+    font-family: var(--font-accent);
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--glow-mist);
+    font-weight: 500;
+    padding-top: 8px;
+  }
+  .type-display-xl {
+    font-family: var(--font-display);
+    font-size: 4.5rem;
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+  .type-display-lg {
+    font-family: var(--font-display);
+    font-size: 2.8rem;
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  .type-display-md {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+  .type-body {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--glow-charcoal);
+  }
+  .type-small {
+    font-size: 0.82rem;
+    font-weight: 300;
+    color: var(--glow-stone);
+    line-height: 1.6;
+  }
+  .type-tag {
+    font-family: var(--font-accent);
+    font-size: 0.62rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--glow-rose);
+  }
+  .type-italic {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 2rem;
+    color: var(--glow-charcoal);
+    line-height: 1.3;
+  }
+  .type-accent {
+    font-family: var(--font-accent);
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--glow-ink);
+  }
+
+  /* ══════════════════════════════════════════
+     COLORS
+     ══════════════════════════════════════════ */
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 16px;
+  }
+  .color-chip {
+    border-radius: var(--r-md);
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.04);
+    cursor: pointer;
+    transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
+  }
+  .color-chip:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+  }
+  .color-swatch { height: 90px; }
+  .color-info { padding: 12px 14px; background: var(--glow-white); }
+  .color-name {
+    font-family: var(--font-accent);
+    font-size: 0.72rem;
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+  .color-hex {
+    font-size: 0.62rem;
+    color: var(--glow-stone);
+    font-family: 'SF Mono', 'Fira Code', monospace;
+  }
+
+  /* ══════════════════════════════════════════
+     BUTTONS — Magnetic + Eurus-style
+     ══════════════════════════════════════════ */
+  .btn-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+  .magnetic-wrap {
+    display: inline-block;
+    position: relative;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-accent);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out);
+  }
+  .btn .btn-text {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .btn .btn-fill {
+    position: absolute;
+    inset: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s var(--ease-smooth);
+  }
+  .btn:hover .btn-fill {
+    transform: scaleX(1);
+  }
+  .btn .btn-arrow {
+    display: inline-flex;
+    transition: transform 0.4s var(--ease-out);
+  }
+  .btn:hover .btn-arrow {
+    transform: translateX(4px);
+  }
+
+  .btn-primary {
+    padding: 16px 36px;
+    background: var(--glow-ink);
+    color: var(--glow-white);
+    border-radius: var(--r-pill);
+  }
+  .btn-primary .btn-fill {
+    background: var(--glow-charcoal);
+    border-radius: var(--r-pill);
+  }
+  .btn-primary:hover {
+    box-shadow: 0 16px 48px rgba(0,0,0,0.15);
+  }
+
+  .btn-secondary {
+    padding: 16px 36px;
+    background: transparent;
+    border: 1.5px solid var(--glow-ink);
+    color: var(--glow-ink);
+    border-radius: var(--r-pill);
+  }
+  .btn-secondary .btn-fill {
+    background: var(--glow-ink);
+    border-radius: var(--r-pill);
+  }
+  .btn-secondary:hover {
+    color: var(--glow-white);
+  }
+
+  .btn-accent {
+    padding: 16px 36px;
+    background: var(--glow-rose);
+    color: var(--glow-white);
+    border-radius: var(--r-pill);
+  }
+  .btn-accent .btn-fill {
+    background: var(--glow-rose-soft);
+    border-radius: var(--r-pill);
+  }
+  .btn-accent:hover {
+    box-shadow: 0 16px 48px rgba(196,131,106,0.25);
+  }
+
+  .btn-ghost {
+    padding: 8px 0;
+    background: transparent;
+    color: var(--glow-ink);
+    border-radius: 0;
+  }
+  .btn-ghost::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1.5px;
+    background: var(--glow-ink);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s var(--ease-smooth);
+  }
+  .btn-ghost:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  .btn-sm { padding: 12px 24px; font-size: 0.65rem; }
+
+  /* ══════════════════════════════════════════
+     PRODUCT CARDS
+     ══════════════════════════════════════════ */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .product-card { cursor: pointer; }
+  .product-card .pc-img {
+    position: relative;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    border-radius: var(--r-lg);
+    background: var(--glow-pearl);
+    margin-bottom: 16px;
+  }
+  .product-card .pc-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s var(--ease-out);
+  }
+  .product-card:hover .pc-img img { transform: scale(1.06); }
+
+  .product-card .pc-badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: var(--glow-ink);
+    color: var(--glow-white);
+    font-family: var(--font-accent);
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: var(--r-pill);
+    font-weight: 500;
+  }
+  .product-card .pc-badge.sale { background: var(--glow-danger); }
+
+  .product-card .pc-actions {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    right: 14px;
+    display: flex;
+    gap: 8px;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: all 0.45s var(--ease-out);
+  }
+  .product-card:hover .pc-actions { opacity: 1; transform: translateY(0); }
+
+  .product-card .pc-atc {
+    flex: 1;
+    padding: 13px;
+    background: var(--glow-ink);
+    color: var(--glow-white);
+    font-family: var(--font-accent);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border-radius: var(--r-md);
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+  .product-card .pc-atc::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--glow-charcoal);
+    transform: translateY(100%);
+    transition: transform 0.4s var(--ease-smooth);
+  }
+  .product-card .pc-atc:hover::before { transform: translateY(0); }
+  .product-card .pc-atc span { position: relative; z-index: 1; }
+
+  .product-card .pc-wish {
+    width: 42px;
+    height: 42px;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    border-radius: var(--r-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.35s var(--ease-spring);
+  }
+  .product-card .pc-wish:hover { transform: scale(1.15); }
+
+  .product-card .pc-brand {
+    font-family: var(--font-accent);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--glow-mist);
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+  .product-card .pc-name {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .product-card .pc-price {
+    font-family: var(--font-accent);
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--glow-rose);
+  }
+  .product-card .pc-was {
+    color: var(--glow-mist);
+    text-decoration: line-through;
+    font-weight: 400;
+    margin-left: 8px;
+  }
+
+  /* ══════════════════════════════════════════
+     CATEGORY CARDS
+     ══════════════════════════════════════════ */
+  .cat-card {
+    position: relative;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    border-radius: var(--r-xl);
+    cursor: pointer;
+  }
+  .cat-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s var(--ease-out);
+  }
+  .cat-card:hover img { transform: scale(1.08); }
+  .cat-card .cat-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.05) 50%, transparent);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 28px 24px;
+  }
+  .cat-card .cat-name {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--glow-white);
+    transform: translateY(8px);
+    transition: transform 0.5s var(--ease-out);
+  }
+  .cat-card:hover .cat-name { transform: translateY(0); }
+  .cat-card .cat-count {
+    font-family: var(--font-accent);
+    font-size: 0.62rem;
+    color: rgba(255,255,255,0.5);
+    margin-top: 4px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all 0.5s var(--ease-out) 0.05s;
+  }
+  .cat-card:hover .cat-count { opacity: 1; transform: translateY(0); }
+  .cat-card .cat-arrow {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 14px;
+    opacity: 0;
+    transform: translate(-6px, 6px) rotate(-45deg);
+    transition: all 0.45s var(--ease-out);
+  }
+  .cat-card:hover .cat-arrow {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  /* ══════════════════════════════════════════
+     BADGES
+     ══════════════════════════════════════════ */
+  .badge-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 18px;
+    font-family: var(--font-accent);
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+    border-radius: var(--r-pill);
+    text-transform: uppercase;
+    transition: transform 0.3s var(--ease-spring);
+  }
+  .badge:hover { transform: scale(1.05); }
+  .badge-dark { background: var(--glow-ink); color: var(--glow-white); }
+  .badge-rose { background: var(--glow-blush); color: var(--glow-rose); }
+  .badge-sage { background: #E8F0E7; color: #5A7A57; }
+  .badge-outline { border: 1.5px solid var(--glow-cloud); color: var(--glow-charcoal); background: transparent; }
+  .badge-sale { background: var(--glow-danger); color: var(--glow-white); }
+
+  /* ══════════════════════════════════════════
+     SECTION HEADING PATTERN
+     ══════════════════════════════════════════ */
+  .section-tag {
+    font-family: var(--font-accent);
+    font-size: 0.62rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--glow-rose);
+    font-weight: 500;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-tag::before {
+    content: '';
+    width: 32px;
+    height: 1.5px;
+    background: var(--glow-rose);
+  }
+  .section-h2 {
+    font-family: var(--font-display);
+    font-size: 2.8rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+
+  /* ══════════════════════════════════════════
+     INPUTS
+     ══════════════════════════════════════════ */
+  .input-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .glow-input {
+    padding: 16px 24px;
+    border: 1.5px solid var(--glow-cloud);
+    border-radius: var(--r-pill);
+    font-size: 0.88rem;
+    font-family: var(--font-body);
+    color: var(--glow-ink);
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    width: 300px;
+    background: transparent;
+  }
+  .glow-input:focus {
+    border-color: var(--glow-rose);
+    box-shadow: 0 0 0 4px rgba(196,131,106,0.1);
+  }
+  .glow-input::placeholder { color: var(--glow-mist); }
+
+  /* ══════════════════════════════════════════
+     RADIUS + SPACING
+     ══════════════════════════════════════════ */
+  .radius-row { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
+  .radius-demo {
+    width: 88px;
+    height: 88px;
+    background: var(--glow-pearl);
+    border: 1.5px solid var(--glow-cloud);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    transition: transform 0.4s var(--ease-spring), background 0.3s;
+  }
+  .radius-demo:hover { transform: scale(1.08); background: var(--glow-blush); }
+  .radius-demo .r-val {
+    font-family: var(--font-accent);
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+  .radius-demo .r-name {
+    font-size: 0.55rem;
+    color: var(--glow-stone);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: var(--font-accent);
+  }
+
+  .spacing-row { display: flex; gap: 10px; align-items: flex-end; margin-top: 20px; }
+  .spacing-block {
+    background: linear-gradient(135deg, var(--glow-blush), var(--glow-rose-soft));
+    border-radius: 6px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 8px;
+    font-family: var(--font-accent);
+    font-size: 0.58rem;
+    color: var(--glow-white);
+    font-weight: 500;
+    transition: transform 0.3s var(--ease-spring);
+  }
+  .spacing-block:hover { transform: scaleY(1.1); }
+
+  /* ══════════════════════════════════════════
+     MARQUEE
+     ══════════════════════════════════════════ */
+  .marquee-bar {
+    overflow: hidden;
+    background: var(--glow-ink);
+    padding: 16px 0;
+    margin: 0 -40px;
+    white-space: nowrap;
+  }
+  .marquee-track {
+    display: flex;
+    gap: 0;
+    animation: marquee 30s linear infinite;
+    width: max-content;
+  }
+  .marquee-item {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--glow-white);
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .marquee-item .dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--glow-rose);
+    flex-shrink: 0;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ══════════════════════════════════════════
+     ANIMATION DEMO SECTION
+     ══════════════════════════════════════════ */
+  .anim-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .anim-card {
+    border: 1.5px solid var(--glow-cloud);
+    border-radius: var(--r-lg);
+    padding: 40px 28px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .anim-card:hover { border-color: var(--glow-rose-soft); }
+  .anim-card .anim-label {
+    font-family: var(--font-accent);
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--glow-mist);
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  .anim-card .anim-demo {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .anim-card .anim-desc {
+    font-size: 0.72rem;
+    color: var(--glow-stone);
+    margin-top: 16px;
+    font-weight: 300;
+  }
+
+  /* Hover Lift */
+  .lift-box {
+    width: 80px;
+    height: 80px;
+    background: var(--glow-pearl);
+    border-radius: var(--r-md);
+    margin: 0 auto;
+    transition: transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out);
+  }
+  .anim-card:hover .lift-box {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  }
+
+  /* Scale Bounce */
+  .bounce-box {
+    width: 60px;
+    height: 60px;
+    background: var(--glow-rose);
+    border-radius: 50%;
+    margin: 10px auto;
+    transition: transform 0.45s var(--ease-spring);
+  }
+  .anim-card:hover .bounce-box { transform: scale(1.25); }
+
+  /* Slide Reveal */
+  .slide-box {
+    overflow: hidden;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .slide-box span {
+    display: block;
+    transition: transform 0.6s var(--ease-smooth);
+  }
+  .anim-card:hover .slide-box span { transform: translateY(-110%); }
+  .slide-box .slide-alt {
+    position: absolute;
+    transform: translateY(110%);
+    transition: transform 0.6s var(--ease-smooth);
+    color: var(--glow-rose);
+  }
+  .anim-card:hover .slide-box .slide-alt { transform: translateY(0); }
+
+  /* Magnetic Icon */
+  .mag-circle {
+    width: 64px;
+    height: 64px;
+    border: 1.5px solid var(--glow-cloud);
+    border-radius: 50%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    transition: transform 0.3s var(--ease-out), border-color 0.3s;
+  }
+  .anim-card:hover .mag-circle {
+    border-color: var(--glow-rose);
+  }
+
+  /* Image Zoom */
+  .zoom-box {
+    width: 100px;
+    height: 70px;
+    overflow: hidden;
+    border-radius: var(--r-sm);
+    margin: 0 auto;
+  }
+  .zoom-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s var(--ease-out);
+  }
+  .anim-card:hover .zoom-box img { transform: scale(1.15); }
+
+  /* Underline Draw */
+  .draw-text {
+    position: relative;
+    display: inline-block;
+  }
+  .draw-text::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--glow-rose);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.6s var(--ease-smooth);
+  }
+  .anim-card:hover .draw-text::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  /* ══════════════════════════════════════════
+     RESPONSIVE
+     ══════════════════════════════════════════ */
+  @media (max-width: 900px) {
+    .card-grid { grid-template-columns: repeat(2, 1fr); }
+    .anim-grid { grid-template-columns: repeat(2, 1fr); }
+    .type-grid { grid-template-columns: 1fr; gap: 12px 0; }
+  }
+  @media (max-width: 600px) {
+    .ds-page { padding: 0 20px; }
+    .ds-hero h1 { font-size: 2.5rem; }
+    .color-grid { grid-template-columns: repeat(3, 1fr); }
+    .anim-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="ds-page">
+
+  <!-- ═══ HERO ═══ -->
+  <div class="ds-hero">
+    <div class="ds-hero-tag">Design System v2</div>
+    <h1>
+      <span class="split-line"><span class="split-inner">Glow <em>Beauty</em></span></span>
+    </h1>
+    <p class="ds-hero-sub">A premium health & beauty theme for Salla. Smooth animations, magnetic interactions, editorial typography.</p>
+    <div class="ds-hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </div>
+
+  <!-- ═══ MARQUEE ═══ -->
+  <div class="marquee-bar">
+    <div class="marquee-track">
+      <span class="marquee-item">Smooth Scrolling <span class="dot"></span></span>
+      <span class="marquee-item">Magnetic Buttons <span class="dot"></span></span>
+      <span class="marquee-item">Scroll Reveal <span class="dot"></span></span>
+      <span class="marquee-item">Text Split Animations <span class="dot"></span></span>
+      <span class="marquee-item">Hover Interactions <span class="dot"></span></span>
+      <span class="marquee-item">Parallax Elements <span class="dot"></span></span>
+      <span class="marquee-item">RTL Support <span class="dot"></span></span>
+      <span class="marquee-item">Pro Schema <span class="dot"></span></span>
+      <span class="marquee-item">Smooth Scrolling <span class="dot"></span></span>
+      <span class="marquee-item">Magnetic Buttons <span class="dot"></span></span>
+      <span class="marquee-item">Scroll Reveal <span class="dot"></span></span>
+      <span class="marquee-item">Text Split Animations <span class="dot"></span></span>
+      <span class="marquee-item">Hover Interactions <span class="dot"></span></span>
+      <span class="marquee-item">Parallax Elements <span class="dot"></span></span>
+      <span class="marquee-item">RTL Support <span class="dot"></span></span>
+      <span class="marquee-item">Pro Schema <span class="dot"></span></span>
+    </div>
+  </div>
+
+  <!-- ═══ TYPOGRAPHY ═══ -->
+  <div class="ds-section">
+    <div class="rv"><div class="ds-section-title">Typography</div></div>
+    <div class="rv rv-d1"><div class="ds-section-sub">Instrument Serif (display) + Inter (body) + Space Grotesk (accent / UI)</div></div>
+    <div class="type-grid">
+      <div class="type-label rv rv-d1">Display XL</div>
+      <div class="rv rv-d2">
+        <div class="type-display-xl">Your Skin, <em style="font-family:var(--font-display);font-style:italic;color:var(--glow-rose)">Glowing</em></div>
+      </div>
+
+      <div class="type-label rv rv-d1">Display LG</div>
+      <div class="rv rv-d2"><div class="type-display-lg">Shop by Category</div></div>
+
+      <div class="type-label rv rv-d1">Display MD</div>
+      <div class="rv rv-d2"><div class="type-display-md">Skincare Routine Steps</div></div>
+
+      <div class="type-label rv rv-d1">Body</div>
+      <div class="rv rv-d2"><div class="type-body">Simple, clean formulas for your everyday glow. Discover handcrafted skincare designed for those who appreciate the extraordinary.</div></div>
+
+      <div class="type-label rv rv-d1">Small</div>
+      <div class="rv rv-d2"><div class="type-small">Free shipping on all orders over SAR 500. Lifetime warranty included.</div></div>
+
+      <div class="type-label rv rv-d1">Tag / Label</div>
+      <div class="rv rv-d2"><div class="type-tag">New Collection</div></div>
+
+      <div class="type-label rv rv-d1">Italic Accent</div>
+      <div class="rv rv-d2"><div class="type-italic">Because beauty is personal.</div></div>
+
+      <div class="type-label rv rv-d1">UI Accent</div>
+      <div class="rv rv-d2"><div class="type-accent">Space Grotesk — buttons, labels, navigation</div></div>
+    </div>
+  </div>
+
+  <!-- ═══ COLORS ═══ -->
+  <div class="ds-section">
+    <div class="rv"><div class="ds-section-title">Color Palette</div></div>
+    <div class="rv rv-d1"><div class="ds-section-sub">Warm neutrals + terracotta rose + sage green</div></div>
+    <div class="color-grid">
+      <div class="color-chip rv rv-d1"><div class="color-swatch" style="background:#1A1A1A"></div><div class="color-info"><div class="color-name">Ink</div><div class="color-hex">#1A1A1A</div></div></div>
+      <div class="color-chip rv rv-d2"><div class="color-swatch" style="background:#3D3D3D"></div><div class="color-info"><div class="color-name">Charcoal</div><div class="color-hex">#3D3D3D</div></div></div>
+      <div class="color-chip rv rv-d3"><div class="color-swatch" style="background:#7A7A7A"></div><div class="color-info"><div class="color-name">Stone</div><div class="color-hex">#7A7A7A</div></div></div>
+      <div class="color-chip rv rv-d4"><div class="color-swatch" style="background:#B8B8B8"></div><div class="color-info"><div class="color-name">Mist</div><div class="color-hex">#B8B8B8</div></div></div>
+      <div class="color-chip rv rv-d5"><div class="color-swatch" style="background:#EBEBEB"></div><div class="color-info"><div class="color-name">Cloud</div><div class="color-hex">#EBEBEB</div></div></div>
+      <div class="color-chip rv rv-d6"><div class="color-swatch" style="background:#F5F3F0"></div><div class="color-info"><div class="color-name">Pearl</div><div class="color-hex">#F5F3F0</div></div></div>
+      <div class="color-chip rv rv-d7"><div class="color-swatch" style="background:#FFFFFF;border:1px solid #eee"></div><div class="color-info"><div class="color-name">White</div><div class="color-hex">#FFFFFF</div></div></div>
+      <div class="color-chip rv rv-d1"><div class="color-swatch" style="background:#C4836A"></div><div class="color-info"><div class="color-name">Rose</div><div class="color-hex">#C4836A</div></div></div>
+      <div class="color-chip rv rv-d2"><div class="color-swatch" style="background:#D9A892"></div><div class="color-info"><div class="color-name">Rose Soft</div><div class="color-hex">#D9A892</div></div></div>
+      <div class="color-chip rv rv-d3"><div class="color-swatch" style="background:#8FA68C"></div><div class="color-info"><div class="color-name">Sage</div><div class="color-hex">#8FA68C</div></div></div>
+      <div class="color-chip rv rv-d4"><div class="color-swatch" style="background:#F0E6D8"></div><div class="color-info"><div class="color-name">Cream</div><div class="color-hex">#F0E6D8</div></div></div>
+      <div class="color-chip rv rv-d5"><div class="color-swatch" style="background:#F2E0D6"></div><div class="color-info"><div class="color-name">Blush</div><div class="color-hex">#F2E0D6</div></div></div>
+      <div class="color-chip rv rv-d6"><div class="color-swatch" style="background:#C04040"></div><div class="color-info"><div class="color-name">Danger</div><div class="color-hex">#C04040</div></div></div>
+    </div>
+  </div>
+
+  <!-- ═══ ANIMATION LIBRARY ═══ -->
+  <div class="ds-section">
+    <div class="rv"><div class="ds-section-title">Animation Library</div></div>
+    <div class="rv rv-d1"><div class="ds-section-sub">Hover each card to preview — these run throughout the theme</div></div>
+    <div class="anim-grid">
+      <div class="anim-card rv rv-d1">
+        <div class="anim-label">Hover Lift</div>
+        <div class="anim-demo"><div class="lift-box"></div></div>
+        <div class="anim-desc">Cards, images — subtle Y-axis float with shadow</div>
+      </div>
+      <div class="anim-card rv rv-d2">
+        <div class="anim-label">Scale Bounce</div>
+        <div class="anim-demo"><div class="bounce-box"></div></div>
+        <div class="anim-desc">Icons, wishlist, CTAs — spring-eased scale</div>
+      </div>
+      <div class="anim-card rv rv-d3">
+        <div class="anim-label">Slide Replace</div>
+        <div class="anim-demo">
+          <div class="slide-box">
+            <span>Shop Now</span>
+            <span class="slide-alt">View All</span>
+          </div>
+        </div>
+        <div class="anim-desc">Button text swap — Eurus Puff style</div>
+      </div>
+      <div class="anim-card rv rv-d1">
+        <div class="anim-label">Magnetic</div>
+        <div class="anim-demo"><div class="mag-circle" data-magnetic>→</div></div>
+        <div class="anim-desc">Buttons, icons — follows cursor within radius</div>
+      </div>
+      <div class="anim-card rv rv-d2">
+        <div class="anim-label">Image Zoom</div>
+        <div class="anim-demo">
+          <div class="zoom-box"><img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=300&q=80" alt=""></div>
+        </div>
+        <div class="anim-desc">Product/category images — smooth scale on hover</div>
+      </div>
+      <div class="anim-card rv rv-d3">
+        <div class="anim-label">Underline Draw</div>
+        <div class="anim-demo"><span class="draw-text" style="font-family:var(--font-display);font-size:1.5rem;">View All</span></div>
+        <div class="anim-desc">Links, ghost buttons — origin-shift underline</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ BUTTONS ═══ -->
+  <div class="ds-section">
+    <div class="rv"><div class="ds-section-title">Buttons</div></div>
+    <div class="rv rv-d1"><div class="ds-section-sub">Magnetic hover + fill animation + arrow shift</div></div>
+    <div class="btn-row rv rv-d2">
+      <span class="magnetic-wrap" data-magnetic>
+        <button class="btn btn-primary">
+          <span class="btn-fill"></span>
+          <span class="btn-text">Shop Now <span class="btn-arrow">→</span></span>
+        </button>
+      </span>
+      <span class="magnetic-wrap" data-magnetic>
+        <button class="btn btn-secondary">
+          <span class="btn-fill"></span>
+          <span class="btn-text">Learn More <span class="btn-arrow">→</span></span>
+        </button>
+      </span>
+      <span class="magnetic-wrap" data-magnetic>
+        <button class="btn btn-accent">
+          <span class="btn-fill"></span>
+          <span class="btn-text">Add to Cart</span>
+        </button>
+      </span>
+      <span class="magnetic-wrap" data-magnetic>
+        <button class="btn btn-ghost">
+          <span class="btn-text">View All <span class="btn-arrow">→</span></span>
+        </button>
+      </span>
+    </div>
+    <div class="btn-row rv rv-d3">
+      <span class="magnetic-wrap" data-magnetic>
+        <button class="btn btn-primary btn-sm">
+          <span class="btn-fill"></span>
+          <span class="btn-text">Small Primary</span>
+        </button>
+      </span>
+      <span class="magnetic-wrap" data-magnetic>
+        <button class="btn btn-secondary btn-sm">
+          <span class="btn-fill"></span>
+          <span class="btn-text">Small Outline</span>
+        </button>
+      </span>
+      <span class="magnetic-wrap" data-magnetic>
+        <button class="btn btn-accent btn-sm">
+          <span class="btn-fill"></span>
+          <span class="btn-text">Small Accent</span>
+        </button>
+      </span>
+    </div>
+  </div>
+
+  <!-- ═══ BADGES ═══ -->
+  <div class="ds-section">
+    <div class="rv"><div class="ds-section-title">Badges & Tags</div></div>
+    <div class="rv rv-d1"><div class="ds-section-sub">Product labels, category markers</div></div>
+    <div class="badge-row rv rv-d2">
+      <span class="badge badge-dark">New</span>
+      <span class="badge badge-sale">-30% OFF</span>
+      <span class="badge badge-rose">Organic</span>
+      <span class="badge badge-sage">Cruelty Free</span>
+      <span class="badge badge-outline">Best Seller</span>
+    </div>
+  </div>
+
+  <!-- ═══ SECTION HEADING PATTERN ═══ -->
+  <div class="ds-section">
+    <div class="rv"><div class="ds-section-title">Section Heading</div></div>
+    <div class="rv rv-d1"><div class="ds-section-sub">Tag line + serif heading + ghost CTA — used across all sections</div></div>
+    <div style="padding:56px 48px; background:var(--glow-pearl); border-radius:var(--r-xl);" class="rv-scale rv rv-d2">
+      <div class="section-tag">New Arrivals</div>
+      <div style="display:flex; justify-content:space-between; align-items:flex-end;">
+        <h2 class="section-h2">Shop the Collection</h2>
+        <span class="magnetic-wrap" data-magnetic>
+          <button class="btn btn-ghost"><span class="btn-text">View All <span class="btn-arrow">→</span></span></button>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ PRODUCT CARDS ═══ -->
+  <div class="ds-section">
+    <div class="rv"><div class="ds-section-title">Product Cards</div></div>
+    <div class="rv rv-d1"><div class="ds-section-sub">Hover for slide-up actions — image zoom + badge + quick add</div></div>
+    <div class="card-grid">
+      <div class="product-card rv rv-d1">
+        <div class="pc-img">
+          <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=500&q=80" alt="Serum">
+          <span class="pc-badge">New</span>
+          <div class="pc-actions">
+            <button class="pc-atc"><span>Add to Cart</span></button>
+            <button class="pc-wish">♡</button>
+          </div>
+        </div>
+        <div class="pc-brand">Glow</div>
+        <div class="pc-name">Vitamin C Glow Serum</div>
+        <div class="pc-price">SAR 189</div>
+      </div>
+      <div class="product-card rv rv-d2">
+        <div class="pc-img">
+          <img src="https://images.unsplash.com/photo-1570194065650-d99fb4b38b17?w=500&q=80" alt="Cream">
+          <div class="pc-actions">
+            <button class="pc-atc"><span>Add to Cart</span></button>
+            <button class="pc-wish">♡</button>
+          </div>
+        </div>
+        <div class="pc-brand">Glow</div>
+        <div class="pc-name">Daily Hydration Cream</div>
+        <div class="pc-price">SAR 145</div>
+      </div>
+      <div class="product-card rv rv-d3">
+        <div class="pc-img">
+          <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=500&q=80" alt="Oil">
+          <span class="pc-badge sale">-30%</span>
+          <div class="pc-actions">
+            <button class="pc-atc"><span>Add to Cart</span></button>
+            <button class="pc-wish">♡</button>
+          </div>
+        </div>
+        <div class="pc-brand">Glow</div>
+        <div class="pc-name">Argan Repair Oil</div>
+        <div class="pc-price">SAR 99 <span class="pc-was">SAR 142</span></div>
+      </div>
+      <div class="product-card rv rv-d4">
+        <div class="pc-img">
+          <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&q=80" alt="Mask">
+          <span class="pc-badge">New</span>
+          <div class="pc-actions">
+            <button class="pc-atc"><span>Add to Cart</span></button>
+            <button class="pc-wish">♡</button>
+          </div>
+        </div>
+        <div class="pc-brand">Glow</div>
+        <div class="pc-name">Radiance Face Mask</div>
+        <div class="pc-price">SAR 210</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ CATEGORY CARDS ═══ -->
+  <div class="ds-section">
+    <div class="rv"><div class="ds-section-title">Category Cards</div></div>
+    <div class="rv rv-d1"><div class="ds-section-sub">Zoom + gradient reveal + arrow entrance</div></div>
+    <div class="card-grid">
+      <div class="cat-card rv rv-d1">
+        <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&q=80" alt="Skincare">
+        <div class="cat-overlay"><div class="cat-name">Skincare</div><div class="cat-count">42 products</div></div>
+        <div class="cat-arrow">↗</div>
+      </div>
+      <div class="cat-card rv rv-d2">
+        <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=500&q=80" alt="Makeup">
+        <div class="cat-overlay"><div class="cat-name">Makeup</div><div class="cat-count">38 products</div></div>
+        <div class="cat-arrow">↗</div>
+      </div>
+      <div class="cat-card rv rv-d3">
+        <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=500&q=80" alt="Serums">
+        <div class="cat-overlay"><div class="cat-name">Serums</div><div class="cat-count">24 products</div></div>
+        <div class="cat-arrow">↗</div>
+      </div>
+      <div class="cat-card rv rv-d4">
+        <img src="https://images.unsplash.com/photo-1570194065650-d99fb4b38b17?w=500&q=80" alt="Body Care">
+        <div class="cat-overlay"><div class="cat-name">Body Care</div><div class="cat-count">31 products</div></div>
+        <div class="cat-arrow">↗</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ INPUTS ═══ -->
+  <div class="ds-section">
+    <div class="rv"><div class="ds-section-title">Form Elements</div></div>
+    <div class="rv rv-d1"><div class="ds-section-sub">Pill inputs with focus glow ring</div></div>
+    <div class="input-row rv rv-d2">
+      <input class="glow-input" placeholder="Enter your email">
+      <span class="magnetic-wrap" data-magnetic>
+        <button class="btn btn-primary">
+          <span class="btn-fill"></span>
+          <span class="btn-text">Subscribe</span>
+        </button>
+      </span>
+    </div>
+  </div>
+
+  <!-- ═══ BORDER RADIUS ═══ -->
+  <div class="ds-section">
+    <div class="rv"><div class="ds-section-title">Border Radius</div></div>
+    <div class="rv rv-d1"><div class="ds-section-sub">Consistent rounding scale</div></div>
+    <div class="radius-row rv rv-d2">
+      <div class="radius-demo" style="border-radius:6px;"><span class="r-val">6px</span><span class="r-name">sm</span></div>
+      <div class="radius-demo" style="border-radius:12px;"><span class="r-val">12px</span><span class="r-name">md</span></div>
+      <div class="radius-demo" style="border-radius:20px;"><span class="r-val">20px</span><span class="r-name">lg</span></div>
+      <div class="radius-demo" style="border-radius:32px;"><span class="r-val">32px</span><span class="r-name">xl</span></div>
+      <div class="radius-demo" style="border-radius:100px;width:120px;"><span class="r-val">100px</span><span class="r-name">pill</span></div>
+      <div class="radius-demo" style="border-radius:50%;"><span class="r-val">50%</span><span class="r-name">full</span></div>
+    </div>
+  </div>
+
+  <!-- ═══ SPACING ═══ -->
+  <div class="ds-section" style="border-bottom:none;">
+    <div class="rv"><div class="ds-section-title">Spacing Scale</div></div>
+    <div class="rv rv-d1"><div class="ds-section-sub">8px base unit for all layout spacing</div></div>
+    <div class="spacing-row rv rv-d2">
+      <div class="spacing-block" style="width:28px;height:28px;">4</div>
+      <div class="spacing-block" style="width:32px;height:36px;">8</div>
+      <div class="spacing-block" style="width:36px;height:48px;">12</div>
+      <div class="spacing-block" style="width:40px;height:56px;">16</div>
+      <div class="spacing-block" style="width:44px;height:68px;">24</div>
+      <div class="spacing-block" style="width:48px;height:80px;">32</div>
+      <div class="spacing-block" style="width:52px;height:96px;">48</div>
+      <div class="spacing-block" style="width:56px;height:112px;">64</div>
+      <div class="spacing-block" style="width:60px;height:130px;">80</div>
+      <div class="spacing-block" style="width:64px;height:150px;">100</div>
+      <div class="spacing-block" style="width:68px;height:170px;">120</div>
+    </div>
+  </div>
+
+  <div style="height:60px;"></div>
+
+</div>
+
+<script>
+// ═══ LENIS SMOOTH SCROLL ═══
+const lenis = new Lenis({
+  duration: 1.2,
+  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+  smooth: true,
+  smoothTouch: false,
+});
+function raf(time) {
+  lenis.raf(time);
+  requestAnimationFrame(raf);
+}
+requestAnimationFrame(raf);
+
+// ═══ SCROLL REVEAL ═══
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('vis');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.rv, .rv-left, .rv-right, .rv-scale, .split-line').forEach(el => {
+  revealObserver.observe(el);
+});
+
+// ═══ HERO TEXT SPLIT REVEAL ═══
+setTimeout(() => {
+  document.querySelectorAll('.split-line').forEach(line => {
+    line.classList.add('vis');
+  });
+}, 200);
+
+// ═══ MAGNETIC BUTTONS ═══
+document.querySelectorAll('[data-magnetic]').forEach(wrap => {
+  const el = wrap.querySelector('.btn') || wrap.querySelector('.mag-circle') || wrap;
+  const strength = 0.35;
+  const smoothing = 0.15;
+  let targetX = 0, targetY = 0, currentX = 0, currentY = 0;
+  let animFrame;
+
+  function animate() {
+    currentX += (targetX - currentX) * smoothing;
+    currentY += (targetY - currentY) * smoothing;
+    el.style.transform = `translate(${currentX}px, ${currentY}px)`;
+    if (Math.abs(targetX - currentX) > 0.1 || Math.abs(targetY - currentY) > 0.1) {
+      animFrame = requestAnimationFrame(animate);
+    }
+  }
+
+  wrap.addEventListener('mousemove', (e) => {
+    const rect = wrap.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    targetX = (e.clientX - centerX) * strength;
+    targetY = (e.clientY - centerY) * strength;
+    cancelAnimationFrame(animFrame);
+    animFrame = requestAnimationFrame(animate);
+  });
+
+  wrap.addEventListener('mouseleave', () => {
+    targetX = 0;
+    targetY = 0;
+    cancelAnimationFrame(animFrame);
+    animFrame = requestAnimationFrame(animate);
+  });
+});
+
+// ═══ PARALLAX ON SCROLL (Hero background) ═══
+const hero = document.querySelector('.ds-hero');
+if (hero) {
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    const heroH = hero.offsetHeight;
+    if (scrolled < heroH) {
+      const progress = scrolled / heroH;
+      hero.style.opacity = 1 - progress * 0.6;
+      hero.querySelector('h1').style.transform = `translateY(${scrolled * 0.15}px)`;
+    }
+  }, { passive: true });
+}
+</script>
+</body>
+</html>

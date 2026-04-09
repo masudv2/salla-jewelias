@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glow — Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --glow-ink: #1A1A1A;
+    --glow-charcoal: #3D3D3D;
+    --glow-stone: #7A7A7A;
+    --glow-mist: #B8B8B8;
+    --glow-cloud: #EBEBEB;
+    --glow-pearl: #F5F3F0;
+    --glow-white: #FFFFFF;
+    --glow-rose: #C4836A;
+    --glow-rose-soft: #D9A892;
+    --glow-sage: #8FA68C;
+    --glow-cream: #F0E6D8;
+    --glow-blush: #F2E0D6;
+    --glow-danger: #C04040;
+    --font-display: 'Fraunces', serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --r-sm: 6px;
+    --r-md: 12px;
+    --r-lg: 20px;
+    --r-xl: 32px;
+    --r-pill: 100px;
+  }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--glow-ink);
+    background: var(--glow-white);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+  }
+
+  .ds-page { max-width: 1200px; margin: 0 auto; padding: 48px 32px; }
+
+  .ds-header {
+    text-align: center;
+    padding: 80px 20px;
+    background: var(--glow-pearl);
+    border-radius: var(--r-xl);
+    margin-bottom: 64px;
+  }
+  .ds-header h1 {
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    font-weight: 400;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+  }
+  .ds-header h1 em { font-style: italic; color: var(--glow-rose); }
+  .ds-header p {
+    font-size: 1.05rem;
+    color: var(--glow-stone);
+    font-weight: 300;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .ds-section {
+    margin-bottom: 72px;
+  }
+  .ds-section-title {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  .ds-section-sub {
+    font-size: 0.82rem;
+    color: var(--glow-stone);
+    font-weight: 300;
+    margin-bottom: 32px;
+    letter-spacing: 0.02em;
+  }
+  .ds-divider {
+    height: 1px;
+    background: var(--glow-cloud);
+    margin-bottom: 72px;
+  }
+
+  /* ══ TYPOGRAPHY ══ */
+  .type-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 24px 32px;
+    align-items: baseline;
+  }
+  .type-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--glow-stone);
+    font-weight: 500;
+  }
+  .type-display-xl {
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  .type-display-lg {
+    font-family: var(--font-display);
+    font-size: 2.4rem;
+    font-weight: 500;
+    line-height: 1.15;
+  }
+  .type-display-md {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 1.25;
+  }
+  .type-body {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--glow-charcoal);
+  }
+  .type-small {
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: var(--glow-stone);
+    line-height: 1.6;
+  }
+  .type-tag {
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--glow-rose);
+  }
+  .type-italic {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.5rem;
+    color: var(--glow-charcoal);
+  }
+
+  /* ══ COLORS ══ */
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 16px;
+  }
+  .color-chip {
+    border-radius: var(--r-md);
+    overflow: hidden;
+    border: 1px solid var(--glow-cloud);
+  }
+  .color-swatch {
+    height: 80px;
+  }
+  .color-info {
+    padding: 10px 14px;
+    background: var(--glow-white);
+  }
+  .color-name {
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+  .color-hex {
+    font-size: 0.68rem;
+    color: var(--glow-stone);
+    font-family: monospace;
+  }
+
+  /* ══ BUTTONS ══ */
+  .btn-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 32px;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-family: var(--font-body);
+    border-radius: var(--r-pill);
+    cursor: pointer;
+    transition: all 0.35s var(--ease-out);
+    border: none;
+    text-decoration: none;
+  }
+  .btn-primary {
+    background: var(--glow-ink);
+    color: var(--glow-white);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+  }
+  .btn-secondary {
+    background: transparent;
+    border: 1.5px solid var(--glow-ink);
+    color: var(--glow-ink);
+  }
+  .btn-secondary:hover {
+    background: var(--glow-ink);
+    color: var(--glow-white);
+  }
+  .btn-accent {
+    background: var(--glow-rose);
+    color: var(--glow-white);
+  }
+  .btn-accent:hover {
+    background: var(--glow-rose-soft);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(196,131,106,0.2);
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--glow-ink);
+    padding: 14px 8px;
+    border-bottom: 1.5px solid transparent;
+    border-radius: 0;
+    letter-spacing: 0.06em;
+  }
+  .btn-ghost:hover {
+    border-bottom-color: var(--glow-ink);
+  }
+  .btn-sm {
+    padding: 10px 22px;
+    font-size: 0.7rem;
+  }
+
+  /* ══ CARDS ══ */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .product-card {
+    cursor: pointer;
+  }
+  .product-card .pc-img {
+    position: relative;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    border-radius: var(--r-md);
+    background: var(--glow-pearl);
+    margin-bottom: 14px;
+  }
+  .product-card .pc-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s var(--ease-out);
+  }
+  .product-card:hover .pc-img img { transform: scale(1.05); }
+  .product-card .pc-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: var(--glow-ink);
+    color: var(--glow-white);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: var(--r-pill);
+    font-weight: 400;
+  }
+  .product-card .pc-badge.sale { background: var(--glow-danger); }
+  .product-card .pc-actions {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+    display: flex;
+    gap: 8px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all 0.35s var(--ease-out);
+  }
+  .product-card:hover .pc-actions { opacity: 1; transform: translateY(0); }
+  .product-card .pc-atc {
+    flex: 1;
+    padding: 11px;
+    background: var(--glow-ink);
+    color: var(--glow-white);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 400;
+    border-radius: 8px;
+    font-family: var(--font-body);
+    border: none;
+    cursor: pointer;
+  }
+  .product-card .pc-wish {
+    width: 38px;
+    height: 38px;
+    background: var(--glow-white);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    transition: transform 0.3s var(--ease-spring);
+  }
+  .product-card .pc-wish:hover { transform: scale(1.1); }
+
+  .product-card .pc-brand {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--glow-mist);
+    margin-bottom: 3px;
+  }
+  .product-card .pc-name {
+    font-size: 0.92rem;
+    font-weight: 500;
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .product-card .pc-price {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--glow-rose);
+  }
+  .product-card .pc-was {
+    color: var(--glow-mist);
+    text-decoration: line-through;
+    font-weight: 300;
+    margin-left: 8px;
+  }
+
+  /* Category card */
+  .cat-card {
+    position: relative;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    border-radius: var(--r-lg);
+    cursor: pointer;
+  }
+  .cat-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s var(--ease-out);
+  }
+  .cat-card:hover img { transform: scale(1.06); }
+  .cat-card .cat-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 28px 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+  }
+  .cat-card .cat-name {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    color: var(--glow-white);
+  }
+  .cat-card .cat-count {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.6);
+    margin-top: 3px;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+  }
+
+  /* ══ SECTION TAG ══ */
+  .section-tag {
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--glow-rose);
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+  .section-h2 {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 400;
+    margin-bottom: 0;
+  }
+
+  /* ══ BADGES / TAGS ══ */
+  .badge-row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 16px;
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+    border-radius: var(--r-pill);
+  }
+  .badge-dark { background: var(--glow-ink); color: var(--glow-white); }
+  .badge-rose { background: var(--glow-blush); color: var(--glow-rose); }
+  .badge-sage { background: #E8F0E7; color: var(--glow-sage); }
+  .badge-outline { border: 1px solid var(--glow-cloud); color: var(--glow-charcoal); }
+  .badge-sale { background: var(--glow-danger); color: var(--glow-white); }
+
+  /* ══ SPACING ══ */
+  .spacing-row { display: flex; gap: 8px; align-items: flex-end; margin-top: 16px; }
+  .spacing-block {
+    background: var(--glow-blush);
+    border-radius: 4px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 6px;
+    font-size: 0.6rem;
+    color: var(--glow-rose);
+    font-weight: 500;
+  }
+
+  /* ══ RADIUS ══ */
+  .radius-row { display: flex; gap: 20px; align-items: center; margin-top: 16px; }
+  .radius-demo {
+    width: 80px;
+    height: 80px;
+    background: var(--glow-pearl);
+    border: 2px solid var(--glow-cloud);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    color: var(--glow-stone);
+    font-weight: 500;
+  }
+
+  /* ══ INPUTS ══ */
+  .input-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .glow-input {
+    padding: 14px 20px;
+    border: 1.5px solid var(--glow-cloud);
+    border-radius: var(--r-pill);
+    font-size: 0.88rem;
+    font-family: var(--font-body);
+    color: var(--glow-ink);
+    outline: none;
+    transition: border-color 0.3s;
+    width: 280px;
+  }
+  .glow-input:focus { border-color: var(--glow-rose); }
+  .glow-input::placeholder { color: var(--glow-mist); }
+
+  /* ══ RESPONSIVE ══ */
+  @media (max-width: 768px) {
+    .card-grid { grid-template-columns: repeat(2, 1fr); }
+    .type-grid { grid-template-columns: 1fr; gap: 8px 0; }
+    .ds-header h1 { font-size: 2.4rem; }
+    .color-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="ds-page">
+
+  <!-- HEADER -->
+  <div class="ds-header">
+    <div class="section-tag">Design System</div>
+    <h1>Glow <em>Beauty</em></h1>
+    <p>A Health & Beauty theme for Salla. Warm, organic, premium — inspired by Eurus Puff with our own identity.</p>
+  </div>
+
+  <!-- TYPOGRAPHY -->
+  <div class="ds-section">
+    <div class="ds-section-title">Typography</div>
+    <div class="ds-section-sub">Fraunces (display) + Plus Jakarta Sans (body)</div>
+    <div class="type-grid">
+      <div class="type-label">Display XL</div>
+      <div class="type-display-xl">Your Skin, <em style="font-family:var(--font-display);font-style:italic;color:var(--glow-rose)">Glowing</em></div>
+
+      <div class="type-label">Display LG</div>
+      <div class="type-display-lg">Shop by Category</div>
+
+      <div class="type-label">Display MD</div>
+      <div class="type-display-md">Skincare Routine Steps</div>
+
+      <div class="type-label">Body</div>
+      <div class="type-body">Simple, clean formulas for your everyday glow. Discover handcrafted skincare designed for those who appreciate the extraordinary.</div>
+
+      <div class="type-label">Small / Caption</div>
+      <div class="type-small">Free shipping on all orders over SAR 500. Lifetime warranty included.</div>
+
+      <div class="type-label">Section Tag</div>
+      <div class="type-tag">New Collection</div>
+
+      <div class="type-label">Italic Accent</div>
+      <div class="type-italic">Because beauty is personal.</div>
+    </div>
+  </div>
+
+  <div class="ds-divider"></div>
+
+  <!-- COLORS -->
+  <div class="ds-section">
+    <div class="ds-section-title">Color Palette</div>
+    <div class="ds-section-sub">Warm neutrals + terracotta rose + sage green</div>
+    <div class="color-grid">
+      <div class="color-chip"><div class="color-swatch" style="background:#1A1A1A"></div><div class="color-info"><div class="color-name">Ink</div><div class="color-hex">#1A1A1A</div></div></div>
+      <div class="color-chip"><div class="color-swatch" style="background:#3D3D3D"></div><div class="color-info"><div class="color-name">Charcoal</div><div class="color-hex">#3D3D3D</div></div></div>
+      <div class="color-chip"><div class="color-swatch" style="background:#7A7A7A"></div><div class="color-info"><div class="color-name">Stone</div><div class="color-hex">#7A7A7A</div></div></div>
+      <div class="color-chip"><div class="color-swatch" style="background:#B8B8B8"></div><div class="color-info"><div class="color-name">Mist</div><div class="color-hex">#B8B8B8</div></div></div>
+      <div class="color-chip"><div class="color-swatch" style="background:#EBEBEB"></div><div class="color-info"><div class="color-name">Cloud</div><div class="color-hex">#EBEBEB</div></div></div>
+      <div class="color-chip"><div class="color-swatch" style="background:#F5F3F0"></div><div class="color-info"><div class="color-name">Pearl</div><div class="color-hex">#F5F3F0</div></div></div>
+      <div class="color-chip"><div class="color-swatch" style="background:#FFFFFF;border:1px solid #eee"></div><div class="color-info"><div class="color-name">White</div><div class="color-hex">#FFFFFF</div></div></div>
+      <div class="color-chip"><div class="color-swatch" style="background:#C4836A"></div><div class="color-info"><div class="color-name">Rose</div><div class="color-hex">#C4836A</div></div></div>
+      <div class="color-chip"><div class="color-swatch" style="background:#D9A892"></div><div class="color-info"><div class="color-name">Rose Soft</div><div class="color-hex">#D9A892</div></div></div>
+      <div class="color-chip"><div class="color-swatch" style="background:#8FA68C"></div><div class="color-info"><div class="color-name">Sage</div><div class="color-hex">#8FA68C</div></div></div>
+      <div class="color-chip"><div class="color-swatch" style="background:#F0E6D8"></div><div class="color-info"><div class="color-name">Cream</div><div class="color-hex">#F0E6D8</div></div></div>
+      <div class="color-chip"><div class="color-swatch" style="background:#F2E0D6"></div><div class="color-info"><div class="color-name">Blush</div><div class="color-hex">#F2E0D6</div></div></div>
+      <div class="color-chip"><div class="color-swatch" style="background:#C04040"></div><div class="color-info"><div class="color-name">Danger/Sale</div><div class="color-hex">#C04040</div></div></div>
+    </div>
+  </div>
+
+  <div class="ds-divider"></div>
+
+  <!-- BUTTONS -->
+  <div class="ds-section">
+    <div class="ds-section-title">Buttons</div>
+    <div class="ds-section-sub">Pill-shaped with lift hover effects</div>
+    <div class="btn-row">
+      <button class="btn btn-primary">Shop Now</button>
+      <button class="btn btn-secondary">Learn More</button>
+      <button class="btn btn-accent">Add to Cart</button>
+      <button class="btn btn-ghost">View All →</button>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-primary btn-sm">Small Primary</button>
+      <button class="btn btn-secondary btn-sm">Small Outline</button>
+      <button class="btn btn-accent btn-sm">Small Accent</button>
+    </div>
+  </div>
+
+  <div class="ds-divider"></div>
+
+  <!-- BADGES -->
+  <div class="ds-section">
+    <div class="ds-section-title">Badges & Tags</div>
+    <div class="ds-section-sub">Labels, categories, product badges</div>
+    <div class="badge-row">
+      <span class="badge badge-dark">New</span>
+      <span class="badge badge-sale">-30% OFF</span>
+      <span class="badge badge-rose">Organic</span>
+      <span class="badge badge-sage">Cruelty Free</span>
+      <span class="badge badge-outline">Best Seller</span>
+    </div>
+  </div>
+
+  <div class="ds-divider"></div>
+
+  <!-- INPUTS -->
+  <div class="ds-section">
+    <div class="ds-section-title">Form Elements</div>
+    <div class="ds-section-sub">Pill-shaped inputs matching button system</div>
+    <div class="input-row">
+      <input class="glow-input" placeholder="Enter your email">
+      <button class="btn btn-primary">Subscribe</button>
+    </div>
+  </div>
+
+  <div class="ds-divider"></div>
+
+  <!-- SECTION HEADING PATTERN -->
+  <div class="ds-section">
+    <div class="ds-section-title">Section Heading Pattern</div>
+    <div class="ds-section-sub">Tag + serif heading, used across all sections</div>
+    <div style="padding:40px; background:var(--glow-pearl); border-radius:var(--r-lg);">
+      <div class="section-tag">New Arrivals</div>
+      <div style="display:flex; justify-content:space-between; align-items:flex-end;">
+        <h2 class="section-h2">Shop the Collection</h2>
+        <button class="btn btn-ghost" style="margin-bottom:4px;">View All →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="ds-divider"></div>
+
+  <!-- PRODUCT CARDS -->
+  <div class="ds-section">
+    <div class="ds-section-title">Product Cards</div>
+    <div class="ds-section-sub">Hover for actions. Rounded images, brand + name + price.</div>
+    <div class="card-grid">
+      <div class="product-card">
+        <div class="pc-img">
+          <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=500&q=80" alt="Serum">
+          <span class="pc-badge">New</span>
+          <div class="pc-actions">
+            <button class="pc-atc">Add to Cart</button>
+            <button class="pc-wish">♡</button>
+          </div>
+        </div>
+        <div class="pc-brand">Glow</div>
+        <div class="pc-name">Vitamin C Glow Serum</div>
+        <div class="pc-price">SAR 189</div>
+      </div>
+      <div class="product-card">
+        <div class="pc-img">
+          <img src="https://images.unsplash.com/photo-1570194065650-d99fb4b38b17?w=500&q=80" alt="Cream">
+          <div class="pc-actions">
+            <button class="pc-atc">Add to Cart</button>
+            <button class="pc-wish">♡</button>
+          </div>
+        </div>
+        <div class="pc-brand">Glow</div>
+        <div class="pc-name">Daily Hydration Cream</div>
+        <div class="pc-price">SAR 145</div>
+      </div>
+      <div class="product-card">
+        <div class="pc-img">
+          <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=500&q=80" alt="Oil">
+          <span class="pc-badge sale">-30%</span>
+          <div class="pc-actions">
+            <button class="pc-atc">Add to Cart</button>
+            <button class="pc-wish">♡</button>
+          </div>
+        </div>
+        <div class="pc-brand">Glow</div>
+        <div class="pc-name">Argan Repair Oil</div>
+        <div class="pc-price">SAR 99 <span class="pc-was">SAR 142</span></div>
+      </div>
+      <div class="product-card">
+        <div class="pc-img">
+          <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&q=80" alt="Mask">
+          <span class="pc-badge">New</span>
+          <div class="pc-actions">
+            <button class="pc-atc">Add to Cart</button>
+            <button class="pc-wish">♡</button>
+          </div>
+        </div>
+        <div class="pc-brand">Glow</div>
+        <div class="pc-name">Radiance Face Mask</div>
+        <div class="pc-price">SAR 210</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ds-divider"></div>
+
+  <!-- CATEGORY CARDS -->
+  <div class="ds-section">
+    <div class="ds-section-title">Category Cards</div>
+    <div class="ds-section-sub">Rounded with gradient overlay. Hover zoom.</div>
+    <div class="card-grid">
+      <div class="cat-card">
+        <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&q=80" alt="Skincare">
+        <div class="cat-overlay"><div class="cat-name">Skincare</div><div class="cat-count">42 products</div></div>
+      </div>
+      <div class="cat-card">
+        <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=500&q=80" alt="Makeup">
+        <div class="cat-overlay"><div class="cat-name">Makeup</div><div class="cat-count">38 products</div></div>
+      </div>
+      <div class="cat-card">
+        <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=500&q=80" alt="Serums">
+        <div class="cat-overlay"><div class="cat-name">Serums</div><div class="cat-count">24 products</div></div>
+      </div>
+      <div class="cat-card">
+        <img src="https://images.unsplash.com/photo-1570194065650-d99fb4b38b17?w=500&q=80" alt="Body Care">
+        <div class="cat-overlay"><div class="cat-name">Body Care</div><div class="cat-count">31 products</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ds-divider"></div>
+
+  <!-- BORDER RADIUS -->
+  <div class="ds-section">
+    <div class="ds-section-title">Border Radius</div>
+    <div class="ds-section-sub">Consistent rounding across all elements</div>
+    <div class="radius-row">
+      <div class="radius-demo" style="border-radius:6px;"><span>6px</span><span>sm</span></div>
+      <div class="radius-demo" style="border-radius:12px;"><span>12px</span><span>md</span></div>
+      <div class="radius-demo" style="border-radius:20px;"><span>20px</span><span>lg</span></div>
+      <div class="radius-demo" style="border-radius:32px;"><span>32px</span><span>xl</span></div>
+      <div class="radius-demo" style="border-radius:100px;width:120px;"><span>pill</span></div>
+      <div class="radius-demo" style="border-radius:50%;"><span>full</span></div>
+    </div>
+  </div>
+
+  <div class="ds-divider"></div>
+
+  <!-- SPACING -->
+  <div class="ds-section">
+    <div class="ds-section-title">Spacing Scale</div>
+    <div class="ds-section-sub">8px base unit, used for all padding/margins</div>
+    <div class="spacing-row">
+      <div class="spacing-block" style="width:24px;height:24px;">4</div>
+      <div class="spacing-block" style="width:28px;height:32px;">8</div>
+      <div class="spacing-block" style="width:32px;height:40px;">12</div>
+      <div class="spacing-block" style="width:36px;height:48px;">16</div>
+      <div class="spacing-block" style="width:40px;height:60px;">24</div>
+      <div class="spacing-block" style="width:44px;height:72px;">32</div>
+      <div class="spacing-block" style="width:48px;height:88px;">48</div>
+      <div class="spacing-block" style="width:52px;height:104px;">64</div>
+      <div class="spacing-block" style="width:56px;height:120px;">80</div>
+      <div class="spacing-block" style="width:60px;height:140px;">100</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glow — Design System v3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.2.3/dist/lenis.min.js"></script>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html.lenis, html.lenis body { height: auto; }
+
+  /* ══════════════════════════════════════════
+     THEME TOKENS — LIGHT + DARK
+     ══════════════════════════════════════════ */
+  :root {
+    --font-display: 'Instrument Serif', serif;
+    --font-body: 'Inter', sans-serif;
+    --font-accent: 'Space Grotesk', sans-serif;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+    --r-sm: 6px; --r-md: 12px; --r-lg: 20px; --r-xl: 32px; --r-pill: 100px;
+    --glow-rose: #C4836A;
+    --glow-rose-soft: #D9A892;
+    --glow-sage: #8FA68C;
+    --glow-danger: #C04040;
+  }
+
+  [data-theme="light"] {
+    --bg: #FFFFFF;
+    --bg-alt: #F5F3F0;
+    --bg-card: #FFFFFF;
+    --bg-elevated: #FFFFFF;
+    --ink: #1A1A1A;
+    --charcoal: #3D3D3D;
+    --stone: #7A7A7A;
+    --mist: #B8B8B8;
+    --cloud: #EBEBEB;
+    --pearl: #F5F3F0;
+    --cream: #F0E6D8;
+    --blush: #F2E0D6;
+    --border: rgba(0,0,0,0.06);
+    --border-strong: rgba(0,0,0,0.12);
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+    --shadow-md: 0 8px 24px rgba(0,0,0,0.06);
+    --shadow-lg: 0 20px 60px rgba(0,0,0,0.08);
+    --shadow-xl: 0 32px 80px rgba(0,0,0,0.12);
+    --dropdown-bg: #FFFFFF;
+    --dropdown-hover: #F5F3F0;
+    --overlay: rgba(0,0,0,0.4);
+    --marquee-bg: #1A1A1A;
+    --marquee-fg: #FFFFFF;
+    --badge-subtle: rgba(0,0,0,0.04);
+  }
+
+  [data-theme="dark"] {
+    --bg: #0E0E0E;
+    --bg-alt: #161616;
+    --bg-card: #1A1A1A;
+    --bg-elevated: #222222;
+    --ink: #F0ECE8;
+    --charcoal: #CCCCCC;
+    --stone: #888888;
+    --mist: #555555;
+    --cloud: #2A2A2A;
+    --pearl: #1E1E1E;
+    --cream: #2A2218;
+    --blush: #2D221E;
+    --border: rgba(255,255,255,0.06);
+    --border-strong: rgba(255,255,255,0.12);
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.2);
+    --shadow-md: 0 8px 24px rgba(0,0,0,0.3);
+    --shadow-lg: 0 20px 60px rgba(0,0,0,0.4);
+    --shadow-xl: 0 32px 80px rgba(0,0,0,0.5);
+    --dropdown-bg: #1E1E1E;
+    --dropdown-hover: #2A2A2A;
+    --overlay: rgba(0,0,0,0.7);
+    --marquee-bg: #F0ECE8;
+    --marquee-fg: #0E0E0E;
+    --badge-subtle: rgba(255,255,255,0.06);
+  }
+
+  html { transition: background-color 0.5s var(--ease-smooth); }
+  body {
+    font-family: var(--font-body);
+    color: var(--ink);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+    overflow-x: hidden;
+    transition: color 0.5s var(--ease-smooth), background 0.5s var(--ease-smooth);
+  }
+
+  .page { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+
+  /* ══════════════════════════════════════════
+     THEME TOGGLE (Fixed)
+     ══════════════════════════════════════════ */
+  .theme-toggle {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--r-pill);
+    padding: 6px 8px;
+    backdrop-filter: blur(20px);
+    box-shadow: var(--shadow-md);
+    transition: all 0.4s var(--ease-smooth);
+  }
+  .theme-toggle .tg-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    transition: all 0.35s var(--ease-smooth);
+    color: var(--stone);
+    position: relative;
+  }
+  .theme-toggle .tg-btn.active {
+    background: var(--ink);
+    color: var(--bg);
+    box-shadow: var(--shadow-sm);
+  }
+  .theme-toggle .tg-btn:hover:not(.active) { color: var(--ink); }
+
+  /* ══════════════════════════════════════════
+     SCROLL REVEAL
+     ══════════════════════════════════════════ */
+  .rv { opacity: 0; transform: translateY(50px); transition: opacity 0.9s var(--ease-smooth), transform 0.9s var(--ease-smooth); }
+  .rv.vis { opacity: 1; transform: translateY(0); }
+  .rv-scale { opacity: 0; transform: scale(0.9); transition: opacity 0.9s var(--ease-smooth), transform 0.9s var(--ease-smooth); }
+  .rv-scale.vis { opacity: 1; transform: scale(1); }
+  .rv-d1{transition-delay:.1s}.rv-d2{transition-delay:.18s}.rv-d3{transition-delay:.26s}.rv-d4{transition-delay:.34s}.rv-d5{transition-delay:.42s}.rv-d6{transition-delay:.5s}
+
+  /* ══════════════════════════════════════════
+     PARALLAX LAYERS
+     ══════════════════════════════════════════ */
+  .plx { will-change: transform; }
+
+  /* ══════════════════════════════════════════
+     HERO
+     ══════════════════════════════════════════ */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 100px 20px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.35;
+    pointer-events: none;
+  }
+  .hero-orb-1 {
+    width: 500px; height: 500px;
+    background: var(--glow-rose-soft);
+    top: 10%; left: 15%;
+  }
+  .hero-orb-2 {
+    width: 400px; height: 400px;
+    background: var(--glow-sage);
+    bottom: 10%; right: 15%;
+    opacity: 0.2;
+  }
+  .hero-orb-3 {
+    width: 300px; height: 300px;
+    background: var(--cream);
+    top: 50%; left: 60%;
+    opacity: 0.25;
+  }
+  .hero > * { position: relative; z-index: 1; }
+  .hero-tag {
+    font-family: var(--font-accent);
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--glow-rose);
+    font-weight: 500;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s var(--ease-smooth) 0.3s forwards;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(3.2rem, 9vw, 7.5rem);
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    margin-bottom: 24px;
+  }
+  .hero h1 em { font-style: italic; color: var(--glow-rose); }
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--stone);
+    font-weight: 300;
+    max-width: 480px;
+    margin: 0 auto 44px;
+    opacity: 0;
+    animation: fadeUp 0.8s var(--ease-smooth) 0.7s forwards;
+  }
+  .hero-line-wrap { overflow: hidden; }
+  .hero-line {
+    display: block;
+    opacity: 0;
+    animation: splitUp 1s var(--ease-smooth) forwards;
+  }
+  .hero-line:nth-child(1) { animation-delay: 0.25s; }
+  .hero-line:nth-child(2) { animation-delay: 0.4s; }
+  @keyframes splitUp { from { opacity:0; transform:translateY(110%); } to { opacity:1; transform:translateY(0); } }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeUp 0.8s var(--ease-smooth) 1.3s forwards;
+  }
+  .hero-scroll span {
+    font-family: var(--font-accent);
+    font-size: 0.55rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--mist);
+  }
+  .scroll-line { width: 1px; height: 52px; background: var(--cloud); position: relative; overflow: hidden; }
+  .scroll-line::after {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--glow-rose);
+    animation: scrollPulse 2.2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse { 0%{top:-100%} 50%{top:100%} 100%{top:100%} }
+
+  /* ══════════════════════════════════════════
+     MARQUEE
+     ══════════════════════════════════════════ */
+  .marquee {
+    overflow: hidden;
+    background: var(--marquee-bg);
+    padding: 18px 0;
+    margin: 0 -40px;
+    transition: background 0.5s var(--ease-smooth);
+  }
+  .marquee-track {
+    display: flex;
+    animation: mq 35s linear infinite;
+    width: max-content;
+  }
+  .marquee-item {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    color: var(--marquee-fg);
+    padding: 0 22px;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    transition: color 0.5s var(--ease-smooth);
+  }
+  .mq-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--glow-rose); flex-shrink: 0; }
+  @keyframes mq { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+  /* ══════════════════════════════════════════
+     SECTIONS
+     ══════════════════════════════════════════ */
+  .sec { padding: 120px 0; border-bottom: 1px solid var(--border); position: relative; }
+  .sec:last-child { border-bottom: none; }
+  .sec-title {
+    font-family: var(--font-display);
+    font-size: 2.8rem;
+    font-weight: 400;
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
+  }
+  .sec-sub {
+    font-family: var(--font-accent);
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--stone);
+    margin-bottom: 56px;
+  }
+
+  /* ══════════════════════════════════════════
+     DARK/LIGHT MODE SHOWCASE
+     ══════════════════════════════════════════ */
+  .mode-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 32px;
+  }
+  .mode-card {
+    border-radius: var(--r-xl);
+    padding: 48px 36px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.5s var(--ease-out);
+  }
+  .mode-card:hover { transform: translateY(-4px); }
+  .mode-card.light-demo {
+    background: #FFFFFF;
+    color: #1A1A1A;
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+  .mode-card.dark-demo {
+    background: #0E0E0E;
+    color: #F0ECE8;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .mode-label {
+    font-family: var(--font-accent);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.4;
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  .mode-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+  }
+  .mode-card p { font-size: 0.82rem; opacity: 0.6; margin-bottom: 24px; line-height: 1.6; }
+  .mode-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    font-family: var(--font-accent);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border-radius: var(--r-pill);
+    border: none;
+    cursor: pointer;
+    transition: all 0.4s var(--ease-out);
+  }
+  .mode-card.light-demo .mode-btn { background: #1A1A1A; color: #FFFFFF; }
+  .mode-card.light-demo .mode-btn:hover { box-shadow: 0 12px 32px rgba(0,0,0,0.12); }
+  .mode-card.dark-demo .mode-btn { background: #F0ECE8; color: #0E0E0E; }
+  .mode-card.dark-demo .mode-btn:hover { box-shadow: 0 12px 32px rgba(255,255,255,0.08); }
+  .mode-swatch-row { display: flex; gap: 6px; margin-bottom: 20px; }
+  .mode-swatch {
+    width: 28px; height: 28px; border-radius: 50%;
+    border: 2px solid transparent;
+    transition: transform 0.3s var(--ease-spring);
+  }
+  .mode-swatch:hover { transform: scale(1.2); }
+  .light-demo .mode-swatch:nth-child(1) { background:#1A1A1A; }
+  .light-demo .mode-swatch:nth-child(2) { background:#F5F3F0; }
+  .light-demo .mode-swatch:nth-child(3) { background:#C4836A; }
+  .light-demo .mode-swatch:nth-child(4) { background:#8FA68C; }
+  .light-demo .mode-swatch:nth-child(5) { background:#EBEBEB; border-color:rgba(0,0,0,0.08); }
+  .dark-demo .mode-swatch:nth-child(1) { background:#F0ECE8; }
+  .dark-demo .mode-swatch:nth-child(2) { background:#1E1E1E; border-color:rgba(255,255,255,0.1); }
+  .dark-demo .mode-swatch:nth-child(3) { background:#C4836A; }
+  .dark-demo .mode-swatch:nth-child(4) { background:#8FA68C; }
+  .dark-demo .mode-swatch:nth-child(5) { background:#2A2A2A; border-color:rgba(255,255,255,0.1); }
+
+  /* ══════════════════════════════════════════
+     TYPOGRAPHY
+     ══════════════════════════════════════════ */
+  .type-grid { display: grid; grid-template-columns: 160px 1fr; gap: 36px 44px; align-items: baseline; }
+  .type-label {
+    font-family: var(--font-accent);
+    font-size: 0.58rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--mist);
+    font-weight: 500;
+    padding-top: 8px;
+  }
+  .type-xl { font-family: var(--font-display); font-size: 5rem; font-weight: 400; line-height: 1.02; letter-spacing: -0.035em; }
+  .type-lg { font-family: var(--font-display); font-size: 3rem; font-weight: 400; line-height: 1.08; letter-spacing: -0.02em; }
+  .type-md { font-family: var(--font-display); font-size: 1.8rem; font-weight: 400; line-height: 1.2; }
+  .type-body { font-size: 1rem; font-weight: 400; line-height: 1.7; color: var(--charcoal); }
+  .type-sm { font-size: 0.82rem; font-weight: 300; color: var(--stone); }
+  .type-tag { font-family: var(--font-accent); font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 500; color: var(--glow-rose); }
+  .type-it { font-family: var(--font-display); font-style: italic; font-size: 2.2rem; color: var(--charcoal); }
+  .type-acc { font-family: var(--font-accent); font-size: 1rem; font-weight: 500; }
+
+  /* ══════════════════════════════════════════
+     COLORS
+     ══════════════════════════════════════════ */
+  .color-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 14px; }
+  .color-chip {
+    border-radius: var(--r-md);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out);
+  }
+  .color-chip:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+  .color-swatch { height: 88px; transition: transform 0.6s var(--ease-out); }
+  .color-chip:hover .color-swatch { transform: scale(1.05); }
+  .color-info { padding: 10px 12px; background: var(--bg-card); transition: background 0.5s; }
+  .color-name { font-family: var(--font-accent); font-size: 0.68rem; font-weight: 500; margin-bottom: 1px; }
+  .color-hex { font-size: 0.58rem; color: var(--stone); font-family: 'SF Mono','Fira Code',monospace; }
+
+  /* ══════════════════════════════════════════
+     BUTTONS
+     ══════════════════════════════════════════ */
+  .btn-row { display: flex; gap: 20px; flex-wrap: wrap; align-items: center; margin-bottom: 28px; }
+  .mag { display: inline-block; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-accent);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.5s var(--ease-out), color 0.4s;
+  }
+  .btn-text { position: relative; z-index: 1; display: flex; align-items: center; gap: 10px; }
+  .btn-fill {
+    position: absolute;
+    inset: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.55s var(--ease-smooth);
+    border-radius: inherit;
+  }
+  .btn:hover .btn-fill { transform: scaleX(1); }
+  .btn-arrow { display: inline-flex; transition: transform 0.4s var(--ease-out); }
+  .btn:hover .btn-arrow { transform: translateX(5px); }
+
+  .btn-primary { padding: 16px 38px; background: var(--ink); color: var(--bg); border-radius: var(--r-pill); }
+  .btn-primary .btn-fill { background: var(--charcoal); }
+  .btn-primary:hover { box-shadow: var(--shadow-lg); }
+
+  .btn-secondary { padding: 16px 38px; background: transparent; border: 1.5px solid var(--ink); color: var(--ink); border-radius: var(--r-pill); }
+  .btn-secondary .btn-fill { background: var(--ink); }
+  .btn-secondary:hover { color: var(--bg); }
+
+  .btn-accent { padding: 16px 38px; background: var(--glow-rose); color: #fff; border-radius: var(--r-pill); }
+  .btn-accent .btn-fill { background: var(--glow-rose-soft); }
+  .btn-accent:hover { box-shadow: 0 16px 48px rgba(196,131,106,0.25); }
+
+  .btn-ghost { padding: 8px 2px; background: transparent; color: var(--ink); border-radius: 0; }
+  .btn-ghost::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; width: 100%; height: 1.5px;
+    background: var(--ink);
+    transform: scaleX(0); transform-origin: right;
+    transition: transform 0.55s var(--ease-smooth);
+  }
+  .btn-ghost:hover::after { transform: scaleX(1); transform-origin: left; }
+
+  .btn-sm { padding: 12px 24px; font-size: 0.62rem; }
+
+  /* ══════════════════════════════════════════
+     DROPDOWN & SELECT
+     ══════════════════════════════════════════ */
+  .dropdown-row { display: flex; gap: 24px; flex-wrap: wrap; }
+  .dd-wrap {
+    position: relative;
+    display: inline-block;
+  }
+  .dd-trigger {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 24px;
+    background: var(--bg-card);
+    border: 1.5px solid var(--border-strong);
+    border-radius: var(--r-pill);
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    color: var(--ink);
+    cursor: pointer;
+    min-width: 200px;
+    justify-content: space-between;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .dd-trigger:hover { border-color: var(--glow-rose); }
+  .dd-trigger.open { border-color: var(--glow-rose); box-shadow: 0 0 0 4px rgba(196,131,106,0.1); }
+  .dd-trigger .dd-chev {
+    font-size: 10px;
+    transition: transform 0.35s var(--ease-out);
+    color: var(--stone);
+  }
+  .dd-trigger.open .dd-chev { transform: rotate(180deg); }
+  .dd-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    background: var(--dropdown-bg);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--r-lg);
+    padding: 8px;
+    box-shadow: var(--shadow-xl);
+    z-index: 50;
+    opacity: 0;
+    transform: translateY(-8px) scale(0.97);
+    pointer-events: none;
+    transition: opacity 0.3s var(--ease-smooth), transform 0.3s var(--ease-smooth);
+    backdrop-filter: blur(20px);
+  }
+  .dd-wrap.open .dd-menu { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+  .dd-item {
+    padding: 11px 16px;
+    border-radius: var(--r-md);
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.2s, color 0.2s;
+    color: var(--charcoal);
+  }
+  .dd-item:hover { background: var(--dropdown-hover); color: var(--ink); }
+  .dd-item.selected { background: var(--blush); color: var(--glow-rose); font-weight: 500; }
+  .dd-item .dd-check { font-size: 12px; margin-left: auto; opacity: 0; transition: opacity 0.2s; }
+  .dd-item.selected .dd-check { opacity: 1; }
+  .dd-item .dd-icon { font-size: 16px; width: 20px; text-align: center; }
+  .dd-sep { height: 1px; background: var(--border); margin: 6px 8px; }
+
+  .dd-context-menu {
+    width: 220px;
+    background: var(--dropdown-bg);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--r-lg);
+    padding: 8px;
+    box-shadow: var(--shadow-xl);
+    backdrop-filter: blur(20px);
+  }
+  .dd-context-menu .dd-item { font-size: 0.82rem; padding: 10px 14px; }
+  .dd-context-menu .dd-shortcut {
+    margin-left: auto;
+    font-size: 0.65rem;
+    color: var(--mist);
+    font-family: var(--font-accent);
+  }
+
+  /* Multi-select tags */
+  .dd-multi {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    padding: 10px 20px;
+    background: var(--bg-card);
+    border: 1.5px solid var(--border-strong);
+    border-radius: var(--r-pill);
+    min-width: 280px;
+    min-height: 48px;
+    cursor: text;
+    transition: border-color 0.3s;
+  }
+  .dd-multi:focus-within { border-color: var(--glow-rose); }
+  .dd-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    background: var(--blush);
+    color: var(--glow-rose);
+    font-family: var(--font-accent);
+    font-size: 0.68rem;
+    font-weight: 500;
+    border-radius: var(--r-pill);
+    letter-spacing: 0.03em;
+    animation: tagIn 0.3s var(--ease-spring);
+  }
+  @keyframes tagIn { from { opacity:0; transform:scale(0.8); } }
+  .dd-tag-x {
+    cursor: pointer;
+    font-size: 10px;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+  }
+  .dd-tag-x:hover { opacity: 1; }
+  .dd-multi input {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--ink);
+    flex: 1;
+    min-width: 60px;
+  }
+  .dd-multi input::placeholder { color: var(--mist); }
+
+  /* ══════════════════════════════════════════
+     PARALLAX SHOWCASE
+     ══════════════════════════════════════════ */
+  .plx-section {
+    position: relative;
+    padding: 200px 0;
+    overflow: hidden;
+    margin: 0 -40px;
+    text-align: center;
+  }
+  .plx-bg {
+    position: absolute;
+    inset: -60px;
+    z-index: 0;
+  }
+  .plx-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.45);
+  }
+  .plx-content {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+  .plx-content .section-tag {
+    color: var(--glow-rose-soft);
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .plx-content .section-tag::before { background: var(--glow-rose-soft); }
+  .plx-content h2 {
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+    line-height: 1.08;
+  }
+  .plx-content p { font-size: 1.05rem; opacity: 0.65; font-weight: 300; margin-bottom: 36px; line-height: 1.7; }
+  .plx-content .btn-primary { background: #fff; color: #1A1A1A; }
+  .plx-content .btn-primary .btn-fill { background: var(--glow-rose-soft); }
+  .plx-content .btn-primary:hover { color: #fff; }
+
+  .plx-float-1, .plx-float-2 {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .plx-float-1 {
+    width: 200px; height: 200px;
+    border: 1px solid rgba(255,255,255,0.1);
+    top: 15%; right: 10%;
+  }
+  .plx-float-2 {
+    width: 120px; height: 120px;
+    background: rgba(196,131,106,0.15);
+    bottom: 20%; left: 12%;
+  }
+
+  /* ══════════════════════════════════════════
+     PRODUCT CARDS
+     ══════════════════════════════════════════ */
+  .card-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .product-card { cursor: pointer; }
+  .pc-img {
+    position: relative;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    border-radius: var(--r-lg);
+    background: var(--pearl);
+    margin-bottom: 16px;
+  }
+  .pc-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s var(--ease-out);
+  }
+  .product-card:hover .pc-img img { transform: scale(1.07); }
+  .pc-badge {
+    position: absolute;
+    top: 14px; left: 14px;
+    background: var(--ink);
+    color: var(--bg);
+    font-family: var(--font-accent);
+    font-size: 0.52rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: var(--r-pill);
+    font-weight: 500;
+    transition: background 0.5s, color 0.5s;
+  }
+  .pc-badge.sale { background: var(--glow-danger); color: #fff; }
+  .pc-actions {
+    position: absolute;
+    bottom: 14px; left: 14px; right: 14px;
+    display: flex;
+    gap: 8px;
+    opacity: 0;
+    transform: translateY(14px);
+    transition: all 0.45s var(--ease-out);
+  }
+  .product-card:hover .pc-actions { opacity: 1; transform: translateY(0); }
+  .pc-atc {
+    flex: 1;
+    padding: 14px;
+    background: var(--ink);
+    color: var(--bg);
+    font-family: var(--font-accent);
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border-radius: var(--r-md);
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.5s, color 0.5s;
+  }
+  .pc-atc span { position: relative; z-index: 1; }
+  .pc-wish {
+    width: 44px; height: 44px;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-radius: var(--r-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    font-size: 17px;
+    transition: transform 0.35s var(--ease-spring);
+  }
+  .pc-wish:hover { transform: scale(1.15); }
+  .pc-brand {
+    font-family: var(--font-accent);
+    font-size: 0.58rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--mist);
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+  .pc-name { font-size: 0.95rem; font-weight: 500; margin-bottom: 6px; line-height: 1.3; }
+  .pc-price { font-family: var(--font-accent); font-size: 0.88rem; font-weight: 500; color: var(--glow-rose); }
+  .pc-was { color: var(--mist); text-decoration: line-through; font-weight: 400; margin-left: 8px; }
+
+  /* ══════════════════════════════════════════
+     CATEGORY CARDS
+     ══════════════════════════════════════════ */
+  .cat-card {
+    position: relative;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    border-radius: var(--r-xl);
+    cursor: pointer;
+  }
+  .cat-card img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s var(--ease-out);
+  }
+  .cat-card:hover img { transform: scale(1.08); }
+  .cat-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 28px 24px;
+  }
+  .cat-name {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: #fff;
+    transform: translateY(6px);
+    transition: transform 0.5s var(--ease-out);
+  }
+  .cat-card:hover .cat-name { transform: translateY(0); }
+  .cat-count {
+    font-family: var(--font-accent);
+    font-size: 0.6rem;
+    color: rgba(255,255,255,0.5);
+    margin-top: 4px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all 0.5s var(--ease-out) 0.06s;
+  }
+  .cat-card:hover .cat-count { opacity: 1; transform: translateY(0); }
+  .cat-arrow {
+    position: absolute;
+    top: 18px; right: 18px;
+    width: 42px; height: 42px;
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(10px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 14px;
+    opacity: 0;
+    transform: translate(-6px, 6px) rotate(-45deg);
+    transition: all 0.5s var(--ease-out);
+  }
+  .cat-card:hover .cat-arrow { opacity: 1; transform: translate(0,0) rotate(0deg); }
+
+  /* ══════════════════════════════════════════
+     ANIMATION LIBRARY
+     ══════════════════════════════════════════ */
+  .anim-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .anim-card {
+    border: 1.5px solid var(--border-strong);
+    border-radius: var(--r-lg);
+    padding: 44px 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.35s, box-shadow 0.35s;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-card);
+  }
+  .anim-card:hover { border-color: var(--glow-rose-soft); box-shadow: var(--shadow-md); }
+  .anim-label {
+    font-family: var(--font-accent);
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mist);
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+  .anim-demo { min-height: 70px; display: flex; align-items: center; justify-content: center; }
+  .anim-desc { font-size: 0.7rem; color: var(--stone); margin-top: 20px; font-weight: 300; }
+
+  .lift-box { width: 80px; height: 80px; background: var(--pearl); border-radius: var(--r-md); transition: transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out); }
+  .anim-card:hover .lift-box { transform: translateY(-10px); box-shadow: var(--shadow-lg); }
+
+  .bounce-box { width: 60px; height: 60px; background: var(--glow-rose); border-radius: 50%; transition: transform 0.45s var(--ease-spring); }
+  .anim-card:hover .bounce-box { transform: scale(1.3); }
+
+  .slide-box { overflow: hidden; height: 44px; position: relative; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 1.5rem; }
+  .slide-box .sl-1 { transition: transform 0.55s var(--ease-smooth); }
+  .anim-card:hover .slide-box .sl-1 { transform: translateY(-120%); }
+  .slide-box .sl-2 { position: absolute; transform: translateY(120%); transition: transform 0.55s var(--ease-smooth); color: var(--glow-rose); }
+  .anim-card:hover .slide-box .sl-2 { transform: translateY(0); }
+
+  .mag-circle {
+    width: 64px; height: 64px;
+    border: 1.5px solid var(--border-strong);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    transition: border-color 0.3s, background 0.3s, color 0.3s;
+  }
+  .anim-card:hover .mag-circle { border-color: var(--glow-rose); background: var(--glow-rose); color: #fff; }
+
+  .zoom-box { width: 100px; height: 70px; overflow: hidden; border-radius: var(--r-sm); }
+  .zoom-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s var(--ease-out); }
+  .anim-card:hover .zoom-box img { transform: scale(1.18); }
+
+  .draw-text { position: relative; display: inline-block; font-family: var(--font-display); font-size: 1.5rem; }
+  .draw-text::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0; width: 100%; height: 2px;
+    background: var(--glow-rose);
+    transform: scaleX(0); transform-origin: right;
+    transition: transform 0.55s var(--ease-smooth);
+  }
+  .anim-card:hover .draw-text::after { transform: scaleX(1); transform-origin: left; }
+
+  /* ══════════════════════════════════════════
+     SECTION HEADING
+     ══════════════════════════════════════════ */
+  .section-tag {
+    font-family: var(--font-accent);
+    font-size: 0.6rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--glow-rose);
+    font-weight: 500;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-tag::before { content: ''; width: 32px; height: 1.5px; background: var(--glow-rose); }
+
+  /* ══════════════════════════════════════════
+     BADGES
+     ══════════════════════════════════════════ */
+  .badge-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 18px;
+    font-family: var(--font-accent);
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+    border-radius: var(--r-pill);
+    text-transform: uppercase;
+    transition: transform 0.3s var(--ease-spring);
+  }
+  .badge:hover { transform: scale(1.06); }
+  .badge-dark { background: var(--ink); color: var(--bg); }
+  .badge-rose { background: var(--blush); color: var(--glow-rose); }
+  .badge-sage { background: #E8F0E7; color: #5A7A57; }
+  [data-theme="dark"] .badge-sage { background: rgba(143,166,140,0.15); }
+  .badge-outline { border: 1.5px solid var(--border-strong); color: var(--charcoal); }
+  .badge-sale { background: var(--glow-danger); color: #fff; }
+
+  /* ══════════════════════════════════════════
+     FORM
+     ══════════════════════════════════════════ */
+  .input-row { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .glow-input {
+    padding: 16px 24px;
+    border: 1.5px solid var(--border-strong);
+    border-radius: var(--r-pill);
+    font-size: 0.88rem;
+    font-family: var(--font-body);
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    width: 300px;
+    background: transparent;
+  }
+  .glow-input:focus { border-color: var(--glow-rose); box-shadow: 0 0 0 4px rgba(196,131,106,0.1); }
+  .glow-input::placeholder { color: var(--mist); }
+
+  /* ══════════════════════════════════════════
+     RADIUS + SPACING
+     ══════════════════════════════════════════ */
+  .radius-row { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+  .radius-demo {
+    width: 88px; height: 88px;
+    background: var(--pearl);
+    border: 1.5px solid var(--border-strong);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    transition: transform 0.4s var(--ease-spring), background 0.3s, border-color 0.3s;
+  }
+  .radius-demo:hover { transform: scale(1.08); background: var(--blush); border-color: var(--glow-rose-soft); }
+  .r-val { font-family: var(--font-accent); font-size: 0.72rem; font-weight: 500; }
+  .r-name { font-size: 0.52rem; color: var(--stone); letter-spacing: 0.12em; text-transform: uppercase; font-family: var(--font-accent); }
+
+  .spacing-row { display: flex; gap: 10px; align-items: flex-end; }
+  .sp-block {
+    background: linear-gradient(135deg, var(--glow-rose-soft), var(--glow-rose));
+    border-radius: 6px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 8px;
+    font-family: var(--font-accent);
+    font-size: 0.55rem;
+    color: #fff;
+    font-weight: 500;
+    transition: transform 0.3s var(--ease-spring);
+  }
+  .sp-block:hover { transform: scaleY(1.1) translateY(-4px); }
+
+  @media (max-width: 900px) {
+    .card-grid { grid-template-columns: repeat(2, 1fr); }
+    .anim-grid { grid-template-columns: repeat(2, 1fr); }
+    .type-grid { grid-template-columns: 1fr; gap: 12px; }
+    .mode-split { grid-template-columns: 1fr; }
+    .dropdown-row { flex-direction: column; }
+  }
+  @media (max-width: 600px) {
+    .page { padding: 0 20px; }
+    .hero h1 { font-size: 2.8rem; }
+    .color-grid { grid-template-columns: repeat(3, 1fr); }
+    .anim-grid { grid-template-columns: 1fr; }
+    .card-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- THEME TOGGLE -->
+  <div class="theme-toggle">
+    <button class="tg-btn active" data-mode="light" onclick="setTheme('light')">☀️</button>
+    <button class="tg-btn" data-mode="dark" onclick="setTheme('dark')">🌙</button>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-orb hero-orb-1 plx" data-plx-speed="0.03"></div>
+    <div class="hero-orb hero-orb-2 plx" data-plx-speed="-0.02"></div>
+    <div class="hero-orb hero-orb-3 plx" data-plx-speed="0.04"></div>
+    <div class="hero-tag">Design System v3</div>
+    <h1>
+      <span class="hero-line-wrap"><span class="hero-line">Glow <em>Beauty</em></span></span>
+      <span class="hero-line-wrap"><span class="hero-line" style="font-size:0.55em;letter-spacing:0.01em;">Theme System</span></span>
+    </h1>
+    <p class="hero-sub">Dark mode. Parallax. Dropdowns. Magnetic buttons. Smooth scroll. Everything your Salla theme needs.</p>
+    <div class="hero-scroll"><span>Scroll</span><div class="scroll-line"></div></div>
+  </div>
+
+  <!-- MARQUEE -->
+  <div class="marquee">
+    <div class="marquee-track">
+      <span class="marquee-item">Light Mode <span class="mq-dot"></span></span>
+      <span class="marquee-item">Dark Mode <span class="mq-dot"></span></span>
+      <span class="marquee-item">Parallax Scrolling <span class="mq-dot"></span></span>
+      <span class="marquee-item">Smooth Dropdowns <span class="mq-dot"></span></span>
+      <span class="marquee-item">Magnetic Buttons <span class="mq-dot"></span></span>
+      <span class="marquee-item">Scroll Reveal <span class="mq-dot"></span></span>
+      <span class="marquee-item">RTL Support <span class="mq-dot"></span></span>
+      <span class="marquee-item">Pro Schema <span class="mq-dot"></span></span>
+      <span class="marquee-item">Light Mode <span class="mq-dot"></span></span>
+      <span class="marquee-item">Dark Mode <span class="mq-dot"></span></span>
+      <span class="marquee-item">Parallax Scrolling <span class="mq-dot"></span></span>
+      <span class="marquee-item">Smooth Dropdowns <span class="mq-dot"></span></span>
+      <span class="marquee-item">Magnetic Buttons <span class="mq-dot"></span></span>
+      <span class="marquee-item">Scroll Reveal <span class="mq-dot"></span></span>
+      <span class="marquee-item">RTL Support <span class="mq-dot"></span></span>
+      <span class="marquee-item">Pro Schema <span class="mq-dot"></span></span>
+    </div>
+  </div>
+
+  <!-- ═══ DARK / LIGHT MODE ═══ -->
+  <div class="sec">
+    <div class="rv"><div class="sec-title">Light & Dark Mode</div></div>
+    <div class="rv rv-d1"><div class="sec-sub">Full theme switching — toggle the sun/moon button top-right</div></div>
+    <div class="mode-split rv rv-d2">
+      <div class="mode-card light-demo">
+        <div class="mode-label">Light Mode</div>
+        <div class="mode-swatch-row">
+          <div class="mode-swatch"></div><div class="mode-swatch"></div><div class="mode-swatch"></div><div class="mode-swatch"></div><div class="mode-swatch"></div>
+        </div>
+        <h3>Clean & Warm</h3>
+        <p>Pearl backgrounds, ink text, warm neutrals. The default experience — airy, approachable, premium.</p>
+        <button class="mode-btn" onclick="setTheme('light')">Activate Light →</button>
+      </div>
+      <div class="mode-card dark-demo">
+        <div class="mode-label">Dark Mode</div>
+        <div class="mode-swatch-row">
+          <div class="mode-swatch"></div><div class="mode-swatch"></div><div class="mode-swatch"></div><div class="mode-swatch"></div><div class="mode-swatch"></div>
+        </div>
+        <h3>Rich & Immersive</h3>
+        <p>Deep backgrounds, cream text, muted accents. Dramatic for beauty — products feel luxurious.</p>
+        <button class="mode-btn" onclick="setTheme('dark')">Activate Dark →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ PARALLAX CTA ═══ -->
+  <div class="plx-section" id="plx-hero">
+    <div class="plx-bg plx" data-plx-speed="-0.08">
+      <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=1600&q=80" alt="Beauty">
+    </div>
+    <div class="plx-float-1 plx" data-plx-speed="0.05"></div>
+    <div class="plx-float-2 plx" data-plx-speed="-0.04"></div>
+    <div class="plx-content">
+      <div class="section-tag rv">Summer Collection</div>
+      <h2 class="rv rv-d1">Your Skin.<br><em style="font-style:italic">Glowing.</em></h2>
+      <p class="rv rv-d2">Simple, clean formulas for your everyday glow. Six daily essentials, one perfect routine — before it's gone.</p>
+      <div class="rv rv-d3">
+        <button class="btn btn-primary"><span class="btn-fill"></span><span class="btn-text">Shop Collection <span class="btn-arrow">→</span></span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ TYPOGRAPHY ═══ -->
+  <div class="sec">
+    <div class="rv"><div class="sec-title">Typography</div></div>
+    <div class="rv rv-d1"><div class="sec-sub">Instrument Serif · Inter · Space Grotesk</div></div>
+    <div class="type-grid">
+      <div class="type-label rv">Display XL</div>
+      <div class="rv rv-d1"><div class="type-xl">Your Skin, <em style="font-family:var(--font-display);font-style:italic;color:var(--glow-rose)">Glowing</em></div></div>
+      <div class="type-label rv">Display LG</div>
+      <div class="rv rv-d1"><div class="type-lg">Shop by Category</div></div>
+      <div class="type-label rv">Display MD</div>
+      <div class="rv rv-d1"><div class="type-md">Skincare Routine Steps</div></div>
+      <div class="type-label rv">Body</div>
+      <div class="rv rv-d1"><div class="type-body">Simple, clean formulas for your everyday glow. Discover handcrafted skincare designed for those who appreciate the extraordinary.</div></div>
+      <div class="type-label rv">Small</div>
+      <div class="rv rv-d1"><div class="type-sm">Free shipping on all orders over SAR 500. Lifetime warranty included.</div></div>
+      <div class="type-label rv">Tag / Label</div>
+      <div class="rv rv-d1"><div class="type-tag">New Collection</div></div>
+      <div class="type-label rv">Italic</div>
+      <div class="rv rv-d1"><div class="type-it">Because beauty is personal.</div></div>
+      <div class="type-label rv">UI Accent</div>
+      <div class="rv rv-d1"><div class="type-acc">Space Grotesk — buttons, labels, nav</div></div>
+    </div>
+  </div>
+
+  <!-- ═══ COLORS ═══ -->
+  <div class="sec">
+    <div class="rv"><div class="sec-title">Color Palette</div></div>
+    <div class="rv rv-d1"><div class="sec-sub">Adapts to light/dark — toggle to see both</div></div>
+    <div class="color-grid">
+      <div class="color-chip rv rv-d1"><div class="color-swatch" style="background:#1A1A1A"></div><div class="color-info"><div class="color-name">Ink</div><div class="color-hex">#1A1A1A</div></div></div>
+      <div class="color-chip rv rv-d2"><div class="color-swatch" style="background:#3D3D3D"></div><div class="color-info"><div class="color-name">Charcoal</div><div class="color-hex">#3D3D3D</div></div></div>
+      <div class="color-chip rv rv-d3"><div class="color-swatch" style="background:#7A7A7A"></div><div class="color-info"><div class="color-name">Stone</div><div class="color-hex">#7A7A7A</div></div></div>
+      <div class="color-chip rv rv-d4"><div class="color-swatch" style="background:#B8B8B8"></div><div class="color-info"><div class="color-name">Mist</div><div class="color-hex">#B8B8B8</div></div></div>
+      <div class="color-chip rv rv-d5"><div class="color-swatch" style="background:#EBEBEB"></div><div class="color-info"><div class="color-name">Cloud</div><div class="color-hex">#EBEBEB</div></div></div>
+      <div class="color-chip rv rv-d6"><div class="color-swatch" style="background:#F5F3F0"></div><div class="color-info"><div class="color-name">Pearl</div><div class="color-hex">#F5F3F0</div></div></div>
+      <div class="color-chip rv rv-d1"><div class="color-swatch" style="background:#C4836A"></div><div class="color-info"><div class="color-name">Rose</div><div class="color-hex">#C4836A</div></div></div>
+      <div class="color-chip rv rv-d2"><div class="color-swatch" style="background:#D9A892"></div><div class="color-info"><div class="color-name">Rose Soft</div><div class="color-hex">#D9A892</div></div></div>
+      <div class="color-chip rv rv-d3"><div class="color-swatch" style="background:#8FA68C"></div><div class="color-info"><div class="color-name">Sage</div><div class="color-hex">#8FA68C</div></div></div>
+      <div class="color-chip rv rv-d4"><div class="color-swatch" style="background:#F0E6D8"></div><div class="color-info"><div class="color-name">Cream</div><div class="color-hex">#F0E6D8</div></div></div>
+      <div class="color-chip rv rv-d5"><div class="color-swatch" style="background:#F2E0D6"></div><div class="color-info"><div class="color-name">Blush</div><div class="color-hex">#F2E0D6</div></div></div>
+      <div class="color-chip rv rv-d6"><div class="color-swatch" style="background:#C04040"></div><div class="color-info"><div class="color-name">Danger</div><div class="color-hex">#C04040</div></div></div>
+    </div>
+  </div>
+
+  <!-- ═══ DROPDOWNS & SELECTS ═══ -->
+  <div class="sec">
+    <div class="rv"><div class="sec-title">Dropdowns & Selects</div></div>
+    <div class="rv rv-d1"><div class="sec-sub">Animated open/close · Blur backdrop · Multi-select tags · Context menus</div></div>
+
+    <div class="dropdown-row rv rv-d2">
+      <!-- Single select -->
+      <div class="dd-wrap" id="dd1">
+        <div class="dd-trigger" onclick="toggleDD('dd1')">
+          <span id="dd1-val">Select Category</span>
+          <span class="dd-chev">▼</span>
+        </div>
+        <div class="dd-menu">
+          <div class="dd-item" onclick="selectDD('dd1','Skincare','🧴')"><span class="dd-icon">🧴</span> Skincare <span class="dd-check">✓</span></div>
+          <div class="dd-item" onclick="selectDD('dd1','Makeup','💄')"><span class="dd-icon">💄</span> Makeup <span class="dd-check">✓</span></div>
+          <div class="dd-item" onclick="selectDD('dd1','Serums','💧')"><span class="dd-icon">💧</span> Serums <span class="dd-check">✓</span></div>
+          <div class="dd-item" onclick="selectDD('dd1','Body Care','🛁')"><span class="dd-icon">🛁</span> Body Care <span class="dd-check">✓</span></div>
+          <div class="dd-item" onclick="selectDD('dd1','Fragrance','🌸')"><span class="dd-icon">🌸</span> Fragrance <span class="dd-check">✓</span></div>
+        </div>
+      </div>
+
+      <!-- Sort dropdown -->
+      <div class="dd-wrap" id="dd2">
+        <div class="dd-trigger" onclick="toggleDD('dd2')">
+          <span id="dd2-val">Sort By</span>
+          <span class="dd-chev">▼</span>
+        </div>
+        <div class="dd-menu">
+          <div class="dd-item" onclick="selectDD('dd2','Newest')">Newest First <span class="dd-check">✓</span></div>
+          <div class="dd-item" onclick="selectDD('dd2','Best Selling')">Best Selling <span class="dd-check">✓</span></div>
+          <div class="dd-item" onclick="selectDD('dd2','Price: Low → High')">Price: Low → High <span class="dd-check">✓</span></div>
+          <div class="dd-item" onclick="selectDD('dd2','Price: High → Low')">Price: High → Low <span class="dd-check">✓</span></div>
+          <div class="dd-sep"></div>
+          <div class="dd-item" onclick="selectDD('dd2','Top Rated')">Top Rated <span class="dd-check">✓</span></div>
+        </div>
+      </div>
+
+      <!-- Multi-select -->
+      <div>
+        <div class="dd-multi">
+          <span class="dd-tag">Organic <span class="dd-tag-x" onclick="this.parentElement.remove()">✕</span></span>
+          <span class="dd-tag">Cruelty Free <span class="dd-tag-x" onclick="this.parentElement.remove()">✕</span></span>
+          <input placeholder="Add filter...">
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:48px;" class="rv rv-d3">
+      <div class="sec-sub" style="margin-bottom:20px;">Context Menu</div>
+      <div class="dd-context-menu">
+        <div class="dd-item">✏️ &nbsp;Edit Product <span class="dd-shortcut">⌘E</span></div>
+        <div class="dd-item">📋 &nbsp;Duplicate <span class="dd-shortcut">⌘D</span></div>
+        <div class="dd-item">📌 &nbsp;Pin to Top</div>
+        <div class="dd-sep"></div>
+        <div class="dd-item">👁 &nbsp;Preview</div>
+        <div class="dd-item">📊 &nbsp;Analytics</div>
+        <div class="dd-sep"></div>
+        <div class="dd-item" style="color:var(--glow-danger);">🗑 &nbsp;Delete <span class="dd-shortcut">⌫</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ PARALLAX BANNER #2 ═══ -->
+  <div class="plx-section" id="plx-banner-2">
+    <div class="plx-bg plx" data-plx-speed="-0.06">
+      <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=1600&q=80" alt="Product">
+    </div>
+    <div class="plx-float-1 plx" data-plx-speed="0.06" style="right:auto;left:8%;top:20%;width:140px;height:140px;border-color:rgba(255,255,255,0.08);"></div>
+    <div class="plx-float-2 plx" data-plx-speed="-0.03" style="left:auto;right:8%;bottom:25%;"></div>
+    <div class="plx-content">
+      <div class="section-tag rv">Limited Edition</div>
+      <h2 class="rv rv-d1">Unbeatable prices<br>with <em style="font-style:italic">bundles.</em></h2>
+      <p class="rv rv-d2">Create your personalized skincare ritual and unlock exclusive savings. Ends soon.</p>
+      <div class="rv rv-d3">
+        <button class="btn btn-primary"><span class="btn-fill"></span><span class="btn-text">Build Your Bundle <span class="btn-arrow">→</span></span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ ANIMATION LIBRARY ═══ -->
+  <div class="sec">
+    <div class="rv"><div class="sec-title">Animation Library</div></div>
+    <div class="rv rv-d1"><div class="sec-sub">Hover each card to preview</div></div>
+    <div class="anim-grid">
+      <div class="anim-card rv rv-d1">
+        <div class="anim-label">Hover Lift</div>
+        <div class="anim-demo"><div class="lift-box"></div></div>
+        <div class="anim-desc">Cards, images — float + shadow</div>
+      </div>
+      <div class="anim-card rv rv-d2">
+        <div class="anim-label">Scale Bounce</div>
+        <div class="anim-demo"><div class="bounce-box"></div></div>
+        <div class="anim-desc">Icons, CTAs — spring scale</div>
+      </div>
+      <div class="anim-card rv rv-d3">
+        <div class="anim-label">Slide Replace</div>
+        <div class="anim-demo"><div class="slide-box"><span class="sl-1">Shop Now</span><span class="sl-2">View All</span></div></div>
+        <div class="anim-desc">Button text swap — Eurus style</div>
+      </div>
+      <div class="anim-card rv rv-d1">
+        <div class="anim-label">Magnetic Fill</div>
+        <div class="anim-demo"><div class="mag-circle" data-magnetic>→</div></div>
+        <div class="anim-desc">Follows cursor + fill on hover</div>
+      </div>
+      <div class="anim-card rv rv-d2">
+        <div class="anim-label">Image Zoom</div>
+        <div class="anim-demo"><div class="zoom-box"><img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=300&q=80" alt=""></div></div>
+        <div class="anim-desc">Product images — smooth scale</div>
+      </div>
+      <div class="anim-card rv rv-d3">
+        <div class="anim-label">Underline Draw</div>
+        <div class="anim-demo"><span class="draw-text">View All</span></div>
+        <div class="anim-desc">Links — origin-shift line</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ BUTTONS ═══ -->
+  <div class="sec">
+    <div class="rv"><div class="sec-title">Buttons</div></div>
+    <div class="rv rv-d1"><div class="sec-sub">Magnetic + fill sweep + arrow shift</div></div>
+    <div class="btn-row rv rv-d2">
+      <button class="btn btn-primary"><span class="btn-fill"></span><span class="btn-text">Shop Now <span class="btn-arrow">→</span></span></button>
+      <button class="btn btn-secondary"><span class="btn-fill"></span><span class="btn-text">Learn More <span class="btn-arrow">→</span></span></button>
+      <button class="btn btn-accent"><span class="btn-fill"></span><span class="btn-text">Add to Cart</span></button>
+      <button class="btn btn-ghost"><span class="btn-text">View All <span class="btn-arrow">→</span></span></button>
+    </div>
+    <div class="btn-row rv rv-d3">
+      <button class="btn btn-primary btn-sm"><span class="btn-fill"></span><span class="btn-text">Small Primary</span></button>
+      <button class="btn btn-secondary btn-sm"><span class="btn-fill"></span><span class="btn-text">Small Outline</span></button>
+      <button class="btn btn-accent btn-sm"><span class="btn-fill"></span><span class="btn-text">Small Accent</span></button>
+    </div>
+  </div>
+
+  <!-- ═══ PRODUCT CARDS ═══ -->
+  <div class="sec">
+    <div class="rv"><div class="sec-title">Product Cards</div></div>
+    <div class="rv rv-d1"><div class="sec-sub">Hover for slide-up actions · image zoom · badge + quick add</div></div>
+    <div class="card-grid">
+      <div class="product-card rv rv-d1">
+        <div class="pc-img"><img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=500&q=80" alt=""><span class="pc-badge">New</span><div class="pc-actions"><button class="pc-atc"><span>Add to Cart</span></button><button class="pc-wish">♡</button></div></div>
+        <div class="pc-brand">Glow</div><div class="pc-name">Vitamin C Glow Serum</div><div class="pc-price">SAR 189</div>
+      </div>
+      <div class="product-card rv rv-d2">
+        <div class="pc-img"><img src="https://images.unsplash.com/photo-1570194065650-d99fb4b38b17?w=500&q=80" alt=""><div class="pc-actions"><button class="pc-atc"><span>Add to Cart</span></button><button class="pc-wish">♡</button></div></div>
+        <div class="pc-brand">Glow</div><div class="pc-name">Daily Hydration Cream</div><div class="pc-price">SAR 145</div>
+      </div>
+      <div class="product-card rv rv-d3">
+        <div class="pc-img"><img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=500&q=80" alt=""><span class="pc-badge sale">-30%</span><div class="pc-actions"><button class="pc-atc"><span>Add to Cart</span></button><button class="pc-wish">♡</button></div></div>
+        <div class="pc-brand">Glow</div><div class="pc-name">Argan Repair Oil</div><div class="pc-price">SAR 99 <span class="pc-was">SAR 142</span></div>
+      </div>
+      <div class="product-card rv rv-d4">
+        <div class="pc-img"><img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&q=80" alt=""><span class="pc-badge">New</span><div class="pc-actions"><button class="pc-atc"><span>Add to Cart</span></button><button class="pc-wish">♡</button></div></div>
+        <div class="pc-brand">Glow</div><div class="pc-name">Radiance Face Mask</div><div class="pc-price">SAR 210</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ CATEGORY CARDS ═══ -->
+  <div class="sec">
+    <div class="rv"><div class="sec-title">Category Cards</div></div>
+    <div class="rv rv-d1"><div class="sec-sub">Zoom + gradient + arrow entrance</div></div>
+    <div class="card-grid">
+      <div class="cat-card rv rv-d1"><img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500&q=80" alt=""><div class="cat-overlay"><div class="cat-name">Skincare</div><div class="cat-count">42 products</div></div><div class="cat-arrow">↗</div></div>
+      <div class="cat-card rv rv-d2"><img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=500&q=80" alt=""><div class="cat-overlay"><div class="cat-name">Makeup</div><div class="cat-count">38 products</div></div><div class="cat-arrow">↗</div></div>
+      <div class="cat-card rv rv-d3"><img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=500&q=80" alt=""><div class="cat-overlay"><div class="cat-name">Serums</div><div class="cat-count">24 products</div></div><div class="cat-arrow">↗</div></div>
+      <div class="cat-card rv rv-d4"><img src="https://images.unsplash.com/photo-1570194065650-d99fb4b38b17?w=500&q=80" alt=""><div class="cat-overlay"><div class="cat-name">Body Care</div><div class="cat-count">31 products</div></div><div class="cat-arrow">↗</div></div>
+    </div>
+  </div>
+
+  <!-- ═══ BADGES ═══ -->
+  <div class="sec">
+    <div class="rv"><div class="sec-title">Badges</div></div>
+    <div class="rv rv-d1"><div class="sec-sub">Product labels · category markers</div></div>
+    <div class="badge-row rv rv-d2">
+      <span class="badge badge-dark">New</span>
+      <span class="badge badge-sale">-30% OFF</span>
+      <span class="badge badge-rose">Organic</span>
+      <span class="badge badge-sage">Cruelty Free</span>
+      <span class="badge badge-outline">Best Seller</span>
+    </div>
+  </div>
+
+  <!-- ═══ SECTION HEADING ═══ -->
+  <div class="sec">
+    <div class="rv"><div class="sec-title">Section Heading</div></div>
+    <div class="rv rv-d1"><div class="sec-sub">Tag line + heading + ghost CTA</div></div>
+    <div style="padding:56px 48px; background:var(--bg-alt); border-radius:var(--r-xl); transition:background 0.5s;" class="rv-scale rv rv-d2">
+      <div class="section-tag">New Arrivals</div>
+      <div style="display:flex; justify-content:space-between; align-items:flex-end;">
+        <h2 style="font-family:var(--font-display);font-size:2.8rem;font-weight:400;">Shop the Collection</h2>
+        <button class="btn btn-ghost"><span class="btn-text">View All <span class="btn-arrow">→</span></span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ FORMS ═══ -->
+  <div class="sec">
+    <div class="rv"><div class="sec-title">Form Elements</div></div>
+    <div class="rv rv-d1"><div class="sec-sub">Pill inputs with focus glow ring</div></div>
+    <div class="input-row rv rv-d2">
+      <input class="glow-input" placeholder="Enter your email">
+      <button class="btn btn-primary"><span class="btn-fill"></span><span class="btn-text">Subscribe</span></button>
+    </div>
+  </div>
+
+  <!-- ═══ RADIUS + SPACING ═══ -->
+  <div class="sec" style="border-bottom:none;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;">
+      <div>
+        <div class="rv"><div class="sec-title" style="font-size:2rem;">Radius</div></div>
+        <div class="rv rv-d1"><div class="sec-sub">Consistent rounding</div></div>
+        <div class="radius-row rv rv-d2">
+          <div class="radius-demo" style="border-radius:6px;"><span class="r-val">6</span><span class="r-name">sm</span></div>
+          <div class="radius-demo" style="border-radius:12px;"><span class="r-val">12</span><span class="r-name">md</span></div>
+          <div class="radius-demo" style="border-radius:20px;"><span class="r-val">20</span><span class="r-name">lg</span></div>
+          <div class="radius-demo" style="border-radius:32px;"><span class="r-val">32</span><span class="r-name">xl</span></div>
+          <div class="radius-demo" style="border-radius:100px;width:110px;"><span class="r-val">pill</span></div>
+          <div class="radius-demo" style="border-radius:50%;"><span class="r-val">50%</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="rv"><div class="sec-title" style="font-size:2rem;">Spacing</div></div>
+        <div class="rv rv-d1"><div class="sec-sub">8px base unit</div></div>
+        <div class="spacing-row rv rv-d2">
+          <div class="sp-block" style="width:24px;height:24px;">4</div>
+          <div class="sp-block" style="width:28px;height:36px;">8</div>
+          <div class="sp-block" style="width:32px;height:48px;">16</div>
+          <div class="sp-block" style="width:36px;height:60px;">24</div>
+          <div class="sp-block" style="width:40px;height:76px;">32</div>
+          <div class="sp-block" style="width:44px;height:96px;">48</div>
+          <div class="sp-block" style="width:48px;height:116px;">64</div>
+          <div class="sp-block" style="width:52px;height:140px;">80</div>
+          <div class="sp-block" style="width:56px;height:164px;">100</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="height:80px;"></div>
+</div>
+
+<script>
+// ═══ THEME SWITCH ═══
+function setTheme(mode) {
+  document.documentElement.setAttribute('data-theme', mode);
+  document.querySelectorAll('.tg-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === mode));
+}
+
+// ═══ LENIS SMOOTH SCROLL ═══
+const lenis = new Lenis({ duration: 1.2, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smooth: true, smoothTouch: false });
+function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+requestAnimationFrame(raf);
+
+// ═══ SCROLL REVEAL ═══
+const rvObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); rvObs.unobserve(e.target); }});
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('.rv, .rv-scale').forEach(el => rvObs.observe(el));
+
+// ═══ PARALLAX ═══
+function updateParallax() {
+  const scrollY = window.scrollY;
+  document.querySelectorAll('.plx[data-plx-speed]').forEach(el => {
+    const speed = parseFloat(el.dataset.plxSpeed);
+    const rect = el.parentElement.getBoundingClientRect();
+    const centerY = rect.top + rect.height / 2;
+    const offset = (window.innerHeight / 2 - centerY) * speed;
+    el.style.transform = `translateY(${offset}px)`;
+  });
+}
+window.addEventListener('scroll', updateParallax, { passive: true });
+updateParallax();
+
+// ═══ MAGNETIC ═══
+document.querySelectorAll('[data-magnetic]').forEach(wrap => {
+  const el = wrap.querySelector('.btn') || wrap.querySelector('.mag-circle') || wrap;
+  const str = 0.35;
+  const sm = 0.12;
+  let tx=0, ty=0, cx=0, cy=0, af;
+  function anim() { cx+=(tx-cx)*sm; cy+=(ty-cy)*sm; el.style.transform=`translate(${cx}px,${cy}px)`; if(Math.abs(tx-cx)>0.1||Math.abs(ty-cy)>0.1) af=requestAnimationFrame(anim); }
+  wrap.addEventListener('mousemove', e => { const r=wrap.getBoundingClientRect(); tx=(e.clientX-r.left-r.width/2)*str; ty=(e.clientY-r.top-r.height/2)*str; cancelAnimationFrame(af); af=requestAnimationFrame(anim); });
+  wrap.addEventListener('mouseleave', () => { tx=0; ty=0; cancelAnimationFrame(af); af=requestAnimationFrame(anim); });
+});
+
+// ═══ DROPDOWN ═══
+function toggleDD(id) {
+  const wrap = document.getElementById(id);
+  const isOpen = wrap.classList.contains('open');
+  document.querySelectorAll('.dd-wrap.open').forEach(w => { w.classList.remove('open'); w.querySelector('.dd-trigger').classList.remove('open'); });
+  if (!isOpen) { wrap.classList.add('open'); wrap.querySelector('.dd-trigger').classList.add('open'); }
+}
+function selectDD(id, val, icon) {
+  const el = document.getElementById(id + '-val');
+  el.textContent = (icon ? icon + ' ' : '') + val;
+  const wrap = document.getElementById(id);
+  wrap.querySelectorAll('.dd-item').forEach(item => item.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+  setTimeout(() => { wrap.classList.remove('open'); wrap.querySelector('.dd-trigger').classList.remove('open'); }, 200);
+}
+document.addEventListener('click', e => {
+  if (!e.target.closest('.dd-wrap')) { document.querySelectorAll('.dd-wrap.open').forEach(w => { w.classList.remove('open'); w.querySelector('.dd-trigger').classList.remove('open'); }); }
+});
+
+// ═══ HERO PARALLAX ═══
+const heroEl = document.querySelector('.hero');
+if (heroEl) {
+  window.addEventListener('scroll', () => {
+    const s = window.scrollY, h = heroEl.offsetHeight;
+    if (s < h) {
+      const p = s / h;
+      heroEl.style.opacity = 1 - p * 0.7;
+    }
+  }, { passive: true });
+}
+</script>
+</body>
+</html>

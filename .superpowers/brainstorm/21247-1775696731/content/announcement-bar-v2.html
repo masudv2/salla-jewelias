@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glow — Announcement Bar (Modular)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --font-display: 'Instrument Serif', serif;
+    --font-body: 'Inter', sans-serif;
+    --font-accent: 'Space Grotesk', sans-serif;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+    --glow-rose: #C4836A;
+  }
+
+  [data-theme="light"] {
+    --bg: #FFFFFF; --bg-alt: #F5F3F0; --ink: #1A1A1A; --charcoal: #3D3D3D;
+    --stone: #7A7A7A; --mist: #B8B8B8; --cloud: #EBEBEB; --border: rgba(0,0,0,0.06);
+    --shadow-md: 0 8px 24px rgba(0,0,0,0.06);
+  }
+  [data-theme="dark"] {
+    --bg: #0E0E0E; --bg-alt: #161616; --ink: #F0ECE8; --charcoal: #CCCCCC;
+    --stone: #888; --mist: #555; --cloud: #2A2A2A; --border: rgba(255,255,255,0.06);
+    --shadow-md: 0 8px 24px rgba(0,0,0,0.3);
+  }
+
+  body {
+    font-family: var(--font-body); color: var(--ink); background: var(--bg);
+    -webkit-font-smoothing: antialiased; overflow-x: hidden;
+    transition: color 0.5s, background 0.5s;
+  }
+
+  /* ═══════════ CONFIGURATOR ═══════════ */
+  .cfg {
+    position: fixed; top: 12px; right: 12px; z-index: 300;
+    background: var(--bg); border: 1px solid var(--border); border-radius: 14px;
+    box-shadow: var(--shadow-md); padding: 18px 20px; width: 220px;
+    transition: background 0.5s, border 0.5s;
+  }
+  .cfg-title {
+    font-family: var(--font-accent); font-size: 0.58rem; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--stone);
+    margin-bottom: 12px;
+  }
+  .cfg-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 6px 0; border-bottom: 1px solid var(--border);
+  }
+  .cfg-row:last-child { border-bottom: none; }
+  .cfg-label {
+    font-family: var(--font-body); font-size: 0.68rem; color: var(--charcoal); font-weight: 500;
+  }
+  .cfg-toggle {
+    position: relative; width: 34px; height: 18px; border-radius: 20px;
+    background: var(--cloud); border: none; cursor: pointer; transition: background 0.3s;
+    flex-shrink: 0;
+  }
+  .cfg-toggle::after {
+    content: ''; position: absolute; top: 2px; left: 2px;
+    width: 14px; height: 14px; border-radius: 50%; background: #fff;
+    transition: transform 0.3s var(--ease-smooth); box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+  }
+  .cfg-toggle.on { background: var(--glow-rose); }
+  .cfg-toggle.on::after { transform: translateX(16px); }
+  .cfg-sep { height: 6px; }
+  .cfg-theme-row { display: flex; gap: 6px; margin-top: 6px; }
+  .cfg-theme-btn {
+    flex: 1; padding: 5px; border-radius: 8px; border: 1.5px solid var(--border);
+    background: transparent; cursor: pointer; font-family: var(--font-accent);
+    font-size: 0.55rem; font-weight: 500; letter-spacing: 0.06em;
+    color: var(--stone); transition: all 0.3s; text-transform: uppercase;
+  }
+  .cfg-theme-btn.on { border-color: var(--glow-rose); color: var(--glow-rose); background: rgba(196,131,106,0.06); }
+
+  /* ═══════════ ANNOUNCEMENT BAR ═══════════ */
+  .ann {
+    display: flex; align-items: stretch;
+    background: #1A1A1A; color: #FFFFFF;
+    position: relative; overflow: visible;
+    min-height: 40px; transition: background 0.4s;
+  }
+  .ann[data-bg="rose"] { background: var(--glow-rose); }
+
+  .ann-close {
+    position: absolute; top: 50%; right: 10px; transform: translateY(-50%);
+    width: 20px; height: 20px; display: flex; align-items: center; justify-content: center;
+    background: rgba(255,255,255,0.06); border: none; border-radius: 50%;
+    color: rgba(255,255,255,0.4); cursor: pointer; z-index: 10; transition: all 0.3s;
+  }
+  .ann-close:hover { background: rgba(255,255,255,0.12); color: #fff; }
+
+  .ann-left, .ann-right {
+    display: flex; align-items: center; flex-shrink: 0; padding: 0 16px;
+  }
+  .ann-left { border-right: 1px solid rgba(255,255,255,0.08); gap: 8px; }
+  .ann-right { border-left: 1px solid rgba(255,255,255,0.08); gap: 12px; padding-right: 40px; }
+  .ann-center { flex: 1; display: flex; align-items: center; overflow: hidden; min-width: 0; }
+  .ann-hidden { display: none !important; }
+
+  /* ── Typography ── */
+  .ann-text {
+    font-family: var(--font-accent); font-size: 0.6rem;
+    letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; white-space: nowrap;
+  }
+  .ann-dot {
+    width: 3px; height: 3px; border-radius: 50%;
+    background: var(--glow-rose); flex-shrink: 0; opacity: 0.7;
+  }
+  [data-bg="rose"] .ann-dot { background: #fff; }
+
+  /* ── Social Icons ── */
+  .ann-social { display: flex; align-items: center; gap: 2px; }
+  .ann-social a {
+    width: 26px; height: 26px; border-radius: 50%; display: flex;
+    align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.4); transition: all 0.3s; text-decoration: none;
+  }
+  .ann-social a:hover { color: #fff; background: rgba(255,255,255,0.08); }
+  .ann-social a svg { width: 13px; height: 13px; fill: currentColor; }
+
+  /* ── Locale dropdowns ── */
+  .ann-locale { display: flex; align-items: center; gap: 4px; }
+  .ann-locale-sep { width: 1px; height: 12px; background: rgba(255,255,255,0.1); margin: 0 4px; }
+
+  .ann-dd-wrap {
+    position: relative; display: inline-flex;
+  }
+  .ann-dd-trigger {
+    font-family: var(--font-accent); font-size: 0.56rem; font-weight: 500;
+    letter-spacing: 0.04em; color: rgba(255,255,255,0.5);
+    background: none; border: 1px solid transparent; border-radius: 6px;
+    cursor: pointer; display: flex; align-items: center; gap: 5px;
+    padding: 5px 10px; transition: all 0.3s; white-space: nowrap;
+  }
+  .ann-dd-trigger:hover { color: #fff; border-color: rgba(255,255,255,0.1); background: rgba(255,255,255,0.04); }
+  .ann-dd-trigger svg {
+    width: 10px; height: 10px; fill: none; stroke: currentColor; stroke-width: 2;
+    stroke-linecap: round; stroke-linejoin: round;
+    transition: transform 0.3s var(--ease-smooth);
+  }
+  .ann-dd-wrap.open .ann-dd-trigger svg { transform: rotate(180deg); }
+  .ann-dd-wrap.open .ann-dd-trigger { color: #fff; border-color: rgba(255,255,255,0.12); background: rgba(255,255,255,0.06); }
+
+  .ann-dd-menu {
+    position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%);
+    min-width: 120px; background: #1e1e1e; border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px; padding: 5px; box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+    opacity: 0; visibility: hidden; pointer-events: none;
+    transition: all 0.25s var(--ease-smooth); z-index: 200;
+  }
+  .ann-dd-wrap.open .ann-dd-menu {
+    opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0);
+  }
+  .ann-dd-menu::before {
+    content: ''; position: absolute; top: -5px; left: 50%; transform: translateX(-50%) rotate(45deg);
+    width: 8px; height: 8px; background: #1e1e1e; border-left: 1px solid rgba(255,255,255,0.08);
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .ann-dd-item {
+    display: block; width: 100%; padding: 7px 14px; border: none;
+    background: transparent; color: rgba(255,255,255,0.55);
+    font-family: var(--font-accent); font-size: 0.58rem; font-weight: 500;
+    letter-spacing: 0.03em; text-align: left; cursor: pointer;
+    border-radius: 6px; transition: all 0.2s;
+  }
+  .ann-dd-item:hover { background: rgba(255,255,255,0.06); color: #fff; }
+  .ann-dd-item.active { color: var(--glow-rose); }
+
+  /* ── Slider arrows ── */
+  .ann-arrow {
+    width: 26px; height: 26px; display: flex; align-items: center; justify-content: center;
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 50%; color: rgba(255,255,255,0.35); cursor: pointer;
+    flex-shrink: 0; transition: all 0.3s;
+  }
+  .ann-arrow:hover { color: #fff; background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.15); }
+  .ann-arrow svg { width: 11px; height: 11px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ── CTA Button ── */
+  .ann-btn {
+    font-family: var(--font-accent); font-size: 0.52rem; letter-spacing: 0.1em;
+    text-transform: uppercase; font-weight: 600; padding: 5px 16px; border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.25); background: transparent; color: #fff;
+    cursor: pointer; text-decoration: none; transition: all 0.35s var(--ease-smooth);
+    white-space: nowrap; position: relative; overflow: hidden; display: inline-flex; align-items: center;
+  }
+  .ann-btn::before {
+    content: ''; position: absolute; inset: 0;
+    background: rgba(255,255,255,0.1); transform: translateY(102%);
+    transition: transform 0.4s var(--ease-smooth);
+  }
+  .ann-btn:hover { border-color: rgba(255,255,255,0.45); }
+  .ann-btn:hover::before { transform: translateY(0); }
+  .ann-btn span { position: relative; z-index: 1; }
+
+  /* ── Marquee ── */
+  .ann-marquee { overflow: hidden; flex: 1; padding: 10px 0; }
+  .ann-marquee-track {
+    display: flex; width: max-content; animation: ann-mq 50s linear infinite;
+  }
+  .ann-marquee-track:hover { animation-play-state: paused; }
+  .ann-marquee-item { padding: 0 32px; display: flex; align-items: center; gap: 32px; white-space: nowrap; }
+  @keyframes ann-mq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ── Slider ── */
+  .ann-slider-wrap { display: flex; align-items: center; gap: 10px; flex: 1; padding: 0 12px; }
+  .ann-slider { position: relative; overflow: hidden; flex: 1; min-width: 0; }
+  .ann-slides { display: flex; transition: transform 0.55s var(--ease-smooth); }
+  .ann-slide {
+    min-width: 100%; display: flex; align-items: center; justify-content: center;
+    gap: 16px; padding: 10px 0; white-space: nowrap;
+  }
+
+  /* ── Countdown ── */
+  .ann-countdown { display: flex; align-items: center; gap: 3px; font-family: var(--font-accent); }
+  .ann-cd-block {
+    display: flex; flex-direction: column; align-items: center;
+    min-width: 30px; padding: 3px 5px;
+    background: rgba(255,255,255,0.06); border-radius: 5px;
+  }
+  .ann-cd-num { font-size: 0.72rem; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }
+  .ann-cd-label { font-size: 0.38rem; opacity: 0.4; text-transform: uppercase; letter-spacing: 0.12em; margin-top: 2px; }
+  .ann-cd-sep { font-size: 0.6rem; opacity: 0.2; margin: 0 1px; align-self: flex-start; margin-top: 4px; }
+
+  /* ═══════════ HEADER ═══════════ */
+  .glow-header {
+    background: var(--bg); border-bottom: 1px solid var(--border); transition: background 0.5s, border-color 0.5s;
+  }
+  .glow-header-inner {
+    max-width: 1280px; margin: 0 auto; padding: 0 40px; height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .glow-nav { display: flex; align-items: center; gap: 28px; }
+  .glow-nav a {
+    font-family: var(--font-accent); font-size: 0.7rem; font-weight: 500;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--charcoal);
+    text-decoration: none; position: relative; padding: 4px 0; transition: color 0.3s;
+  }
+  .glow-nav a::after {
+    content: ''; position: absolute; bottom: -2px; left: 0; width: 100%; height: 1.5px;
+    background: var(--glow-rose); transform: scaleX(0); transform-origin: right;
+    transition: transform 0.45s var(--ease-smooth);
+  }
+  .glow-nav a:hover { color: var(--ink); }
+  .glow-nav a:hover::after { transform: scaleX(1); transform-origin: left; }
+  .glow-logo {
+    font-family: var(--font-display); font-size: 1.6rem; font-weight: 400;
+    color: var(--ink); text-decoration: none; letter-spacing: -0.02em; transition: color 0.5s;
+  }
+  .glow-logo em { font-style: italic; color: var(--glow-rose); }
+  .glow-icons { display: flex; align-items: center; gap: 6px; }
+  .glow-icon-btn {
+    width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center;
+    justify-content: center; border: none; background: transparent; cursor: pointer;
+    color: var(--charcoal); font-size: 18px; transition: background 0.3s, color 0.3s; position: relative;
+  }
+  .glow-icon-btn:hover { background: var(--bg-alt); color: var(--ink); }
+  .glow-icon-btn .badge {
+    position: absolute; top: 3px; right: 3px; width: 15px; height: 15px; border-radius: 50%;
+    background: var(--glow-rose); color: #fff; font-family: var(--font-accent);
+    font-size: 0.45rem; font-weight: 600; display: flex; align-items: center; justify-content: center;
+  }
+
+  /* ═══════════ HERO PLACEHOLDER ═══════════ */
+  .hero-ph {
+    height: 520px; display: flex; align-items: center; justify-content: center;
+    background: var(--bg-alt); transition: background 0.5s; flex-direction: column; gap: 8px;
+  }
+  .hero-ph span {
+    font-family: var(--font-accent); font-size: 0.6rem; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--mist);
+  }
+  .hero-ph em { font-family: var(--font-display); font-size: 2rem; color: var(--stone); font-style: italic; }
+
+  @media (max-width: 768px) {
+    .ann-left, .ann-right { display: none !important; }
+    .glow-nav { display: none; }
+    .glow-header-inner { padding: 0 16px; }
+    .cfg { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════ CONFIGURATOR PANEL ═══════ -->
+<div class="cfg">
+  <div class="cfg-title">Configure Bar</div>
+  <div class="cfg-row">
+    <span class="cfg-label">Scrolling Text</span>
+    <button class="cfg-toggle on" data-feature="marquee" onclick="toggleF(this)"></button>
+  </div>
+  <div class="cfg-row">
+    <span class="cfg-label">Slider + Arrows</span>
+    <button class="cfg-toggle" data-feature="slider" onclick="toggleF(this)"></button>
+  </div>
+  <div class="cfg-row">
+    <span class="cfg-label">Social Icons</span>
+    <button class="cfg-toggle on" data-feature="social" onclick="toggleF(this)"></button>
+  </div>
+  <div class="cfg-row">
+    <span class="cfg-label">Language / Currency</span>
+    <button class="cfg-toggle on" data-feature="locale" onclick="toggleF(this)"></button>
+  </div>
+  <div class="cfg-row">
+    <span class="cfg-label">Countdown Timer</span>
+    <button class="cfg-toggle" data-feature="countdown" onclick="toggleF(this)"></button>
+  </div>
+  <div class="cfg-row">
+    <span class="cfg-label">CTA Button</span>
+    <button class="cfg-toggle on" data-feature="cta" onclick="toggleF(this)"></button>
+  </div>
+  <div class="cfg-row">
+    <span class="cfg-label">Close Button</span>
+    <button class="cfg-toggle on" data-feature="close" onclick="toggleF(this)"></button>
+  </div>
+  <div class="cfg-sep"></div>
+  <div class="cfg-title" style="margin-top:4px;">Bar Background</div>
+  <div class="cfg-theme-row">
+    <button class="cfg-theme-btn on" onclick="setBg('dark',this)">Dark</button>
+    <button class="cfg-theme-btn" onclick="setBg('rose',this)">Rose</button>
+  </div>
+  <div class="cfg-sep"></div>
+  <div class="cfg-title" style="margin-top:4px;">Page Theme</div>
+  <div class="cfg-theme-row">
+    <button class="cfg-theme-btn on" onclick="setTheme('light',this)">Light</button>
+    <button class="cfg-theme-btn" onclick="setTheme('dark',this)">Dark</button>
+  </div>
+</div>
+
+<!-- ═══════ ANNOUNCEMENT BAR ═══════ -->
+<div class="ann" id="ann" data-bg="dark">
+
+  <!-- Close -->
+  <div class="ann-close" data-part="close" onclick="document.getElementById('ann').style.display='none'" role="button" tabindex="0">
+    <svg width="9" height="9" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 1l8 8M9 1l-8 8"/></svg>
+  </div>
+
+  <!-- LEFT: Social Icons -->
+  <div class="ann-left" data-part="social">
+    <div class="ann-social">
+      <a href="#" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+      <a href="#" aria-label="Pinterest"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.372 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z"/></svg></a>
+      <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+      <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+    </div>
+  </div>
+
+  <!-- CENTER -->
+  <div class="ann-center">
+
+    <!-- Marquee mode (default ON) -->
+    <div class="ann-marquee" data-part="marquee">
+      <div class="ann-marquee-track">
+        <span class="ann-marquee-item"><span class="ann-text">Free Shipping on All Orders</span><span class="ann-dot"></span></span>
+        <span class="ann-marquee-item"><span class="ann-text">New Arrivals Just Dropped</span><span class="ann-dot"></span></span>
+        <span class="ann-marquee-item"><span class="ann-text">Summer Sale — Up to 40% Off</span><span class="ann-dot"></span></span>
+        <span class="ann-marquee-item"><span class="ann-text">Cruelty Free & 100% Organic</span><span class="ann-dot"></span></span>
+        <span class="ann-marquee-item"><span class="ann-text">Free Shipping on All Orders</span><span class="ann-dot"></span></span>
+        <span class="ann-marquee-item"><span class="ann-text">New Arrivals Just Dropped</span><span class="ann-dot"></span></span>
+        <span class="ann-marquee-item"><span class="ann-text">Summer Sale — Up to 40% Off</span><span class="ann-dot"></span></span>
+        <span class="ann-marquee-item"><span class="ann-text">Cruelty Free & 100% Organic</span><span class="ann-dot"></span></span>
+      </div>
+    </div>
+
+    <!-- Slider mode (default OFF) -->
+    <div class="ann-slider-wrap ann-hidden" data-part="slider">
+      <button class="ann-arrow" onclick="slideAnn(-1)" aria-label="Previous">
+        <svg viewBox="0 0 16 16"><path d="M10 3L5 8l5 5"/></svg>
+      </button>
+      <div class="ann-slider" id="ann-slider">
+        <div class="ann-slides">
+          <div class="ann-slide">
+            <span class="ann-text">Black Friday Access Unlocked</span>
+            <a href="#" class="ann-btn" data-part="cta"><span>Shop Now</span></a>
+          </div>
+          <div class="ann-slide">
+            <span class="ann-text">Take care of your beauty this spring</span>
+            <a href="#" class="ann-btn" data-part="cta"><span>Shop Now</span></a>
+          </div>
+          <div class="ann-slide">
+            <span class="ann-text">Free Returns Within 30 Days</span>
+            <a href="#" class="ann-btn" data-part="cta"><span>Learn More</span></a>
+          </div>
+        </div>
+      </div>
+      <button class="ann-arrow" onclick="slideAnn(1)" aria-label="Next">
+        <svg viewBox="0 0 16 16"><path d="M6 3l5 5-5 5"/></svg>
+      </button>
+    </div>
+
+    <!-- CTA in marquee mode -->
+    <div style="padding:0 16px; display:flex; align-items:center; flex-shrink:0;" data-part="cta-marquee">
+      <a href="#" class="ann-btn"><span>Shop Now</span></a>
+    </div>
+  </div>
+
+  <!-- RIGHT: Countdown + Locale -->
+  <div class="ann-right" id="ann-right">
+
+    <!-- Countdown -->
+    <div class="ann-countdown ann-hidden" data-part="countdown">
+      <div class="ann-cd-block"><span class="ann-cd-num" data-cd="d">02</span><span class="ann-cd-label">Days</span></div>
+      <span class="ann-cd-sep">:</span>
+      <div class="ann-cd-block"><span class="ann-cd-num" data-cd="h">14</span><span class="ann-cd-label">Hrs</span></div>
+      <span class="ann-cd-sep">:</span>
+      <div class="ann-cd-block"><span class="ann-cd-num" data-cd="m">38</span><span class="ann-cd-label">Min</span></div>
+      <span class="ann-cd-sep">:</span>
+      <div class="ann-cd-block"><span class="ann-cd-num" data-cd="s">05</span><span class="ann-cd-label">Sec</span></div>
+    </div>
+
+    <!-- Locale -->
+    <div class="ann-locale" data-part="locale">
+      <div class="ann-dd-wrap">
+        <div class="ann-dd-trigger" onclick="this.parentElement.classList.toggle('open')">
+          English
+          <svg viewBox="0 0 12 12"><path d="M3 4.5l3 3 3-3"/></svg>
+        </div>
+        <div class="ann-dd-menu">
+          <div class="ann-dd-item active" onclick="selectDD(this,'English')">English</div>
+          <div class="ann-dd-item" onclick="selectDD(this,'العربية')">العربية</div>
+        </div>
+      </div>
+      <span class="ann-locale-sep"></span>
+      <div class="ann-dd-wrap">
+        <div class="ann-dd-trigger" onclick="this.parentElement.classList.toggle('open')">
+          SAR (﷼)
+          <svg viewBox="0 0 12 12"><path d="M3 4.5l3 3 3-3"/></svg>
+        </div>
+        <div class="ann-dd-menu">
+          <div class="ann-dd-item active" onclick="selectDD(this,'SAR (﷼)')">SAR (﷼)</div>
+          <div class="ann-dd-item" onclick="selectDD(this,'USD ($)')">USD ($)</div>
+          <div class="ann-dd-item" onclick="selectDD(this,'EUR (€)')">EUR (€)</div>
+          <div class="ann-dd-item" onclick="selectDD(this,'AED (د.إ)')">AED (د.إ)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ HEADER ═══════ -->
+<header class="glow-header">
+  <div class="glow-header-inner">
+    <nav class="glow-nav">
+      <a href="#">Shop</a><a href="#">Collections</a><a href="#">Routines</a><a href="#">About</a>
+    </nav>
+    <a href="#" class="glow-logo">Glow<em>.</em></a>
+    <div class="glow-icons">
+      <button class="glow-icon-btn"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg></button>
+      <button class="glow-icon-btn"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+      <button class="glow-icon-btn"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
+      <button class="glow-icon-btn"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span class="badge">3</span></button>
+    </div>
+  </div>
+</header>
+
+<div class="hero-ph"><span>Hero Section</span><em>Coming next</em></div>
+
+<script>
+const state = { marquee:true, slider:false, social:true, locale:true, countdown:false, cta:true, close:true };
+
+function toggleF(btn) {
+  const f = btn.dataset.feature;
+  btn.classList.toggle('on');
+  state[f] = btn.classList.contains('on');
+  if (f === 'marquee' && state.marquee) { state.slider = false; sync('slider', false); }
+  if (f === 'slider' && state.slider) { state.marquee = false; sync('marquee', false); }
+  render();
+}
+function sync(f, v) {
+  const b = document.querySelector(`.cfg-toggle[data-feature="${f}"]`);
+  if (b) { b.classList.toggle('on', v); state[f] = v; }
+}
+function render() {
+  q('[data-part="marquee"]').forEach(el => el.classList.toggle('ann-hidden', !state.marquee));
+  q('[data-part="slider"]').forEach(el => el.classList.toggle('ann-hidden', !state.slider));
+  q('[data-part="social"]').forEach(el => el.classList.toggle('ann-hidden', !state.social));
+  q('[data-part="locale"]').forEach(el => el.classList.toggle('ann-hidden', !state.locale));
+  q('[data-part="countdown"]').forEach(el => el.classList.toggle('ann-hidden', !state.countdown));
+  q('[data-part="close"]').forEach(el => el.classList.toggle('ann-hidden', !state.close));
+  q('[data-part="cta-marquee"]').forEach(el => el.style.display = (state.cta && state.marquee) ? 'flex' : 'none');
+  q('.ann-slide [data-part="cta"]').forEach(el => el.style.display = state.cta ? '' : 'none');
+
+  const hasLeft = state.social;
+  const hasRight = state.locale || state.countdown;
+  const al = document.querySelector('.ann-left');
+  const ar = document.getElementById('ann-right');
+  if (al) al.classList.toggle('ann-hidden', !hasLeft);
+  if (ar) ar.classList.toggle('ann-hidden', !hasRight);
+}
+function q(s) { return document.querySelectorAll(s); }
+
+// Dropdown
+function selectDD(item, text) {
+  const menu = item.closest('.ann-dd-menu');
+  menu.querySelectorAll('.ann-dd-item').forEach(i => i.classList.remove('active'));
+  item.classList.add('active');
+  const trigger = item.closest('.ann-dd-wrap').querySelector('.ann-dd-trigger');
+  const svg = trigger.querySelector('svg').outerHTML;
+  trigger.innerHTML = text + ' ' + svg;
+  item.closest('.ann-dd-wrap').classList.remove('open');
+}
+document.addEventListener('click', e => {
+  if (!e.target.closest('.ann-dd-wrap')) {
+    document.querySelectorAll('.ann-dd-wrap.open').forEach(w => w.classList.remove('open'));
+  }
+});
+
+// Slider
+let sIdx = 0, autoS;
+function slideAnn(d) {
+  const sl = document.querySelector('#ann-slider .ann-slides');
+  const n = sl.children.length;
+  sIdx = (sIdx + d + n) % n;
+  sl.style.transform = `translateX(-${sIdx*100}%)`;
+  clearInterval(autoS); startAuto();
+}
+function startAuto() {
+  autoS = setInterval(() => {
+    const sl = document.querySelector('#ann-slider .ann-slides');
+    if (!sl) return;
+    sIdx = (sIdx + 1) % sl.children.length;
+    sl.style.transform = `translateX(-${sIdx*100}%)`;
+  }, 4500);
+}
+startAuto();
+
+// Countdown
+const endT = Date.now() + (2*86400000 + 14*3600000 + 38*60000 + 5000);
+function updateCD() {
+  const d = Math.max(0, endT - Date.now());
+  const pad = n => String(n).padStart(2,'0');
+  q('[data-cd="d"]').forEach(e => e.textContent = pad(Math.floor(d/86400000)));
+  q('[data-cd="h"]').forEach(e => e.textContent = pad(Math.floor((d%86400000)/3600000)));
+  q('[data-cd="m"]').forEach(e => e.textContent = pad(Math.floor((d%3600000)/60000)));
+  q('[data-cd="s"]').forEach(e => e.textContent = pad(Math.floor((d%60000)/1000)));
+}
+setInterval(updateCD,1000); updateCD();
+
+function setBg(m, btn) {
+  document.getElementById('ann').dataset.bg = m;
+  btn.parentElement.querySelectorAll('.cfg-theme-btn').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+}
+function setTheme(m, btn) {
+  document.documentElement.dataset.theme = m;
+  btn.parentElement.querySelectorAll('.cfg-theme-btn').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+}
+render();
+</script>
+</body>
+</html>
