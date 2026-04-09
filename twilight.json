@@ -253,6 +253,24 @@
             "minimum": 20,
             "maximum": 80,
             "icon": "sicon-ruler"
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "تفعيل قائمة المزيد عند امتلاء القائمة",
+            "id": "enable_more_menu",
+            "format": "switch",
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-pin",
+            "label": "شريط تنقل ذكي (يختفي عند التمرير لأسفل)",
+            "id": "header_nav_smart_sticky",
+            "format": "switch",
+            "value": true,
+            "selected": true
         }
     ],
     "components": [

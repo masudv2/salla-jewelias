@@ -12,8 +12,16 @@
   --jw-amber: #C6975B;
   --jw-amber-soft: #DDB87E;
   --jw-blush: #E8D5C4;
+  /* Glow tokens — Health & Beauty guide */
+  --glow-ink: #1a1a1a;
+  --glow-rose: #c4836a;
+  --glow-rose-soft: #d9a892;
+  --glow-cloud: #ebebeb;
+  --glow-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.06);
+  --glow-shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.08);
   --jw-font-serif: 'DM Serif Display', serif;
   --jw-font-sans: 'Outfit', sans-serif;
+  --jw-font-nav: 'Space Grotesk', 'Outfit', sans-serif;
   --jw-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
   --jw-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --jw-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -217,16 +225,27 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 /* ═══════════════════════════════════════════
-   HEADER
+   HEADER — Glow nav (Space Grotesk, rose hover, frosted dropdowns)
    ═══════════════════════════════════════════ */
 .jw-header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--jw-fog);
+  border-bottom: 1px solid var(--glow-cloud);
+  transition: transform 0.38s var(--jw-ease-out), box-shadow 0.35s var(--jw-ease-out), border-color 0.3s ease;
+}
+
+.jw-header.jw-header--elevated {
+  box-shadow: var(--glow-shadow-md);
+  border-bottom-color: transparent;
+}
+
+.jw-header.jw-header--hidden {
+  transform: translateY(-100%);
+  pointer-events: none;
 }
 
 .jw-header-inner {
@@ -236,63 +255,83 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  height: 72px;
+  min-height: 72px;
+  gap: 16px;
 }
 
-.jw-nav {
+.jw-header__left {
   display: flex;
-  gap: 36px;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.jw-header__nav-wrap {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+}
+
+.jw-header__nav-wrap custom-main-menu {
+  display: block;
+  width: 100%;
+  min-width: 0;
 }
 
 .jw-nav-right {
+  display: flex;
+  align-items: center;
   justify-content: flex-end;
-}
-
-.jw-nav-link {
-  font-size: 0.78rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-weight: 400;
-  color: var(--jw-steel);
-  transition: color 0.3s;
-}
-
-.jw-nav-link:hover {
-  color: var(--jw-ink);
+  gap: 4px;
 }
 
 .jw-logo {
+  justify-self: center;
   text-align: center;
   font-family: var(--jw-font-serif);
-  font-size: 1.8rem;
-  color: var(--jw-ink);
-  letter-spacing: 0.04em;
+  font-size: 1.75rem;
+  color: var(--glow-ink);
+  letter-spacing: 0.03em;
+  line-height: 1;
+}
+
+.jw-logo-text {
+  display: inline-block;
+  max-width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .jw-logo img {
   height: 36px;
   width: auto;
+  margin: 0 auto;
 }
 
 .jw-icon-btn {
   position: relative;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-  transition: background 0.3s;
+  transition: background 0.3s var(--jw-ease-out), color 0.25s ease, transform 0.35s var(--jw-spring);
 }
 
 .jw-icon-btn:hover {
   background: var(--jw-snow);
 }
 
+.jw-icon-btn:active {
+  transform: scale(0.94);
+}
+
 .jw-icon-btn svg,
 .jw-icon-btn i {
-  font-size: 19px;
-  color: var(--jw-ink);
+  font-size: 20px;
+  color: var(--glow-ink);
 }
 
 .jw-icon-btn .jw-badge {
@@ -301,7 +340,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   right: 2px;
   min-width: 16px;
   height: 16px;
-  background: var(--jw-amber);
+  background: var(--glow-rose);
   border-radius: 50%;
   font-size: 0.55rem;
   color: var(--jw-white);
@@ -312,7 +351,133 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   padding: 0 4px;
 }
 
-/* Mobile menu toggle */
+.jw-header .jw-nav-right salla-user-menu {
+  display: flex;
+  align-items: center;
+}
+
+/* Desktop main menu — inside custom-main-menu */
+@media (min-width: 1024px) {
+  .jw-header .main-menu {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 28px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .jw-header .main-menu > li.root-level {
+    position: relative;
+  }
+
+  .jw-header .main-menu > li.root-level > a {
+    font-family: var(--jw-font-nav);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--jw-steel);
+    padding: 10px 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.3s var(--jw-ease-out);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .jw-header .main-menu > li.root-level > a:hover,
+  .jw-header .main-menu > li.root-level:hover > a {
+    color: var(--glow-rose);
+  }
+
+  .jw-header .main-menu > li.has-children.root-level > a::after {
+    font-family: 'sallaicons';
+    content: '\e96e';
+    font-size: 0.65rem;
+    opacity: 0.45;
+    transition: transform 0.3s var(--jw-ease-out), opacity 0.2s;
+  }
+
+  .jw-header .main-menu > li.has-children.root-level:hover > a::after {
+    opacity: 0.85;
+    transform: scaleY(-1);
+  }
+
+  .jw-header .main-menu .sub-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 220px;
+    padding: 12px 0;
+    margin: 0;
+    list-style: none;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 16px;
+    box-shadow: var(--glow-shadow-lg);
+    border: 1px solid rgba(235, 235, 235, 0.9);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px) scale(0.98);
+    transition: opacity 0.3s var(--jw-ease-out), visibility 0.3s, transform 0.32s var(--jw-ease-out);
+    z-index: 50;
+  }
+
+  [dir='rtl'] .jw-header .main-menu .sub-menu {
+    left: auto;
+    right: 0;
+  }
+
+  .jw-header .main-menu li:hover > .sub-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+  }
+
+  .jw-header .main-menu .sub-menu a {
+    display: block;
+    padding: 10px 20px;
+    font-family: var(--jw-font-sans);
+    font-size: 0.88rem;
+    font-weight: 400;
+    color: var(--jw-graphite);
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .jw-header .main-menu .sub-menu a:hover {
+    background: rgba(196, 131, 106, 0.08);
+    color: var(--glow-rose);
+  }
+
+  .jw-header .main-menu .sub-menu .sub-menu {
+    top: -12px;
+    left: calc(100% - 4px);
+  }
+
+  [dir='rtl'] .jw-header .main-menu .sub-menu .sub-menu {
+    left: auto;
+    right: calc(100% - 4px);
+  }
+
+  .jw-header .main-menu .mega-menu.sub-menu {
+    left: 0;
+    right: auto;
+    width: min(920px, 85vw);
+    display: flex;
+    padding: 20px;
+    gap: 16px;
+  }
+
+  [dir='rtl'] .jw-header .main-menu .mega-menu.sub-menu {
+    right: 0;
+    left: auto;
+  }
+}
+
 .jw-menu-toggle {
   display: none;
 }
@@ -958,7 +1123,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .jw-hero-text { padding: 60px 32px; }
   .jw-hero-image { height: 50vh; }
   .jw-hero-float { display: none; }
-  .jw-header-inner { padding: 0 24px; }
+  .jw-header-inner {
+    padding: 0 28px;
+  }
   .jw-features { grid-template-columns: repeat(2, 1fr); }
   .jw-cats-grid, .jw-products { grid-template-columns: repeat(2, 1fr); }
   .jw-section { padding: 72px 32px; }
@@ -966,15 +1133,23 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .jw-nl { margin: 0 32px 32px; }
 }
 
+@media (max-width: 1023px) {
+  .jw-header__nav-wrap {
+    display: none;
+  }
+
+  .jw-menu-toggle {
+    display: inline-flex;
+  }
+}
+
 @media (max-width: 768px) {
   .jw-header-inner {
     grid-template-columns: auto 1fr auto;
     padding: 0 16px;
-    height: 60px;
+    min-height: 60px;
   }
-  .jw-nav:not(.jw-nav-right) { display: none; }
-  .jw-menu-toggle { display: flex; }
-  .jw-logo { font-size: 1.5rem; }
+  .jw-logo { font-size: 1.35rem; }
   .jw-hero-text { padding: 40px 20px; }
   .jw-hero-title { font-size: 2.2rem; }
   .jw-hero-desc { font-size: 0.92rem; }

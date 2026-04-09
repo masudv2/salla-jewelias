@@ -120,52 +120,51 @@
 </div>
 {% endif %}
 
-{# ═══ Header ═══ #}
-<header class="jw-header">
+{# ═══ Header — Glow layout: nav left · logo center · actions right ═══ #}
+<header class="jw-header" id="jw-header">
   <div class="jw-header-inner">
-    <nav class="jw-nav">
-      <salla-menu source="header" display="default"></salla-menu>
-    </nav>
+    <div class="jw-header__left">
+      <a href="#mobile-menu" class="jw-icon-btn jw-menu-toggle" aria-label="{{ trans('blocks.header.main_menu') }}">
+        <i class="sicon-menu"></i>
+      </a>
+      <div class="jw-header__nav-wrap">
+        <custom-main-menu></custom-main-menu>
+      </div>
+    </div>
 
     <a href="{{ store.url }}" class="jw-logo">
       {% if store.logo %}
         <img src="{{ store.logo }}" alt="{{ store.name }}" style="height:{{ theme.settings.get('logo_height', '36') }}px;">
       {% else %}
-        {{ store.name }}
+        <span class="jw-logo-text">{{ store.name }}</span>
       {% endif %}
     </a>
+    {% if is_page('index') %}
+    <h1 class="sr-only">{{ store.name }}</h1>
+    {% endif %}
 
-    <nav class="jw-nav jw-nav-right">
-      {# Search #}
-      <button class="jw-icon-btn" onclick="salla.event.dispatch('search::open')">
+    <nav class="jw-nav jw-nav-right" aria-label="{{ trans('blocks.header.main_menu') }}">
+      <button type="button" class="jw-icon-btn" onclick="salla.event.dispatch('search::open')" aria-label="{{ trans('blocks.header.search') }}">
         <i class="sicon-search"></i>
       </button>
 
-      {# Wishlist #}
-      <a href="{{ link('/wishlist') }}" class="jw-icon-btn">
+      <a href="{{ link('/wishlist') }}" class="jw-icon-btn" aria-label="{{ trans('blocks.header.wishlist') }}">
         <i class="sicon-heart"></i>
       </a>
 
-      {# User #}
       {% if user.type == 'user' %}
-        <salla-user-menu></salla-user-menu>
+        <salla-user-menu avatar-only show-header></salla-user-menu>
       {% else %}
-        <button class="jw-icon-btn" onclick="salla.event.dispatch('login::open')">
+        <button type="button" class="jw-icon-btn" onclick="salla.event.dispatch('login::open')" aria-label="{{ trans('blocks.header.account') }}">
           <i class="sicon-user"></i>
         </button>
       {% endif %}
 
-      {# Cart #}
       <salla-cart-summary widget-only>
-        <button slot="widget" class="jw-icon-btn" id="jw-cart-btn">
+        <button slot="widget" type="button" class="jw-icon-btn" id="jw-cart-btn" aria-label="{{ trans('blocks.header.cart') }}">
           <i class="sicon-shopping-bag"></i>
         </button>
       </salla-cart-summary>
-
-      {# Mobile menu #}
-      <button class="jw-icon-btn jw-menu-toggle" onclick="salla.event.dispatch('menu::open')">
-        <i class="sicon-menu"></i>
-      </button>
     </nav>
   </div>
 </header>

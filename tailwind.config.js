@@ -18,6 +18,8 @@ module.exports = {
             sans: ['Outfit', 'var(--font-main)', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
             serif: ['DM Serif Display', 'serif'],
             primary: 'var(--font-main)',
+            /* Glow design system — nav / UI accent */
+            nav: ['"Space Grotesk"', 'Outfit', 'var(--font-main)', 'sans-serif'],
         },
         extend: {
             colors: {

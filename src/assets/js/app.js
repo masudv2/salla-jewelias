@@ -16,6 +16,7 @@ class App extends AppHelpers {
     this.initiateMobileMenu();
     this.initAddToCart();
     this.initAnnouncementBar();
+    this.initJeweliasHeader();
     this.initiateDropdowns();
     this.initiateModals();
     this.initiateCollapse();
@@ -309,6 +310,51 @@ isElementLoaded(selector){
       update();
       setInterval(update, 1000);
     }
+  }
+
+  initJeweliasHeader() {
+    const header = document.getElementById('jw-header');
+    if (!header) return;
+
+    const smart = window.header_nav_smart_sticky !== false && window.header_nav_smart_sticky !== 'false';
+    if (!smart) {
+      const onScrollSimple = () => {
+        header.classList.toggle('jw-header--elevated', window.scrollY > 12);
+      };
+      onScrollSimple();
+      window.addEventListener('scroll', onScrollSimple, { passive: true });
+      return;
+    }
+
+    let lastY = window.scrollY || 0;
+    let ticking = false;
+
+    const update = () => {
+      const y = window.scrollY || 0;
+      header.classList.toggle('jw-header--elevated', y > 16);
+
+      const announce = document.getElementById('jw-announce');
+      const topThreshold = (announce && announce.offsetParent !== null ? announce.offsetHeight : 0) + 8;
+
+      if (y <= topThreshold) {
+        header.classList.remove('jw-header--hidden');
+      } else if (y > lastY + 4) {
+        header.classList.add('jw-header--hidden');
+      } else if (y < lastY - 4) {
+        header.classList.remove('jw-header--hidden');
+      }
+
+      lastY = y;
+      ticking = false;
+    };
+
+    update();
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    }, { passive: true });
   }
 
   initAddToCart() {

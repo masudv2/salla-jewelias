@@ -70,6 +70,8 @@
     <script data-cfasync="false">
         window.can_access_wallet = {{ user.can_access_wallet | json_encode }}
         window.enable_add_product_toast = "{{ theme.settings.get('enable_add_product_toast', true) }}"
+        window.enable_more_menu = "{{ theme.settings.get('enable_more_menu', true) }}"
+        window.header_nav_smart_sticky = {{ theme.settings.get('header_nav_smart_sticky', true)|json_encode }}
     </script>
     
     {% hook 'head:start' %}
@@ -77,7 +79,7 @@
     {% block styles %}{% endblock %}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@200;300;400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ 'app.css' | asset }}">
     <link rel="stylesheet" href="{{ theme.font.path|cdn }}"/>
     <link rel="stylesheet" href="{{ 'fonts/sallaicons.css'|cdn }}"/>
