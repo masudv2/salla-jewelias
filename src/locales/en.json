@@ -5,7 +5,9 @@
       "search": "Search",
       "wishlist": "Wishlist",
       "cart": "Cart",
-      "account": "Account"
+      "account": "Account",
+      "announce_prev": "Previous announcement",
+      "announce_next": "Next announcement"
     },
     "home": {
       "shop_now": "Shop Now",
@@ -32,20 +34,7 @@
       "quick_view": "Quick View",
       "compare": "Compare",
       "wishlist_add": "Add to Wishlist",
-      "no_products": "No products found",
-      "free_shipping": "Free Shipping",
-      "lifetime_warranty": "Lifetime Warranty",
-      "ethically_sourced": "Ethically Sourced",
-      "expert_consult": "Expert Consultation",
-      "latest_products": "Latest Products",
-      "new_collection": "New Collection",
-      "just_arrived": "Just Arrived",
-      "limited_edition": "Limited Edition",
-      "explore_now": "Explore Now",
-      "stay_connected": "Stay Connected",
-      "join_family": "Join the Jewelias Family",
-      "reviews": "Reviews",
-      "what_clients_say": "What Our Clients Say"
+      "no_products": "No products found"
     },
     "footer": {
       "pages_links": "Quick Links",

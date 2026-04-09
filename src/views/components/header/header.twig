@@ -31,7 +31,7 @@
 
   {# Close button #}
   {% if show_close %}
-  <button class="jw-announce-close" id="jw-announce-close" aria-label="{{ 'إغلاق'|trans }}">
+  <button class="jw-announce-close" id="jw-announce-close" aria-label="{{ trans('common.elements.close') }}">
     <svg width="9" height="9" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 1l8 8M9 1l-8 8"/></svg>
   </button>
   {% endif %}
@@ -71,7 +71,7 @@
       </div>
     {% else %}
       {# Slider mode #}
-      <button class="jw-announce-arrow" id="jw-ann-prev" aria-label="{{ 'السابق'|trans }}">
+      <button class="jw-announce-arrow" id="jw-ann-prev" aria-label="{{ trans('blocks.header.announce_prev') }}">
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3L5 8l5 5"/></svg>
       </button>
       <div class="jw-announce-slider" id="jw-ann-slider">
@@ -83,7 +83,7 @@
           {% endfor %}
         </div>
       </div>
-      <button class="jw-announce-arrow" id="jw-ann-next" aria-label="{{ 'التالي'|trans }}">
+      <button class="jw-announce-arrow" id="jw-ann-next" aria-label="{{ trans('blocks.header.announce_next') }}">
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5"/></svg>
       </button>
     {% endif %}

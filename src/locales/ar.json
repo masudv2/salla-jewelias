@@ -5,7 +5,9 @@
       "search": "بحث",
       "wishlist": "المفضلة",
       "cart": "السلة",
-      "account": "حسابي"
+      "account": "حسابي",
+      "announce_prev": "الإعلان السابق",
+      "announce_next": "الإعلان التالي"
     },
     "home": {
       "shop_now": "تسوق الآن",
@@ -32,20 +34,7 @@
       "quick_view": "عرض سريع",
       "compare": "مقارنة",
       "wishlist_add": "أضف للمفضلة",
-      "no_products": "لا توجد منتجات",
-      "free_shipping": "شحن مجاني",
-      "lifetime_warranty": "ضمان مدى الحياة",
-      "ethically_sourced": "مصادر أخلاقية",
-      "expert_consult": "استشارة خبير",
-      "latest_products": "أحدث المنتجات",
-      "new_collection": "مجموعة جديدة",
-      "just_arrived": "وصل حديثاً",
-      "limited_edition": "إصدار محدود",
-      "explore_now": "استكشف الآن",
-      "stay_connected": "ابقَ على تواصل",
-      "join_family": "انضم لعائلة جوالياس",
-      "reviews": "التقييمات",
-      "what_clients_say": "ماذا يقول عملاؤنا"
+      "no_products": "لا توجد منتجات"
     },
     "footer": {
       "pages_links": "روابط سريعة",
