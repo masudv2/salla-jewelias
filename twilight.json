@@ -21,10 +21,7 @@
             "id": "announce_bg",
             "type": "string",
             "format": "color",
-            "label": {
-                "en": "Announcement Bar Background",
-                "ar": "خلفية شريط الإعلان"
-            },
+            "label": "خلفية شريط الإعلان",
             "value": "#0D0D0D",
             "icon": "sicon-color-palette"
         },
@@ -32,10 +29,7 @@
             "id": "announce_color",
             "type": "string",
             "format": "color",
-            "label": {
-                "en": "Announcement Bar Text Color",
-                "ar": "لون نص شريط الإعلان"
-            },
+            "label": "لون نص شريط الإعلان",
             "value": "#DDB87E",
             "icon": "sicon-color-palette"
         },
@@ -43,10 +37,7 @@
             "id": "announce_dot_color",
             "type": "string",
             "format": "color",
-            "label": {
-                "en": "Announcement Dot Color",
-                "ar": "لون نقاط شريط الإعلان"
-            },
+            "label": "لون نقاط شريط الإعلان",
             "value": "#C6975B",
             "icon": "sicon-color-palette"
         },
@@ -54,10 +45,7 @@
             "id": "announce_text_1",
             "type": "string",
             "format": "text",
-            "label": {
-                "en": "Announcement Text 1",
-                "ar": "نص الإعلان 1"
-            },
+            "label": "نص الإعلان 1",
             "value": "Free shipping on orders over SAR 500",
             "multilanguage": true,
             "icon": "sicon-format-text-alt"
@@ -66,10 +54,7 @@
             "id": "announce_text_2",
             "type": "string",
             "format": "text",
-            "label": {
-                "en": "Announcement Text 2",
-                "ar": "نص الإعلان 2"
-            },
+            "label": "نص الإعلان 2",
             "value": "Lifetime warranty on all pieces",
             "multilanguage": true,
             "icon": "sicon-format-text-alt"
@@ -78,10 +63,7 @@
             "id": "announce_text_3",
             "type": "string",
             "format": "text",
-            "label": {
-                "en": "Announcement Text 3",
-                "ar": "نص الإعلان 3"
-            },
+            "label": "نص الإعلان 3",
             "value": "Use code JEWEL25 for 25% off",
             "multilanguage": true,
             "icon": "sicon-format-text-alt"
@@ -90,10 +72,7 @@
             "id": "announce_text_4",
             "type": "string",
             "format": "text",
-            "label": {
-                "en": "Announcement Text 4",
-                "ar": "نص الإعلان 4"
-            },
+            "label": "نص الإعلان 4",
             "value": "Handcrafted with love",
             "multilanguage": true,
             "icon": "sicon-format-text-alt"
@@ -102,10 +81,7 @@
             "id": "logo_height",
             "type": "number",
             "format": "number",
-            "label": {
-                "en": "Logo Height (px)",
-                "ar": "ارتفاع الشعار (بكسل)"
-            },
+            "label": "ارتفاع الشعار (بكسل)",
             "value": 36,
             "minimum": 20,
             "maximum": 80,
@@ -123,19 +99,10 @@
             "path": "home.hero-slideshow",
             "fields": [
                 {
-                    "type": "static",
-                    "format": "description",
-                    "id": "static-desc",
-                    "value": "<div><h6>Hero Section — القسم الرئيسي للصفحة الرئيسية</h6></div>"
-                },
-                {
                     "type": "string",
                     "format": "text",
                     "id": "tag_text",
-                    "label": {
-                        "en": "Tag Text (above title)",
-                        "ar": "النص العلوي"
-                    },
+                    "label": "النص العلوي",
                     "value": "Summer 2026",
                     "multilanguage": true,
                     "icon": "sicon-tag",
@@ -145,10 +112,7 @@
                     "type": "string",
                     "format": "textarea",
                     "id": "title",
-                    "label": {
-                        "en": "Hero Title (HTML allowed, use <em> for accent color)",
-                        "ar": "العنوان الرئيسي"
-                    },
+                    "label": "العنوان الرئيسي",
                     "value": "Where Art Meets <em>Elegance</em>",
                     "multilanguage": true,
                     "icon": "sicon-format-text-alt",
@@ -158,11 +122,8 @@
                     "type": "string",
                     "format": "textarea",
                     "id": "description",
-                    "label": {
-                        "en": "Hero Description",
-                        "ar": "وصف القسم الرئيسي"
-                    },
-                    "value": "Discover handcrafted jewelry designed for those who appreciate the extraordinary. Each piece tells a unique story of artistry.",
+                    "label": "وصف القسم الرئيسي",
+                    "value": "Discover handcrafted jewelry designed for those who appreciate the extraordinary.",
                     "multilanguage": true,
                     "icon": "sicon-typography"
                 },
@@ -170,22 +131,16 @@
                     "type": "string",
                     "format": "image",
                     "id": "hero_image",
-                    "label": {
-                        "en": "Hero Image (right side)",
-                        "ar": "صورة القسم الرئيسي"
-                    },
-                    "value": null,
+                    "label": "صورة القسم",
+                    "value": "",
                     "icon": "sicon-image",
-                    "description": "* Recommended size: 1200×900px"
+                    "description": "* المقاس المناسب: 1200×900 بكسل"
                 },
                 {
                     "type": "string",
                     "format": "color",
                     "id": "hero_bg_color",
-                    "label": {
-                        "en": "Image Background Color (fallback)",
-                        "ar": "لون الخلفية"
-                    },
+                    "label": "لون خلفية الصورة",
                     "value": "#E8D5C4",
                     "icon": "sicon-color-palette"
                 },
@@ -193,62 +148,24 @@
                     "type": "string",
                     "format": "text",
                     "id": "btn_text",
-                    "label": {
-                        "en": "Primary Button Text",
-                        "ar": "نص الزر الرئيسي"
-                    },
+                    "label": "نص الزر الأول",
                     "value": "Shop Collection",
                     "multilanguage": true,
                     "icon": "sicon-link"
                 },
                 {
-                    "type": "items",
-                    "format": "variable-list",
+                    "type": "string",
+                    "format": "text",
                     "id": "btn_link",
-                    "label": {
-                        "en": "Primary Button Link",
-                        "ar": "رابط الزر الرئيسي"
-                    },
-                    "value": null,
-                    "icon": "sicon-link",
-                    "searchable": true,
-                    "source": "custom",
-                    "sources": [
-                        {
-                            "label": "منتج",
-                            "key": "products",
-                            "value": "products"
-                        },
-                        {
-                            "label": "تصنيف",
-                            "key": "categories",
-                            "value": "categories"
-                        },
-                        {
-                            "label": "ماركة",
-                            "key": "brands",
-                            "value": "brands"
-                        },
-                        {
-                            "label": "صفحة",
-                            "key": "pages",
-                            "value": "pages"
-                        },
-                        {
-                            "label": "رابط خارجي",
-                            "key": "custom",
-                            "value": "custom"
-                        }
-                    ]
+                    "label": "رابط الزر الأول",
+                    "value": "#",
+                    "icon": "sicon-link"
                 },
                 {
                     "type": "string",
                     "format": "color",
                     "id": "btn_bg",
-                    "label": {
-                        "en": "Primary Button Color",
-                        "ar": "لون الزر الرئيسي"
-                    },
+                    "label": "لون الزر الأول",
                     "value": "#0D0D0D",
                     "icon": "sicon-color-palette"
                 },
@@ -256,10 +173,7 @@
                     "type": "boolean",
                     "format": "switch",
                     "id": "show_btn2",
-                    "label": {
-                        "en": "Show Secondary Button",
-                        "ar": "إظهار الزر الثاني"
-                    },
+                    "label": "إظهار الزر الثاني",
                     "value": true,
                     "selected": true,
                     "icon": "sicon-toggle-off"
@@ -268,62 +182,24 @@
                     "type": "string",
                     "format": "text",
                     "id": "btn2_text",
-                    "label": {
-                        "en": "Secondary Button Text",
-                        "ar": "نص الزر الثاني"
-                    },
+                    "label": "نص الزر الثاني",
                     "value": "Our Story",
                     "multilanguage": true,
                     "icon": "sicon-link"
                 },
                 {
-                    "type": "items",
-                    "format": "variable-list",
+                    "type": "string",
+                    "format": "text",
                     "id": "btn2_link",
-                    "label": {
-                        "en": "Secondary Button Link",
-                        "ar": "رابط الزر الثاني"
-                    },
-                    "value": null,
-                    "icon": "sicon-link",
-                    "searchable": true,
-                    "source": "custom",
-                    "sources": [
-                        {
-                            "label": "منتج",
-                            "key": "products",
-                            "value": "products"
-                        },
-                        {
-                            "label": "تصنيف",
-                            "key": "categories",
-                            "value": "categories"
-                        },
-                        {
-                            "label": "ماركة",
-                            "key": "brands",
-                            "value": "brands"
-                        },
-                        {
-                            "label": "صفحة",
-                            "key": "pages",
-                            "value": "pages"
-                        },
-                        {
-                            "label": "رابط خارجي",
-                            "key": "custom",
-                            "value": "custom"
-                        }
-                    ]
+                    "label": "رابط الزر الثاني",
+                    "value": "#",
+                    "icon": "sicon-link"
                 },
                 {
                     "type": "boolean",
                     "format": "switch",
                     "id": "show_float",
-                    "label": {
-                        "en": "Show Floating Badge",
-                        "ar": "إظهار الشارة العائمة"
-                    },
+                    "label": "إظهار الشارة العائمة",
                     "value": true,
                     "selected": true,
                     "icon": "sicon-badge"
@@ -332,10 +208,7 @@
                     "type": "string",
                     "format": "text",
                     "id": "float_title",
-                    "label": {
-                        "en": "Float Badge Title",
-                        "ar": "عنوان الشارة"
-                    },
+                    "label": "عنوان الشارة",
                     "value": "Certified Authentic",
                     "multilanguage": true,
                     "icon": "sicon-badge"
@@ -344,10 +217,7 @@
                     "type": "string",
                     "format": "text",
                     "id": "float_desc",
-                    "label": {
-                        "en": "Float Badge Description",
-                        "ar": "وصف الشارة"
-                    },
+                    "label": "وصف الشارة",
                     "value": "Every piece comes with certificate",
                     "multilanguage": true,
                     "icon": "sicon-typography"
