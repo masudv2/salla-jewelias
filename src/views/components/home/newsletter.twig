@@ -1,0 +1,13 @@
+{% set tag = component.tag|default('Stay Connected') %}
+{% set heading = component.heading|default('Join the Jewelias Family') %}
+{% set desc = component.description|default('Be the first to discover new collections, exclusive offers, and styling tips.') %}
+{% set bg_color = component.bg_color|default('#F6F6F6') %}
+
+<div class="jw-nl jw-rv" style="background:{{ bg_color }};">
+  <div class="jw-section-tag">{{ tag }}</div>
+  <h2 class="jw-section-h2">{{ heading }}</h2>
+  <p class="jw-nl-desc">{{ desc }}</p>
+  <div class="jw-nl-form">
+    <salla-newsletter></salla-newsletter>
+  </div>
+</div>

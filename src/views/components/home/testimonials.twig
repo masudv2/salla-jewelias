@@ -1,0 +1,36 @@
+{% set tag = component.tag|default('Reviews') %}
+{% set heading = component.heading|default('What Our Clients Say') %}
+{% set reviews = component.reviews %}
+
+<section class="jw-section jw-testi jw-rv">
+  <div class="jw-section-tag">{{ tag }}</div>
+  <h2 class="jw-section-h2" style="margin-bottom:48px;">{{ heading }}</h2>
+
+  {% if reviews|length %}
+    {% for review in reviews %}
+    <div class="jw-testi-card">
+      <div class="jw-testi-stars">
+        {% for i in 1..5 %}
+          <i class="sicon-star-filled"></i>
+        {% endfor %}
+      </div>
+      <div class="jw-testi-text">"{{ review.text|default('Amazing quality and craftsmanship.') }}"</div>
+      <div class="jw-testi-avatar">{{ review.name|default('S')|first }}</div>
+      <div class="jw-testi-name">{{ review.name|default('Customer') }}</div>
+      <div class="jw-testi-loc">{{ review.location|default('Saudi Arabia') }}</div>
+    </div>
+    {% endfor %}
+  {% else %}
+    <div class="jw-testi-card">
+      <div class="jw-testi-stars">
+        {% for i in 1..5 %}
+          <i class="sicon-star-filled"></i>
+        {% endfor %}
+      </div>
+      <div class="jw-testi-text">"The quality and craftsmanship exceeded all expectations. My engagement ring is absolutely perfect — a true work of art that I'll treasure forever."</div>
+      <div class="jw-testi-avatar">S</div>
+      <div class="jw-testi-name">Sarah Al-Rashid</div>
+      <div class="jw-testi-loc">Riyadh, Saudi Arabia</div>
+    </div>
+  {% endif %}
+</section>

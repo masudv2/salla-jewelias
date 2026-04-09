@@ -14,7 +14,8 @@
         "fonts",
         "color",
         "breadcrumb",
-        "filters"
+        "filters",
+        "component-featured-products"
     ],
     "settings": [
         {
@@ -221,6 +222,447 @@
                     "value": "Every piece comes with certificate",
                     "multilanguage": true,
                     "icon": "sicon-typography"
+                }
+            ]
+        },
+        {
+            "key": "7febf28f-1a21-4c1e-80ed-831caccdd402",
+            "title": {
+                "en": "Features Bar",
+                "ar": "شريط المزايا"
+            },
+            "icon": "sicon-star",
+            "path": "home.features-bar",
+            "fields": [
+                {
+                    "type": "collection",
+                    "format": "collection",
+                    "id": "items",
+                    "required": true,
+                    "minLength": 1,
+                    "maxLength": 6,
+                    "item_label": "ميزة",
+                    "fields": [
+                        {
+                            "type": "string",
+                            "format": "text",
+                            "id": "items.icon",
+                            "label": "أيقونة (اسم صنف Salla)",
+                            "value": "sicon-shipping-fast",
+                            "icon": "sicon-star",
+                            "placeholder": "sicon-shipping-fast"
+                        },
+                        {
+                            "type": "string",
+                            "format": "text",
+                            "id": "items.title",
+                            "label": "العنوان",
+                            "value": "Free Shipping",
+                            "multilanguage": true,
+                            "icon": "sicon-format-text-alt"
+                        },
+                        {
+                            "type": "string",
+                            "format": "text",
+                            "id": "items.desc",
+                            "label": "الوصف",
+                            "value": "On all orders over SAR 500",
+                            "multilanguage": true,
+                            "icon": "sicon-typography"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "icon": "sicon-shipping-fast",
+                            "title": "Free Shipping",
+                            "desc": "On all orders over SAR 500"
+                        },
+                        {
+                            "icon": "sicon-shield-check",
+                            "title": "Lifetime Warranty",
+                            "desc": "Quality guaranteed forever"
+                        },
+                        {
+                            "icon": "sicon-diamond",
+                            "title": "Ethically Sourced",
+                            "desc": "Responsibly crafted pieces"
+                        },
+                        {
+                            "icon": "sicon-comment-alt-lines",
+                            "title": "Expert Consultation",
+                            "desc": "Personal styling advice"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "3e417b9c-7961-4998-9cd7-754d2ec2335a",
+            "title": {
+                "en": "Categories",
+                "ar": "التصنيفات"
+            },
+            "icon": "sicon-grid",
+            "path": "home.categories",
+            "fields": [
+                {
+                    "type": "string",
+                    "format": "text",
+                    "id": "tag",
+                    "label": "النص العلوي",
+                    "value": "Explore",
+                    "multilanguage": true,
+                    "icon": "sicon-tag"
+                },
+                {
+                    "type": "string",
+                    "format": "text",
+                    "id": "heading",
+                    "label": "العنوان",
+                    "value": "Shop by Category",
+                    "multilanguage": true,
+                    "icon": "sicon-format-text-alt",
+                    "required": true
+                },
+                {
+                    "type": "string",
+                    "format": "text",
+                    "id": "view_all_link",
+                    "label": "رابط عرض الكل",
+                    "value": "/categories",
+                    "icon": "sicon-link"
+                },
+                {
+                    "type": "collection",
+                    "format": "collection",
+                    "id": "cats",
+                    "required": true,
+                    "minLength": 1,
+                    "maxLength": 8,
+                    "item_label": "تصنيف",
+                    "fields": [
+                        {
+                            "type": "string",
+                            "format": "image",
+                            "id": "cats.image",
+                            "label": "صورة التصنيف",
+                            "icon": "sicon-image",
+                            "description": "* المقاس المناسب: 600×750 بكسل"
+                        },
+                        {
+                            "type": "string",
+                            "format": "text",
+                            "id": "cats.name",
+                            "label": "اسم التصنيف",
+                            "value": "Category",
+                            "multilanguage": true,
+                            "icon": "sicon-format-text-alt"
+                        },
+                        {
+                            "type": "string",
+                            "format": "text",
+                            "id": "cats.count",
+                            "label": "عدد المنتجات",
+                            "value": "42 pieces",
+                            "multilanguage": true,
+                            "icon": "sicon-shopping-bag"
+                        },
+                        {
+                            "type": "string",
+                            "format": "text",
+                            "id": "cats.link",
+                            "label": "الرابط",
+                            "value": "#",
+                            "icon": "sicon-link"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "image": "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=600&q=80",
+                            "name": "Rings",
+                            "count": "42 pieces",
+                            "link": "#"
+                        },
+                        {
+                            "image": "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&q=80",
+                            "name": "Necklaces",
+                            "count": "38 pieces",
+                            "link": "#"
+                        },
+                        {
+                            "image": "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600&q=80",
+                            "name": "Earrings",
+                            "count": "56 pieces",
+                            "link": "#"
+                        },
+                        {
+                            "image": "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=80",
+                            "name": "Bracelets",
+                            "count": "29 pieces",
+                            "link": "#"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "b81da07b-0799-4e78-b2d8-69a8b2344958",
+            "title": {
+                "en": "Featured Products",
+                "ar": "منتجات مميزة"
+            },
+            "icon": "sicon-shopping-bag",
+            "path": "home.featured-products",
+            "fields": [
+                {
+                    "type": "string",
+                    "format": "text",
+                    "id": "tag",
+                    "label": "النص العلوي",
+                    "value": "Just Arrived",
+                    "multilanguage": true,
+                    "icon": "sicon-tag"
+                },
+                {
+                    "type": "string",
+                    "format": "text",
+                    "id": "heading",
+                    "label": "العنوان",
+                    "value": "New Collection",
+                    "multilanguage": true,
+                    "icon": "sicon-format-text-alt",
+                    "required": true
+                },
+                {
+                    "type": "string",
+                    "format": "text",
+                    "id": "view_all_link",
+                    "label": "رابط عرض الكل",
+                    "value": "/products",
+                    "icon": "sicon-link"
+                },
+                {
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "id": "source",
+                    "label": "مصدر المنتجات",
+                    "value": "latest",
+                    "icon": "sicon-filter",
+                    "options": [
+                        {
+                            "label": "أحدث المنتجات",
+                            "value": "latest"
+                        },
+                        {
+                            "label": "الأكثر مبيعاً",
+                            "value": "best_selling"
+                        },
+                        {
+                            "label": "عروض خاصة",
+                            "value": "sale"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "ce346741-4a7c-4a0e-a30e-affaf36315f9",
+            "title": {
+                "en": "CTA Banner",
+                "ar": "بانر إعلاني"
+            },
+            "icon": "sicon-image",
+            "path": "home.cta-banner",
+            "fields": [
+                {
+                    "type": "string",
+                    "format": "text",
+                    "id": "tag",
+                    "label": "النص العلوي",
+                    "value": "Limited Edition",
+                    "multilanguage": true,
+                    "icon": "sicon-tag"
+                },
+                {
+                    "type": "string",
+                    "format": "textarea",
+                    "id": "heading",
+                    "label": "العنوان الرئيسي",
+                    "value": "The Artisan Collection",
+                    "multilanguage": true,
+                    "icon": "sicon-format-text-alt",
+                    "required": true
+                },
+                {
+                    "type": "string",
+                    "format": "textarea",
+                    "id": "description",
+                    "label": "الوصف",
+                    "value": "Handcrafted by master jewelers using centuries-old techniques. Each piece is a unique work of art.",
+                    "multilanguage": true,
+                    "icon": "sicon-typography"
+                },
+                {
+                    "type": "string",
+                    "format": "image",
+                    "id": "bg_image",
+                    "label": "صورة الخلفية",
+                    "value": "https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=1400&q=80",
+                    "icon": "sicon-image",
+                    "description": "* المقاس المناسب: 1400×600 بكسل"
+                },
+                {
+                    "type": "string",
+                    "format": "color",
+                    "id": "bg_color",
+                    "label": "لون الخلفية",
+                    "value": "#0D0D0D",
+                    "icon": "sicon-color-palette"
+                },
+                {
+                    "type": "string",
+                    "format": "text",
+                    "id": "btn_text",
+                    "label": "نص الزر",
+                    "value": "Explore Now",
+                    "multilanguage": true,
+                    "icon": "sicon-link"
+                },
+                {
+                    "type": "string",
+                    "format": "text",
+                    "id": "btn_link",
+                    "label": "رابط الزر",
+                    "value": "#",
+                    "icon": "sicon-link"
+                }
+            ]
+        },
+        {
+            "key": "4ebed7c1-8c6b-4966-be7f-5fac6a21f65a",
+            "title": {
+                "en": "Testimonials",
+                "ar": "آراء العملاء"
+            },
+            "icon": "sicon-comment-alt-lines",
+            "path": "home.testimonials",
+            "fields": [
+                {
+                    "type": "string",
+                    "format": "text",
+                    "id": "tag",
+                    "label": "النص العلوي",
+                    "value": "Reviews",
+                    "multilanguage": true,
+                    "icon": "sicon-tag"
+                },
+                {
+                    "type": "string",
+                    "format": "text",
+                    "id": "heading",
+                    "label": "العنوان",
+                    "value": "What Our Clients Say",
+                    "multilanguage": true,
+                    "icon": "sicon-format-text-alt",
+                    "required": true
+                },
+                {
+                    "type": "collection",
+                    "format": "collection",
+                    "id": "reviews",
+                    "required": true,
+                    "minLength": 1,
+                    "maxLength": 10,
+                    "item_label": "تقييم",
+                    "fields": [
+                        {
+                            "type": "string",
+                            "format": "textarea",
+                            "id": "reviews.text",
+                            "label": "نص التقييم",
+                            "multilanguage": true,
+                            "icon": "sicon-typography"
+                        },
+                        {
+                            "type": "string",
+                            "format": "text",
+                            "id": "reviews.name",
+                            "label": "اسم العميل",
+                            "icon": "sicon-user"
+                        },
+                        {
+                            "type": "string",
+                            "format": "text",
+                            "id": "reviews.location",
+                            "label": "الموقع",
+                            "multilanguage": true,
+                            "icon": "sicon-location"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "text": "The quality and craftsmanship exceeded all expectations. My engagement ring is absolutely perfect — a true work of art.",
+                            "name": "Sarah Al-Rashid",
+                            "location": "Riyadh, Saudi Arabia"
+                        },
+                        {
+                            "text": "Every piece I have purchased from Jewelias has been stunning. The attention to detail is unmatched.",
+                            "name": "Nora Khalil",
+                            "location": "Jeddah, Saudi Arabia"
+                        },
+                        {
+                            "text": "Exceptional service and breathtaking designs. I always receive compliments on my Jewelias jewelry.",
+                            "name": "Layla Hassan",
+                            "location": "Dubai, UAE"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "1d4c6785-6573-4849-8bf7-1f5a56bd481b",
+            "title": {
+                "en": "Newsletter",
+                "ar": "النشرة البريدية"
+            },
+            "icon": "sicon-email",
+            "path": "home.newsletter",
+            "fields": [
+                {
+                    "type": "string",
+                    "format": "text",
+                    "id": "tag",
+                    "label": "النص العلوي",
+                    "value": "Stay Connected",
+                    "multilanguage": true,
+                    "icon": "sicon-tag"
+                },
+                {
+                    "type": "string",
+                    "format": "text",
+                    "id": "heading",
+                    "label": "العنوان",
+                    "value": "Join the Jewelias Family",
+                    "multilanguage": true,
+                    "icon": "sicon-format-text-alt",
+                    "required": true
+                },
+                {
+                    "type": "string",
+                    "format": "textarea",
+                    "id": "description",
+                    "label": "الوصف",
+                    "value": "Be the first to discover new collections, exclusive offers, and styling tips.",
+                    "multilanguage": true,
+                    "icon": "sicon-typography"
+                },
+                {
+                    "type": "string",
+                    "format": "color",
+                    "id": "bg_color",
+                    "label": "لون الخلفية",
+                    "value": "#F6F6F6",
+                    "icon": "sicon-color-palette"
                 }
             ]
         }
