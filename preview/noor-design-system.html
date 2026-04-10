@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Noor Design System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../public/app.css">
+  <style>
+    /* Preview-only helpers */
+    .preview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 1.5rem;
+    }
+    .preview-swatch {
+      aspect-ratio: 1;
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0.75rem;
+      font-family: var(--nr-font-body);
+      font-size: 0.7rem;
+      letter-spacing: 0.02em;
+      border: 1px solid var(--nr-border);
+    }
+    .preview-swatch--dark {
+      color: #fff;
+      border-color: transparent;
+    }
+    .preview-swatch__name {
+      font-weight: 500;
+      margin-bottom: 0.15rem;
+    }
+    .preview-type-row {
+      display: flex;
+      align-items: baseline;
+      gap: 2rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--nr-border);
+    }
+    .preview-type-row:last-child { border-bottom: none; }
+    .preview-type-meta {
+      flex-shrink: 0;
+      width: 200px;
+      font-size: 0.75rem;
+      color: var(--nr-text-light);
+      font-family: var(--nr-font-body);
+    }
+    .preview-space-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .preview-space-bar {
+      height: 24px;
+      background: var(--nr-primary);
+      opacity: 0.7;
+    }
+    .preview-space-label {
+      flex-shrink: 0;
+      width: 80px;
+      font-size: 0.75rem;
+      font-family: var(--nr-font-body);
+      color: var(--nr-text-light);
+    }
+    .preview-btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      align-items: center;
+    }
+    .preview-card-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .preview-card-grid { grid-template-columns: repeat(2, 1fr); }
+      .preview-type-meta { width: 120px; }
+    }
+    .preview-form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      max-width: 600px;
+    }
+    @media (max-width: 768px) {
+      .preview-form-grid { grid-template-columns: 1fr; }
+    }
+    .preview-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+    .preview-skeleton-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .preview-skeleton-grid { grid-template-columns: 1fr; }
+    }
+    .preview-reveal-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    @media (max-width: 768px) {
+      .preview-reveal-grid { grid-template-columns: 1fr; }
+    }
+    .preview-reveal-box {
+      background: var(--nr-bg-warm);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .preview-divider {
+      border: none;
+      border-top: 1px solid var(--nr-border);
+      margin: 0;
+    }
+    .preview-section-label {
+      font-family: var(--nr-font-body);
+      font-size: 0.65rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--nr-text-light);
+      margin-bottom: 0.25rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Color Palette -->
+  <section class="nr-section">
+    <div class="nr-container">
+      <div class="nr-section-header">
+        <div>
+          <p class="preview-section-label">Tokens</p>
+          <h2>Color Palette</h2>
+        </div>
+      </div>
+      <div class="preview-grid">
+        <div class="preview-swatch preview-swatch--dark" style="background:#263D30">
+          <span class="preview-swatch__name">--nr-primary</span>
+          <span>#263D30</span>
+        </div>
+        <div class="preview-swatch preview-swatch--dark" style="background:#1a2d22">
+          <span class="preview-swatch__name">--nr-primary-hover</span>
+          <span>#1a2d22</span>
+        </div>
+        <div class="preview-swatch preview-swatch--dark" style="background:#1f1f1f">
+          <span class="preview-swatch__name">--nr-text</span>
+          <span>#1f1f1f</span>
+        </div>
+        <div class="preview-swatch" style="background:#747474; color:#fff">
+          <span class="preview-swatch__name">--nr-text-light</span>
+          <span>#747474</span>
+        </div>
+        <div class="preview-swatch" style="background:#ffffff">
+          <span class="preview-swatch__name">--nr-bg</span>
+          <span>#ffffff</span>
+        </div>
+        <div class="preview-swatch" style="background:#f8f2ea">
+          <span class="preview-swatch__name">--nr-bg-warm</span>
+          <span>#f8f2ea</span>
+        </div>
+        <div class="preview-swatch" style="background:#f1eee4">
+          <span class="preview-swatch__name">--nr-bg-footer</span>
+          <span>#f1eee4</span>
+        </div>
+        <div class="preview-swatch" style="background:#e3e3e3">
+          <span class="preview-swatch__name">--nr-border</span>
+          <span>#e3e3e3</span>
+        </div>
+        <div class="preview-swatch preview-swatch--dark" style="background:#702424">
+          <span class="preview-swatch__name">--nr-sale</span>
+          <span>#702424</span>
+        </div>
+        <div class="preview-swatch preview-swatch--dark" style="background:#1f1f1f">
+          <span class="preview-swatch__name">--nr-dark-bg</span>
+          <span>#1f1f1f</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="nr-container"><hr class="preview-divider"></div>
+
+  <!-- Typography -->
+  <section class="nr-section">
+    <div class="nr-container">
+      <div class="nr-section-header">
+        <div>
+          <p class="preview-section-label">Tokens</p>
+          <h2>Typography</h2>
+        </div>
+      </div>
+      <div class="preview-type-row">
+        <div class="preview-type-meta">
+          <strong>h1</strong><br>
+          Cormorant 500<br>
+          3.825rem / 1.1
+        </div>
+        <h1>The Art of Luxury</h1>
+      </div>
+      <div class="preview-type-row">
+        <div class="preview-type-meta">
+          <strong>h2</strong><br>
+          Cormorant 500<br>
+          2.55rem / 1.15
+        </div>
+        <h2>Curated Collections</h2>
+      </div>
+      <div class="preview-type-row">
+        <div class="preview-type-meta">
+          <strong>h3</strong><br>
+          Cormorant 500<br>
+          1.7rem / 1.25
+        </div>
+        <h3>Timeless Elegance</h3>
+      </div>
+      <div class="preview-type-row">
+        <div class="preview-type-meta">
+          <strong>h4</strong><br>
+          Cormorant 500<br>
+          1.35rem / 1.3
+        </div>
+        <h4>Featured Pieces</h4>
+      </div>
+      <div class="preview-type-row">
+        <div class="preview-type-meta">
+          <strong>.nr-body</strong><br>
+          Jost 400<br>
+          1rem / 1.7
+        </div>
+        <p class="nr-body">Body text renders in Jost at 16px with generous line height for readability across all devices.</p>
+      </div>
+      <div class="preview-type-row">
+        <div class="preview-type-meta">
+          <strong>.nr-small</strong><br>
+          Jost 400<br>
+          0.875rem / 1.5
+        </div>
+        <p class="nr-small">Small text used for captions, metadata, and secondary information.</p>
+      </div>
+      <div class="preview-type-row">
+        <div class="preview-type-meta">
+          <strong>.nr-label</strong><br>
+          Jost 500<br>
+          0.75rem / uppercase
+        </div>
+        <span class="nr-label">Label Text</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="nr-container"><hr class="preview-divider"></div>
+
+  <!-- Spacing Scale -->
+  <section class="nr-section">
+    <div class="nr-container">
+      <div class="nr-section-header">
+        <div>
+          <p class="preview-section-label">Tokens</p>
+          <h2>Spacing Scale</h2>
+        </div>
+      </div>
+      <div class="preview-space-row">
+        <span class="preview-space-label">xs (4px)</span>
+        <div class="preview-space-bar" style="width:4px"></div>
+      </div>
+      <div class="preview-space-row">
+        <span class="preview-space-label">sm (8px)</span>
+        <div class="preview-space-bar" style="width:8px"></div>
+      </div>
+      <div class="preview-space-row">
+        <span class="preview-space-label">md (16px)</span>
+        <div class="preview-space-bar" style="width:16px"></div>
+      </div>
+      <div class="preview-space-row">
+        <span class="preview-space-label">lg (32px)</span>
+        <div class="preview-space-bar" style="width:32px"></div>
+      </div>
+      <div class="preview-space-row">
+        <span class="preview-space-label">xl (64px)</span>
+        <div class="preview-space-bar" style="width:64px"></div>
+      </div>
+      <div class="preview-space-row">
+        <span class="preview-space-label">2xl (96px)</span>
+        <div class="preview-space-bar" style="width:96px"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="nr-container"><hr class="preview-divider"></div>
+
+  <!-- Buttons -->
+  <section class="nr-section">
+    <div class="nr-container">
+      <div class="nr-section-header">
+        <div>
+          <p class="preview-section-label">Components</p>
+          <h2>Buttons</h2>
+        </div>
+      </div>
+      <div class="preview-btn-row">
+        <button class="nr-btn-solid">Solid Button</button>
+        <button class="nr-btn-outline">Outline Button</button>
+        <button class="nr-btn-text">Text Button</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="nr-container"><hr class="preview-divider"></div>
+
+  <!-- Product Cards -->
+  <section class="nr-section">
+    <div class="nr-container">
+      <div class="nr-section-header">
+        <div>
+          <p class="preview-section-label">Components</p>
+          <h2>Product Cards</h2>
+        </div>
+      </div>
+      <div class="preview-card-grid">
+        <!-- Card 1: Basic -->
+        <div class="nr-card">
+          <div class="nr-card__media" style="background:var(--nr-bg-warm)"></div>
+          <div class="nr-card__info">
+            <h4 class="nr-card__title">Luna Pendant</h4>
+            <div class="nr-card__price">SAR 1,200</div>
+          </div>
+        </div>
+        <!-- Card 2: With swatches -->
+        <div class="nr-card">
+          <div class="nr-card__media" style="background:var(--nr-bg-warm)"></div>
+          <div class="nr-card__info">
+            <h4 class="nr-card__title">Crescent Ring</h4>
+            <div class="nr-card__price">SAR 850</div>
+            <div class="nr-card__swatches">
+              <span class="nr-card__swatch is-active" style="background:#d4af37"></span>
+              <span class="nr-card__swatch" style="background:#c0c0c0"></span>
+              <span class="nr-card__swatch" style="background:#e8c4a0"></span>
+            </div>
+          </div>
+        </div>
+        <!-- Card 3: Sale badge -->
+        <div class="nr-card">
+          <div class="nr-card__media" style="background:var(--nr-bg-warm)">
+            <span class="nr-badge-sale" style="position:absolute;top:12px;left:12px;z-index:1">Sale</span>
+          </div>
+          <div class="nr-card__info">
+            <h4 class="nr-card__title">Heritage Bangle</h4>
+            <div class="nr-card__price">
+              <span class="nr-card__price-sale">SAR 680</span>
+              <span class="nr-card__price-was">SAR 950</span>
+            </div>
+          </div>
+        </div>
+        <!-- Card 4: New badge -->
+        <div class="nr-card">
+          <div class="nr-card__media" style="background:var(--nr-bg-warm)">
+            <span class="nr-badge-new" style="position:absolute;top:12px;left:12px;z-index:1">New</span>
+          </div>
+          <div class="nr-card__info">
+            <h4 class="nr-card__title">Noor Chain</h4>
+            <div class="nr-card__price">SAR 1,450</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="nr-container"><hr class="preview-divider"></div>
+
+  <!-- Collection Card -->
+  <section class="nr-section">
+    <div class="nr-container">
+      <div class="nr-section-header">
+        <div>
+          <p class="preview-section-label">Components</p>
+          <h2>Collection Card</h2>
+        </div>
+      </div>
+      <div style="max-width:480px">
+        <a class="nr-card-collection" style="display:block; height:360px; background:var(--nr-bg-warm)">
+          <div class="nr-card-collection__overlay">
+            <h3 class="nr-card-collection__title">Bridal Collection</h3>
+            <p class="nr-card-collection__subtitle">24 pieces</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="nr-container"><hr class="preview-divider"></div>
+
+  <!-- Form Elements -->
+  <section class="nr-section">
+    <div class="nr-container">
+      <div class="nr-section-header">
+        <div>
+          <p class="preview-section-label">Components</p>
+          <h2>Form Elements</h2>
+        </div>
+      </div>
+      <div class="preview-form-grid">
+        <div>
+          <label class="nr-label" for="preview-input">Full Name</label>
+          <input class="nr-input" id="preview-input" type="text" placeholder="Enter your name">
+        </div>
+        <div>
+          <label class="nr-label" for="preview-select">Category</label>
+          <select class="nr-select" id="preview-select">
+            <option>All Categories</option>
+            <option>Rings</option>
+            <option>Necklaces</option>
+            <option>Bracelets</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="nr-container"><hr class="preview-divider"></div>
+
+  <!-- Badges -->
+  <section class="nr-section">
+    <div class="nr-container">
+      <div class="nr-section-header">
+        <div>
+          <p class="preview-section-label">Components</p>
+          <h2>Badges &amp; Stock</h2>
+        </div>
+      </div>
+      <div class="preview-badge-row">
+        <span class="nr-badge-sale">Sale</span>
+        <span class="nr-badge-new">New</span>
+        <span class="nr-stock-in">In Stock</span>
+        <span class="nr-stock-low">Low Stock</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="nr-container"><hr class="preview-divider"></div>
+
+  <!-- Marquee -->
+  <section class="nr-section">
+    <div class="nr-container">
+      <div class="nr-section-header">
+        <div>
+          <p class="preview-section-label">Components</p>
+          <h2>Marquee</h2>
+        </div>
+      </div>
+    </div>
+    <div class="nr-marquee">
+      <div class="nr-marquee__track">
+        <span class="nr-marquee__item">Free Shipping Over SAR 500 <span class="nr-marquee__dot"></span></span>
+        <span class="nr-marquee__item">Handcrafted With Love <span class="nr-marquee__dot"></span></span>
+        <span class="nr-marquee__item">Lifetime Warranty <span class="nr-marquee__dot"></span></span>
+        <span class="nr-marquee__item">Ethically Sourced <span class="nr-marquee__dot"></span></span>
+        <span class="nr-marquee__item">Free Shipping Over SAR 500 <span class="nr-marquee__dot"></span></span>
+        <span class="nr-marquee__item">Handcrafted With Love <span class="nr-marquee__dot"></span></span>
+        <span class="nr-marquee__item">Lifetime Warranty <span class="nr-marquee__dot"></span></span>
+        <span class="nr-marquee__item">Ethically Sourced <span class="nr-marquee__dot"></span></span>
+      </div>
+    </div>
+  </section>
+
+  <div class="nr-container"><hr class="preview-divider"></div>
+
+  <!-- Loading State / Skeleton -->
+  <section class="nr-section">
+    <div class="nr-container">
+      <div class="nr-section-header">
+        <div>
+          <p class="preview-section-label">States</p>
+          <h2>Loading Skeleton</h2>
+        </div>
+      </div>
+      <div class="preview-skeleton-grid">
+        <div>
+          <div class="nr-skeleton" style="padding-top:var(--nr-card-ratio)"></div>
+          <div style="padding:1rem 0">
+            <div class="nr-skeleton" style="height:14px;width:70%;margin-bottom:8px"></div>
+            <div class="nr-skeleton" style="height:12px;width:40%"></div>
+          </div>
+        </div>
+        <div>
+          <div class="nr-skeleton" style="padding-top:var(--nr-card-ratio)"></div>
+          <div style="padding:1rem 0">
+            <div class="nr-skeleton" style="height:14px;width:60%;margin-bottom:8px"></div>
+            <div class="nr-skeleton" style="height:12px;width:35%"></div>
+          </div>
+        </div>
+        <div>
+          <div class="nr-skeleton" style="padding-top:var(--nr-card-ratio)"></div>
+          <div style="padding:1rem 0">
+            <div class="nr-skeleton" style="height:14px;width:75%;margin-bottom:8px"></div>
+            <div class="nr-skeleton" style="height:12px;width:45%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="nr-container"><hr class="preview-divider"></div>
+
+  <!-- Scroll Reveal -->
+  <section class="nr-section">
+    <div class="nr-container">
+      <div class="nr-section-header">
+        <div>
+          <p class="preview-section-label">Animations</p>
+          <h2>Scroll Reveal</h2>
+        </div>
+      </div>
+      <div class="preview-reveal-grid">
+        <div class="nr-reveal nr-reveal-delay-1 preview-reveal-box">
+          <h3>First</h3>
+          <p class="nr-small" style="color:var(--nr-text-light)">delay-1 (100ms)</p>
+        </div>
+        <div class="nr-reveal nr-reveal-delay-2 preview-reveal-box">
+          <h3>Second</h3>
+          <p class="nr-small" style="color:var(--nr-text-light)">delay-2 (200ms)</p>
+        </div>
+        <div class="nr-reveal nr-reveal-delay-3 preview-reveal-box">
+          <h3>Third</h3>
+          <p class="nr-small" style="color:var(--nr-text-light)">delay-3 (300ms)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Scroll reveal via IntersectionObserver
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('nr-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    document.querySelectorAll('.nr-reveal').forEach((el) => observer.observe(el));
+  </script>
+
+</body>
+</html>
