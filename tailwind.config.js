@@ -11,34 +11,43 @@ module.exports = {
             center: true,
             padding: '10px',
             screens: {
-                '2xl': '1280px'
+                '2xl': '1600px'
             }
         },
         fontFamily: {
-            sans: ['Outfit', 'var(--font-main)', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-            serif: ['DM Serif Display', 'serif'],
+            sans: ['Jost', 'var(--font-main)', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            serif: ['Cormorant', 'serif'],
+            display: ['Cormorant', 'serif'],
+            body: ['Jost', 'sans-serif'],
             primary: 'var(--font-main)',
-            /* Glow design system — nav / UI accent */
-            nav: ['"Space Grotesk"', 'Outfit', 'var(--font-main)', 'sans-serif'],
         },
         extend: {
             colors: {
-                'jw-ink': '#0D0D0D',
-                'jw-graphite': '#2A2A2A',
-                'jw-steel': '#6B6B6B',
-                'jw-mist': '#A0A0A0',
-                'jw-fog': '#E8E8E8',
-                'jw-snow': '#F6F6F6',
-                'jw-amber': '#C6975B',
-                'jw-amber-soft': '#DDB87E',
-                'jw-blush': '#E8D5C4',
+                nr: {
+                    primary: '#263D30',
+                    'primary-hover': '#1a2d22',
+                    text: '#1f1f1f',
+                    'text-light': '#747474',
+                    'bg-warm': '#f8f2ea',
+                    'bg-footer': '#f1eee4',
+                    border: '#e3e3e3',
+                    sale: '#702424',
+                    dark: '#1f1f1f',
+                },
                 'dark': '#1D1F1F',
                 'darker': '#0E0F0F',
                 'danger': '#AE0A0A',
                 'primary-dark': 'var(--color-primary-dark)',
             },
+            maxWidth: {
+                page: '1600px',
+            },
             borderRadius: {
-                DEFAULT: '.75rem',
+                DEFAULT: '0',
+            },
+            transitionDuration: {
+                DEFAULT: '400ms',
+                slow: '500ms',
             },
             screens: {
                 'xs': '480px',
