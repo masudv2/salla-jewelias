@@ -440,11 +440,7 @@
     ],
     "components": [
         {
-            "key": "nr-hero-slideshow-001",
-            "name": {
-                "en": "Hero Slideshow",
-                "ar": "سلايدر رئيسي"
-            },
+            "key": "aeb7a20e-7fc0-4e77-8c36-c3c794836baa",
             "path": "home.hero-slideshow",
             "fields": [
                 {
@@ -707,14 +703,15 @@
                         }
                     ]
                 }
-            ]
+            ],
+            "title": {
+                "en": "Hero Slideshow",
+                "ar": "سلايدر رئيسي"
+            },
+            "icon": "sicon-image-carousel"
         },
         {
-            "key": "nr-marquee-ticker-002",
-            "name": {
-                "en": "Marquee Ticker",
-                "ar": "شريط متحرك"
-            },
+            "key": "97ecde8a-9783-479d-8f0a-85d99799e831",
             "path": "home.marquee-ticker",
             "fields": [
                 {
@@ -819,14 +816,15 @@
                         }
                     ]
                 }
-            ]
+            ],
+            "title": {
+                "en": "Marquee Ticker",
+                "ar": "شريط متحرك"
+            },
+            "icon": "sicon-text"
         },
         {
-            "key": "nr-split-collection-003",
-            "name": {
-                "en": "Split Collection Banner",
-                "ar": "بانر مقسّم للمجموعة"
-            },
+            "key": "1e3f6374-a96d-4e11-8076-07d9c906366c",
             "path": "home.split-collection",
             "fields": [
                 {
@@ -967,14 +965,15 @@
                     ],
                     "source": "Manual"
                 }
-            ]
+            ],
+            "title": {
+                "en": "Split Collection Banner",
+                "ar": "بانر مقسّم للمجموعة"
+            },
+            "icon": "sicon-image-layout"
         },
         {
-            "key": "nr-tabbed-collection-004",
-            "name": {
-                "en": "Tabbed Collection",
-                "ar": "مجموعة بتبويبات"
-            },
+            "key": "c16bccab-7820-487d-bea1-e09d97170a1a",
             "path": "home.tabbed-collection",
             "fields": [
                 {
@@ -1131,14 +1130,15 @@
                         }
                     ]
                 }
-            ]
+            ],
+            "title": {
+                "en": "Tabbed Collection",
+                "ar": "مجموعة بتبويبات"
+            },
+            "icon": "sicon-tabs"
         },
         {
-            "key": "nr-editorial-statement-005",
-            "name": {
-                "en": "Editorial Statement",
-                "ar": "نص تحريري"
-            },
+            "key": "e4a9ce16-c212-4964-9bf6-80aa374b315a",
             "path": "home.editorial-statement",
             "fields": [
                 {
@@ -1222,14 +1222,15 @@
                     "value": true,
                     "selected": true
                 }
-            ]
+            ],
+            "title": {
+                "en": "Editorial Statement",
+                "ar": "نص تحريري"
+            },
+            "icon": "sicon-format-text-alt"
         },
         {
-            "key": "nr-featured-products-006",
-            "name": {
-                "en": "Featured Products",
-                "ar": "منتجات مميزة"
-            },
+            "key": "202a6e27-e27d-4dce-8547-e51d7c269fb8",
             "path": "home.featured-products",
             "fields": [
                 {
@@ -1337,14 +1338,15 @@
                     "value": true,
                     "selected": true
                 }
-            ]
+            ],
+            "title": {
+                "en": "Featured Products",
+                "ar": "منتجات مميزة"
+            },
+            "icon": "sicon-star"
         },
         {
-            "key": "nr-cta-banner-007",
-            "name": {
-                "en": "CTA Banner",
-                "ar": "بانر إجراء"
-            },
+            "key": "5fc7a514-621e-4b10-9852-2612a2875b41",
             "path": "home.cta-banner",
             "fields": [
                 {
@@ -1492,14 +1494,15 @@
                     "format": "text",
                     "value": ""
                 }
-            ]
+            ],
+            "title": {
+                "en": "CTA Banner",
+                "ar": "بانر إجراء"
+            },
+            "icon": "sicon-megaphone"
         },
         {
-            "key": "nr-trust-strip-008",
-            "name": {
-                "en": "Trust / Award Strip",
-                "ar": "شريط الثقة والجوائز"
-            },
+            "key": "e51df701-57ed-4e12-9a92-4d59d3952bb0",
             "path": "home.trust-strip",
             "fields": [
                 {
@@ -1564,14 +1567,15 @@
                         }
                     ]
                 }
-            ]
+            ],
+            "title": {
+                "en": "Trust / Award Strip",
+                "ar": "شريط الثقة والجوائز"
+            },
+            "icon": "sicon-shield-check"
         },
         {
-            "key": "nr-testimonials-009",
-            "name": {
-                "en": "Testimonials",
-                "ar": "آراء العملاء"
-            },
+            "key": "102729fb-fafe-4420-89c5-2747ed2d9d53",
             "path": "home.testimonials",
             "fields": [
                 {
@@ -1736,14 +1740,15 @@
                         }
                     ]
                 }
-            ]
+            ],
+            "title": {
+                "en": "Testimonials",
+                "ar": "آراء العملاء"
+            },
+            "icon": "sicon-quote-right"
         },
         {
-            "key": "nr-image-promos-010",
-            "name": {
-                "en": "Image Promos",
-                "ar": "بطاقات ترويجية بالصور"
-            },
+            "key": "1a6a1060-9855-447c-b0d9-a0fdb4d49c6d",
             "path": "home.image-promos",
             "fields": [
                 {
@@ -1866,14 +1871,15 @@
                         }
                     ]
                 }
-            ]
+            ],
+            "title": {
+                "en": "Image Promos",
+                "ar": "بطاقات ترويجية بالصور"
+            },
+            "icon": "sicon-images"
         },
         {
-            "key": "nr-instagram-feed-011",
-            "name": {
-                "en": "Instagram Feed",
-                "ar": "صور انستقرام"
-            },
+            "key": "86ea269a-b155-4354-8c94-d8993149c543",
             "path": "home.instagram-feed",
             "fields": [
                 {
@@ -1968,14 +1974,15 @@
                         }
                     ]
                 }
-            ]
+            ],
+            "title": {
+                "en": "Instagram Feed",
+                "ar": "صور انستقرام"
+            },
+            "icon": "sicon-instagram"
         },
         {
-            "key": "nr-newsletter-012",
-            "name": {
-                "en": "Newsletter",
-                "ar": "النشرة البريدية"
-            },
+            "key": "73a8c87e-fc90-42a2-b972-04f3e448b38a",
             "path": "home.newsletter",
             "fields": [
                 {
@@ -2074,14 +2081,15 @@
                     "value": true,
                     "selected": true
                 }
-            ]
+            ],
+            "title": {
+                "en": "Newsletter",
+                "ar": "النشرة البريدية"
+            },
+            "icon": "sicon-mail"
         },
         {
-            "key": "nr-featured-style1-013",
-            "name": {
-                "en": "Featured Products — Style 1",
-                "ar": "منتجات مميزة — نمط 1"
-            },
+            "key": "0dc83521-897e-409f-828f-8d65a4e8e101",
             "path": "home.featured-products-style1",
             "fields": [
                 {
@@ -2095,14 +2103,15 @@
                     "value": true,
                     "selected": true
                 }
-            ]
+            ],
+            "title": {
+                "en": "Featured Products — Style 1",
+                "ar": "منتجات مميزة — نمط 1"
+            },
+            "icon": "sicon-star"
         },
         {
-            "key": "nr-featured-style2-014",
-            "name": {
-                "en": "Featured Products — Style 2",
-                "ar": "منتجات مميزة — نمط 2"
-            },
+            "key": "f1334502-437b-4e14-968c-afb349560e10",
             "path": "home.featured-products-style2",
             "fields": [
                 {
@@ -2127,14 +2136,15 @@
                     "value": false,
                     "selected": false
                 }
-            ]
+            ],
+            "title": {
+                "en": "Featured Products — Style 2",
+                "ar": "منتجات مميزة — نمط 2"
+            },
+            "icon": "sicon-star"
         },
         {
-            "key": "nr-featured-style3-015",
-            "name": {
-                "en": "Featured Products — Style 3",
-                "ar": "منتجات مميزة — نمط 3"
-            },
+            "key": "fdd8d853-22b0-4d92-9aa2-50e278228578",
             "path": "home.featured-products-style3",
             "fields": [
                 {
@@ -2148,14 +2158,15 @@
                     "value": true,
                     "selected": true
                 }
-            ]
+            ],
+            "title": {
+                "en": "Featured Products — Style 3",
+                "ar": "منتجات مميزة — نمط 3"
+            },
+            "icon": "sicon-star"
         },
         {
-            "key": "nr-fixed-banner-016",
-            "name": {
-                "en": "Fixed Banner",
-                "ar": "بانر ثابت"
-            },
+            "key": "39ffbcaf-3843-490b-a870-a332c2bee4e3",
             "path": "home.fixed-banner",
             "fields": [
                 {
@@ -2169,14 +2180,15 @@
                     "value": true,
                     "selected": true
                 }
-            ]
+            ],
+            "title": {
+                "en": "Fixed Banner",
+                "ar": "بانر ثابت"
+            },
+            "icon": "sicon-image"
         },
         {
-            "key": "nr-fixed-products-017",
-            "name": {
-                "en": "Fixed Products",
-                "ar": "منتجات ثابتة"
-            },
+            "key": "45822ecd-5f9a-49c0-a411-6f4a14e678b1",
             "path": "home.fixed-products",
             "fields": [
                 {
@@ -2201,14 +2213,15 @@
                     "value": true,
                     "selected": true
                 }
-            ]
+            ],
+            "title": {
+                "en": "Fixed Products",
+                "ar": "منتجات ثابتة"
+            },
+            "icon": "sicon-grid"
         },
         {
-            "key": "nr-latest-products-018",
-            "name": {
-                "en": "Latest Products",
-                "ar": "أحدث المنتجات"
-            },
+            "key": "96334a8e-041c-40fa-b456-678e729dbb19",
             "path": "home.latest-products",
             "fields": [
                 {
@@ -2222,14 +2235,15 @@
                     "value": true,
                     "selected": true
                 }
-            ]
+            ],
+            "title": {
+                "en": "Latest Products",
+                "ar": "أحدث المنتجات"
+            },
+            "icon": "sicon-clock"
         },
         {
-            "key": "nr-parallax-bg-019",
-            "name": {
-                "en": "Parallax Background",
-                "ar": "خلفية متحركة"
-            },
+            "key": "014020fb-d3a4-4b17-a942-a9b0eefc3b80",
             "path": "home.parallax-background",
             "fields": [
                 {
@@ -2254,14 +2268,15 @@
                     "value": true,
                     "selected": true
                 }
-            ]
+            ],
+            "title": {
+                "en": "Parallax Background",
+                "ar": "خلفية متحركة"
+            },
+            "icon": "sicon-image"
         },
         {
-            "key": "nr-photos-slider-020",
-            "name": {
-                "en": "Photos Slider",
-                "ar": "سلايدر صور"
-            },
+            "key": "d669beb0-4f12-4eab-b157-ad851cb17046",
             "path": "home.photos-slider",
             "fields": [
                 {
@@ -2275,14 +2290,15 @@
                     "value": true,
                     "selected": true
                 }
-            ]
+            ],
+            "title": {
+                "en": "Photos Slider",
+                "ar": "سلايدر صور"
+            },
+            "icon": "sicon-image-carousel"
         },
         {
-            "key": "nr-products-slider-021",
-            "name": {
-                "en": "Products Slider",
-                "ar": "سلايدر منتجات"
-            },
+            "key": "64f93d11-bf55-4c26-b11f-e87abe2d2095",
             "path": "home.products-slider",
             "fields": [
                 {
@@ -2296,14 +2312,15 @@
                     "value": true,
                     "selected": true
                 }
-            ]
+            ],
+            "title": {
+                "en": "Products Slider",
+                "ar": "سلايدر منتجات"
+            },
+            "icon": "sicon-shopping-bag"
         },
         {
-            "key": "nr-square-photos-022",
-            "name": {
-                "en": "Square Photos",
-                "ar": "صور مربعة"
-            },
+            "key": "446cb057-847a-4d15-9983-64186e762272",
             "path": "home.square-photos",
             "fields": [
                 {
@@ -2317,14 +2334,15 @@
                     "value": true,
                     "selected": true
                 }
-            ]
+            ],
+            "title": {
+                "en": "Square Photos",
+                "ar": "صور مربعة"
+            },
+            "icon": "sicon-images"
         },
         {
-            "key": "nr-store-features-023",
-            "name": {
-                "en": "Store Features",
-                "ar": "مميزات المتجر"
-            },
+            "key": "4b8b345e-01ed-480e-9d9d-f1873314a37b",
             "path": "home.store-features",
             "fields": [
                 {
@@ -2338,14 +2356,15 @@
                     "value": true,
                     "selected": true
                 }
-            ]
+            ],
+            "title": {
+                "en": "Store Features",
+                "ar": "مميزات المتجر"
+            },
+            "icon": "sicon-badge"
         },
         {
-            "key": "nr-youtube-024",
-            "name": {
-                "en": "YouTube Video",
-                "ar": "فيديو يوتيوب"
-            },
+            "key": "9c9b2c89-df14-49a1-a3da-ecb84885b296",
             "path": "home.youtube",
             "fields": [
                 {
@@ -2359,7 +2378,12 @@
                     "value": true,
                     "selected": true
                 }
-            ]
+            ],
+            "title": {
+                "en": "YouTube Video",
+                "ar": "فيديو يوتيوب"
+            },
+            "icon": "sicon-youtube"
         }
     ],
     "support_url": "https://salla.com/"
