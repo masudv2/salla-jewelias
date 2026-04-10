@@ -50,7 +50,7 @@
 | theme.settings.get(settingName, default=null)      | mixed    | get theme setting ex `theme.settings.get('my_var', 'fallback')`                                          |
 #}
 <!DOCTYPE html>
-<html lang="{{ user.language.code }}" dir="{{ user.language.dir }}">
+<html lang="{{ user.language.code }}" dir="{{ user.language.dir }}" data-theme="{{ theme.settings.get('color_mode', 'light') }}">
 <!-- بسم الله الرحمن الرحيم -->
 <head>
     <meta charset="UTF-8">
@@ -59,6 +59,7 @@
     {{ theme.settings.set('placeholder', 'images/placeholder.png') }}
 
     <script defer data-cfasync="false" crossorigin="anonymous" src="{{ 'product-card.js'|asset }}"></script>
+    <script defer data-cfasync="false" crossorigin="anonymous" src="{{ 'noor-product-card.js'|asset }}"></script>
     <script defer src="{{ 'main-menu.js'|asset }}"></script>
     {% if theme.settings.get('enable_add_product_toast', true) %}
         <script defer src="{{ 'add-product-toast.js'|asset }}"></script>
@@ -122,6 +123,7 @@
 {# Twilight Components #}
 <salla-offer-modal></salla-offer-modal>
 <salla-search></salla-search>
+<salla-localization-modal></salla-localization-modal>
 
 {% if user.type=='guest' %}
     <salla-login-modal></salla-login-modal>

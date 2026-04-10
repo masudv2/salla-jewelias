@@ -44,8 +44,62 @@
   transform: scale(1.05);
 }
 
-// --- Wishlist / Quick-view action buttons ---
+// --- Wishlist button ---
 
+.nr-card__wishlist {
+  position: absolute;
+  top: 12px;
+  inset-inline-end: 12px;
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--nr-bg);
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 300ms var(--nr-ease), transform 300ms var(--nr-ease), color var(--nr-transition);
+
+  i { font-size: 1rem; color: var(--nr-text); transition: color var(--nr-transition); }
+
+  &.is-active i { color: var(--nr-sale); }
+  &:hover i { color: var(--nr-primary); }
+}
+
+.nr-card:hover .nr-card__wishlist {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+// --- Badge ---
+
+.nr-card__badge {
+  position: absolute;
+  top: 12px;
+  inset-inline-start: 12px;
+  z-index: 2;
+  padding: 4px 10px;
+  font-family: var(--nr-font-body);
+  font-size: var(--nr-label);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: var(--nr-primary);
+  color: var(--nr-dark-text);
+
+  &--out {
+    background: var(--nr-sale);
+  }
+
+  &--qty {
+    background: var(--nr-text);
+  }
+}
+
+// Legacy action buttons (keep for backwards compat)
 .nr-card__actions {
   position: absolute;
   top: 12px;
@@ -87,12 +141,15 @@
   transform: translateY(0);
 }
 
+.nr-card__quick-add salla-add-product-button,
 .nr-card__quick-add .nr-btn-solid {
   width: 100%;
-  padding: 0.65rem;
-  font-size: 0.75rem;
+  font-size: var(--nr-label);
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  --salla-add-product-btn-bg: var(--nr-primary);
+  --salla-add-product-btn-color: var(--nr-dark-text);
+  --salla-add-product-btn-padding: 0.65rem 1rem;
 }
 
 // --- Info block ---
@@ -236,4 +293,107 @@
   font-size: var(--nr-small);
   color: rgba(255, 255, 255, 0.7);
   margin-top: var(--nr-space-xs);
+}
+
+// --- noor-product-card specifics ---
+
+.nr-card__subtitle {
+  font-family: var(--nr-font-body);
+  font-size: var(--nr-small);
+  color: var(--nr-text-light);
+  margin-top: var(--nr-space-xs);
+  line-height: 1.4;
+}
+
+.nr-card__price--sale .nr-card__price-current {
+  color: var(--nr-sale);
+  font-weight: 500;
+}
+
+.nr-card__price--starting .nr-card__price-from {
+  font-size: var(--nr-label);
+  color: var(--nr-text-light);
+  margin-inline-end: 0.25rem;
+}
+
+.nr-card__img--contain {
+  object-fit: contain;
+}
+
+.nr-card__img--cover {
+  object-fit: cover;
+}
+
+.nr-card__donation {
+  margin-top: var(--nr-space-sm);
+
+  label {
+    font-size: var(--nr-label);
+    font-weight: 500;
+    text-transform: uppercase;
+    span { color: var(--nr-sale); }
+  }
+}
+
+.nr-card__donation-input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--nr-border);
+  font-family: var(--nr-font-body);
+  font-size: var(--nr-small);
+  margin-top: var(--nr-space-xs);
+
+  &:focus {
+    outline: none;
+    border-color: var(--nr-primary);
+  }
+}
+
+.nr-card__footer {
+  margin-top: var(--nr-space-md);
+}
+
+// Out of stock state
+.nr-card--out .nr-card__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.4);
+  z-index: 1;
+}
+
+// Horizontal layout
+.nr-card--horizontal {
+  display: flex;
+  gap: var(--nr-space-md);
+
+  .nr-card__media {
+    flex: 0 0 140px;
+    padding-top: 0;
+    aspect-ratio: 1;
+  }
+
+  .nr-card__img {
+    position: static;
+    aspect-ratio: 1;
+  }
+
+  .nr-card__info {
+    flex: 1;
+    padding: var(--nr-space-sm) 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .nr-card__wishlist,
+  .nr-card__quick-add,
+  .nr-card__badge {
+    display: none;
+  }
+}
+
+// Minimal (no footer)
+.nr-card--minimal .nr-card__quick-add {
+  display: none;
 }

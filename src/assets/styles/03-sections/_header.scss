@@ -4,7 +4,7 @@
   z-index: 100;
   background: var(--nr-bg);
   border-bottom: 1px solid var(--nr-border);
-  transition: box-shadow var(--nr-transition), border-color var(--nr-transition), transform 380ms ease;
+  transition: background 300ms ease, box-shadow 300ms ease, border-color 300ms ease, color 300ms ease, transform 380ms ease;
 }
 
 .nr-header.is-elevated {
@@ -15,6 +15,57 @@
 .nr-header.is-hidden {
   transform: translateY(-100%);
   pointer-events: none;
+}
+
+// Transparent header (over hero on homepage)
+.nr-header--transparent {
+  position: fixed;
+  width: 100%;
+  background: transparent;
+  border-bottom-color: transparent;
+
+  .nr-header__icon,
+  .nr-header__nav-link,
+  .nr-header__logo {
+    color: var(--nr-dark-text);
+  }
+
+  .nr-header__icon:hover,
+  .nr-header__nav-link:hover {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  // In transparent mode: show dark logo, hide light logo
+  .nr-header__logo-light { display: none; }
+  .nr-header__logo-dark { display: block; }
+}
+
+// Solid state (scrolled past hero)
+.nr-header--transparent.nr-header--solid {
+  background: var(--nr-bg);
+  border-bottom-color: var(--nr-border);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+
+  .nr-header__icon,
+  .nr-header__nav-link,
+  .nr-header__logo {
+    color: var(--nr-text);
+  }
+
+  .nr-header__icon:hover,
+  .nr-header__nav-link:hover {
+    color: var(--nr-primary);
+  }
+
+  // In solid mode: show light logo, hide dark logo
+  .nr-header__logo-light { display: block; }
+  .nr-header__logo-dark { display: none; }
+}
+
+// Non-transparent header: always show light logo, hide dark
+.nr-header:not(.nr-header--transparent) {
+  .nr-header__logo-light { display: block; }
+  .nr-header__logo-dark { display: none; }
 }
 
 .nr-header__inner {

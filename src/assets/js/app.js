@@ -5,6 +5,8 @@ import initTootTip from './partials/tooltip';
 import AppHelpers from "./app-helpers";
 import { initLenis } from './modules/lenis';
 import { initScrollReveal } from './modules/scroll-reveal';
+import { initHeaderScroll } from './modules/header-scroll';
+import { initDarkMode } from './modules/dark-mode';
 
 class App extends AppHelpers {
   constructor() {
@@ -24,6 +26,8 @@ class App extends AppHelpers {
     initTootTip();
     initLenis();
     initScrollReveal();
+    initHeaderScroll();
+    initDarkMode();
     this.loadModalImgOnclick();
 
     salla.comment.event.onAdded(() => window.location.reload());

@@ -112,7 +112,12 @@
 {% endif %}
 
 {# ═══ Header — Noor: nav left, logo center, actions right ═══ #}
-<header class="nr-header" id="nr-header">
+{% set header_transparent = theme.settings.get('header_transparent', true) %}
+{% set logo_light = theme.settings.get('logo_light', store.logo) %}
+{% set logo_dark  = theme.settings.get('logo_dark', store.logo) %}
+{% set logo_h     = theme.settings.get('logo_height', '36') %}
+
+<header class="nr-header{% if header_transparent and is_page('index') %} nr-header--transparent{% endif %}" id="nr-header">
   <div class="nr-header__inner">
     <div class="nr-header__left">
       <button class="nr-header__icon nr-header__menu-toggle" aria-label="{{ trans('blocks.header.main_menu') }}">
@@ -124,9 +129,13 @@
     </div>
 
     <a href="{{ store.url }}" class="nr-header__logo">
-      {% if store.logo %}
-        <img src="{{ store.logo }}" alt="{{ store.name }}" style="height:{{ theme.settings.get('logo_height', '36') }}px;">
-      {% else %}
+      {% if logo_light %}
+        <img class="nr-header__logo-light" src="{{ logo_light }}" alt="{{ store.name }}" style="height:{{ logo_h }}px;">
+      {% endif %}
+      {% if logo_dark %}
+        <img class="nr-header__logo-dark" src="{{ logo_dark }}" alt="{{ store.name }}" style="height:{{ logo_h }}px;">
+      {% endif %}
+      {% if not logo_light and not logo_dark %}
         {{ store.name }}
       {% endif %}
     </a>
