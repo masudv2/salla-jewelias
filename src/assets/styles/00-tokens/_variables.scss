@@ -1,0 +1,54 @@
+:root {
+  // Colors
+  --nr-primary: #263D30;
+  --nr-primary-hover: #1a2d22;
+  --nr-text: #1f1f1f;
+  --nr-text-light: #747474;
+  --nr-bg: #ffffff;
+  --nr-bg-warm: #f8f2ea;
+  --nr-bg-footer: #f1eee4;
+  --nr-border: #e3e3e3;
+  --nr-sale: #702424;
+  --nr-dark-bg: #1f1f1f;
+  --nr-dark-text: #ffffff;
+
+  // Typography
+  --nr-font-display: 'Cormorant', serif;
+  --nr-font-body: 'Jost', sans-serif;
+
+  // Type scale — desktop
+  --nr-h1: 3.825rem;
+  --nr-h2: 2.55rem;
+  --nr-h3: 1.7rem;
+  --nr-h4: 1.35rem;
+  --nr-body: 1rem;
+  --nr-small: 0.875rem;
+  --nr-label: 0.75rem;
+
+  // Spacing
+  --nr-space-xs: 0.25rem;
+  --nr-space-sm: 0.5rem;
+  --nr-space-md: 1rem;
+  --nr-space-lg: 2rem;
+  --nr-space-xl: 4rem;
+  --nr-space-2xl: 6rem;
+
+  // Layout
+  --nr-max-width: 1600px;
+  --nr-card-ratio: 133%;
+  --nr-radius: 0;
+
+  // Motion
+  --nr-transition: 400ms ease;
+  --nr-transition-slow: 500ms ease;
+  --nr-ease: cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+@media (max-width: 768px) {
+  :root {
+    --nr-h1: 1.9125rem;
+    --nr-h2: 1.525rem;
+    --nr-h3: 1.275rem;
+    --nr-h4: 1.125rem;
+  }
+}
