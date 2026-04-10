@@ -15,6 +15,16 @@
   }
 }
 
+.nr-footer__logo {
+  display: block;
+  margin-bottom: var(--nr-space-md);
+
+  img {
+    height: 40px;
+    width: auto;
+  }
+}
+
 .nr-footer__brand {
   font-family: var(--nr-font-display);
   font-size: 1.5rem;

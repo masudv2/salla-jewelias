@@ -591,7 +591,7 @@
                     "fields": [
                         {
                             "type": "string",
-                            "id": "image",
+                            "id": "slides.image",
                             "label": {
                                 "en": "Background Image",
                                 "ar": "صورة الخلفية"
@@ -600,7 +600,7 @@
                         },
                         {
                             "type": "string",
-                            "id": "title",
+                            "id": "slides.title",
                             "label": {
                                 "en": "Title",
                                 "ar": "العنوان"
@@ -610,7 +610,7 @@
                         },
                         {
                             "type": "string",
-                            "id": "subtitle",
+                            "id": "slides.subtitle",
                             "label": {
                                 "en": "Subtitle",
                                 "ar": "العنوان الفرعي"
@@ -620,7 +620,7 @@
                         },
                         {
                             "type": "items",
-                            "id": "content_position",
+                            "id": "slides.content_position",
                             "label": {
                                 "en": "Content Position",
                                 "ar": "موقع المحتوى"
@@ -654,7 +654,7 @@
                         },
                         {
                             "type": "string",
-                            "id": "btn_text",
+                            "id": "slides.btn_text",
                             "label": {
                                 "en": "Primary Button Text",
                                 "ar": "نص الزر الرئيسي"
@@ -664,7 +664,7 @@
                         },
                         {
                             "type": "string",
-                            "id": "btn_link",
+                            "id": "slides.btn_link",
                             "label": {
                                 "en": "Primary Button Link",
                                 "ar": "رابط الزر الرئيسي"
@@ -674,7 +674,7 @@
                         },
                         {
                             "type": "string",
-                            "id": "btn_color",
+                            "id": "slides.btn_color",
                             "label": {
                                 "en": "Primary Button Color",
                                 "ar": "لون الزر الرئيسي"
@@ -684,7 +684,7 @@
                         },
                         {
                             "type": "string",
-                            "id": "btn2_text",
+                            "id": "slides.btn2_text",
                             "label": {
                                 "en": "Secondary Button Text",
                                 "ar": "نص الزر الثانوي"
@@ -694,13 +694,30 @@
                         },
                         {
                             "type": "string",
-                            "id": "btn2_link",
+                            "id": "slides.btn2_link",
                             "label": {
                                 "en": "Secondary Button Link",
                                 "ar": "رابط الزر الثانوي"
                             },
                             "format": "text",
                             "value": "#"
+                        }
+                    ],
+                    "required": true,
+                    "minLength": 1,
+                    "maxLength": 20,
+                    "item_label": "الشرائح",
+                    "value": [
+                        {
+                            "slides.image": null,
+                            "slides.title": "",
+                            "slides.subtitle": "",
+                            "slides.content_position": "left",
+                            "slides.btn_text": "",
+                            "slides.btn_link": "#",
+                            "slides.btn_color": "#263D30",
+                            "slides.btn2_text": "",
+                            "slides.btn2_link": "#"
                         }
                     ]
                 }
@@ -807,13 +824,22 @@
                     "fields": [
                         {
                             "type": "string",
-                            "id": "text",
+                            "id": "items.text",
                             "label": {
                                 "en": "Text",
                                 "ar": "النص"
                             },
                             "format": "text",
                             "value": ""
+                        }
+                    ],
+                    "required": true,
+                    "minLength": 1,
+                    "maxLength": 20,
+                    "item_label": "عناصر الشريط",
+                    "value": [
+                        {
+                            "items.text": ""
                         }
                     ]
                 }
@@ -1072,7 +1098,7 @@
                     "fields": [
                         {
                             "type": "string",
-                            "id": "label",
+                            "id": "tabs.label",
                             "label": {
                                 "en": "Tab Label",
                                 "ar": "عنوان التبويب"
@@ -1082,7 +1108,7 @@
                         },
                         {
                             "type": "items",
-                            "id": "source",
+                            "id": "tabs.source",
                             "label": {
                                 "en": "Product Source",
                                 "ar": "مصدر المنتجات"
@@ -1121,13 +1147,24 @@
                         },
                         {
                             "type": "string",
-                            "id": "category_id",
+                            "id": "tabs.category_id",
                             "label": {
                                 "en": "Category ID (if source = Category)",
                                 "ar": "معرف التصنيف"
                             },
                             "format": "text",
                             "value": ""
+                        }
+                    ],
+                    "required": true,
+                    "minLength": 1,
+                    "maxLength": 20,
+                    "item_label": "التبويبات",
+                    "value": [
+                        {
+                            "tabs.label": "",
+                            "tabs.source": "latest",
+                            "tabs.category_id": ""
                         }
                     ]
                 }
@@ -1549,7 +1586,7 @@
                     "fields": [
                         {
                             "type": "string",
-                            "id": "icon",
+                            "id": "items.icon",
                             "label": {
                                 "en": "Icon Image",
                                 "ar": "صورة الأيقونة"
@@ -1558,13 +1595,23 @@
                         },
                         {
                             "type": "string",
-                            "id": "label",
+                            "id": "items.label",
                             "label": {
                                 "en": "Label",
                                 "ar": "العنوان"
                             },
                             "format": "text",
                             "value": ""
+                        }
+                    ],
+                    "required": true,
+                    "minLength": 1,
+                    "maxLength": 20,
+                    "item_label": "عناصر الثقة",
+                    "value": [
+                        {
+                            "items.icon": null,
+                            "items.label": ""
                         }
                     ]
                 }
@@ -1701,7 +1748,7 @@
                     "fields": [
                         {
                             "type": "number",
-                            "id": "stars",
+                            "id": "testimonials.stars",
                             "label": {
                                 "en": "Stars (1-5)",
                                 "ar": "النجوم (1-5)"
@@ -1711,7 +1758,7 @@
                         },
                         {
                             "type": "string",
-                            "id": "text",
+                            "id": "testimonials.text",
                             "label": {
                                 "en": "Review Text",
                                 "ar": "نص المراجعة"
@@ -1721,7 +1768,7 @@
                         },
                         {
                             "type": "string",
-                            "id": "author",
+                            "id": "testimonials.author",
                             "label": {
                                 "en": "Author Name",
                                 "ar": "اسم الكاتب"
@@ -1731,13 +1778,25 @@
                         },
                         {
                             "type": "string",
-                            "id": "location",
+                            "id": "testimonials.location",
                             "label": {
                                 "en": "Location",
                                 "ar": "الموقع"
                             },
                             "format": "text",
                             "value": ""
+                        }
+                    ],
+                    "required": true,
+                    "minLength": 1,
+                    "maxLength": 20,
+                    "item_label": "الآراء",
+                    "value": [
+                        {
+                            "testimonials.stars": 5,
+                            "testimonials.text": "",
+                            "testimonials.author": "",
+                            "testimonials.location": ""
                         }
                     ]
                 }
@@ -1833,7 +1892,7 @@
                     "fields": [
                         {
                             "type": "string",
-                            "id": "image",
+                            "id": "promos.image",
                             "label": {
                                 "en": "Image",
                                 "ar": "الصورة"
@@ -1842,7 +1901,7 @@
                         },
                         {
                             "type": "string",
-                            "id": "title",
+                            "id": "promos.title",
                             "label": {
                                 "en": "Title",
                                 "ar": "العنوان"
@@ -1852,7 +1911,7 @@
                         },
                         {
                             "type": "string",
-                            "id": "link_text",
+                            "id": "promos.link_text",
                             "label": {
                                 "en": "Link Text",
                                 "ar": "نص الرابط"
@@ -1862,13 +1921,25 @@
                         },
                         {
                             "type": "string",
-                            "id": "link",
+                            "id": "promos.link",
                             "label": {
                                 "en": "Link URL",
                                 "ar": "رابط URL"
                             },
                             "format": "text",
                             "value": "#"
+                        }
+                    ],
+                    "required": true,
+                    "minLength": 1,
+                    "maxLength": 20,
+                    "item_label": "بطاقات العروض",
+                    "value": [
+                        {
+                            "promos.image": null,
+                            "promos.title": "",
+                            "promos.link_text": "",
+                            "promos.link": "#"
                         }
                     ]
                 }
@@ -1956,7 +2027,7 @@
                     "fields": [
                         {
                             "type": "string",
-                            "id": "image",
+                            "id": "images.image",
                             "label": {
                                 "en": "Image",
                                 "ar": "الصورة"
@@ -1965,13 +2036,23 @@
                         },
                         {
                             "type": "string",
-                            "id": "link",
+                            "id": "images.link",
                             "label": {
                                 "en": "Post Link",
                                 "ar": "رابط المنشور"
                             },
                             "format": "text",
                             "value": "#"
+                        }
+                    ],
+                    "required": true,
+                    "minLength": 1,
+                    "maxLength": 20,
+                    "item_label": "الصور",
+                    "value": [
+                        {
+                            "images.image": null,
+                            "images.link": "#"
                         }
                     ]
                 }

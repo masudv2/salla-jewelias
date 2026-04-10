@@ -191,3 +191,12 @@
     background: var(--nr-dark-text);
   }
 }
+
+// Ken Burns variant
+.nr-hero--ken-burns .nr-hero__slide.is-active .nr-hero__img {
+  animation: nr-ken-burns 8s ease forwards;
+}
+
+.nr-hero--ken-burns .nr-hero__slide:nth-child(even).is-active .nr-hero__img {
+  animation-name: nr-ken-burns-alt;
+}

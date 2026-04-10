@@ -67,3 +67,26 @@
     width: 100%;
   }
 }
+
+// Decorative divider
+.nr-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--nr-space-md);
+  padding: var(--nr-space-md) 0;
+}
+
+.nr-divider__line {
+  flex: 1;
+  height: 1px;
+  background: var(--nr-border);
+  max-width: 120px;
+}
+
+.nr-divider__diamond {
+  width: 8px;
+  height: 8px;
+  transform: rotate(45deg);
+  border: 1px solid var(--nr-border);
+}

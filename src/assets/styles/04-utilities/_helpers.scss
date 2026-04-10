@@ -41,3 +41,31 @@
   white-space: nowrap;
   border-width: 0;
 }
+
+.nr-section-label {
+  display: flex;
+  align-items: center;
+  gap: var(--nr-space-sm);
+  font-family: var(--nr-font-body);
+  font-size: var(--nr-label);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--nr-text-light);
+  margin-bottom: var(--nr-space-sm);
+}
+
+.nr-bg-alt {
+  background: var(--nr-bg-warm);
+}
+
+.nr-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 600ms ease, transform 600ms ease;
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
