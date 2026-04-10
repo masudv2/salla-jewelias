@@ -1,855 +1,247 @@
 {
     "name": {
-        "ar": "جوالياس",
-        "en": "Jewelias"
+        "ar": "نور",
+        "en": "Noor"
     },
     "repository": "https://github.com/masudv2/salla-jewelias",
     "author_email": "masud@rancyn.com",
     "description": {
-        "en": "Premium jewelry & luxury accessories theme for Salla. Modern editorial design with full customization.",
-        "ar": "قالب مجوهرات وإكسسوارات فاخرة لمنصة سلة. تصميم عصري مع تخصيص كامل."
+        "en": "Premium luxury & editorial lifestyle theme for Salla, inspired by Eurus Whiff.",
+        "ar": "قالب فاخر وأنيق لمنصة سلة، مستوحى من تصميم Eurus Whiff."
     },
     "features": [
         "mega-menu",
         "fonts",
         "color",
         "breadcrumb",
-        "filters",
-        "component-featured-products"
+        "unite-cards-height",
+        "component-featured-products",
+        "component-fixed-banner",
+        "component-fixed-products",
+        "component-products-slider",
+        "component-photos-slider",
+        "component-parallax-background",
+        "component-testimonials",
+        "component-square-photos",
+        "component-store-features",
+        "component-youtube",
+        "menu-images",
+        "filters"
     ],
     "settings": [
         {
-            "id": "announce_bg",
-            "type": "string",
-            "format": "color",
-            "label": "خلفية شريط الإعلان",
-            "value": "#0D0D0D",
-            "icon": "sicon-color-palette"
-        },
-        {
-            "id": "announce_color",
-            "type": "string",
-            "format": "color",
-            "label": "لون نص شريط الإعلان",
-            "value": "#DDB87E",
-            "icon": "sicon-color-palette"
-        },
-        {
-            "id": "announce_dot_color",
-            "type": "string",
-            "format": "color",
-            "label": "لون نقاط شريط الإعلان",
-            "value": "#C6975B",
-            "icon": "sicon-color-palette"
-        },
-        {
-            "id": "announce_text_1",
-            "type": "string",
-            "format": "text",
-            "label": "نص الإعلان 1",
-            "value": "Free shipping on orders over SAR 500",
-            "multilanguage": true,
-            "icon": "sicon-format-text-alt"
-        },
-        {
-            "id": "announce_text_2",
-            "type": "string",
-            "format": "text",
-            "label": "نص الإعلان 2",
-            "value": "Lifetime warranty on all pieces",
-            "multilanguage": true,
-            "icon": "sicon-format-text-alt"
-        },
-        {
-            "id": "announce_text_3",
-            "type": "string",
-            "format": "text",
-            "label": "نص الإعلان 3",
-            "value": "Use code JEWEL25 for 25% off",
-            "multilanguage": true,
-            "icon": "sicon-format-text-alt"
-        },
-        {
-            "id": "announce_text_4",
-            "type": "string",
-            "format": "text",
-            "label": "نص الإعلان 4",
-            "value": "Handcrafted with love",
-            "multilanguage": true,
-            "icon": "sicon-format-text-alt"
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-eye",
-            "label": "إظهار الشريط الإعلاني",
-            "id": "announce_show",
-            "format": "switch",
-            "value": true,
-            "selected": true
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-slider",
-            "label": "استخدام سلايدر بدل النص المتحرك",
-            "id": "announce_use_slider",
-            "format": "switch",
-            "value": false,
-            "selected": false
-        },
-        {
-            "type": "string",
-            "format": "text",
-            "id": "announce_link",
-            "label": "رابط النص الإعلاني",
-            "icon": "sicon-link",
-            "value": ""
-        },
-        {
-            "type": "static",
-            "id": "static-ann-features",
-            "format": "line"
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-cursor",
-            "label": "إظهار زر الإجراء (CTA)",
-            "id": "announce_show_cta",
-            "format": "switch",
-            "value": false,
-            "selected": false
-        },
-        {
-            "type": "string",
-            "format": "text",
-            "id": "announce_btn_label",
-            "label": "نص الزر",
-            "value": "SHOP NOW",
-            "multilanguage": true,
-            "icon": "sicon-cursor"
-        },
-        {
-            "type": "string",
-            "format": "text",
-            "id": "announce_btn_link",
-            "label": "رابط الزر",
-            "icon": "sicon-link",
-            "value": ""
-        },
-        {
-            "type": "string",
-            "format": "color",
-            "id": "announce_btn_color",
-            "label": "لون الزر",
-            "icon": "sicon-color-palette",
-            "value": "#DDB87E"
-        },
-        {
-            "type": "static",
-            "id": "static-ann-toggles",
-            "format": "line"
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-share",
-            "label": "إظهار أيقونات التواصل الاجتماعي",
-            "id": "announce_show_social",
-            "format": "switch",
-            "value": false,
-            "selected": false
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-globe",
-            "label": "إظهار اللغة والعملة",
-            "id": "announce_show_locale",
-            "format": "switch",
-            "value": false,
-            "selected": false
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-close",
-            "label": "إظهار زر الإغلاق",
-            "id": "announce_show_close",
-            "format": "switch",
-            "value": true,
-            "selected": true
-        },
-        {
-            "type": "static",
-            "id": "static-ann-countdown",
-            "format": "line"
-        },
-        {
-            "type": "boolean",
-            "icon": "sicon-clock",
-            "label": "إظهار العد التنازلي",
-            "id": "announce_show_countdown",
-            "format": "switch",
-            "value": false,
-            "selected": false
-        },
-        {
-            "type": "number",
-            "id": "announce_cd_year",
-            "label": "سنة انتهاء العد التنازلي",
-            "icon": "sicon-calendar",
-            "value": 2026,
-            "minimum": 2024,
-            "maximum": 2030,
-            "format": "number"
-        },
-        {
-            "type": "number",
-            "id": "announce_cd_month",
-            "label": "شهر الانتهاء",
-            "icon": "sicon-calendar",
-            "value": 12,
-            "minimum": 1,
-            "maximum": 12,
-            "format": "number"
-        },
-        {
-            "type": "number",
-            "id": "announce_cd_day",
-            "label": "يوم الانتهاء",
-            "icon": "sicon-calendar",
-            "value": 31,
-            "minimum": 1,
-            "maximum": 31,
-            "format": "number"
-        },
-        {
-            "type": "number",
-            "id": "announce_cd_hour",
-            "label": "ساعة الانتهاء",
-            "icon": "sicon-clock",
-            "value": 0,
-            "minimum": 0,
-            "maximum": 23,
-            "format": "number"
-        },
-        {
-            "type": "number",
-            "id": "announce_cd_minute",
-            "label": "دقيقة الانتهاء",
-            "icon": "sicon-clock",
-            "value": 0,
-            "minimum": 0,
-            "maximum": 59,
-            "format": "number"
-        },
-        {
-            "type": "static",
-            "id": "static-ann-end",
-            "format": "line"
-        },
-        {
-            "id": "logo_height",
-            "type": "number",
-            "format": "number",
-            "label": "ارتفاع الشعار (بكسل)",
-            "value": 36,
-            "minimum": 20,
-            "maximum": 80,
-            "icon": "sicon-ruler"
+            "id": "squar_photo_bg_image_size",
+            "type": "items",
+            "format": "dropdown-list",
+            "label": "طريقة عرض الصور في قسم قائمة عناصر ",
+            "description": null,
+            "labelHTML": null,
+            "icon": "sicon-list",
+            "selected": [
+                {
+                    "label": "اظهار الصورة كاملةً في المنتصف (Contain)",
+                    "value": "contain",
+                    "key": "f4adec13-6e4c-654b-b978-b2807935ced9"
+                }
+            ],
+            "options": [
+                {
+                    "label": "تغطية الصورة كامل المساحة مع المحافظة على أبعاد الصورة (Cover)",
+                    "value": "cover",
+                    "key": "e9c8ea8f-c5c6-234e-935-3bce269afde4"
+                },
+                {
+                    "label": "اظهار الصورة كاملةً في المنتصف (Contain)",
+                    "value": "contain",
+                    "key": "f4adec13-6e4c-654b-b978-b2807935ced9"
+                }
+            ],
+            "source": "Manual",
+            "required": true
         },
         {
             "type": "boolean",
             "icon": "sicon-toggle-off",
-            "label": "تفعيل قائمة المزيد عند امتلاء القائمة",
-            "id": "enable_more_menu",
+            "label": "وضع عمودي للمنتجات في مربع المنتجات الثابتة في الصفحة الرئيسية",
+            "description": null,
+            "id": "vertical_fixed_products",
             "format": "switch",
+            "required": false,
+            "value": false,
+            "selected": false
+        },
+        {
+            "type": "boolean",
+            "id": "is_more_button_enabled",
+            "label": "عرض (زر الكل) في الصفحة الرئيسية",
+            "format": "switch"
+        },
+        {
+            "type": "static",
+            "id": "static-line1",
+            "format": "line"
+        },
+        {
+            "type": "static",
+            "format": "title",
+            "id": "static-label2",
+            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات أعلى الصفحة</h6></div>",
+            "variant": "h6"
+        },
+        {
+            "id": "header_is_sticky",
+            "label": "تثبت القائمة الرئيسية أعلى الصفحة عند التمرير لأسفل",
+            "description": "يُنصح بالغاء تفعيلها في حالة وجود عناصر كثيرة في القائمة المنسدلة",
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "format": "switch",
+            "required": false,
             "value": true,
             "selected": true
         },
         {
             "type": "boolean",
-            "icon": "sicon-pin",
-            "label": "شريط تنقل ذكي (يختفي عند التمرير لأسفل)",
-            "id": "header_nav_smart_sticky",
+            "icon": "sicon-toggle-off",
+            "label": "شريط علوي داكن",
+            "description": null,
+            "id": "topnav_is_dark",
             "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": false
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "عرض روابط الصفحات الهامة في الشريط العلوي",
+            "description": "مثل صفحة الهبوط ، المدونة ،الصفحات التعريفية",
+            "id": "important_links",
+            "format": "switch",
+            "required": false,
             "value": true,
             "selected": true
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "تفعيل قائمة المزيد في القائمة الرئيسية",
+            "description": "عند تفعيلها، ستظهر الروابط الإضافية في قائمة منسدلة تسمى 'المزيد' عند عدم وجود مساحة كافية",
+            "id": "enable_more_menu",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "static",
+            "id": "static-line3",
+            "format": "line"
+        },
+        {
+            "type": "static",
+            "format": "title",
+            "id": "static-label4",
+            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات أسفل الصفحة</h6></div>",
+            "variant": "h6"
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "الوضع الداكن",
+            "description": null,
+            "id": "footer_is_dark",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": false
+        },
+        {
+            "type": "static",
+            "id": "static-line5",
+            "format": "line"
+        },
+        {
+            "type": "static",
+            "format": "title",
+            "id": "static-label6",
+            "value": "<div class='rounded-lg' style='background-color: #21636d; display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 15px;'><h6 style='color: #ffffff;font-size: 15px; font-weight: bold;'> خيارات صفحة المنتج</h6></div>",
+            "variant": "h6"
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "تفعيل إشعار الإضافة للسلة المحسن",
+            "description": null,
+            "id": "enable_add_product_toast",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "تثبيت زر الإضافة والكمية أسفل شاشة الجوال",
+            "description": null,
+            "id": "sticky_add_to_cart",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "اظهار الوسوم",
+            "description": null,
+            "id": "show_tags",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "id": "slider_background_size",
+            "type": "items",
+            "format": "dropdown-list",
+            "label": "طريقة عرض الصور في سليدر صور المنتج",
+            "description": null,
+            "labelHTML": null,
+            "icon": "sicon-list",
+            "selected": [
+                {
+                    "label": "اظهار الصورة كاملةً في المنتصف (Contain)",
+                    "value": "contain",
+                    "key": "f4adec13-6e4c-433b-b141-b2807935ced9"
+                }
+            ],
+            "options": [
+                {
+                    "label": "تغطية الصورة كامل المساحة مع المحافظة على أبعاد الصورة (Cover)",
+                    "value": "cover",
+                    "key": "e9c8ea8f-c5c6-438e-9d45-3bce269afde4"
+                },
+                {
+                    "label": "اظهار الصورة كاملةً في المنتصف (Contain)",
+                    "value": "contain",
+                    "key": "f4adec13-6e4c-433b-b141-b2807935ced9"
+                }
+            ],
+            "source": "Manual",
+            "required": true
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "تكبير الصور في سليدر صور المنتج",
+            "description": "هذه الخاصية تمكنك من تكبير الصورة لتسهل رؤية المزيد من التفاصيل بها",
+            "id": "imageZoom",
+            "format": "switch",
+            "required": false,
+            "value": false,
+            "selected": false
         }
     ],
-    "components": [
-        {
-            "key": "89f97239-9b61-4fa4-ba04-8fe9725478fe",
-            "title": {
-                "en": "Hero Section",
-                "ar": "القسم الرئيسي"
-            },
-            "icon": "sicon-image-carousel",
-            "path": "home.hero-slideshow",
-            "fields": [
-                {
-                    "type": "string",
-                    "format": "text",
-                    "id": "tag_text",
-                    "label": "النص العلوي",
-                    "value": "Summer 2026",
-                    "multilanguage": true,
-                    "icon": "sicon-tag",
-                    "placeholder": "e.g. New Collection"
-                },
-                {
-                    "type": "string",
-                    "format": "textarea",
-                    "id": "title",
-                    "label": "العنوان الرئيسي",
-                    "value": "Where Art Meets <em>Elegance</em>",
-                    "multilanguage": true,
-                    "icon": "sicon-format-text-alt",
-                    "required": true
-                },
-                {
-                    "type": "string",
-                    "format": "textarea",
-                    "id": "description",
-                    "label": "وصف القسم الرئيسي",
-                    "value": "Discover handcrafted jewelry designed for those who appreciate the extraordinary.",
-                    "multilanguage": true,
-                    "icon": "sicon-typography"
-                },
-                {
-                    "type": "string",
-                    "format": "image",
-                    "id": "hero_image",
-                    "label": "صورة القسم",
-                    "value": "",
-                    "icon": "sicon-image",
-                    "description": "* المقاس المناسب: 1200×900 بكسل"
-                },
-                {
-                    "type": "string",
-                    "format": "color",
-                    "id": "hero_bg_color",
-                    "label": "لون خلفية الصورة",
-                    "value": "#E8D5C4",
-                    "icon": "sicon-color-palette"
-                },
-                {
-                    "type": "string",
-                    "format": "text",
-                    "id": "btn_text",
-                    "label": "نص الزر الأول",
-                    "value": "Shop Collection",
-                    "multilanguage": true,
-                    "icon": "sicon-link"
-                },
-                {
-                    "type": "string",
-                    "format": "text",
-                    "id": "btn_link",
-                    "label": "رابط الزر الأول",
-                    "value": "#",
-                    "icon": "sicon-link"
-                },
-                {
-                    "type": "string",
-                    "format": "color",
-                    "id": "btn_bg",
-                    "label": "لون الزر الأول",
-                    "value": "#0D0D0D",
-                    "icon": "sicon-color-palette"
-                },
-                {
-                    "type": "boolean",
-                    "format": "switch",
-                    "id": "show_btn2",
-                    "label": "إظهار الزر الثاني",
-                    "value": true,
-                    "selected": true,
-                    "icon": "sicon-toggle-off"
-                },
-                {
-                    "type": "string",
-                    "format": "text",
-                    "id": "btn2_text",
-                    "label": "نص الزر الثاني",
-                    "value": "Our Story",
-                    "multilanguage": true,
-                    "icon": "sicon-link"
-                },
-                {
-                    "type": "string",
-                    "format": "text",
-                    "id": "btn2_link",
-                    "label": "رابط الزر الثاني",
-                    "value": "#",
-                    "icon": "sicon-link"
-                },
-                {
-                    "type": "boolean",
-                    "format": "switch",
-                    "id": "show_float",
-                    "label": "إظهار الشارة العائمة",
-                    "value": true,
-                    "selected": true,
-                    "icon": "sicon-badge"
-                },
-                {
-                    "type": "string",
-                    "format": "text",
-                    "id": "float_title",
-                    "label": "عنوان الشارة",
-                    "value": "Certified Authentic",
-                    "multilanguage": true,
-                    "icon": "sicon-badge"
-                },
-                {
-                    "type": "string",
-                    "format": "text",
-                    "id": "float_desc",
-                    "label": "وصف الشارة",
-                    "value": "Every piece comes with certificate",
-                    "multilanguage": true,
-                    "icon": "sicon-typography"
-                }
-            ]
-        },
-        {
-            "key": "7febf28f-1a21-4c1e-80ed-831caccdd402",
-            "title": {
-                "en": "Features Bar",
-                "ar": "شريط المزايا"
-            },
-            "icon": "sicon-star",
-            "path": "home.features-bar",
-            "fields": [
-                {
-                    "type": "collection",
-                    "format": "collection",
-                    "id": "items",
-                    "required": true,
-                    "minLength": 1,
-                    "maxLength": 6,
-                    "item_label": "ميزة",
-                    "fields": [
-                        {
-                            "type": "string",
-                            "format": "text",
-                            "id": "items.icon",
-                            "label": "أيقونة (اسم صنف Salla)",
-                            "value": "sicon-shipping-fast",
-                            "icon": "sicon-star",
-                            "placeholder": "sicon-shipping-fast"
-                        },
-                        {
-                            "type": "string",
-                            "format": "text",
-                            "id": "items.title",
-                            "label": "العنوان",
-                            "value": "Free Shipping",
-                            "multilanguage": true,
-                            "icon": "sicon-format-text-alt"
-                        },
-                        {
-                            "type": "string",
-                            "format": "text",
-                            "id": "items.desc",
-                            "label": "الوصف",
-                            "value": "On all orders over SAR 500",
-                            "multilanguage": true,
-                            "icon": "sicon-typography"
-                        }
-                    ],
-                    "value": [
-                        {
-                            "icon": "sicon-shipping-fast",
-                            "title": "Free Shipping",
-                            "desc": "On all orders over SAR 500"
-                        },
-                        {
-                            "icon": "sicon-shield-check",
-                            "title": "Lifetime Warranty",
-                            "desc": "Quality guaranteed forever"
-                        },
-                        {
-                            "icon": "sicon-diamond",
-                            "title": "Ethically Sourced",
-                            "desc": "Responsibly crafted pieces"
-                        },
-                        {
-                            "icon": "sicon-comment-alt-lines",
-                            "title": "Expert Consultation",
-                            "desc": "Personal styling advice"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "key": "3e417b9c-7961-4998-9cd7-754d2ec2335a",
-            "title": {
-                "en": "Categories",
-                "ar": "التصنيفات"
-            },
-            "icon": "sicon-grid",
-            "path": "home.categories",
-            "fields": [
-                {
-                    "type": "string",
-                    "format": "text",
-                    "id": "tag",
-                    "label": "النص العلوي",
-                    "value": "Explore",
-                    "multilanguage": true,
-                    "icon": "sicon-tag"
-                },
-                {
-                    "type": "string",
-                    "format": "text",
-                    "id": "heading",
-                    "label": "العنوان",
-                    "value": "Shop by Category",
-                    "multilanguage": true,
-                    "icon": "sicon-format-text-alt",
-                    "required": true
-                },
-                {
-                    "type": "string",
-                    "format": "text",
-                    "id": "view_all_link",
-                    "label": "رابط عرض الكل",
-                    "value": "/categories",
-                    "icon": "sicon-link"
-                },
-                {
-                    "type": "collection",
-                    "format": "collection",
-                    "id": "cats",
-                    "required": true,
-                    "minLength": 1,
-                    "maxLength": 8,
-                    "item_label": "تصنيف",
-                    "fields": [
-                        {
-                            "type": "string",
-                            "format": "image",
-                            "id": "cats.image",
-                            "label": "صورة التصنيف",
-                            "icon": "sicon-image",
-                            "description": "* المقاس المناسب: 600×750 بكسل"
-                        },
-                        {
-                            "type": "string",
-                            "format": "text",
-                            "id": "cats.name",
-                            "label": "اسم التصنيف",
-                            "value": "Category",
-                            "multilanguage": true,
-                            "icon": "sicon-format-text-alt"
-                        },
-                        {
-                            "type": "string",
-                            "format": "text",
-                            "id": "cats.count",
-                            "label": "عدد المنتجات",
-                            "value": "42 pieces",
-                            "multilanguage": true,
-                            "icon": "sicon-shopping-bag"
-                        },
-                        {
-                            "type": "string",
-                            "format": "text",
-                            "id": "cats.link",
-                            "label": "الرابط",
-                            "value": "#",
-                            "icon": "sicon-link"
-                        }
-                    ],
-                    "value": [
-                        {
-                            "image": "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=600&q=80",
-                            "name": "Rings",
-                            "count": "42 pieces",
-                            "link": "#"
-                        },
-                        {
-                            "image": "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&q=80",
-                            "name": "Necklaces",
-                            "count": "38 pieces",
-                            "link": "#"
-                        },
-                        {
-                            "image": "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600&q=80",
-                            "name": "Earrings",
-                            "count": "56 pieces",
-                            "link": "#"
-                        },
-                        {
-                            "image": "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=80",
-                            "name": "Bracelets",
-                            "count": "29 pieces",
-                            "link": "#"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "key": "b81da07b-0799-4e78-b2d8-69a8b2344958",
-            "title": {
-                "en": "Featured Products",
-                "ar": "منتجات مميزة"
-            },
-            "icon": "sicon-shopping-bag",
-            "path": "home.featured-products",
-            "fields": [
-                {
-                    "type": "string",
-                    "format": "text",
-                    "id": "tag",
-                    "label": "النص العلوي",
-                    "value": "Just Arrived",
-                    "multilanguage": true,
-                    "icon": "sicon-tag"
-                },
-                {
-                    "type": "string",
-                    "format": "text",
-                    "id": "heading",
-                    "label": "العنوان",
-                    "value": "New Collection",
-                    "multilanguage": true,
-                    "icon": "sicon-format-text-alt",
-                    "required": true
-                },
-                {
-                    "type": "string",
-                    "format": "text",
-                    "id": "view_all_link",
-                    "label": "رابط عرض الكل",
-                    "value": "/products",
-                    "icon": "sicon-link"
-                },
-                {
-                    "type": "items",
-                    "format": "dropdown-list",
-                    "id": "source",
-                    "label": "مصدر المنتجات",
-                    "value": "latest",
-                    "icon": "sicon-filter",
-                    "options": [
-                        {
-                            "label": "أحدث المنتجات",
-                            "value": "latest"
-                        },
-                        {
-                            "label": "الأكثر مبيعاً",
-                            "value": "best_selling"
-                        },
-                        {
-                            "label": "عروض خاصة",
-                            "value": "sale"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "key": "ce346741-4a7c-4a0e-a30e-affaf36315f9",
-            "title": {
-                "en": "CTA Banner",
-                "ar": "بانر إعلاني"
-            },
-            "icon": "sicon-image",
-            "path": "home.cta-banner",
-            "fields": [
-                {
-                    "type": "string",
-                    "format": "text",
-                    "id": "tag",
-                    "label": "النص العلوي",
-                    "value": "Limited Edition",
-                    "multilanguage": true,
-                    "icon": "sicon-tag"
-                },
-                {
-                    "type": "string",
-                    "format": "textarea",
-                    "id": "heading",
-                    "label": "العنوان الرئيسي",
-                    "value": "The Artisan Collection",
-                    "multilanguage": true,
-                    "icon": "sicon-format-text-alt",
-                    "required": true
-                },
-                {
-                    "type": "string",
-                    "format": "textarea",
-                    "id": "description",
-                    "label": "الوصف",
-                    "value": "Handcrafted by master jewelers using centuries-old techniques. Each piece is a unique work of art.",
-                    "multilanguage": true,
-                    "icon": "sicon-typography"
-                },
-                {
-                    "type": "string",
-                    "format": "image",
-                    "id": "bg_image",
-                    "label": "صورة الخلفية",
-                    "value": "https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=1400&q=80",
-                    "icon": "sicon-image",
-                    "description": "* المقاس المناسب: 1400×600 بكسل"
-                },
-                {
-                    "type": "string",
-                    "format": "color",
-                    "id": "bg_color",
-                    "label": "لون الخلفية",
-                    "value": "#0D0D0D",
-                    "icon": "sicon-color-palette"
-                },
-                {
-                    "type": "string",
-                    "format": "text",
-                    "id": "btn_text",
-                    "label": "نص الزر",
-                    "value": "Explore Now",
-                    "multilanguage": true,
-                    "icon": "sicon-link"
-                },
-                {
-                    "type": "string",
-                    "format": "text",
-                    "id": "btn_link",
-                    "label": "رابط الزر",
-                    "value": "#",
-                    "icon": "sicon-link"
-                }
-            ]
-        },
-        {
-            "key": "4ebed7c1-8c6b-4966-be7f-5fac6a21f65a",
-            "title": {
-                "en": "Testimonials",
-                "ar": "آراء العملاء"
-            },
-            "icon": "sicon-comment-alt-lines",
-            "path": "home.testimonials",
-            "fields": [
-                {
-                    "type": "string",
-                    "format": "text",
-                    "id": "tag",
-                    "label": "النص العلوي",
-                    "value": "Reviews",
-                    "multilanguage": true,
-                    "icon": "sicon-tag"
-                },
-                {
-                    "type": "string",
-                    "format": "text",
-                    "id": "heading",
-                    "label": "العنوان",
-                    "value": "What Our Clients Say",
-                    "multilanguage": true,
-                    "icon": "sicon-format-text-alt",
-                    "required": true
-                },
-                {
-                    "type": "collection",
-                    "format": "collection",
-                    "id": "reviews",
-                    "required": true,
-                    "minLength": 1,
-                    "maxLength": 10,
-                    "item_label": "تقييم",
-                    "fields": [
-                        {
-                            "type": "string",
-                            "format": "textarea",
-                            "id": "reviews.text",
-                            "label": "نص التقييم",
-                            "multilanguage": true,
-                            "icon": "sicon-typography"
-                        },
-                        {
-                            "type": "string",
-                            "format": "text",
-                            "id": "reviews.name",
-                            "label": "اسم العميل",
-                            "icon": "sicon-user"
-                        },
-                        {
-                            "type": "string",
-                            "format": "text",
-                            "id": "reviews.location",
-                            "label": "الموقع",
-                            "multilanguage": true,
-                            "icon": "sicon-location"
-                        }
-                    ],
-                    "value": [
-                        {
-                            "text": "The quality and craftsmanship exceeded all expectations. My engagement ring is absolutely perfect — a true work of art.",
-                            "name": "Sarah Al-Rashid",
-                            "location": "Riyadh, Saudi Arabia"
-                        },
-                        {
-                            "text": "Every piece I have purchased from Jewelias has been stunning. The attention to detail is unmatched.",
-                            "name": "Nora Khalil",
-                            "location": "Jeddah, Saudi Arabia"
-                        },
-                        {
-                            "text": "Exceptional service and breathtaking designs. I always receive compliments on my Jewelias jewelry.",
-                            "name": "Layla Hassan",
-                            "location": "Dubai, UAE"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "key": "1d4c6785-6573-4849-8bf7-1f5a56bd481b",
-            "title": {
-                "en": "Newsletter",
-                "ar": "النشرة البريدية"
-            },
-            "icon": "sicon-email",
-            "path": "home.newsletter",
-            "fields": [
-                {
-                    "type": "string",
-                    "format": "text",
-                    "id": "tag",
-                    "label": "النص العلوي",
-                    "value": "Stay Connected",
-                    "multilanguage": true,
-                    "icon": "sicon-tag"
-                },
-                {
-                    "type": "string",
-                    "format": "text",
-                    "id": "heading",
-                    "label": "العنوان",
-                    "value": "Join the Jewelias Family",
-                    "multilanguage": true,
-                    "icon": "sicon-format-text-alt",
-                    "required": true
-                },
-                {
-                    "type": "string",
-                    "format": "textarea",
-                    "id": "description",
-                    "label": "الوصف",
-                    "value": "Be the first to discover new collections, exclusive offers, and styling tips.",
-                    "multilanguage": true,
-                    "icon": "sicon-typography"
-                },
-                {
-                    "type": "string",
-                    "format": "color",
-                    "id": "bg_color",
-                    "label": "لون الخلفية",
-                    "value": "#F6F6F6",
-                    "icon": "sicon-color-palette"
-                }
-            ]
-        }
-    ],
+    "components": [],
     "support_url": "https://salla.com/"
 }
