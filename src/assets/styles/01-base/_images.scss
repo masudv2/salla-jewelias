@@ -1,0 +1,31 @@
+img {
+  height: auto;
+}
+
+.nr-skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--nr-bg-warm);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.4) 50%,
+      transparent 100%
+    );
+    animation: nr-shimmer 1.5s ease-in-out infinite;
+  }
+
+  &.nr-loaded::after {
+    display: none;
+  }
+}
+
+@keyframes nr-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}

@@ -1,0 +1,28 @@
+a {
+  color: var(--nr-primary);
+  transition: color var(--nr-transition);
+
+  &:hover {
+    color: var(--nr-primary-hover);
+  }
+}
+
+.nr-link-underline {
+  position: relative;
+  display: inline-block;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: currentColor;
+    transition: width 400ms var(--nr-ease);
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+}
