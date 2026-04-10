@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Noor — Luxury Jewelry</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../public/app.css">
+  <style>
+    /* =============================================
+       PREVIEW ENHANCEMENTS — Premium polish layer
+       These styles augment the production nr-* system
+       for the static preview only
+       ============================================= */
+
+    /* Smooth page load */
+    body {
+      opacity: 0;
+      animation: bodyFadeIn 800ms ease 200ms forwards;
+    }
+    @keyframes bodyFadeIn {
+      to { opacity: 1; }
+    }
+
+    /* Hero image treatment */
+    .nr-hero__img-real {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+    }
+
+    /* Section divider line with diamond */
+    .nr-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 0.5rem 0;
+    }
+    .nr-divider__line {
+      flex: 1;
+      max-width: 120px;
+      height: 1px;
+      background: var(--nr-border);
+    }
+    .nr-divider__diamond {
+      width: 6px;
+      height: 6px;
+      background: var(--nr-primary);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+
+    /* Parallax hint for images */
+    .nr-parallax-wrap {
+      overflow: hidden;
+    }
+    .nr-parallax-img {
+      transition: transform 0.1s linear;
+      will-change: transform;
+    }
+
+    /* Gradient text accent */
+    .nr-text-accent {
+      background: linear-gradient(135deg, var(--nr-primary), #4a7c5c);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Card image placeholder for real photos */
+    .nr-card__img-real {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--nr-transition-slow), opacity 500ms ease;
+    }
+
+    /* Promo overlay enhanced */
+    .nr-promo .nr-promo__overlay {
+      background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.1) 40%, transparent 100%);
+      transition: background var(--nr-transition-slow);
+    }
+    .nr-promo:hover .nr-promo__overlay {
+      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
+    }
+
+    /* Instagram hover glow */
+    .nr-instagram__item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 2px solid transparent;
+      transition: border-color var(--nr-transition);
+      pointer-events: none;
+    }
+    .nr-instagram__item:hover::after {
+      border-color: var(--nr-primary);
+    }
+
+    /* Trust strip separator */
+    .nr-trust-item {
+      position: relative;
+    }
+    .nr-trust-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: -2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1px;
+      height: 40px;
+      background: var(--nr-border);
+    }
+
+    /* Newsletter warm bg */
+    .nr-newsletter--warm {
+      background: var(--nr-bg-warm);
+    }
+
+    /* Testimonial quote mark */
+    .nr-testimonial-card__text::before {
+      content: '\201C';
+      font-family: var(--nr-font-display);
+      font-size: 3rem;
+      line-height: 0;
+      position: relative;
+      top: 0.4em;
+      margin-right: 0.05em;
+      color: var(--nr-primary);
+      opacity: 0.3;
+    }
+
+    /* Footer social icons */
+    .nr-footer__social {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+    .nr-footer__social a {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--nr-border);
+      color: var(--nr-text-light);
+      transition: all var(--nr-transition);
+    }
+    .nr-footer__social a:hover {
+      background: var(--nr-primary);
+      border-color: var(--nr-primary);
+      color: #fff;
+    }
+    .nr-footer__social svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+
+    /* CTA countdown dark theme */
+    .nr-countdown--dark .nr-countdown__unit {
+      background: rgba(255,255,255,0.08);
+      padding: 0.75rem 1rem;
+      min-width: 64px;
+    }
+    .nr-countdown--dark .nr-countdown__num {
+      color: #fff;
+      font-size: 1.75rem;
+    }
+    .nr-countdown--dark .nr-countdown__label {
+      color: rgba(255,255,255,0.5);
+      margin-top: 0.25rem;
+    }
+    .nr-countdown--dark .nr-countdown__sep {
+      color: rgba(255,255,255,0.3);
+      font-size: 1.5rem;
+    }
+
+    /* Subtle grain texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+
+    /* Smooth cursor for links */
+    a, button { cursor: pointer; }
+
+    /* Section label with line */
+    .nr-section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: var(--nr-font-body);
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--nr-primary);
+      margin-bottom: 1rem;
+    }
+    .nr-section-label::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--nr-primary);
+    }
+
+    /* Hero slide content stagger */
+    .nr-hero__slide.is-active .nr-hero__subtitle {
+      animation: heroTextIn 700ms var(--nr-ease) 400ms forwards;
+    }
+    .nr-hero__slide.is-active .nr-hero__title {
+      animation: heroTextIn 900ms var(--nr-ease) 600ms forwards;
+    }
+    .nr-hero__slide.is-active .nr-hero__actions {
+      animation: heroTextIn 900ms var(--nr-ease) 850ms forwards;
+    }
+    @keyframes heroTextIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Statement decorative quotes */
+    .nr-statement__deco {
+      font-family: var(--nr-font-display);
+      font-size: 6rem;
+      line-height: 0.5;
+      color: var(--nr-primary);
+      opacity: 0.1;
+      display: block;
+      margin-bottom: -0.5rem;
+    }
+  </style>
+</head>
+<body class="theme-noor">
+
+  <!-- ============================================
+       1. ANNOUNCEMENT BAR
+       ============================================ -->
+  <div class="nr-announcement">
+    <div class="nr-announcement__social">
+      <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+      <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+      <a href="#" aria-label="Pinterest"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.372 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z"/></svg></a>
+    </div>
+    <div class="nr-announcement__center">
+      <span>Complimentary Shipping on Orders Over SAR 500 &nbsp;&bull;&nbsp; Easy 30-Day Returns</span>
+    </div>
+    <div class="nr-announcement__right">
+      <button class="nr-announcement__locale-btn">EN <svg width="8" height="5" viewBox="0 0 8 5" fill="none"><path d="M1 1l3 3 3-3" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      <button class="nr-announcement__locale-btn">SAR <svg width="8" height="5" viewBox="0 0 8 5" fill="none"><path d="M1 1l3 3 3-3" stroke="currentColor" stroke-width="1.2"/></svg></button>
+    </div>
+  </div>
+
+  <!-- ============================================
+       2. HEADER
+       ============================================ -->
+  <header class="nr-header" id="nr-header">
+    <div class="nr-header__inner">
+      <div class="nr-header__left">
+        <button class="nr-header__menu-toggle nr-header__icon" aria-label="Menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <nav class="nr-header__nav">
+          <ul class="nr-header__nav-list">
+            <li><a href="#" class="nr-header__nav-link">New Arrivals</a></li>
+            <li><a href="#" class="nr-header__nav-link">Collections</a></li>
+            <li><a href="#" class="nr-header__nav-link">Rings</a></li>
+            <li><a href="#" class="nr-header__nav-link">Necklaces</a></li>
+            <li><a href="#" class="nr-header__nav-link">Bracelets</a></li>
+          </ul>
+        </nav>
+      </div>
+      <a href="#" class="nr-header__logo">Noor</a>
+      <div class="nr-header__actions">
+        <a href="#" class="nr-header__icon" aria-label="Search">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </a>
+        <a href="#" class="nr-header__icon" aria-label="Account">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
+        <a href="#" class="nr-header__icon" aria-label="Wishlist">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </a>
+        <a href="#" class="nr-header__icon" aria-label="Cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span class="nr-header__badge">2</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================
+       3. HERO SLIDESHOW
+       ============================================ -->
+  <section class="nr-hero" data-nr-hero data-nr-autoplay="6000">
+    <div class="nr-hero__slide is-active" data-nr-slide>
+      <img class="nr-hero__img-real nr-hero__img" src="https://images.unsplash.com/photo-1515562141589-67f0d999b4f6?w=1800&q=80&auto=format" alt="Luxury jewelry">
+      <div class="nr-hero__overlay"></div>
+      <div class="nr-hero__content">
+        <p class="nr-hero__subtitle">New Collection 2026</p>
+        <h1 class="nr-hero__title">The Art of<br>Timeless Elegance</h1>
+        <div class="nr-hero__actions">
+          <a href="#" class="nr-btn-solid">Shop Collection <span class="nr-btn__arrow">&rarr;</span></a>
+          <a href="#" class="nr-btn-outline" style="border-color:rgba(255,255,255,0.4);color:#fff;">Discover More</a>
+        </div>
+      </div>
+    </div>
+    <div class="nr-hero__slide" data-nr-slide>
+      <img class="nr-hero__img-real nr-hero__img" src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=1800&q=80&auto=format" alt="Diamond rings" style="object-position:center 40%">
+      <div class="nr-hero__overlay"></div>
+      <div class="nr-hero__content">
+        <p class="nr-hero__subtitle">Bridal Season</p>
+        <h1 class="nr-hero__title">Radiance for<br>Your Special Day</h1>
+        <div class="nr-hero__actions">
+          <a href="#" class="nr-btn-solid">View Bridal <span class="nr-btn__arrow">&rarr;</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="nr-hero__slide" data-nr-slide>
+      <img class="nr-hero__img-real nr-hero__img" src="https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?w=1800&q=80&auto=format" alt="Gold necklace">
+      <div class="nr-hero__overlay"></div>
+      <div class="nr-hero__content">
+        <p class="nr-hero__subtitle">Everyday Luxury</p>
+        <h1 class="nr-hero__title">Pieces That<br>Define You</h1>
+        <div class="nr-hero__actions">
+          <a href="#" class="nr-btn-solid">Explore <span class="nr-btn__arrow">&rarr;</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="nr-hero__dots">
+      <button class="nr-hero__dot is-active" data-nr-dot></button>
+      <button class="nr-hero__dot" data-nr-dot></button>
+      <button class="nr-hero__dot" data-nr-dot></button>
+    </div>
+    <div class="nr-hero__arrows">
+      <button class="nr-hero__arrow" data-nr-prev aria-label="Previous">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="nr-hero__arrow" data-nr-next aria-label="Next">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- ============================================
+       4. MARQUEE TICKER
+       ============================================ -->
+  <div class="nr-marquee" data-nr-marquee style="background:var(--nr-primary);color:#fff;padding:0.85rem 0">
+    <div class="nr-marquee__track">
+      <span class="nr-marquee__item">Complimentary Gift Wrapping <span class="nr-marquee__dot"></span></span>
+      <span class="nr-marquee__item">Handcrafted With Love <span class="nr-marquee__dot"></span></span>
+      <span class="nr-marquee__item">Lifetime Warranty <span class="nr-marquee__dot"></span></span>
+      <span class="nr-marquee__item">Ethically Sourced Materials <span class="nr-marquee__dot"></span></span>
+      <span class="nr-marquee__item">Free Shipping Over SAR 500 <span class="nr-marquee__dot"></span></span>
+    </div>
+  </div>
+
+  <!-- ============================================
+       5. SPLIT COLLECTION BANNER
+       ============================================ -->
+  <section>
+    <div class="nr-split">
+      <div class="nr-split__media nr-reveal--left">
+        <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=900&q=80&auto=format" alt="Gold jewelry collection" style="width:100%;height:100%;object-fit:cover;min-height:550px">
+      </div>
+      <div class="nr-split__content nr-reveal--right">
+        <span class="nr-section-label">Spring 2026</span>
+        <h2 class="nr-split__title">The Crescent<br>Collection</h2>
+        <p class="nr-split__desc">Inspired by the gentle curve of the crescent moon, each piece captures the quiet elegance of Arabian nights. Handcrafted in 18K gold with ethically sourced gemstones.</p>
+        <div style="display:flex;gap:1rem;align-items:center;margin-top:0.5rem">
+          <a href="#" class="nr-btn-solid" style="align-self:flex-start">Explore Collection <span class="nr-btn__arrow">&rarr;</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       6. EDITORIAL STATEMENT
+       ============================================ -->
+  <section class="nr-statement nr-reveal">
+    <div class="nr-container" style="max-width:900px">
+      <div class="nr-divider" style="margin-bottom:3rem">
+        <span class="nr-divider__line"></span>
+        <span class="nr-divider__diamond"></span>
+        <span class="nr-divider__line"></span>
+      </div>
+      <span class="nr-statement__deco">&ldquo;</span>
+      <p class="nr-statement__text">Every piece tells a story of heritage and craftsmanship, designed to be cherished across generations and illuminate life's most precious moments.</p>
+      <div class="nr-divider" style="margin-top:3rem">
+        <span class="nr-divider__line"></span>
+        <span class="nr-divider__diamond"></span>
+        <span class="nr-divider__line"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       7. FEATURED PRODUCTS GRID
+       ============================================ -->
+  <section class="nr-section">
+    <div class="nr-container">
+      <div class="nr-section-header nr-reveal">
+        <div>
+          <span class="nr-section-label">Curated For You</span>
+          <h2>Featured Pieces</h2>
+        </div>
+        <a href="#" class="nr-btn-text">View All <span class="nr-btn__arrow">&rarr;</span></a>
+      </div>
+      <div class="nr-product-grid">
+        <!-- Card 1 -->
+        <div class="nr-card nr-reveal nr-reveal-delay-1">
+          <div class="nr-card__media">
+            <img class="nr-card__img-real nr-card__img nr-card__img--primary" src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&q=80&auto=format" alt="Luna Pendant">
+            <img class="nr-card__img-real nr-card__img nr-card__img--secondary" src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=80&auto=format" alt="Luna Pendant alternate">
+            <div class="nr-card__actions">
+              <button class="nr-btn-icon" aria-label="Wishlist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+              <button class="nr-btn-icon" aria-label="Quick View"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+            </div>
+            <div class="nr-card__quick-add"><button class="nr-btn-solid">Quick Add</button></div>
+          </div>
+          <div class="nr-card__info">
+            <h4 class="nr-card__title">Luna Pendant</h4>
+            <div class="nr-card__price">SAR 1,200</div>
+            <div class="nr-card__rating">
+              <span class="nr-stars">&#9733;&#9733;&#9733;&#9733;<span class="nr-stars__empty">&#9733;</span></span>
+              <span class="nr-card__review-count">(24)</span>
+            </div>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="nr-card nr-reveal nr-reveal-delay-2">
+          <div class="nr-card__media">
+            <img class="nr-card__img-real nr-card__img nr-card__img--primary" src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=600&q=80&auto=format" alt="Crescent Ring">
+            <img class="nr-card__img-real nr-card__img nr-card__img--secondary" src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=600&q=80&auto=format" alt="Crescent Ring on hand">
+            <span class="nr-badge-new" style="position:absolute;top:12px;left:12px;z-index:3">New</span>
+            <div class="nr-card__actions">
+              <button class="nr-btn-icon" aria-label="Wishlist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+            </div>
+            <div class="nr-card__quick-add"><button class="nr-btn-solid">Quick Add</button></div>
+          </div>
+          <div class="nr-card__info">
+            <h4 class="nr-card__title">Crescent Ring</h4>
+            <div class="nr-card__price">SAR 850</div>
+            <div class="nr-card__rating">
+              <span class="nr-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="nr-card__review-count">(58)</span>
+            </div>
+            <div class="nr-card__swatches">
+              <span class="nr-card__swatch is-active" style="background:#d4af37"></span>
+              <span class="nr-card__swatch" style="background:#c0c0c0"></span>
+              <span class="nr-card__swatch" style="background:#e8c4a0"></span>
+            </div>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="nr-card nr-reveal nr-reveal-delay-3">
+          <div class="nr-card__media">
+            <img class="nr-card__img-real nr-card__img nr-card__img--primary" src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=600&q=80&auto=format" alt="Heritage Bangle">
+            <img class="nr-card__img-real nr-card__img nr-card__img--secondary" src="https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=600&q=80&auto=format" alt="Heritage Bangle detail">
+            <span class="nr-badge-sale" style="position:absolute;top:12px;left:12px;z-index:3">-30%</span>
+            <div class="nr-card__actions">
+              <button class="nr-btn-icon" aria-label="Wishlist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+            </div>
+            <div class="nr-card__quick-add"><button class="nr-btn-solid">Quick Add</button></div>
+          </div>
+          <div class="nr-card__info">
+            <h4 class="nr-card__title">Heritage Bangle</h4>
+            <div class="nr-card__price">
+              <span class="nr-card__price-sale">SAR 680</span>
+              <span class="nr-card__price-was">SAR 950</span>
+            </div>
+            <div class="nr-card__rating">
+              <span class="nr-stars">&#9733;&#9733;&#9733;&#9733;<span class="nr-stars__empty">&#9733;</span></span>
+              <span class="nr-card__review-count">(12)</span>
+            </div>
+          </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="nr-card nr-reveal nr-reveal-delay-4">
+          <div class="nr-card__media">
+            <img class="nr-card__img-real nr-card__img nr-card__img--primary" src="https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=600&q=80&auto=format" alt="Noor Chain">
+            <img class="nr-card__img-real nr-card__img nr-card__img--secondary" src="https://images.unsplash.com/photo-1599459183200-59c3fd5f26de?w=600&q=80&auto=format" alt="Noor Chain detail">
+            <div class="nr-card__actions">
+              <button class="nr-btn-icon" aria-label="Wishlist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+            </div>
+            <div class="nr-card__quick-add"><button class="nr-btn-solid">Quick Add</button></div>
+          </div>
+          <div class="nr-card__info">
+            <h4 class="nr-card__title">Noor Chain</h4>
+            <div class="nr-card__price">SAR 1,450</div>
+            <div class="nr-card__rating">
+              <span class="nr-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="nr-card__review-count">(41)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       8. CTA BANNER WITH COUNTDOWN
+       ============================================ -->
+  <section class="nr-cta nr-reveal">
+    <div class="nr-cta__bg">
+      <img src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=1800&q=80&auto=format" alt="Ramadan collection" style="width:100%;height:100%;object-fit:cover">
+    </div>
+    <div class="nr-container" style="position:relative;z-index:2;width:100%">
+      <div class="nr-cta__content">
+        <span class="nr-section-label" style="color:rgba(255,255,255,0.6)"><span style="background:rgba(255,255,255,0.3)" class="nr-section-label::before"></span>Limited Time Offer</span>
+        <h2 class="nr-cta__title">Exclusive Ramadan<br>Collection</h2>
+        <p class="nr-cta__desc">Up to 30% off on select pieces. Celebrate the season of light with handcrafted treasures designed to mark this sacred time.</p>
+        <div class="nr-countdown nr-countdown--dark" style="margin-bottom:var(--nr-space-lg)" data-nr-countdown>
+          <div class="nr-countdown__unit"><div class="nr-countdown__num" data-nr-days>12</div><div class="nr-countdown__label">Days</div></div>
+          <span class="nr-countdown__sep">:</span>
+          <div class="nr-countdown__unit"><div class="nr-countdown__num" data-nr-hours>08</div><div class="nr-countdown__label">Hours</div></div>
+          <span class="nr-countdown__sep">:</span>
+          <div class="nr-countdown__unit"><div class="nr-countdown__num" data-nr-minutes>45</div><div class="nr-countdown__label">Min</div></div>
+          <span class="nr-countdown__sep">:</span>
+          <div class="nr-countdown__unit"><div class="nr-countdown__num" data-nr-seconds>30</div><div class="nr-countdown__label">Sec</div></div>
+        </div>
+        <a href="#" class="nr-btn-solid">Shop the Sale <span class="nr-btn__arrow">&rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       9. TABBED COLLECTION
+       ============================================ -->
+  <section class="nr-section">
+    <div class="nr-container">
+      <div class="nr-section-header nr-reveal" style="justify-content:center;text-align:center">
+        <div>
+          <span class="nr-section-label" style="justify-content:center">Shop By Category</span>
+          <h2>Our Collections</h2>
+        </div>
+      </div>
+      <div data-nr-tabs>
+        <div class="nr-tabs nr-reveal" style="justify-content:center">
+          <button class="nr-tabs__tab is-active" data-nr-tab="rings">Rings</button>
+          <button class="nr-tabs__tab" data-nr-tab="necklaces">Necklaces</button>
+          <button class="nr-tabs__tab" data-nr-tab="bracelets">Bracelets</button>
+          <button class="nr-tabs__tab" data-nr-tab="earrings">Earrings</button>
+        </div>
+        <div class="nr-tabs__panel is-active" data-nr-panel="rings">
+          <div class="nr-product-grid">
+            <div class="nr-card"><div class="nr-card__media"><img class="nr-card__img-real nr-card__img" src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=600&q=80&auto=format" alt="Signet Ring"><div class="nr-card__quick-add"><button class="nr-btn-solid">Quick Add</button></div></div><div class="nr-card__info"><h4 class="nr-card__title">Signet Ring</h4><div class="nr-card__price">SAR 620</div><div class="nr-card__rating"><span class="nr-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="nr-card__review-count">(33)</span></div></div></div>
+            <div class="nr-card"><div class="nr-card__media"><img class="nr-card__img-real nr-card__img" src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=600&q=80&auto=format" alt="Dome Band"><div class="nr-card__quick-add"><button class="nr-btn-solid">Quick Add</button></div></div><div class="nr-card__info"><h4 class="nr-card__title">Dome Band</h4><div class="nr-card__price">SAR 780</div><div class="nr-card__rating"><span class="nr-stars">&#9733;&#9733;&#9733;&#9733;<span class="nr-stars__empty">&#9733;</span></span><span class="nr-card__review-count">(19)</span></div></div></div>
+            <div class="nr-card"><div class="nr-card__media"><img class="nr-card__img-real nr-card__img" src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=80&auto=format" alt="Emerald Solitaire"><span class="nr-badge-new" style="position:absolute;top:12px;left:12px;z-index:3">New</span><div class="nr-card__quick-add"><button class="nr-btn-solid">Quick Add</button></div></div><div class="nr-card__info"><h4 class="nr-card__title">Emerald Solitaire</h4><div class="nr-card__price">SAR 2,100</div><div class="nr-card__rating"><span class="nr-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="nr-card__review-count">(47)</span></div></div></div>
+            <div class="nr-card"><div class="nr-card__media"><img class="nr-card__img-real nr-card__img" src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600&q=80&auto=format" alt="Stacking Set"><div class="nr-card__quick-add"><button class="nr-btn-solid">Quick Add</button></div></div><div class="nr-card__info"><h4 class="nr-card__title">Stacking Set</h4><div class="nr-card__price">SAR 950</div><div class="nr-card__rating"><span class="nr-stars">&#9733;&#9733;&#9733;&#9733;<span class="nr-stars__empty">&#9733;</span></span><span class="nr-card__review-count">(28)</span></div></div></div>
+          </div>
+        </div>
+        <div class="nr-tabs__panel" data-nr-panel="necklaces">
+          <div class="nr-product-grid">
+            <div class="nr-card"><div class="nr-card__media"><img class="nr-card__img-real nr-card__img" src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&q=80&auto=format" alt="Choker Chain"><div class="nr-card__quick-add"><button class="nr-btn-solid">Quick Add</button></div></div><div class="nr-card__info"><h4 class="nr-card__title">Choker Chain</h4><div class="nr-card__price">SAR 540</div></div></div>
+            <div class="nr-card"><div class="nr-card__media"><img class="nr-card__img-real nr-card__img" src="https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=600&q=80&auto=format" alt="Layered Pendant"><div class="nr-card__quick-add"><button class="nr-btn-solid">Quick Add</button></div></div><div class="nr-card__info"><h4 class="nr-card__title">Layered Pendant</h4><div class="nr-card__price">SAR 1,350</div></div></div>
+            <div class="nr-card"><div class="nr-card__media"><img class="nr-card__img-real nr-card__img" src="https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?w=600&q=80&auto=format" alt="Pearl Strand"><div class="nr-card__quick-add"><button class="nr-btn-solid">Quick Add</button></div></div><div class="nr-card__info"><h4 class="nr-card__title">Pearl Strand</h4><div class="nr-card__price">SAR 890</div></div></div>
+            <div class="nr-card"><div class="nr-card__media"><img class="nr-card__img-real nr-card__img" src="https://images.unsplash.com/photo-1599459183200-59c3fd5f26de?w=600&q=80&auto=format" alt="Initial Charm"><div class="nr-card__quick-add"><button class="nr-btn-solid">Quick Add</button></div></div><div class="nr-card__info"><h4 class="nr-card__title">Initial Charm</h4><div class="nr-card__price">SAR 420</div></div></div>
+          </div>
+        </div>
+        <div class="nr-tabs__panel" data-nr-panel="bracelets">
+          <div class="nr-product-grid">
+            <div class="nr-card"><div class="nr-card__media"><img class="nr-card__img-real nr-card__img" src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=600&q=80&auto=format" alt="Tennis Bracelet"><div class="nr-card__quick-add"><button class="nr-btn-solid">Quick Add</button></div></div><div class="nr-card__info"><h4 class="nr-card__title">Tennis Bracelet</h4><div class="nr-card__price">SAR 3,200</div></div></div>
+            <div class="nr-card"><div class="nr-card__media"><img class="nr-card__img-real nr-card__img" src="https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=600&q=80&auto=format" alt="Cuff Bangle"><div class="nr-card__quick-add"><button class="nr-btn-solid">Quick Add</button></div></div><div class="nr-card__info"><h4 class="nr-card__title">Cuff Bangle</h4><div class="nr-card__price">SAR 1,100</div></div></div>
+            <div class="nr-card"><div class="nr-card__media"><img class="nr-card__img-real nr-card__img" src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600&q=80&auto=format" alt="Chain Link"><div class="nr-card__quick-add"><button class="nr-btn-solid">Quick Add</button></div></div><div class="nr-card__info"><h4 class="nr-card__title">Chain Link</h4><div class="nr-card__price">SAR 680</div></div></div>
+            <div class="nr-card"><div class="nr-card__media"><img class="nr-card__img-real nr-card__img" src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&q=80&auto=format" alt="Pearl Strand"><div class="nr-card__quick-add"><button class="nr-btn-solid">Quick Add</button></div></div><div class="nr-card__info"><h4 class="nr-card__title">Pearl Strand</h4><div class="nr-card__price">SAR 760</div></div></div>
+          </div>
+        </div>
+        <div class="nr-tabs__panel" data-nr-panel="earrings">
+          <div class="nr-product-grid">
+            <div class="nr-card"><div class="nr-card__media"><img class="nr-card__img-real nr-card__img" src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=600&q=80&auto=format" alt="Drop Earrings"><div class="nr-card__quick-add"><button class="nr-btn-solid">Quick Add</button></div></div><div class="nr-card__info"><h4 class="nr-card__title">Drop Earrings</h4><div class="nr-card__price">SAR 920</div></div></div>
+            <div class="nr-card"><div class="nr-card__media"><img class="nr-card__img-real nr-card__img" src="https://images.unsplash.com/photo-1515562141589-67f0d999b4f6?w=600&q=80&auto=format" alt="Hoop Earrings"><div class="nr-card__quick-add"><button class="nr-btn-solid">Quick Add</button></div></div><div class="nr-card__info"><h4 class="nr-card__title">Hoop Earrings</h4><div class="nr-card__price">SAR 560</div></div></div>
+            <div class="nr-card"><div class="nr-card__media"><img class="nr-card__img-real nr-card__img" src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=600&q=80&auto=format" alt="Stud Set"><div class="nr-card__quick-add"><button class="nr-btn-solid">Quick Add</button></div></div><div class="nr-card__info"><h4 class="nr-card__title">Stud Set</h4><div class="nr-card__price">SAR 380</div></div></div>
+            <div class="nr-card"><div class="nr-card__media"><img class="nr-card__img-real nr-card__img" src="https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=600&q=80&auto=format" alt="Chandelier"><div class="nr-card__quick-add"><button class="nr-btn-solid">Quick Add</button></div></div><div class="nr-card__info"><h4 class="nr-card__title">Chandelier</h4><div class="nr-card__price">SAR 1,680</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       10. TRUST / AWARD STRIP
+       ============================================ -->
+  <section style="border-top:1px solid var(--nr-border);border-bottom:1px solid var(--nr-border)">
+    <div class="nr-container">
+      <div class="nr-trust-strip nr-reveal">
+        <div class="nr-trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" style="width:36px;height:36px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          <span>Certified Authentic</span>
+        </div>
+        <div class="nr-trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" style="width:36px;height:36px"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          <span>Free Shipping</span>
+        </div>
+        <div class="nr-trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" style="width:36px;height:36px"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          <span>30-Day Returns</span>
+        </div>
+        <div class="nr-trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" style="width:36px;height:36px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>Lifetime Warranty</span>
+        </div>
+        <div class="nr-trust-item" style="position:relative">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" style="width:36px;height:36px"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          <span>24/7 Support</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       11. TESTIMONIALS CAROUSEL
+       ============================================ -->
+  <section class="nr-testimonials nr-section">
+    <div class="nr-container">
+      <div class="nr-section-header nr-reveal" style="justify-content:center;text-align:center">
+        <div>
+          <span class="nr-section-label" style="justify-content:center">What Our Clients Say</span>
+          <h2>Testimonials</h2>
+        </div>
+      </div>
+      <div class="nr-carousel nr-reveal" data-nr-carousel="5000">
+        <div class="nr-carousel__track">
+          <div class="nr-carousel__slide"><div class="nr-testimonial-card"><div class="nr-testimonial-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="nr-testimonial-card__text">The craftsmanship is absolutely stunning. My Luna Pendant gets compliments everywhere I go. The attention to detail is truly remarkable.</p><p class="nr-testimonial-card__author">Sarah Al-Rashid</p><p class="nr-testimonial-card__location">Riyadh, Saudi Arabia</p></div></div>
+          <div class="nr-carousel__slide"><div class="nr-testimonial-card"><div class="nr-testimonial-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="nr-testimonial-card__text">I purchased the Crescent Ring as a gift for my wife. She absolutely loved it. The quality and packaging exceeded all our expectations.</p><p class="nr-testimonial-card__author">Ahmed Hassan</p><p class="nr-testimonial-card__location">Jeddah, Saudi Arabia</p></div></div>
+          <div class="nr-carousel__slide"><div class="nr-testimonial-card"><div class="nr-testimonial-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="nr-testimonial-card__text">Beautiful jewelry at a fair price. The Heritage Bangle is my everyday piece now. It goes with everything and still looks brand new after months.</p><p class="nr-testimonial-card__author">Fatima Al-Khaldi</p><p class="nr-testimonial-card__location">Dubai, UAE</p></div></div>
+          <div class="nr-carousel__slide"><div class="nr-testimonial-card"><div class="nr-testimonial-card__stars">&#9733;&#9733;&#9733;&#9733;<span style="color:var(--nr-border)">&#9733;</span></div><p class="nr-testimonial-card__text">The Noor Chain is elegant and timeless. Customer service was exceptional and helped me choose the perfect length for my neckline.</p><p class="nr-testimonial-card__author">Layla Ibrahim</p><p class="nr-testimonial-card__location">Kuwait City, Kuwait</p></div></div>
+          <div class="nr-carousel__slide"><div class="nr-testimonial-card"><div class="nr-testimonial-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="nr-testimonial-card__text">I bought matching pieces for my bridesmaids. The team was so helpful with customization. Everyone at the wedding loved their gifts.</p><p class="nr-testimonial-card__author">Nadia Mahmoud</p><p class="nr-testimonial-card__location">Doha, Qatar</p></div></div>
+        </div>
+        <div class="nr-carousel__nav">
+          <button class="nr-carousel__arrow" data-nr-carousel-prev aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15 18 9 12 15 6"/></svg></button>
+          <div class="nr-carousel__dots">
+            <button class="nr-carousel__dot is-active" data-nr-carousel-dot></button>
+            <button class="nr-carousel__dot" data-nr-carousel-dot></button>
+            <button class="nr-carousel__dot" data-nr-carousel-dot></button>
+          </div>
+          <button class="nr-carousel__arrow" data-nr-carousel-next aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       12. IMAGE PROMOS (3-UP)
+       ============================================ -->
+  <section class="nr-section">
+    <div class="nr-container">
+      <div class="nr-section-header nr-reveal" style="justify-content:center;text-align:center">
+        <div>
+          <span class="nr-section-label" style="justify-content:center">Explore</span>
+          <h2>Shop by Style</h2>
+        </div>
+      </div>
+      <div class="nr-promos nr-reveal">
+        <a href="#" class="nr-promo">
+          <img src="https://images.unsplash.com/photo-1515562141589-67f0d999b4f6?w=700&q=80&auto=format" alt="Rings collection">
+          <div class="nr-promo__overlay">
+            <h3 class="nr-promo__title">Statement Rings</h3>
+            <span class="nr-promo__link">Shop Now &rarr;</span>
+          </div>
+        </a>
+        <a href="#" class="nr-promo">
+          <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=700&q=80&auto=format" alt="Necklaces collection">
+          <div class="nr-promo__overlay">
+            <h3 class="nr-promo__title">Layered Necklaces</h3>
+            <span class="nr-promo__link">Shop Now &rarr;</span>
+          </div>
+        </a>
+        <a href="#" class="nr-promo">
+          <img src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=700&q=80&auto=format" alt="Bracelets collection">
+          <div class="nr-promo__overlay">
+            <h3 class="nr-promo__title">Everyday Bracelets</h3>
+            <span class="nr-promo__link">Shop Now &rarr;</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       13. INSTAGRAM GRID
+       ============================================ -->
+  <section class="nr-section" style="padding-bottom:0">
+    <div class="nr-container" style="margin-bottom:var(--nr-space-lg)">
+      <div class="nr-section-header nr-reveal" style="justify-content:center;text-align:center">
+        <div>
+          <span class="nr-section-label" style="justify-content:center">@noor.jewelry</span>
+          <h2>Follow Our Journey</h2>
+        </div>
+      </div>
+    </div>
+    <div class="nr-instagram nr-reveal">
+      <a href="#" class="nr-instagram__item"><img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400&q=80&auto=format" alt="Instagram 1"><div class="nr-instagram__overlay"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div></a>
+      <a href="#" class="nr-instagram__item"><img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400&q=80&auto=format" alt="Instagram 2"><div class="nr-instagram__overlay"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div></a>
+      <a href="#" class="nr-instagram__item"><img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400&q=80&auto=format" alt="Instagram 3"><div class="nr-instagram__overlay"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div></a>
+      <a href="#" class="nr-instagram__item"><img src="https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?w=400&q=80&auto=format" alt="Instagram 4"><div class="nr-instagram__overlay"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div></a>
+      <a href="#" class="nr-instagram__item"><img src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=400&q=80&auto=format" alt="Instagram 5"><div class="nr-instagram__overlay"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div></a>
+      <a href="#" class="nr-instagram__item"><img src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=400&q=80&auto=format" alt="Instagram 6"><div class="nr-instagram__overlay"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div></a>
+    </div>
+  </section>
+
+  <!-- ============================================
+       14. NEWSLETTER
+       ============================================ -->
+  <section class="nr-newsletter nr-newsletter--warm nr-reveal">
+    <div class="nr-container">
+      <div class="nr-divider" style="margin-bottom:2.5rem">
+        <span class="nr-divider__line"></span>
+        <span class="nr-divider__diamond"></span>
+        <span class="nr-divider__line"></span>
+      </div>
+      <span class="nr-section-label" style="justify-content:center;margin-bottom:1.5rem">Newsletter</span>
+      <h2 class="nr-newsletter__title">Stay in the Light</h2>
+      <p class="nr-newsletter__desc">Be the first to discover new collections, exclusive offers, and the stories behind our craft.</p>
+      <form class="nr-newsletter__form" onsubmit="return false">
+        <input type="email" class="nr-newsletter__input" placeholder="Enter your email address">
+        <button type="submit" class="nr-newsletter__btn">Subscribe <span class="nr-btn__arrow">&rarr;</span></button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============================================
+       15. FOOTER
+       ============================================ -->
+  <footer class="nr-footer">
+    <div class="nr-container">
+      <div class="nr-footer__grid">
+        <div>
+          <div class="nr-footer__brand">Noor</div>
+          <p class="nr-footer__about">Every piece tells a story of heritage and craftsmanship, designed to illuminate your most cherished moments. Based in Riyadh, shipping worldwide.</p>
+          <div class="nr-footer__social">
+            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+            <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+            <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+            <a href="#" aria-label="Pinterest"><svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.372 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="nr-footer__heading">Quick Links</h4>
+          <div class="nr-footer__links">
+            <a href="#">New Arrivals</a>
+            <a href="#">Best Sellers</a>
+            <a href="#">Collections</a>
+            <a href="#">Gift Cards</a>
+            <a href="#">Sale</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="nr-footer__heading">Customer Care</h4>
+          <div class="nr-footer__links">
+            <a href="#">Contact Us</a>
+            <a href="#">Shipping & Returns</a>
+            <a href="#">Size Guide</a>
+            <a href="#">Ring Sizer</a>
+            <a href="#">FAQs</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="nr-footer__heading">About Noor</h4>
+          <div class="nr-footer__links">
+            <a href="#">Our Story</a>
+            <a href="#">Craftsmanship</a>
+            <a href="#">Sustainability</a>
+            <a href="#">Press</a>
+            <a href="#">Careers</a>
+          </div>
+        </div>
+      </div>
+      <div class="nr-footer__bottom">
+        <p class="nr-footer__copy">&copy; 2026 Noor Jewelry. All rights reserved.</p>
+        <div class="nr-footer__payments">
+          <svg width="38" height="24" viewBox="0 0 38 24"><rect width="38" height="24" rx="3" fill="#1A1F71"/><text x="19" y="15" text-anchor="middle" fill="#fff" font-size="8" font-family="sans-serif" font-weight="700">VISA</text></svg>
+          <svg width="38" height="24" viewBox="0 0 38 24"><rect width="38" height="24" rx="3" fill="#252525"/><circle cx="15" cy="12" r="7" fill="#EB001B"/><circle cx="23" cy="12" r="7" fill="#F79E1B"/><path d="M19 7.3a7 7 0 010 9.4 7 7 0 000-9.4z" fill="#FF5F00"/></svg>
+          <svg width="38" height="24" viewBox="0 0 38 24"><rect width="38" height="24" rx="3" fill="#006FCF"/><text x="19" y="15" text-anchor="middle" fill="#fff" font-size="7" font-family="sans-serif" font-weight="700">AMEX</text></svg>
+          <svg width="38" height="24" viewBox="0 0 38 24"><rect width="38" height="24" rx="3" fill="#1D4280"/><text x="19" y="15" text-anchor="middle" fill="#fff" font-size="7" font-family="sans-serif" font-weight="600">mada</text></svg>
+          <svg width="38" height="24" viewBox="0 0 38 24"><rect width="38" height="24" rx="3" fill="#302D51"/><text x="19" y="15" text-anchor="middle" fill="#fff" font-size="7" font-family="sans-serif" font-weight="600">STC</text></svg>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================
+       SCRIPTS
+       ============================================ -->
+  <script>
+    // --- Scroll Reveal ---
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('nr-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.nr-reveal, .nr-reveal--left, .nr-reveal--right, .nr-reveal--scale, .nr-text-reveal').forEach((el) => revealObserver.observe(el));
+
+    // --- Hero Slideshow ---
+    (function() {
+      const hero = document.querySelector('[data-nr-hero]');
+      if (!hero) return;
+      const slides = hero.querySelectorAll('[data-nr-slide]');
+      const dots = hero.querySelectorAll('[data-nr-dot]');
+      const prevBtn = hero.querySelector('[data-nr-prev]');
+      const nextBtn = hero.querySelector('[data-nr-next]');
+      if (slides.length < 2) return;
+      let current = 0, autoplayId = null;
+      function goTo(index) {
+        slides[current].classList.remove('is-active');
+        if (dots[current]) dots[current].classList.remove('is-active');
+        current = ((index % slides.length) + slides.length) % slides.length;
+        slides[current].classList.add('is-active');
+        if (dots[current]) dots[current].classList.add('is-active');
+      }
+      function startAutoplay() { stopAutoplay(); autoplayId = setInterval(() => goTo(current + 1), 6000); }
+      function stopAutoplay() { if (autoplayId) clearInterval(autoplayId); }
+      if (prevBtn) prevBtn.addEventListener('click', () => { goTo(current - 1); startAutoplay(); });
+      if (nextBtn) nextBtn.addEventListener('click', () => { goTo(current + 1); startAutoplay(); });
+      dots.forEach((dot, i) => dot.addEventListener('click', () => { goTo(i); startAutoplay(); }));
+      hero.addEventListener('mouseenter', stopAutoplay);
+      hero.addEventListener('mouseleave', startAutoplay);
+      startAutoplay();
+    })();
+
+    // --- Marquee Clone ---
+    document.querySelectorAll('[data-nr-marquee]').forEach((m) => {
+      const track = m.querySelector('.nr-marquee__track');
+      if (track && !track.dataset.nrCloned) { track.innerHTML += track.innerHTML; track.dataset.nrCloned = 'true'; }
+    });
+
+    // --- Tabs ---
+    document.querySelectorAll('[data-nr-tabs]').forEach((container) => {
+      const tabs = container.querySelectorAll('[data-nr-tab]');
+      const panels = container.querySelectorAll('[data-nr-panel]');
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          const target = tab.dataset.nrTab;
+          tabs.forEach((t) => t.classList.remove('is-active'));
+          panels.forEach((p) => p.classList.remove('is-active'));
+          tab.classList.add('is-active');
+          const panel = container.querySelector(`[data-nr-panel="${target}"]`);
+          if (panel) panel.classList.add('is-active');
+        });
+      });
+    });
+
+    // --- Carousel ---
+    document.querySelectorAll('[data-nr-carousel]').forEach((carousel) => {
+      const track = carousel.querySelector('.nr-carousel__track');
+      const slides = carousel.querySelectorAll('.nr-carousel__slide');
+      const prevBtn = carousel.querySelector('[data-nr-carousel-prev]');
+      const nextBtn = carousel.querySelector('[data-nr-carousel-next]');
+      const dots = carousel.querySelectorAll('[data-nr-carousel-dot]');
+      if (!track || slides.length === 0) return;
+      let current = 0, autoplayId = null;
+      let slidesPerView = window.innerWidth >= 769 ? 3 : 1;
+      function getMaxIndex() { return Math.max(0, slides.length - slidesPerView); }
+      function goTo(index) {
+        current = Math.max(0, Math.min(index, getMaxIndex()));
+        track.style.transform = `translateX(${-(current * (100 / slidesPerView))}%)`;
+        dots.forEach((dot, i) => dot.classList.toggle('is-active', i === current));
+      }
+      function startAutoplay() { stopAutoplay(); autoplayId = setInterval(() => goTo(current >= getMaxIndex() ? 0 : current + 1), 5000); }
+      function stopAutoplay() { if (autoplayId) clearInterval(autoplayId); }
+      if (prevBtn) prevBtn.addEventListener('click', () => { goTo(current - 1); startAutoplay(); });
+      if (nextBtn) nextBtn.addEventListener('click', () => { goTo(current + 1); startAutoplay(); });
+      dots.forEach((dot, i) => dot.addEventListener('click', () => { goTo(i); startAutoplay(); }));
+      carousel.addEventListener('mouseenter', stopAutoplay);
+      carousel.addEventListener('mouseleave', startAutoplay);
+      window.addEventListener('resize', () => { slidesPerView = window.innerWidth >= 769 ? 3 : 1; goTo(current); });
+      startAutoplay();
+    });
+
+    // --- Smart Header ---
+    (function() {
+      const header = document.getElementById('nr-header');
+      if (!header) return;
+      let lastScroll = 0;
+      window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+        header.classList.toggle('is-elevated', y > 10);
+        if (y > 400 && y > lastScroll + 5) header.classList.add('is-hidden');
+        else if (y < lastScroll - 5) header.classList.remove('is-hidden');
+        lastScroll = y;
+      }, { passive: true });
+    })();
+
+    // --- Countdown Timer ---
+    (function() {
+      const el = document.querySelector('[data-nr-countdown]');
+      if (!el) return;
+      const target = Date.now() + 12*86400000 + 8*3600000 + 45*60000;
+      function update() {
+        const diff = Math.max(0, target - Date.now());
+        const pad = (n) => String(n).padStart(2, '0');
+        el.querySelector('[data-nr-days]').textContent = pad(Math.floor(diff / 86400000));
+        el.querySelector('[data-nr-hours]').textContent = pad(Math.floor((diff % 86400000) / 3600000));
+        el.querySelector('[data-nr-minutes]').textContent = pad(Math.floor((diff % 3600000) / 60000));
+        el.querySelector('[data-nr-seconds]').textContent = pad(Math.floor((diff % 60000) / 1000));
+      }
+      update(); setInterval(update, 1000);
+    })();
+  </script>
+
+</body>
+</html>

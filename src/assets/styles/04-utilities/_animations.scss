@@ -1,3 +1,5 @@
+// --- Marquee ---
+
 @keyframes nr-scrollX {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
@@ -7,6 +9,8 @@
   from { transform: translateX(0); }
   to { transform: translateX(50%); }
 }
+
+// --- Hero Ken Burns ---
 
 @keyframes nr-ken-burns {
   0% { transform: scale(1); }
@@ -18,21 +22,7 @@
   100% { transform: scale(1); }
 }
 
-.nr-reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 400ms ease, transform 400ms ease;
-}
-
-.nr-reveal.nr-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.nr-reveal-delay-1 { transition-delay: 100ms; }
-.nr-reveal-delay-2 { transition-delay: 200ms; }
-.nr-reveal-delay-3 { transition-delay: 300ms; }
-.nr-reveal-delay-4 { transition-delay: 400ms; }
+// --- Reveal ---
 
 @keyframes nr-fade-in {
   from { opacity: 0; }
@@ -42,4 +32,110 @@
 @keyframes nr-slide-up {
   from { opacity: 0; transform: translateY(24px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes nr-slide-in-right {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes nr-slide-in-left {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+// --- Skeleton shimmer ---
+
+@keyframes nr-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+// --- Scale pop (for icons, badges) ---
+
+@keyframes nr-scale-pop {
+  0% { transform: scale(0); }
+  70% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+// --- Pulse glow (for CTAs, badges) ---
+
+@keyframes nr-pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(38, 61, 48, 0.3); }
+  50% { box-shadow: 0 0 0 10px rgba(38, 61, 48, 0); }
+}
+
+// --- Reveal system ---
+
+.nr-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 600ms ease, transform 600ms var(--nr-ease);
+}
+
+.nr-reveal--left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 600ms ease, transform 600ms var(--nr-ease);
+}
+
+.nr-reveal--right {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 600ms ease, transform 600ms var(--nr-ease);
+}
+
+.nr-reveal--scale {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 600ms ease, transform 600ms var(--nr-ease);
+}
+
+.nr-reveal.nr-visible,
+.nr-reveal--left.nr-visible,
+.nr-reveal--right.nr-visible,
+.nr-reveal--scale.nr-visible {
+  opacity: 1;
+  transform: translateY(0) translateX(0) scale(1);
+}
+
+.nr-reveal-delay-1 { transition-delay: 100ms; }
+.nr-reveal-delay-2 { transition-delay: 200ms; }
+.nr-reveal-delay-3 { transition-delay: 300ms; }
+.nr-reveal-delay-4 { transition-delay: 400ms; }
+.nr-reveal-delay-5 { transition-delay: 500ms; }
+.nr-reveal-delay-6 { transition-delay: 600ms; }
+
+// --- Hover lift (cards, images) ---
+
+.nr-hover-lift {
+  transition: transform 400ms var(--nr-ease), box-shadow 400ms ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+  }
+}
+
+// --- Text reveal (character/word stagger, clip-path) ---
+
+.nr-text-reveal {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 800ms var(--nr-ease);
+
+  &.nr-visible {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+// --- Parallax hint (subtle float) ---
+
+@keyframes nr-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.nr-float {
+  animation: nr-float 4s ease-in-out infinite;
 }

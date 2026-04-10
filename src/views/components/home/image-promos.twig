@@ -1,0 +1,39 @@
+{# Image Promos (3-up) — Noor Theme #}
+{% set show      = component.show|default(true) %}
+{% set label     = component.label|default('') %}
+{% set title     = component.title|default('') %}
+{% set promos    = component.promos|default([]) %}
+{% set columns   = component.columns|default(3) %}
+{% set overlay_style = component.overlay_style|default('gradient') %}
+
+{% if show and promos|length %}
+<section class="nr-section">
+  <div class="nr-container">
+    {% if title %}
+    <div class="nr-section-header nr-reveal" style="justify-content:center;text-align:center">
+      <div>
+        {% if label %}<span class="nr-section-label" style="justify-content:center">{{ label }}</span>{% endif %}
+        <h2>{{ title }}</h2>
+      </div>
+    </div>
+    {% endif %}
+    <div class="nr-promos nr-reveal" style="grid-template-columns:repeat({{ columns }},1fr)">
+      {% for promo in promos %}
+      <a href="{{ promo.link|default('#') }}" class="nr-promo">
+        {% if promo.image %}
+          <img src="{{ promo.image }}" alt="{{ promo.title|default('') }}" loading="lazy">
+        {% endif %}
+        <div class="nr-promo__overlay"{% if overlay_style == 'none' %} style="background:none"{% endif %}>
+          {% if promo.title %}
+            <h3 class="nr-promo__title">{{ promo.title }}</h3>
+          {% endif %}
+          {% if promo.link_text %}
+            <span class="nr-promo__link">{{ promo.link_text }} &rarr;</span>
+          {% endif %}
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}

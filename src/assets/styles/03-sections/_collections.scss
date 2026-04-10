@@ -1,0 +1,98 @@
+// Split collection banner — 50/50 layout
+.nr-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 500px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+}
+
+.nr-split__media {
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--nr-transition-slow);
+  }
+
+  &:hover img {
+    transform: scale(1.05);
+  }
+}
+
+.nr-split__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--nr-space-2xl);
+
+  @media (max-width: 768px) {
+    padding: var(--nr-space-xl) var(--nr-space-md);
+  }
+}
+
+.nr-split__title {
+  font-family: var(--nr-font-display);
+  font-size: var(--nr-h2);
+  font-weight: 500;
+  margin-bottom: var(--nr-space-md);
+}
+
+.nr-split__desc {
+  color: var(--nr-text-light);
+  line-height: 1.7;
+  margin-bottom: var(--nr-space-lg);
+  max-width: 440px;
+}
+
+// Tabbed collection
+.nr-tabs {
+  display: flex;
+  gap: var(--nr-space-lg);
+  border-bottom: 1px solid var(--nr-border);
+  margin-bottom: var(--nr-space-xl);
+
+  @media (max-width: 768px) {
+    gap: var(--nr-space-md);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+.nr-tabs__tab {
+  font-family: var(--nr-font-body);
+  font-size: var(--nr-small);
+  font-weight: 400;
+  color: var(--nr-text-light);
+  padding: var(--nr-space-sm) 0;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  cursor: pointer;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  transition: color var(--nr-transition), border-color var(--nr-transition);
+
+  &:hover,
+  &.is-active {
+    color: var(--nr-primary);
+    border-bottom-color: var(--nr-primary);
+  }
+}
+
+.nr-tabs__panel {
+  display: none;
+  opacity: 0;
+  transition: opacity 300ms ease;
+
+  &.is-active {
+    display: block;
+    opacity: 1;
+  }
+}

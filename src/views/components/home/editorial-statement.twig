@@ -1,0 +1,29 @@
+{# Editorial Statement Block — Noor Theme #}
+{% set show        = component.show|default(true) %}
+{% set quote_text  = component.quote_text|default('') %}
+{% set bg_color    = component.bg_color|default('#f8f2ea') %}
+{% set text_color  = component.text_color|default('#1f1f1f') %}
+{% set font_style  = component.font_style|default('italic') %}
+{% set show_dividers = component.show_dividers|default(true) %}
+
+{% if show and quote_text %}
+<section class="nr-statement nr-reveal" style="background:{{ bg_color }}">
+  <div class="nr-container" style="max-width:900px">
+    {% if show_dividers %}
+    <div class="nr-divider" style="margin-bottom:3rem">
+      <span class="nr-divider__line"></span>
+      <span class="nr-divider__diamond"></span>
+      <span class="nr-divider__line"></span>
+    </div>
+    {% endif %}
+    <p class="nr-statement__text" style="color:{{ text_color }};{% if font_style == 'normal' %}font-style:normal{% endif %}">{{ quote_text }}</p>
+    {% if show_dividers %}
+    <div class="nr-divider" style="margin-top:3rem">
+      <span class="nr-divider__line"></span>
+      <span class="nr-divider__diamond"></span>
+      <span class="nr-divider__line"></span>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endif %}

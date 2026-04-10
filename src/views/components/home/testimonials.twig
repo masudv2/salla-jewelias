@@ -1,0 +1,64 @@
+{# Testimonials Carousel — Noor Theme #}
+{% set show          = component.show|default(true) %}
+{% set label         = component.label|default('') %}
+{% set title         = component.title|default('') %}
+{% set testimonials  = component.testimonials|default([]) %}
+{% set autoplay      = component.autoplay|default(true) %}
+{% set speed         = component.speed|default(5000) %}
+{% set cards_per_view = component.cards_per_view|default(3) %}
+{% set bg_color      = component.bg_color|default('#f8f2ea') %}
+{% set nav_style     = component.nav_style|default('both') %}
+
+{% if show and testimonials|length %}
+<section class="nr-testimonials nr-section" style="background:{{ bg_color }}">
+  <div class="nr-container">
+    <div class="nr-section-header nr-reveal" style="justify-content:center;text-align:center">
+      <div>
+        {% if label %}<span class="nr-section-label" style="justify-content:center">{{ label }}</span>{% endif %}
+        {% if title %}<h2>{{ title }}</h2>{% endif %}
+      </div>
+    </div>
+    <div class="nr-carousel nr-reveal" data-nr-carousel="{{ speed }}">
+      <div class="nr-carousel__track">
+        {% for item in testimonials %}
+        <div class="nr-carousel__slide" style="flex:0 0 calc(100% / {{ cards_per_view }})">
+          <div class="nr-testimonial-card">
+            <div class="nr-testimonial-card__stars">
+              {% for i in 1..5 %}
+                {% if i <= item.stars|default(5) %}&#9733;{% else %}<span style="color:var(--nr-border)">&#9733;</span>{% endif %}
+              {% endfor %}
+            </div>
+            {% if item.text %}
+              <p class="nr-testimonial-card__text">{{ item.text }}</p>
+            {% endif %}
+            {% if item.author %}
+              <p class="nr-testimonial-card__author">{{ item.author }}</p>
+            {% endif %}
+            {% if item.location %}
+              <p class="nr-testimonial-card__location">{{ item.location }}</p>
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% if nav_style != 'none' %}
+      <div class="nr-carousel__nav">
+        {% if nav_style == 'arrows' or nav_style == 'both' %}
+          <button class="nr-carousel__arrow" data-nr-carousel-prev aria-label="{{ trans('common.elements.previous') }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15 18 9 12 15 6"/></svg></button>
+        {% endif %}
+        {% if nav_style == 'dots' or nav_style == 'both' %}
+          <div class="nr-carousel__dots">
+            {% for i in 0..((testimonials|length - cards_per_view)|default(0)) %}
+              <button class="nr-carousel__dot{% if loop.first %} is-active{% endif %}" data-nr-carousel-dot></button>
+            {% endfor %}
+          </div>
+        {% endif %}
+        {% if nav_style == 'arrows' or nav_style == 'both' %}
+          <button class="nr-carousel__arrow" data-nr-carousel-next aria-label="{{ trans('common.elements.next') }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg></button>
+        {% endif %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endif %}

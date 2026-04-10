@@ -11,31 +11,85 @@
   border: none;
   border-radius: var(--nr-radius);
   cursor: pointer;
-  transition: background-color var(--nr-transition), color var(--nr-transition), border-color var(--nr-transition);
+  position: relative;
+  overflow: hidden;
+  transition: color var(--nr-transition), border-color var(--nr-transition);
 }
 
+// Solid — sweep-fill from left
 .nr-btn-solid {
   @extend .nr-btn;
   background-color: var(--nr-primary);
   color: var(--nr-dark-text);
+  z-index: 0;
 
-  &:hover {
-    background-color: var(--nr-primary-hover);
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--nr-primary-hover);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 500ms var(--nr-ease);
+    z-index: -1;
+  }
+
+  [dir="rtl"] &::before {
+    transform-origin: right;
+  }
+
+  &:hover::before {
+    transform: scaleX(1);
+  }
+
+  // Arrow slide on hover
+  .nr-btn__arrow {
+    display: inline-block;
+    transition: transform 400ms var(--nr-ease);
+  }
+
+  &:hover .nr-btn__arrow {
+    transform: translateX(4px);
+  }
+
+  [dir="rtl"] &:hover .nr-btn__arrow {
+    transform: translateX(-4px);
   }
 }
 
+// Outline — fill sweep + text invert
 .nr-btn-outline {
   @extend .nr-btn;
   background: transparent;
   color: var(--nr-primary);
   border: 1px solid var(--nr-primary);
+  z-index: 0;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--nr-primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 500ms var(--nr-ease);
+    z-index: -1;
+  }
+
+  [dir="rtl"] &::before {
+    transform-origin: right;
+  }
 
   &:hover {
-    background-color: var(--nr-primary);
     color: var(--nr-dark-text);
+  }
+
+  &:hover::before {
+    transform: scaleX(1);
   }
 }
 
+// Text — animated underline from center + arrow nudge
 .nr-btn-text {
   display: inline-flex;
   align-items: center;
@@ -55,14 +109,72 @@
     content: '';
     position: absolute;
     bottom: -2px;
-    left: 0;
+    left: 50%;
     width: 0;
     height: 1px;
     background: currentColor;
-    transition: width 400ms var(--nr-ease);
+    transition: width 400ms var(--nr-ease), left 400ms var(--nr-ease);
   }
 
   &:hover::after {
     width: 100%;
+    left: 0;
+  }
+
+  .nr-btn__arrow {
+    display: inline-block;
+    transition: transform 400ms var(--nr-ease);
+  }
+
+  &:hover .nr-btn__arrow {
+    transform: translateX(4px);
+  }
+
+  [dir="rtl"] &:hover .nr-btn__arrow {
+    transform: translateX(-4px);
+  }
+}
+
+// Icon-only button (wishlist, quick-view)
+.nr-btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--nr-border);
+  background: var(--nr-bg);
+  color: var(--nr-text);
+  cursor: pointer;
+  transition: background-color var(--nr-transition), color var(--nr-transition), border-color var(--nr-transition), transform 300ms var(--nr-ease);
+
+  svg {
+    width: 18px;
+    height: 18px;
+    transition: transform 300ms var(--nr-ease);
+  }
+
+  &:hover {
+    background: var(--nr-primary);
+    color: var(--nr-dark-text);
+    border-color: var(--nr-primary);
+
+    svg {
+      transform: scale(1.15);
+    }
+  }
+}
+
+// Button group
+.nr-btn-group {
+  display: flex;
+  gap: 0;
+
+  .nr-btn-solid,
+  .nr-btn-outline {
+    &:not(:first-child) {
+      margin-inline-start: -1px;
+    }
   }
 }

@@ -1,0 +1,21 @@
+{# Marquee Ticker — Noor Theme #}
+{% set show       = component.show|default(true) %}
+{% set items      = component.items|default([]) %}
+{% set bg_color   = component.bg_color|default('#263D30') %}
+{% set text_color = component.text_color|default('#ffffff') %}
+{% set speed      = component.speed|default(20) %}
+{% set direction  = component.direction|default('left') %}
+{% set pause_hover = component.pause_hover|default(true) %}
+
+{% if show and items|length %}
+<div class="nr-marquee" data-nr-marquee
+     style="background:{{ bg_color }};color:{{ text_color }};padding:0.85rem 0;--nr-marquee-duration:{{ speed }}s">
+  <div class="nr-marquee__track"{% if not pause_hover %} style="animation-play-state:running !important"{% endif %}>
+    {% for i in 1..2 %}
+      {% for item in items %}
+        <span class="nr-marquee__item">{{ item.text }} <span class="nr-marquee__dot"></span></span>
+      {% endfor %}
+    {% endfor %}
+  </div>
+</div>
+{% endif %}

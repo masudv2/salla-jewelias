@@ -1,24 +1,116 @@
+// --- Standard input with animated underline ---
+
 .nr-input {
   width: 100%;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 0;
   font-family: var(--nr-font-body);
   font-size: var(--nr-body);
   color: var(--nr-text);
-  background: var(--nr-bg);
-  border: 1px solid var(--nr-border);
-  border-radius: var(--nr-radius);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--nr-border);
+  border-radius: 0;
   transition: border-color var(--nr-transition);
 
   &:focus {
     outline: none;
     border-color: var(--nr-primary);
-    box-shadow: 0 0 0 1px var(--nr-primary);
   }
 
   &::placeholder {
     color: var(--nr-text-light);
+    transition: opacity 300ms ease;
+  }
+
+  &:focus::placeholder {
+    opacity: 0.4;
   }
 }
+
+// Animated focus line — grows from center
+.nr-field {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--nr-primary);
+    transition: width 400ms var(--nr-ease), left 400ms var(--nr-ease);
+  }
+
+  &:focus-within::after {
+    width: 100%;
+    left: 0;
+  }
+}
+
+// --- Floating label ---
+
+.nr-field--float {
+  position: relative;
+  margin-top: 1rem;
+
+  .nr-input {
+    padding: 1rem 0 0.5rem;
+
+    &::placeholder {
+      opacity: 0;
+    }
+  }
+
+  .nr-label {
+    position: absolute;
+    top: 0.75rem;
+    left: 0;
+    pointer-events: none;
+    transition: transform 300ms var(--nr-ease), font-size 300ms var(--nr-ease), color 300ms ease;
+    transform-origin: left top;
+    margin-bottom: 0;
+    text-transform: none;
+    font-size: var(--nr-body);
+    font-weight: 400;
+    letter-spacing: 0;
+    color: var(--nr-text-light);
+
+    [dir="rtl"] & {
+      left: auto;
+      right: 0;
+      transform-origin: right top;
+    }
+  }
+
+  .nr-input:focus ~ .nr-label,
+  .nr-input:not(:placeholder-shown) ~ .nr-label {
+    transform: translateY(-1rem);
+    font-size: var(--nr-label);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--nr-primary);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--nr-primary);
+    transition: width 400ms var(--nr-ease), left 400ms var(--nr-ease);
+  }
+
+  &:focus-within::after {
+    width: 100%;
+    left: 0;
+  }
+}
+
+// --- Standard label ---
 
 .nr-label {
   display: block;
@@ -31,17 +123,135 @@
   margin-bottom: var(--nr-space-xs);
 }
 
+// --- Select ---
+
 .nr-select {
-  @extend .nr-input;
+  width: 100%;
+  padding: 0.75rem 0;
+  padding-right: 2rem;
+  font-family: var(--nr-font-body);
+  font-size: var(--nr-body);
+  color: var(--nr-text);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--nr-border);
+  border-radius: 0;
   appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23747474' stroke-width='1.5'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right 1rem center;
-  padding-right: 2.5rem;
+  background-position: right 0 center;
+  transition: border-color var(--nr-transition);
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+    border-color: var(--nr-primary);
+  }
 
   [dir="rtl"] & {
-    background-position: left 1rem center;
-    padding-right: 1rem;
-    padding-left: 2.5rem;
+    background-position: left 0 center;
+    padding-right: 0;
+    padding-left: 2rem;
+  }
+}
+
+// --- Textarea ---
+
+.nr-textarea {
+  @extend .nr-input;
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.6;
+}
+
+// --- Checkbox ---
+
+.nr-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  cursor: pointer;
+  font-family: var(--nr-font-body);
+  font-size: 0.875rem;
+  color: var(--nr-text);
+
+  input {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 1px solid var(--nr-border);
+    flex-shrink: 0;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 300ms ease, border-color 300ms ease;
+    margin-top: 2px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 5px;
+      width: 5px;
+      height: 9px;
+      border: solid var(--nr-dark-text);
+      border-width: 0 1.5px 1.5px 0;
+      transform: rotate(45deg) scale(0);
+      transition: transform 200ms var(--nr-ease);
+    }
+
+    &:checked {
+      background: var(--nr-primary);
+      border-color: var(--nr-primary);
+
+      &::after {
+        transform: rotate(45deg) scale(1);
+      }
+    }
+  }
+}
+
+// --- Radio ---
+
+.nr-radio {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  cursor: pointer;
+  font-family: var(--nr-font-body);
+  font-size: 0.875rem;
+  color: var(--nr-text);
+
+  input {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 1px solid var(--nr-border);
+    border-radius: 50%;
+    flex-shrink: 0;
+    position: relative;
+    cursor: pointer;
+    transition: border-color 300ms ease;
+    margin-top: 2px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--nr-primary);
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 200ms var(--nr-ease);
+    }
+
+    &:checked {
+      border-color: var(--nr-primary);
+
+      &::after {
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
   }
 }

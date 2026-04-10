@@ -1,10 +1,9 @@
-<footer style="background:var(--jw-ink); color:var(--jw-mist); padding:64px 0 0;">
-  <div style="max-width:1280px; margin:0 auto; padding:0 48px;">
-    <div style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:48px; padding-bottom:56px; border-bottom:1px solid rgba(255,255,255,0.08);">
-      
-      {# Brand column #}
-      <div>
-        <div style="font-family:var(--jw-font-serif); font-size:1.5rem; color:var(--jw-white); margin-bottom:16px;">
+<footer class="nr-footer">
+  <div class="nr-container">
+    <div class="nr-footer__grid">
+
+      <div class="nr-footer__brand">
+        <div class="nr-footer__logo">
           {% if store.logo %}
             <img src="{{ store.logo }}" alt="{{ store.name }}" style="height:32px; filter:brightness(0) invert(1);">
           {% else %}
@@ -12,33 +11,32 @@
           {% endif %}
         </div>
         {% if store.description %}
-          <p style="font-size:0.88rem; line-height:1.7; max-width:300px; color:var(--jw-steel);">{{ store.description|raw }}</p>
+          <p class="nr-footer__about">{{ store.description|raw }}</p>
         {% endif %}
-        <div style="margin-top:24px;">
+        <div style="margin-top:1.5rem">
           <salla-social></salla-social>
         </div>
       </div>
 
-      {# Menu columns from Salla #}
-      <div>
+      <div class="nr-footer__links">
         <salla-menu source="footer"></salla-menu>
       </div>
 
-      <div>
+      <div class="nr-footer__links">
         <salla-contacts></salla-contacts>
       </div>
 
-      {# Newsletter #}
-      <div>
-        <h4 style="font-family:var(--jw-font-serif); font-size:1rem; color:var(--jw-white); margin:0 0 16px;">{{ trans('common.elements.newsletter') }}</h4>
+      <div class="nr-footer__links">
+        <h4 class="nr-footer__heading">{{ trans('common.elements.newsletter') }}</h4>
         <salla-newsletter></salla-newsletter>
       </div>
     </div>
 
-    {# Bottom bar #}
-    <div style="display:flex; justify-content:space-between; align-items:center; padding:24px 0; flex-wrap:wrap; gap:16px;">
-      <span style="font-size:0.75rem; color:var(--jw-steel);">{% hook copyright %}</span>
-      <salla-payments></salla-payments>
+    <div class="nr-footer__bottom">
+      <span class="nr-footer__copy">{% hook copyright %}</span>
+      <div class="nr-footer__payments">
+        <salla-payments></salla-payments>
+      </div>
     </div>
   </div>
 </footer>

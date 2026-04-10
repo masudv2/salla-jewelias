@@ -1,0 +1,51 @@
+{# CTA Banner — Noor Theme #}
+{% set show             = component.show|default(true) %}
+{% set bg_image         = component.bg_image|default('') %}
+{% set title            = component.title|default('') %}
+{% set description      = component.description|default('') %}
+{% set btn_text         = component.btn_text|default('') %}
+{% set btn_link         = component.btn_link|default('#') %}
+{% set overlay_color    = component.overlay_color|default('#000000') %}
+{% set overlay_opacity  = component.overlay_opacity|default(45) %}
+{% set content_position = component.content_position|default('left') %}
+{% set show_countdown   = component.show_countdown|default(false) %}
+{% set countdown_date   = component.countdown_date|default('') %}
+{% set label            = component.label|default('') %}
+
+{% if show %}
+<section class="nr-cta nr-reveal">
+  <div class="nr-cta__bg">
+    {% if bg_image %}
+      <img src="{{ bg_image }}" alt="{{ title }}" loading="lazy" style="width:100%;height:100%;object-fit:cover">
+    {% endif %}
+    <div style="position:absolute;inset:0;background:{{ overlay_color }};opacity:{{ overlay_opacity / 100 }}"></div>
+  </div>
+  <div class="nr-container" style="position:relative;z-index:2;width:100%;{% if content_position == 'center' %}text-align:center;display:flex;justify-content:center{% elseif content_position == 'right' %}display:flex;justify-content:flex-end{% endif %}">
+    <div class="nr-cta__content"{% if content_position == 'center' %} style="align-items:center;max-width:650px"{% endif %}>
+      {% if label %}
+        <span class="nr-section-label" style="color:rgba(255,255,255,0.6)">{{ label }}</span>
+      {% endif %}
+      {% if title %}
+        <h2 class="nr-cta__title">{{ title }}</h2>
+      {% endif %}
+      {% if description %}
+        <p class="nr-cta__desc">{{ description }}</p>
+      {% endif %}
+      {% if show_countdown and countdown_date %}
+        <div class="nr-countdown nr-countdown--dark" style="margin-bottom:var(--nr-space-lg);{% if content_position == 'center' %}justify-content:center{% endif %}" data-nr-countdown data-nr-countdown-target="{{ countdown_date }}">
+          <div class="nr-countdown__unit"><div class="nr-countdown__num" data-nr-days>00</div><div class="nr-countdown__label">{{ trans('common.elements.days') }}</div></div>
+          <span class="nr-countdown__sep">:</span>
+          <div class="nr-countdown__unit"><div class="nr-countdown__num" data-nr-hours>00</div><div class="nr-countdown__label">{{ trans('common.elements.hours') }}</div></div>
+          <span class="nr-countdown__sep">:</span>
+          <div class="nr-countdown__unit"><div class="nr-countdown__num" data-nr-minutes>00</div><div class="nr-countdown__label">{{ trans('common.elements.minutes') }}</div></div>
+          <span class="nr-countdown__sep">:</span>
+          <div class="nr-countdown__unit"><div class="nr-countdown__num" data-nr-seconds>00</div><div class="nr-countdown__label">{{ trans('common.elements.seconds') }}</div></div>
+        </div>
+      {% endif %}
+      {% if btn_text %}
+        <a href="{{ btn_link }}" class="nr-btn-solid">{{ btn_text }} <span class="nr-btn__arrow">&rarr;</span></a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endif %}

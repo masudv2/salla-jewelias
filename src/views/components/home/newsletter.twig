@@ -1,0 +1,34 @@
+{# Newsletter — Noor Theme #}
+{% set show          = component.show|default(true) %}
+{% set title         = component.title|default('') %}
+{% set description   = component.description|default('') %}
+{% set btn_text      = component.btn_text|default('Subscribe') %}
+{% set bg_style      = component.bg_style|default('warm') %}
+{% set bg_color      = component.bg_color|default('#f8f2ea') %}
+{% set show_dividers = component.show_dividers|default(true) %}
+
+{% set bg = bg_style == 'warm' ? '#f8f2ea' : (bg_style == 'white' ? '#ffffff' : bg_color) %}
+
+{% if show %}
+<section class="nr-newsletter nr-reveal" style="background:{{ bg }}">
+  <div class="nr-container">
+    {% if show_dividers %}
+    <div class="nr-divider" style="margin-bottom:2.5rem">
+      <span class="nr-divider__line"></span>
+      <span class="nr-divider__diamond"></span>
+      <span class="nr-divider__line"></span>
+    </div>
+    {% endif %}
+    {% if title %}
+      <h2 class="nr-newsletter__title">{{ title }}</h2>
+    {% endif %}
+    {% if description %}
+      <p class="nr-newsletter__desc">{{ description }}</p>
+    {% endif %}
+    <salla-newsletter class="nr-newsletter__form">
+      <input type="email" class="nr-newsletter__input" placeholder="{{ trans('common.elements.email') }}" slot="input">
+      <button type="submit" class="nr-newsletter__btn" slot="submit">{{ btn_text }} <span class="nr-btn__arrow">&rarr;</span></button>
+    </salla-newsletter>
+  </div>
+</section>
+{% endif %}

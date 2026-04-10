@@ -1,4 +1,4 @@
-{# ═══ Announcement Bar — Modular ═══ #}
+{# ═══ Announcement Bar — Noor Theme ═══ #}
 {% set ann_show      = theme.settings.get('announce_show', true) %}
 {% set ann_bg        = theme.settings.get('announce_bg', '#0D0D0D') %}
 {% set ann_color     = theme.settings.get('announce_color', '#DDB87E') %}
@@ -25,20 +25,18 @@
 {% set ann_texts = [ann_text_1, ann_text_2, ann_text_3, ann_text_4]|filter(t => t) %}
 
 {% if ann_show and ann_texts|length %}
-<div class="jw-announce" id="jw-announce"
+<div class="nr-announcement" id="nr-announcement"
      style="background:{{ ann_bg }};color:{{ ann_color }};"
      data-cd-target="{{ cd_year }}-{{ '%02d'|format(cd_month) }}-{{ '%02d'|format(cd_day) }}T{{ '%02d'|format(cd_hour) }}:{{ '%02d'|format(cd_minute) }}:00">
 
-  {# Close button #}
   {% if show_close %}
-  <button class="jw-announce-close" id="jw-announce-close" aria-label="{{ trans('common.elements.close') }}">
+  <button class="nr-announcement__close" id="nr-announcement-close" aria-label="{{ trans('common.elements.close') }}">
     <svg width="9" height="9" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 1l8 8M9 1l-8 8"/></svg>
   </button>
   {% endif %}
 
-  {# LEFT — Social icons #}
   {% if show_social %}
-  <div class="jw-announce-social">
+  <div class="nr-announcement__social">
     {% if store.social.twitter %}
       <a href="{{ store.social.twitter }}" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
     {% endif %}
@@ -57,114 +55,107 @@
   </div>
   {% endif %}
 
-  {# CENTER — Marquee or Slider #}
-  <div class="jw-announce-center">
+  <div class="nr-announcement__center">
     {% if not ann_mode %}
-      {# Marquee mode #}
-      <div class="jw-announce-track">
+      <div class="nr-marquee__track">
         {% for i in 1..2 %}
           {% for text in ann_texts %}
-            {% if ann_link %}<a href="{{ ann_link }}" class="jw-announce-item">{{ text }}</a>{% else %}<span class="jw-announce-item">{{ text }}</span>{% endif %}
-            <span class="jw-announce-dot" style="background:{{ ann_dot }};"></span>
+            {% if ann_link %}<a href="{{ ann_link }}" class="nr-marquee__item">{{ text }}</a>{% else %}<span class="nr-marquee__item">{{ text }}</span>{% endif %}
+            <span class="nr-marquee__dot" style="background:{{ ann_dot }};"></span>
           {% endfor %}
         {% endfor %}
       </div>
     {% else %}
-      {# Slider mode #}
-      <button class="jw-announce-arrow" id="jw-ann-prev" aria-label="{{ trans('blocks.header.announce_prev') }}">
+      <button class="nr-carousel__arrow" id="nr-ann-prev" aria-label="{{ trans('blocks.header.announce_prev') }}">
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3L5 8l5 5"/></svg>
       </button>
-      <div class="jw-announce-slider" id="jw-ann-slider">
-        <div class="jw-announce-slides">
+      <div class="nr-announcement__slider" id="nr-ann-slider">
+        <div class="nr-announcement__slides">
           {% for text in ann_texts %}
-          <div class="jw-announce-slide">
-            {% if ann_link %}<a href="{{ ann_link }}" class="jw-announce-item">{{ text }}</a>{% else %}<span class="jw-announce-item">{{ text }}</span>{% endif %}
+          <div class="nr-announcement__slide">
+            {% if ann_link %}<a href="{{ ann_link }}" class="nr-marquee__item">{{ text }}</a>{% else %}<span class="nr-marquee__item">{{ text }}</span>{% endif %}
           </div>
           {% endfor %}
         </div>
       </div>
-      <button class="jw-announce-arrow" id="jw-ann-next" aria-label="{{ trans('blocks.header.announce_next') }}">
+      <button class="nr-carousel__arrow" id="nr-ann-next" aria-label="{{ trans('blocks.header.announce_next') }}">
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5"/></svg>
       </button>
     {% endif %}
 
-    {# Inline CTA button #}
     {% if show_cta and ann_btn_label %}
-    <a href="{{ ann_btn_link ?: ann_link ?: '#' }}" class="jw-announce-btn" style="border-color:{{ ann_btn_color }}33;color:{{ ann_btn_color }}">
+    <a href="{{ ann_btn_link ?: ann_link ?: '#' }}" class="nr-btn-solid" style="padding:0.35rem 1rem;font-size:0.65rem;border-color:{{ ann_btn_color }}33;color:{{ ann_btn_color }}">
       <span>{{ ann_btn_label }}</span>
     </a>
     {% endif %}
   </div>
 
-  {# RIGHT — Countdown + Locale #}
-  <div class="jw-announce-right">
+  <div class="nr-announcement__right">
     {% if show_countdown %}
-    <div class="jw-announce-countdown" id="jw-countdown">
-      <span class="jw-cd-num" data-cd="d">00</span><span class="jw-cd-sep">:</span>
-      <span class="jw-cd-num" data-cd="h">00</span><span class="jw-cd-sep">:</span>
-      <span class="jw-cd-num" data-cd="m">00</span><span class="jw-cd-sep">:</span>
-      <span class="jw-cd-num" data-cd="s">00</span>
+    <div class="nr-countdown" id="nr-countdown" style="font-size:0.7rem">
+      <span class="nr-countdown__num" data-cd="d">00</span><span class="nr-countdown__sep">:</span>
+      <span class="nr-countdown__num" data-cd="h">00</span><span class="nr-countdown__sep">:</span>
+      <span class="nr-countdown__num" data-cd="m">00</span><span class="nr-countdown__sep">:</span>
+      <span class="nr-countdown__num" data-cd="s">00</span>
     </div>
     {% endif %}
 
     {% if show_locale and (store.settings.is_multilingual or store.settings.currencies_enabled) %}
-    <div class="jw-announce-locale">
-      <button class="jw-announce-locale-btn" onclick="salla.event.dispatch('localization::open')">
-        {{ user.language.name }} / {{ currency.symbol }}
-        <svg width="8" height="8" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 4.5l3 3 3-3"/></svg>
-      </button>
-    </div>
+    <button class="nr-announcement__locale-btn" onclick="salla.event.dispatch('localization::open')">
+      {{ user.language.name }} / {{ currency.symbol }}
+      <svg width="8" height="8" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 4.5l3 3 3-3"/></svg>
+    </button>
     {% endif %}
   </div>
 
 </div>
 {% endif %}
 
-{# ═══ Header — Glow layout: nav left · logo center · actions right ═══ #}
-<header class="jw-header" id="jw-header">
-  <div class="jw-header-inner">
-    <div class="jw-header__left">
-      <a href="#mobile-menu" class="jw-icon-btn jw-menu-toggle" aria-label="{{ trans('blocks.header.main_menu') }}">
+{# ═══ Header — Noor: nav left, logo center, actions right ═══ #}
+<header class="nr-header" id="nr-header">
+  <div class="nr-header__inner">
+    <div class="nr-header__left">
+      <button class="nr-header__icon nr-header__menu-toggle" aria-label="{{ trans('blocks.header.main_menu') }}">
         <i class="sicon-menu"></i>
-      </a>
-      <div class="jw-header__nav-wrap">
+      </button>
+      <div class="nr-header__nav">
         <custom-main-menu></custom-main-menu>
       </div>
     </div>
 
-    <a href="{{ store.url }}" class="jw-logo">
+    <a href="{{ store.url }}" class="nr-header__logo">
       {% if store.logo %}
         <img src="{{ store.logo }}" alt="{{ store.name }}" style="height:{{ theme.settings.get('logo_height', '36') }}px;">
       {% else %}
-        <span class="jw-logo-text">{{ store.name }}</span>
+        {{ store.name }}
       {% endif %}
     </a>
     {% if is_page('index') %}
     <h1 class="sr-only">{{ store.name }}</h1>
     {% endif %}
 
-    <nav class="jw-nav jw-nav-right" aria-label="{{ trans('blocks.header.main_menu') }}">
-      <button type="button" class="jw-icon-btn" onclick="salla.event.dispatch('search::open')" aria-label="{{ trans('blocks.header.search') }}">
+    <div class="nr-header__actions">
+      <button type="button" class="nr-header__icon" onclick="salla.event.dispatch('search::open')" aria-label="{{ trans('blocks.header.search') }}">
         <i class="sicon-search"></i>
       </button>
 
-      <a href="{{ link('/wishlist') }}" class="jw-icon-btn" aria-label="{{ trans('blocks.header.wishlist') }}">
+      <a href="{{ link('/wishlist') }}" class="nr-header__icon" aria-label="{{ trans('blocks.header.wishlist') }}">
         <i class="sicon-heart"></i>
       </a>
 
       {% if user.type == 'user' %}
         <salla-user-menu avatar-only show-header></salla-user-menu>
       {% else %}
-        <button type="button" class="jw-icon-btn" onclick="salla.event.dispatch('login::open')" aria-label="{{ trans('blocks.header.account') }}">
+        <button type="button" class="nr-header__icon" onclick="salla.event.dispatch('login::open')" aria-label="{{ trans('blocks.header.account') }}">
           <i class="sicon-user"></i>
         </button>
       {% endif %}
 
       <salla-cart-summary widget-only>
-        <button slot="widget" type="button" class="jw-icon-btn" id="jw-cart-btn" aria-label="{{ trans('blocks.header.cart') }}">
+        <button slot="widget" type="button" class="nr-header__icon" id="nr-cart-btn" aria-label="{{ trans('blocks.header.cart') }}">
           <i class="sicon-shopping-bag"></i>
         </button>
       </salla-cart-summary>
-    </nav>
+    </div>
   </div>
 </header>

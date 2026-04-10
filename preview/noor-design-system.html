@@ -86,7 +86,7 @@
     .preview-form-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 2rem;
+      gap: 2.5rem;
       max-width: 600px;
     }
     @media (max-width: 768px) {
@@ -108,11 +108,11 @@
     }
     .preview-reveal-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 2rem;
     }
     @media (max-width: 768px) {
-      .preview-reveal-grid { grid-template-columns: 1fr; }
+      .preview-reveal-grid { grid-template-columns: 1fr 1fr; }
     }
     .preview-reveal-box {
       background: var(--nr-bg-warm);
@@ -132,6 +132,36 @@
       letter-spacing: 0.12em;
       color: var(--nr-text-light);
       margin-bottom: 0.25rem;
+    }
+    /* Placeholder product images */
+    .preview-product-img {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--nr-font-display);
+      font-size: 2.5rem;
+      color: rgba(38, 61, 48, 0.15);
+      background: var(--nr-bg-warm);
+    }
+    .preview-product-img--alt {
+      background: #eae4da;
+    }
+    .preview-form-section {
+      max-width: 540px;
+    }
+    .preview-form-row {
+      margin-bottom: 2rem;
+    }
+    .preview-checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .preview-radio-group {
+      display: flex;
+      gap: 1.5rem;
     }
   </style>
 </head>
@@ -310,10 +340,32 @@
           <h2>Buttons</h2>
         </div>
       </div>
+
+      <p class="nr-small" style="color:var(--nr-text-light); margin-bottom: 1.5rem">Hover to see sweep-fill animation, arrow slide, and underline-from-center effects.</p>
+
+      <div class="preview-btn-row" style="margin-bottom: 2rem">
+        <button class="nr-btn-solid">Shop Now <span class="nr-btn__arrow">&rarr;</span></button>
+        <button class="nr-btn-outline">View Collection <span class="nr-btn__arrow">&rarr;</span></button>
+        <button class="nr-btn-text">Explore More <span class="nr-btn__arrow">&rarr;</span></button>
+      </div>
+
+      <div class="preview-btn-row" style="margin-bottom: 2rem">
+        <button class="nr-btn-solid">Add to Cart</button>
+        <button class="nr-btn-outline">Wishlist</button>
+        <button class="nr-btn-text">Learn More</button>
+      </div>
+
+      <p class="nr-small" style="color:var(--nr-text-light); margin-bottom: 1rem">Icon buttons (wishlist, quick-view):</p>
       <div class="preview-btn-row">
-        <button class="nr-btn-solid">Solid Button</button>
-        <button class="nr-btn-outline">Outline Button</button>
-        <button class="nr-btn-text">Text Button</button>
+        <button class="nr-btn-icon" aria-label="Wishlist">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+        <button class="nr-btn-icon" aria-label="Quick View">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        </button>
+        <button class="nr-btn-icon" aria-label="Share">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        </button>
       </div>
     </div>
   </section>
@@ -329,21 +381,57 @@
           <h2>Product Cards</h2>
         </div>
       </div>
+      <p class="nr-small" style="color:var(--nr-text-light); margin-bottom: 1.5rem">Hover cards to see image crossfade, quick-add slide, and action buttons. Star ratings and review counts included.</p>
       <div class="preview-card-grid">
-        <!-- Card 1: Basic -->
+
+        <!-- Card 1: Multi-image + rating + quick-add -->
         <div class="nr-card">
-          <div class="nr-card__media" style="background:var(--nr-bg-warm)"></div>
+          <div class="nr-card__media">
+            <div class="preview-product-img nr-card__img nr-card__img--primary">I</div>
+            <div class="preview-product-img preview-product-img--alt nr-card__img nr-card__img--secondary">II</div>
+            <div class="nr-card__actions">
+              <button class="nr-btn-icon" aria-label="Wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+              <button class="nr-btn-icon" aria-label="Quick View">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+            <div class="nr-card__quick-add">
+              <button class="nr-btn-solid">Quick Add</button>
+            </div>
+          </div>
           <div class="nr-card__info">
             <h4 class="nr-card__title">Luna Pendant</h4>
             <div class="nr-card__price">SAR 1,200</div>
+            <div class="nr-card__rating">
+              <span class="nr-stars">&#9733;&#9733;&#9733;&#9733;<span class="nr-stars__empty">&#9733;</span></span>
+              <span class="nr-card__review-count">(24)</span>
+            </div>
           </div>
         </div>
-        <!-- Card 2: With swatches -->
+
+        <!-- Card 2: With swatches + rating -->
         <div class="nr-card">
-          <div class="nr-card__media" style="background:var(--nr-bg-warm)"></div>
+          <div class="nr-card__media">
+            <div class="preview-product-img nr-card__img nr-card__img--primary">I</div>
+            <div class="preview-product-img preview-product-img--alt nr-card__img nr-card__img--secondary">II</div>
+            <div class="nr-card__actions">
+              <button class="nr-btn-icon" aria-label="Wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+            </div>
+            <div class="nr-card__quick-add">
+              <button class="nr-btn-solid">Quick Add</button>
+            </div>
+          </div>
           <div class="nr-card__info">
             <h4 class="nr-card__title">Crescent Ring</h4>
             <div class="nr-card__price">SAR 850</div>
+            <div class="nr-card__rating">
+              <span class="nr-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="nr-card__review-count">(58)</span>
+            </div>
             <div class="nr-card__swatches">
               <span class="nr-card__swatch is-active" style="background:#d4af37"></span>
               <span class="nr-card__swatch" style="background:#c0c0c0"></span>
@@ -351,10 +439,21 @@
             </div>
           </div>
         </div>
-        <!-- Card 3: Sale badge -->
+
+        <!-- Card 3: Sale badge + rating -->
         <div class="nr-card">
-          <div class="nr-card__media" style="background:var(--nr-bg-warm)">
-            <span class="nr-badge-sale" style="position:absolute;top:12px;left:12px;z-index:1">Sale</span>
+          <div class="nr-card__media">
+            <div class="preview-product-img nr-card__img nr-card__img--primary">I</div>
+            <div class="preview-product-img preview-product-img--alt nr-card__img nr-card__img--secondary">II</div>
+            <span class="nr-badge-sale" style="position:absolute;top:12px;left:12px;z-index:3">Sale</span>
+            <div class="nr-card__actions">
+              <button class="nr-btn-icon" aria-label="Wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+            </div>
+            <div class="nr-card__quick-add">
+              <button class="nr-btn-solid">Quick Add</button>
+            </div>
           </div>
           <div class="nr-card__info">
             <h4 class="nr-card__title">Heritage Bangle</h4>
@@ -362,16 +461,35 @@
               <span class="nr-card__price-sale">SAR 680</span>
               <span class="nr-card__price-was">SAR 950</span>
             </div>
+            <div class="nr-card__rating">
+              <span class="nr-stars">&#9733;&#9733;&#9733;<span class="nr-stars__empty">&#9733;&#9733;</span></span>
+              <span class="nr-card__review-count">(12)</span>
+            </div>
           </div>
         </div>
-        <!-- Card 4: New badge -->
+
+        <!-- Card 4: New badge + 5 stars -->
         <div class="nr-card">
-          <div class="nr-card__media" style="background:var(--nr-bg-warm)">
-            <span class="nr-badge-new" style="position:absolute;top:12px;left:12px;z-index:1">New</span>
+          <div class="nr-card__media">
+            <div class="preview-product-img nr-card__img nr-card__img--primary">I</div>
+            <div class="preview-product-img preview-product-img--alt nr-card__img nr-card__img--secondary">II</div>
+            <span class="nr-badge-new" style="position:absolute;top:12px;left:12px;z-index:3">New</span>
+            <div class="nr-card__actions">
+              <button class="nr-btn-icon" aria-label="Wishlist">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+            </div>
+            <div class="nr-card__quick-add">
+              <button class="nr-btn-solid">Quick Add</button>
+            </div>
           </div>
           <div class="nr-card__info">
             <h4 class="nr-card__title">Noor Chain</h4>
             <div class="nr-card__price">SAR 1,450</div>
+            <div class="nr-card__rating">
+              <span class="nr-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="nr-card__review-count">(41)</span>
+            </div>
           </div>
         </div>
       </div>
@@ -411,19 +529,79 @@
           <h2>Form Elements</h2>
         </div>
       </div>
-      <div class="preview-form-grid">
-        <div>
-          <label class="nr-label" for="preview-input">Full Name</label>
-          <input class="nr-input" id="preview-input" type="text" placeholder="Enter your name">
+      <p class="nr-small" style="color:var(--nr-text-light); margin-bottom: 2rem">Floating labels animate on focus. Underline grows from center. Click to interact.</p>
+
+      <div class="preview-form-section">
+
+        <!-- Floating label inputs -->
+        <div class="preview-form-grid" style="margin-bottom: 2.5rem">
+          <div class="nr-field nr-field--float">
+            <input class="nr-input" id="float-name" type="text" placeholder=" ">
+            <label class="nr-label" for="float-name">Full Name</label>
+          </div>
+          <div class="nr-field nr-field--float">
+            <input class="nr-input" id="float-email" type="email" placeholder=" ">
+            <label class="nr-label" for="float-email">Email Address</label>
+          </div>
         </div>
-        <div>
-          <label class="nr-label" for="preview-select">Category</label>
-          <select class="nr-select" id="preview-select">
-            <option>All Categories</option>
-            <option>Rings</option>
-            <option>Necklaces</option>
-            <option>Bracelets</option>
-          </select>
+
+        <!-- Standard label + select -->
+        <div class="preview-form-grid" style="margin-bottom: 2.5rem">
+          <div class="nr-field">
+            <label class="nr-label" for="preview-input">Phone</label>
+            <input class="nr-input" id="preview-input" type="tel" placeholder="Enter your phone">
+          </div>
+          <div>
+            <label class="nr-label" for="preview-select">Category</label>
+            <select class="nr-select" id="preview-select">
+              <option>All Categories</option>
+              <option>Rings</option>
+              <option>Necklaces</option>
+              <option>Bracelets</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Textarea -->
+        <div class="preview-form-row">
+          <div class="nr-field nr-field--float">
+            <textarea class="nr-textarea" id="float-message" placeholder=" "></textarea>
+            <label class="nr-label" for="float-message">Your Message</label>
+          </div>
+        </div>
+
+        <!-- Checkbox + Radio -->
+        <div class="preview-form-grid">
+          <div>
+            <p class="nr-label" style="margin-bottom: 0.75rem">Preferences</p>
+            <div class="preview-checkbox-group">
+              <label class="nr-checkbox">
+                <input type="checkbox" checked>
+                <span>Email notifications</span>
+              </label>
+              <label class="nr-checkbox">
+                <input type="checkbox">
+                <span>SMS updates</span>
+              </label>
+              <label class="nr-checkbox">
+                <input type="checkbox">
+                <span>Promotional offers</span>
+              </label>
+            </div>
+          </div>
+          <div>
+            <p class="nr-label" style="margin-bottom: 0.75rem">Shipping</p>
+            <div class="preview-radio-group">
+              <label class="nr-radio">
+                <input type="radio" name="shipping" checked>
+                <span>Standard</span>
+              </label>
+              <label class="nr-radio">
+                <input type="radio" name="shipping">
+                <span>Express</span>
+              </label>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -514,7 +692,7 @@
 
   <div class="nr-container"><hr class="preview-divider"></div>
 
-  <!-- Scroll Reveal -->
+  <!-- Scroll Reveal Animations -->
   <section class="nr-section">
     <div class="nr-container">
       <div class="nr-section-header">
@@ -523,25 +701,51 @@
           <h2>Scroll Reveal</h2>
         </div>
       </div>
+      <p class="nr-small" style="color:var(--nr-text-light); margin-bottom: 1.5rem">Scroll down to trigger. Multiple directions: up, left, right, scale.</p>
       <div class="preview-reveal-grid">
         <div class="nr-reveal nr-reveal-delay-1 preview-reveal-box">
-          <h3>First</h3>
-          <p class="nr-small" style="color:var(--nr-text-light)">delay-1 (100ms)</p>
+          <h3>Slide Up</h3>
+          <p class="nr-small" style="color:var(--nr-text-light)">default</p>
         </div>
-        <div class="nr-reveal nr-reveal-delay-2 preview-reveal-box">
-          <h3>Second</h3>
-          <p class="nr-small" style="color:var(--nr-text-light)">delay-2 (200ms)</p>
+        <div class="nr-reveal--left nr-reveal-delay-2 preview-reveal-box">
+          <h3>Slide Left</h3>
+          <p class="nr-small" style="color:var(--nr-text-light)">--left</p>
         </div>
-        <div class="nr-reveal nr-reveal-delay-3 preview-reveal-box">
-          <h3>Third</h3>
-          <p class="nr-small" style="color:var(--nr-text-light)">delay-3 (300ms)</p>
+        <div class="nr-reveal--right nr-reveal-delay-3 preview-reveal-box">
+          <h3>Slide Right</h3>
+          <p class="nr-small" style="color:var(--nr-text-light)">--right</p>
+        </div>
+        <div class="nr-reveal--scale nr-reveal-delay-4 preview-reveal-box">
+          <h3>Scale</h3>
+          <p class="nr-small" style="color:var(--nr-text-light)">--scale</p>
+        </div>
+      </div>
+
+      <div style="margin-top: 3rem">
+        <p class="nr-label" style="margin-bottom: 1rem">Hover Lift</p>
+        <div style="display: flex; gap: 2rem; flex-wrap: wrap">
+          <div class="nr-hover-lift preview-reveal-box" style="width: 200px; cursor: pointer">
+            <h4>Card A</h4>
+            <p class="nr-small" style="color:var(--nr-text-light)">hover me</p>
+          </div>
+          <div class="nr-hover-lift preview-reveal-box" style="width: 200px; cursor: pointer">
+            <h4>Card B</h4>
+            <p class="nr-small" style="color:var(--nr-text-light)">hover me</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 3rem">
+        <p class="nr-label" style="margin-bottom: 1rem">Text Reveal (clip-path)</p>
+        <div class="nr-text-reveal" style="max-width: 600px">
+          <h2>Noor — Light That Defines Luxury</h2>
         </div>
       </div>
     </div>
   </section>
 
   <script>
-    // Scroll reveal via IntersectionObserver
+    // Scroll reveal via IntersectionObserver — supports all reveal variants
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -553,7 +757,7 @@
       },
       { threshold: 0.15 }
     );
-    document.querySelectorAll('.nr-reveal').forEach((el) => observer.observe(el));
+    document.querySelectorAll('.nr-reveal, .nr-reveal--left, .nr-reveal--right, .nr-reveal--scale, .nr-text-reveal').forEach((el) => observer.observe(el));
   </script>
 
 </body>

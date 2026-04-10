@@ -22,16 +22,16 @@
 @import './02-components/marquee';
 @import './02-components/carousel';
 
-// 03 — Sections (added as built)
-// @import './03-sections/announcement';
-// @import './03-sections/header';
-// @import './03-sections/hero';
-// @import './03-sections/collections';
-// @import './03-sections/products';
-// @import './03-sections/editorial';
-// @import './03-sections/social-proof';
-// @import './03-sections/newsletter';
-// @import './03-sections/footer';
+// 03 — Sections
+@import './03-sections/announcement';
+@import './03-sections/header';
+@import './03-sections/hero';
+@import './03-sections/collections';
+@import './03-sections/products';
+@import './03-sections/editorial';
+@import './03-sections/social-proof';
+@import './03-sections/newsletter';
+@import './03-sections/footer';
 
 // 04 — Utilities
 @import './04-utilities/animations';

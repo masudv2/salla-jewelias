@@ -1,0 +1,51 @@
+// Product grid
+.nr-product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+}
+
+// Trust / award icon strip
+.nr-trust-strip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--nr-space-xl);
+  padding: var(--nr-space-xl) 0;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    gap: var(--nr-space-lg);
+  }
+}
+
+.nr-trust-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--nr-space-sm);
+  text-align: center;
+
+  svg, img {
+    width: 32px;
+    height: 32px;
+    opacity: 0.7;
+  }
+
+  span {
+    font-size: var(--nr-label);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--nr-text-light);
+  }
+}

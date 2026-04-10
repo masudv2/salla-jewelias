@@ -8,6 +8,8 @@
   }
 }
 
+// --- Media container with multi-image hover ---
+
 .nr-card__media {
   position: relative;
   overflow: hidden;
@@ -22,12 +24,78 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform var(--nr-transition-slow);
+  transition: transform var(--nr-transition-slow), opacity 500ms ease;
+}
+
+// Secondary image — hidden by default, crossfades on hover
+.nr-card__img--secondary {
+  opacity: 0;
+}
+
+.nr-card:hover .nr-card__img--primary {
+  opacity: 0;
+}
+
+.nr-card:hover .nr-card__img--secondary {
+  opacity: 1;
 }
 
 .nr-card:hover .nr-card__img {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
+
+// --- Wishlist / Quick-view action buttons ---
+
+.nr-card__actions {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  opacity: 0;
+  transform: translateX(8px);
+  transition: opacity 300ms var(--nr-ease), transform 300ms var(--nr-ease);
+
+  [dir="rtl"] & {
+    right: auto;
+    left: 12px;
+    transform: translateX(-8px);
+  }
+}
+
+.nr-card:hover .nr-card__actions {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+// --- Quick-add bar (slides up from bottom) ---
+
+.nr-card__quick-add {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  padding: 10px;
+  transform: translateY(100%);
+  transition: transform 400ms var(--nr-ease);
+}
+
+.nr-card:hover .nr-card__quick-add {
+  transform: translateY(0);
+}
+
+.nr-card__quick-add .nr-btn-solid {
+  width: 100%;
+  padding: 0.65rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+// --- Info block ---
 
 .nr-card__info {
   padding: var(--nr-space-md) 0;
@@ -43,6 +111,11 @@
   font-weight: 500;
   line-height: 1.35;
   margin-bottom: var(--nr-space-xs);
+  transition: color var(--nr-transition);
+}
+
+.nr-card:hover .nr-card__title {
+  color: var(--nr-primary);
 }
 
 .nr-card__price {
@@ -62,6 +135,35 @@
   color: var(--nr-sale);
 }
 
+// --- Star ratings ---
+
+.nr-card__rating {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: var(--nr-space-xs);
+}
+
+.nr-stars {
+  display: inline-flex;
+  gap: 1px;
+  color: #c9a84c;
+  font-size: 0.8rem;
+  line-height: 1;
+}
+
+.nr-stars__empty {
+  color: var(--nr-border);
+}
+
+.nr-card__review-count {
+  font-family: var(--nr-font-body);
+  font-size: 0.75rem;
+  color: var(--nr-text-light);
+}
+
+// --- Swatches ---
+
 .nr-card__swatches {
   display: flex;
   gap: 0.375rem;
@@ -74,11 +176,12 @@
   border-radius: 50%;
   border: 2px solid var(--nr-border);
   cursor: pointer;
-  transition: border-color var(--nr-transition);
+  transition: border-color var(--nr-transition), transform 300ms var(--nr-ease);
 
   &:hover,
   &.is-active {
     border-color: var(--nr-primary);
+    transform: scale(1.1);
   }
 
   @media (min-width: 769px) {
@@ -86,6 +189,8 @@
     height: 34px;
   }
 }
+
+// --- Collection Card ---
 
 .nr-card-collection {
   position: relative;
@@ -113,6 +218,11 @@
   justify-content: flex-end;
   padding: var(--nr-space-lg);
   background: linear-gradient(to top, rgba(0, 0, 0, 0.55), transparent 60%);
+  transition: background var(--nr-transition-slow);
+}
+
+.nr-card-collection:hover .nr-card-collection__overlay {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.65), transparent 70%);
 }
 
 .nr-card-collection__title {
