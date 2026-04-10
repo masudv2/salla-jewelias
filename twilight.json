@@ -97,7 +97,7 @@
                 "ar": "نص الإعلان 1"
             },
             "format": "text",
-            "value": "Complimentary Shipping on Orders Over SAR 500"
+            "value": "Free shipping on orders over SAR 500"
         },
         {
             "type": "string",
@@ -107,7 +107,7 @@
                 "ar": "نص الإعلان 2"
             },
             "format": "text",
-            "value": "Easy 30-Day Returns"
+            "value": "Lifetime warranty on all pieces"
         },
         {
             "type": "string",
@@ -117,7 +117,7 @@
                 "ar": "نص الإعلان 3"
             },
             "format": "text",
-            "value": "New arrivals every week"
+            "value": "Use code JEWEL25 for 25% off"
         },
         {
             "type": "string",
@@ -127,7 +127,7 @@
                 "ar": "نص الإعلان 4"
             },
             "format": "text",
-            "value": "Curated with care"
+            "value": ""
         },
         {
             "type": "string",
@@ -147,8 +147,8 @@
                 "ar": "إظهار أيقونات التواصل الاجتماعي"
             },
             "format": "switch",
-            "value": true,
-            "selected": true
+            "value": false,
+            "selected": false
         },
         {
             "type": "boolean",
@@ -158,8 +158,8 @@
                 "ar": "إظهار محوّل اللغة / العملة"
             },
             "format": "switch",
-            "value": true,
-            "selected": true
+            "value": false,
+            "selected": false
         },
         {
             "type": "boolean",
@@ -271,8 +271,8 @@
                 "ar": "إظهار زر الإغلاق"
             },
             "format": "switch",
-            "value": false,
-            "selected": false
+            "value": true,
+            "selected": true
         },
         {
             "type": "static",
@@ -567,7 +567,7 @@
                         "ar": "شفافية التعتيم (0-100)"
                     },
                     "format": "number",
-                    "value": 40
+                    "value": 50
                 },
                 {
                     "type": "boolean",
@@ -885,7 +885,7 @@
                         "ar": "تسمية القسم"
                     },
                     "format": "text",
-                    "value": "Spring 2026"
+                    "value": "The Collection"
                 },
                 {
                     "type": "string",
@@ -895,7 +895,7 @@
                         "ar": "العنوان"
                     },
                     "format": "text",
-                    "value": "The Crescent Collection"
+                    "value": "Heritage of Craftsmanship"
                 },
                 {
                     "type": "string",
@@ -905,7 +905,7 @@
                         "ar": "الوصف"
                     },
                     "format": "text",
-                    "value": "Inspired by the gentle curve of the crescent moon, each piece captures the quiet elegance of Arabian nights. Handcrafted in 18K gold with ethically sourced gemstones."
+                    "value": "Each piece in our collection tells a story of artisanal excellence, blending traditional techniques with contemporary design."
                 },
                 {
                     "type": "string",
@@ -1161,7 +1161,7 @@
                         "ar": "نص الاقتباس"
                     },
                     "format": "text",
-                    "value": "Every piece tells a story of heritage and craftsmanship, designed to be cherished across generations and illuminate life's most precious moments."
+                    "value": "Every piece we create is a testament to the enduring beauty of fine craftsmanship — where tradition meets modern elegance."
                 },
                 {
                     "type": "string",
@@ -1378,7 +1378,7 @@
                         "ar": "تسمية القسم"
                     },
                     "format": "text",
-                    "value": "Limited Time Offer"
+                    "value": "Limited Time"
                 },
                 {
                     "type": "string",
@@ -1388,7 +1388,7 @@
                         "ar": "العنوان"
                     },
                     "format": "text",
-                    "value": "Exclusive Ramadan Collection"
+                    "value": "The Anniversary Collection"
                 },
                 {
                     "type": "string",
@@ -1398,7 +1398,7 @@
                         "ar": "الوصف"
                     },
                     "format": "text",
-                    "value": "Up to 30% off on select pieces. Celebrate the season of light with handcrafted treasures designed to mark this sacred time."
+                    "value": "Celebrate with us — exclusive pieces crafted for this special occasion. Available for a limited time only."
                 },
                 {
                     "type": "string",
@@ -1408,7 +1408,7 @@
                         "ar": "نص الزر"
                     },
                     "format": "text",
-                    "value": "Shop the Sale"
+                    "value": "Shop The Collection"
                 },
                 {
                     "type": "string",
@@ -1482,8 +1482,8 @@
                         "ar": "إظهار العد التنازلي"
                     },
                     "format": "switch",
-                    "value": true,
-                    "selected": true
+                    "value": false,
+                    "selected": false
                 },
                 {
                     "type": "string",
@@ -2005,7 +2005,7 @@
                         "ar": "العنوان"
                     },
                     "format": "text",
-                    "value": "Stay in the Light"
+                    "value": "Stay in the Know"
                 },
                 {
                     "type": "string",
@@ -2015,7 +2015,7 @@
                         "ar": "الوصف"
                     },
                     "format": "text",
-                    "value": "Be the first to discover new collections, exclusive offers, and the stories behind our craft."
+                    "value": "Be the first to discover new collections, exclusive offers, and styling inspiration."
                 },
                 {
                     "type": "string",

@@ -3,11 +3,11 @@
 {% set items      = component.items|default([]) %}
 {% if not items|length %}
   {% set items = [
-    { label: 'Certified Authentic' },
     { label: 'Free Shipping' },
-    { label: '30-Day Returns' },
+    { label: 'Secure Payment' },
     { label: 'Lifetime Warranty' },
-    { label: '24/7 Support' }
+    { label: '24/7 Support' },
+    { label: 'Easy Returns' }
   ] %}
 {% endif %}
 {% set bg_color   = component.bg_color|default('#ffffff') %}
