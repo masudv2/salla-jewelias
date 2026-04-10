@@ -39,7 +39,10 @@
         {
             "type": "boolean",
             "id": "announce_show",
-            "label": { "en": "Show Announcement Bar", "ar": "إظهار شريط الإعلانات" },
+            "label": {
+                "en": "Show Announcement Bar",
+                "ar": "إظهار شريط الإعلانات"
+            },
             "format": "switch",
             "value": true,
             "selected": true
@@ -47,28 +50,40 @@
         {
             "type": "string",
             "id": "announce_bg",
-            "label": { "en": "Background Color", "ar": "لون الخلفية" },
+            "label": {
+                "en": "Background Color",
+                "ar": "لون الخلفية"
+            },
             "format": "color",
             "value": "#0D0D0D"
         },
         {
             "type": "string",
             "id": "announce_color",
-            "label": { "en": "Text Color", "ar": "لون النص" },
+            "label": {
+                "en": "Text Color",
+                "ar": "لون النص"
+            },
             "format": "color",
             "value": "#DDB87E"
         },
         {
             "type": "string",
             "id": "announce_dot_color",
-            "label": { "en": "Dot Separator Color", "ar": "لون الفاصل النقطي" },
+            "label": {
+                "en": "Dot Separator Color",
+                "ar": "لون الفاصل النقطي"
+            },
             "format": "color",
             "value": "#C6975B"
         },
         {
             "type": "boolean",
             "id": "announce_use_slider",
-            "label": { "en": "Use Slider Mode (instead of Marquee)", "ar": "وضع السلايدر (بدلاً من الشريط المتحرك)" },
+            "label": {
+                "en": "Use Slider Mode (instead of Marquee)",
+                "ar": "وضع السلايدر (بدلاً من الشريط المتحرك)"
+            },
             "format": "switch",
             "value": false,
             "selected": false
@@ -76,42 +91,60 @@
         {
             "type": "string",
             "id": "announce_text_1",
-            "label": { "en": "Announcement Text 1", "ar": "نص الإعلان 1" },
+            "label": {
+                "en": "Announcement Text 1",
+                "ar": "نص الإعلان 1"
+            },
             "format": "text",
             "value": "Free shipping on orders over SAR 500"
         },
         {
             "type": "string",
             "id": "announce_text_2",
-            "label": { "en": "Announcement Text 2", "ar": "نص الإعلان 2" },
+            "label": {
+                "en": "Announcement Text 2",
+                "ar": "نص الإعلان 2"
+            },
             "format": "text",
             "value": "Lifetime warranty on all pieces"
         },
         {
             "type": "string",
             "id": "announce_text_3",
-            "label": { "en": "Announcement Text 3", "ar": "نص الإعلان 3" },
+            "label": {
+                "en": "Announcement Text 3",
+                "ar": "نص الإعلان 3"
+            },
             "format": "text",
             "value": "Use code JEWEL25 for 25% off"
         },
         {
             "type": "string",
             "id": "announce_text_4",
-            "label": { "en": "Announcement Text 4", "ar": "نص الإعلان 4" },
+            "label": {
+                "en": "Announcement Text 4",
+                "ar": "نص الإعلان 4"
+            },
             "format": "text",
             "value": ""
         },
         {
             "type": "string",
             "id": "announce_link",
-            "label": { "en": "Link URL (all texts)", "ar": "رابط URL (جميع النصوص)" },
+            "label": {
+                "en": "Link URL (all texts)",
+                "ar": "رابط URL (جميع النصوص)"
+            },
             "format": "text",
             "value": ""
         },
         {
             "type": "boolean",
             "id": "announce_show_social",
-            "label": { "en": "Show Social Media Icons", "ar": "إظهار أيقونات التواصل الاجتماعي" },
+            "label": {
+                "en": "Show Social Media Icons",
+                "ar": "إظهار أيقونات التواصل الاجتماعي"
+            },
             "format": "switch",
             "value": false,
             "selected": false
@@ -119,7 +152,10 @@
         {
             "type": "boolean",
             "id": "announce_show_locale",
-            "label": { "en": "Show Language / Currency Switcher", "ar": "إظهار محوّل اللغة / العملة" },
+            "label": {
+                "en": "Show Language / Currency Switcher",
+                "ar": "إظهار محوّل اللغة / العملة"
+            },
             "format": "switch",
             "value": false,
             "selected": false
@@ -127,7 +163,10 @@
         {
             "type": "boolean",
             "id": "announce_show_countdown",
-            "label": { "en": "Show Countdown Timer", "ar": "إظهار العد التنازلي" },
+            "label": {
+                "en": "Show Countdown Timer",
+                "ar": "إظهار العد التنازلي"
+            },
             "format": "switch",
             "value": false,
             "selected": false
@@ -135,42 +174,60 @@
         {
             "type": "number",
             "id": "announce_cd_year",
-            "label": { "en": "Countdown Year", "ar": "سنة العد التنازلي" },
+            "label": {
+                "en": "Countdown Year",
+                "ar": "سنة العد التنازلي"
+            },
             "format": "number",
             "value": 2026
         },
         {
             "type": "number",
             "id": "announce_cd_month",
-            "label": { "en": "Countdown Month (1-12)", "ar": "شهر العد التنازلي (1-12)" },
+            "label": {
+                "en": "Countdown Month (1-12)",
+                "ar": "شهر العد التنازلي (1-12)"
+            },
             "format": "number",
             "value": 12
         },
         {
             "type": "number",
             "id": "announce_cd_day",
-            "label": { "en": "Countdown Day (1-31)", "ar": "يوم العد التنازلي (1-31)" },
+            "label": {
+                "en": "Countdown Day (1-31)",
+                "ar": "يوم العد التنازلي (1-31)"
+            },
             "format": "number",
             "value": 31
         },
         {
             "type": "number",
             "id": "announce_cd_hour",
-            "label": { "en": "Countdown Hour (0-23)", "ar": "ساعة العد التنازلي (0-23)" },
+            "label": {
+                "en": "Countdown Hour (0-23)",
+                "ar": "ساعة العد التنازلي (0-23)"
+            },
             "format": "number",
             "value": 0
         },
         {
             "type": "number",
             "id": "announce_cd_minute",
-            "label": { "en": "Countdown Minute (0-59)", "ar": "دقيقة العد التنازلي (0-59)" },
+            "label": {
+                "en": "Countdown Minute (0-59)",
+                "ar": "دقيقة العد التنازلي (0-59)"
+            },
             "format": "number",
             "value": 0
         },
         {
             "type": "boolean",
             "id": "announce_show_cta",
-            "label": { "en": "Show CTA Button", "ar": "إظهار زر الإجراء" },
+            "label": {
+                "en": "Show CTA Button",
+                "ar": "إظهار زر الإجراء"
+            },
             "format": "switch",
             "value": false,
             "selected": false
@@ -178,28 +235,40 @@
         {
             "type": "string",
             "id": "announce_btn_label",
-            "label": { "en": "CTA Button Text", "ar": "نص زر الإجراء" },
+            "label": {
+                "en": "CTA Button Text",
+                "ar": "نص زر الإجراء"
+            },
             "format": "text",
             "value": "SHOP NOW"
         },
         {
             "type": "string",
             "id": "announce_btn_link",
-            "label": { "en": "CTA Button Link", "ar": "رابط زر الإجراء" },
+            "label": {
+                "en": "CTA Button Link",
+                "ar": "رابط زر الإجراء"
+            },
             "format": "text",
             "value": ""
         },
         {
             "type": "string",
             "id": "announce_btn_color",
-            "label": { "en": "CTA Button Color", "ar": "لون زر الإجراء" },
+            "label": {
+                "en": "CTA Button Color",
+                "ar": "لون زر الإجراء"
+            },
             "format": "color",
             "value": "#DDB87E"
         },
         {
             "type": "boolean",
             "id": "announce_show_close",
-            "label": { "en": "Show Close Button", "ar": "إظهار زر الإغلاق" },
+            "label": {
+                "en": "Show Close Button",
+                "ar": "إظهار زر الإغلاق"
+            },
             "format": "switch",
             "value": true,
             "selected": true
@@ -218,7 +287,10 @@
         },
         {
             "id": "header_is_sticky",
-            "label": { "en": "Sticky Header on Scroll", "ar": "تثبيت القائمة الرئيسية عند التمرير" },
+            "label": {
+                "en": "Sticky Header on Scroll",
+                "ar": "تثبيت القائمة الرئيسية عند التمرير"
+            },
             "type": "boolean",
             "format": "switch",
             "value": true,
@@ -227,14 +299,20 @@
         {
             "type": "number",
             "id": "logo_height",
-            "label": { "en": "Logo Height (px)", "ar": "ارتفاع الشعار (بكسل)" },
+            "label": {
+                "en": "Logo Height (px)",
+                "ar": "ارتفاع الشعار (بكسل)"
+            },
             "format": "number",
             "value": 36
         },
         {
             "type": "boolean",
             "id": "enable_more_menu",
-            "label": { "en": "Enable 'More' Dropdown in Navigation", "ar": "تفعيل قائمة 'المزيد' في التنقل" },
+            "label": {
+                "en": "Enable 'More' Dropdown in Navigation",
+                "ar": "تفعيل قائمة 'المزيد' في التنقل"
+            },
             "format": "switch",
             "value": true,
             "selected": true
@@ -254,7 +332,10 @@
         {
             "type": "boolean",
             "id": "footer_is_dark",
-            "label": { "en": "Dark Footer", "ar": "الوضع الداكن للفوتر" },
+            "label": {
+                "en": "Dark Footer",
+                "ar": "الوضع الداكن للفوتر"
+            },
             "format": "switch",
             "value": true,
             "selected": true
@@ -274,7 +355,10 @@
         {
             "type": "boolean",
             "id": "vertical_fixed_products",
-            "label": { "en": "Vertical Layout for Fixed Products", "ar": "وضع عمودي للمنتجات الثابتة" },
+            "label": {
+                "en": "Vertical Layout for Fixed Products",
+                "ar": "وضع عمودي للمنتجات الثابتة"
+            },
             "format": "switch",
             "value": false,
             "selected": false
@@ -282,7 +366,10 @@
         {
             "type": "boolean",
             "id": "enable_add_product_toast",
-            "label": { "en": "Enhanced Add-to-Cart Notification", "ar": "تفعيل إشعار الإضافة للسلة المحسن" },
+            "label": {
+                "en": "Enhanced Add-to-Cart Notification",
+                "ar": "تفعيل إشعار الإضافة للسلة المحسن"
+            },
             "format": "switch",
             "value": true,
             "selected": true
@@ -290,7 +377,10 @@
         {
             "type": "boolean",
             "id": "sticky_add_to_cart",
-            "label": { "en": "Sticky Add-to-Cart on Mobile", "ar": "تثبيت زر الإضافة أسفل شاشة الجوال" },
+            "label": {
+                "en": "Sticky Add-to-Cart on Mobile",
+                "ar": "تثبيت زر الإضافة أسفل شاشة الجوال"
+            },
             "format": "switch",
             "value": true,
             "selected": true
@@ -298,7 +388,10 @@
         {
             "type": "boolean",
             "id": "show_tags",
-            "label": { "en": "Show Product Tags", "ar": "إظهار الوسوم" },
+            "label": {
+                "en": "Show Product Tags",
+                "ar": "إظهار الوسوم"
+            },
             "format": "switch",
             "value": true,
             "selected": true
@@ -307,7 +400,10 @@
             "id": "slider_background_size",
             "type": "items",
             "format": "dropdown-list",
-            "label": { "en": "Product Image Display Mode", "ar": "طريقة عرض صور المنتج" },
+            "label": {
+                "en": "Product Image Display Mode",
+                "ar": "طريقة عرض صور المنتج"
+            },
             "selected": [
                 {
                     "label": "Contain (show full image)",
@@ -333,7 +429,10 @@
         {
             "type": "boolean",
             "id": "imageZoom",
-            "label": { "en": "Product Image Zoom", "ar": "تكبير صور المنتج" },
+            "label": {
+                "en": "Product Image Zoom",
+                "ar": "تكبير صور المنتج"
+            },
             "format": "switch",
             "value": false,
             "selected": false
@@ -342,13 +441,19 @@
     "components": [
         {
             "key": "nr-hero-slideshow-001",
-            "name": { "en": "Hero Slideshow", "ar": "سلايدر رئيسي" },
+            "name": {
+                "en": "Hero Slideshow",
+                "ar": "سلايدر رئيسي"
+            },
             "path": "home.hero-slideshow",
             "fields": [
                 {
                     "type": "boolean",
                     "id": "show",
-                    "label": { "en": "Show Section", "ar": "إظهار القسم" },
+                    "label": {
+                        "en": "Show Section",
+                        "ar": "إظهار القسم"
+                    },
                     "format": "switch",
                     "value": true,
                     "selected": true
@@ -356,7 +461,10 @@
                 {
                     "type": "boolean",
                     "id": "autoplay",
-                    "label": { "en": "Auto-play Slides", "ar": "تشغيل تلقائي" },
+                    "label": {
+                        "en": "Auto-play Slides",
+                        "ar": "تشغيل تلقائي"
+                    },
                     "format": "switch",
                     "value": true,
                     "selected": true
@@ -364,55 +472,113 @@
                 {
                     "type": "number",
                     "id": "speed",
-                    "label": { "en": "Slide Duration (ms)", "ar": "مدة العرض (مللي ثانية)" },
+                    "label": {
+                        "en": "Slide Duration (ms)",
+                        "ar": "مدة العرض (مللي ثانية)"
+                    },
                     "format": "number",
                     "value": 6000
                 },
                 {
                     "type": "items",
                     "id": "nav_style",
-                    "label": { "en": "Navigation Style", "ar": "نمط التنقل" },
+                    "label": {
+                        "en": "Navigation Style",
+                        "ar": "نمط التنقل"
+                    },
                     "format": "dropdown-list",
-                    "selected": [{ "label": "Dots & Arrows", "value": "both", "key": "nav-both" }],
+                    "selected": [
+                        {
+                            "label": "Dots & Arrows",
+                            "value": "both",
+                            "key": "nav-both"
+                        }
+                    ],
                     "options": [
-                        { "label": "Dots & Arrows", "value": "both", "key": "nav-both" },
-                        { "label": "Dots Only", "value": "dots", "key": "nav-dots" },
-                        { "label": "Arrows Only", "value": "arrows", "key": "nav-arrows" },
-                        { "label": "None", "value": "none", "key": "nav-none" }
+                        {
+                            "label": "Dots & Arrows",
+                            "value": "both",
+                            "key": "nav-both"
+                        },
+                        {
+                            "label": "Dots Only",
+                            "value": "dots",
+                            "key": "nav-dots"
+                        },
+                        {
+                            "label": "Arrows Only",
+                            "value": "arrows",
+                            "key": "nav-arrows"
+                        },
+                        {
+                            "label": "None",
+                            "value": "none",
+                            "key": "nav-none"
+                        }
                     ],
                     "source": "Manual"
                 },
                 {
                     "type": "items",
                     "id": "height",
-                    "label": { "en": "Slider Height", "ar": "ارتفاع السلايدر" },
+                    "label": {
+                        "en": "Slider Height",
+                        "ar": "ارتفاع السلايدر"
+                    },
                     "format": "dropdown-list",
-                    "selected": [{ "label": "Full (90vh)", "value": "full", "key": "h-full" }],
+                    "selected": [
+                        {
+                            "label": "Full (90vh)",
+                            "value": "full",
+                            "key": "h-full"
+                        }
+                    ],
                     "options": [
-                        { "label": "Full (90vh)", "value": "full", "key": "h-full" },
-                        { "label": "Large (70vh)", "value": "large", "key": "h-large" },
-                        { "label": "Medium (50vh)", "value": "medium", "key": "h-medium" }
+                        {
+                            "label": "Full (90vh)",
+                            "value": "full",
+                            "key": "h-full"
+                        },
+                        {
+                            "label": "Large (70vh)",
+                            "value": "large",
+                            "key": "h-large"
+                        },
+                        {
+                            "label": "Medium (50vh)",
+                            "value": "medium",
+                            "key": "h-medium"
+                        }
                     ],
                     "source": "Manual"
                 },
                 {
                     "type": "string",
                     "id": "overlay_color",
-                    "label": { "en": "Overlay Color", "ar": "لون التعتيم" },
+                    "label": {
+                        "en": "Overlay Color",
+                        "ar": "لون التعتيم"
+                    },
                     "format": "color",
                     "value": "#000000"
                 },
                 {
                     "type": "number",
                     "id": "overlay_opacity",
-                    "label": { "en": "Overlay Opacity (0-100)", "ar": "شفافية التعتيم (0-100)" },
+                    "label": {
+                        "en": "Overlay Opacity (0-100)",
+                        "ar": "شفافية التعتيم (0-100)"
+                    },
                     "format": "number",
                     "value": 50
                 },
                 {
                     "type": "boolean",
                     "id": "ken_burns",
-                    "label": { "en": "Ken Burns Zoom Effect", "ar": "تأثير الزوم البطيء" },
+                    "label": {
+                        "en": "Ken Burns Zoom Effect",
+                        "ar": "تأثير الزوم البطيء"
+                    },
                     "format": "switch",
                     "value": true,
                     "selected": true
@@ -420,74 +586,122 @@
                 {
                     "type": "collection",
                     "id": "slides",
-                    "label": { "en": "Slides", "ar": "الشرائح" },
+                    "label": {
+                        "en": "Slides",
+                        "ar": "الشرائح"
+                    },
                     "format": "collection",
                     "fields": [
                         {
                             "type": "string",
                             "id": "image",
-                            "label": { "en": "Background Image", "ar": "صورة الخلفية" },
+                            "label": {
+                                "en": "Background Image",
+                                "ar": "صورة الخلفية"
+                            },
                             "format": "image"
                         },
                         {
                             "type": "string",
                             "id": "title",
-                            "label": { "en": "Title", "ar": "العنوان" },
+                            "label": {
+                                "en": "Title",
+                                "ar": "العنوان"
+                            },
                             "format": "text",
                             "value": ""
                         },
                         {
                             "type": "string",
                             "id": "subtitle",
-                            "label": { "en": "Subtitle", "ar": "العنوان الفرعي" },
+                            "label": {
+                                "en": "Subtitle",
+                                "ar": "العنوان الفرعي"
+                            },
                             "format": "text",
                             "value": ""
                         },
                         {
                             "type": "items",
                             "id": "content_position",
-                            "label": { "en": "Content Position", "ar": "موقع المحتوى" },
+                            "label": {
+                                "en": "Content Position",
+                                "ar": "موقع المحتوى"
+                            },
                             "format": "dropdown-list",
-                            "selected": [{ "label": "Left", "value": "left", "key": "pos-left" }],
+                            "selected": [
+                                {
+                                    "label": "Left",
+                                    "value": "left",
+                                    "key": "pos-left"
+                                }
+                            ],
                             "options": [
-                                { "label": "Left", "value": "left", "key": "pos-left" },
-                                { "label": "Center", "value": "center", "key": "pos-center" },
-                                { "label": "Right", "value": "right", "key": "pos-right" }
+                                {
+                                    "label": "Left",
+                                    "value": "left",
+                                    "key": "pos-left"
+                                },
+                                {
+                                    "label": "Center",
+                                    "value": "center",
+                                    "key": "pos-center"
+                                },
+                                {
+                                    "label": "Right",
+                                    "value": "right",
+                                    "key": "pos-right"
+                                }
                             ],
                             "source": "Manual"
                         },
                         {
                             "type": "string",
                             "id": "btn_text",
-                            "label": { "en": "Primary Button Text", "ar": "نص الزر الرئيسي" },
+                            "label": {
+                                "en": "Primary Button Text",
+                                "ar": "نص الزر الرئيسي"
+                            },
                             "format": "text",
                             "value": ""
                         },
                         {
                             "type": "string",
                             "id": "btn_link",
-                            "label": { "en": "Primary Button Link", "ar": "رابط الزر الرئيسي" },
+                            "label": {
+                                "en": "Primary Button Link",
+                                "ar": "رابط الزر الرئيسي"
+                            },
                             "format": "text",
                             "value": "#"
                         },
                         {
                             "type": "string",
                             "id": "btn_color",
-                            "label": { "en": "Primary Button Color", "ar": "لون الزر الرئيسي" },
+                            "label": {
+                                "en": "Primary Button Color",
+                                "ar": "لون الزر الرئيسي"
+                            },
                             "format": "color",
                             "value": "#263D30"
                         },
                         {
                             "type": "string",
                             "id": "btn2_text",
-                            "label": { "en": "Secondary Button Text", "ar": "نص الزر الثانوي" },
+                            "label": {
+                                "en": "Secondary Button Text",
+                                "ar": "نص الزر الثانوي"
+                            },
                             "format": "text",
                             "value": ""
                         },
                         {
                             "type": "string",
                             "id": "btn2_link",
-                            "label": { "en": "Secondary Button Link", "ar": "رابط الزر الثانوي" },
+                            "label": {
+                                "en": "Secondary Button Link",
+                                "ar": "رابط الزر الثانوي"
+                            },
                             "format": "text",
                             "value": "#"
                         }
@@ -497,13 +711,19 @@
         },
         {
             "key": "nr-marquee-ticker-002",
-            "name": { "en": "Marquee Ticker", "ar": "شريط متحرك" },
+            "name": {
+                "en": "Marquee Ticker",
+                "ar": "شريط متحرك"
+            },
             "path": "home.marquee-ticker",
             "fields": [
                 {
                     "type": "boolean",
                     "id": "show",
-                    "label": { "en": "Show Section", "ar": "إظهار القسم" },
+                    "label": {
+                        "en": "Show Section",
+                        "ar": "إظهار القسم"
+                    },
                     "format": "switch",
                     "value": true,
                     "selected": true
@@ -511,40 +731,69 @@
                 {
                     "type": "string",
                     "id": "bg_color",
-                    "label": { "en": "Background Color", "ar": "لون الخلفية" },
+                    "label": {
+                        "en": "Background Color",
+                        "ar": "لون الخلفية"
+                    },
                     "format": "color",
                     "value": "#263D30"
                 },
                 {
                     "type": "string",
                     "id": "text_color",
-                    "label": { "en": "Text Color", "ar": "لون النص" },
+                    "label": {
+                        "en": "Text Color",
+                        "ar": "لون النص"
+                    },
                     "format": "color",
                     "value": "#ffffff"
                 },
                 {
                     "type": "number",
                     "id": "speed",
-                    "label": { "en": "Scroll Speed (seconds)", "ar": "سرعة التمرير (ثوانٍ)" },
+                    "label": {
+                        "en": "Scroll Speed (seconds)",
+                        "ar": "سرعة التمرير (ثوانٍ)"
+                    },
                     "format": "number",
                     "value": 20
                 },
                 {
                     "type": "items",
                     "id": "direction",
-                    "label": { "en": "Scroll Direction", "ar": "اتجاه التمرير" },
+                    "label": {
+                        "en": "Scroll Direction",
+                        "ar": "اتجاه التمرير"
+                    },
                     "format": "dropdown-list",
-                    "selected": [{ "label": "Left", "value": "left", "key": "dir-left" }],
+                    "selected": [
+                        {
+                            "label": "Left",
+                            "value": "left",
+                            "key": "dir-left"
+                        }
+                    ],
                     "options": [
-                        { "label": "Left", "value": "left", "key": "dir-left" },
-                        { "label": "Right", "value": "right", "key": "dir-right" }
+                        {
+                            "label": "Left",
+                            "value": "left",
+                            "key": "dir-left"
+                        },
+                        {
+                            "label": "Right",
+                            "value": "right",
+                            "key": "dir-right"
+                        }
                     ],
                     "source": "Manual"
                 },
                 {
                     "type": "boolean",
                     "id": "pause_hover",
-                    "label": { "en": "Pause on Hover", "ar": "إيقاف عند التمرير" },
+                    "label": {
+                        "en": "Pause on Hover",
+                        "ar": "إيقاف عند التمرير"
+                    },
                     "format": "switch",
                     "value": true,
                     "selected": true
@@ -552,13 +801,19 @@
                 {
                     "type": "collection",
                     "id": "items",
-                    "label": { "en": "Ticker Items", "ar": "عناصر الشريط" },
+                    "label": {
+                        "en": "Ticker Items",
+                        "ar": "عناصر الشريط"
+                    },
                     "format": "collection",
                     "fields": [
                         {
                             "type": "string",
                             "id": "text",
-                            "label": { "en": "Text", "ar": "النص" },
+                            "label": {
+                                "en": "Text",
+                                "ar": "النص"
+                            },
                             "format": "text",
                             "value": ""
                         }
@@ -568,13 +823,19 @@
         },
         {
             "key": "nr-split-collection-003",
-            "name": { "en": "Split Collection Banner", "ar": "بانر مقسّم للمجموعة" },
+            "name": {
+                "en": "Split Collection Banner",
+                "ar": "بانر مقسّم للمجموعة"
+            },
             "path": "home.split-collection",
             "fields": [
                 {
                     "type": "boolean",
                     "id": "show",
-                    "label": { "en": "Show Section", "ar": "إظهار القسم" },
+                    "label": {
+                        "en": "Show Section",
+                        "ar": "إظهار القسم"
+                    },
                     "format": "switch",
                     "value": true,
                     "selected": true
@@ -582,72 +843,127 @@
                 {
                     "type": "string",
                     "id": "image",
-                    "label": { "en": "Image", "ar": "الصورة" },
+                    "label": {
+                        "en": "Image",
+                        "ar": "الصورة"
+                    },
                     "format": "image"
                 },
                 {
                     "type": "items",
                     "id": "image_position",
-                    "label": { "en": "Image Position", "ar": "موقع الصورة" },
+                    "label": {
+                        "en": "Image Position",
+                        "ar": "موقع الصورة"
+                    },
                     "format": "dropdown-list",
-                    "selected": [{ "label": "Left", "value": "left", "key": "img-left" }],
+                    "selected": [
+                        {
+                            "label": "Left",
+                            "value": "left",
+                            "key": "img-left"
+                        }
+                    ],
                     "options": [
-                        { "label": "Left", "value": "left", "key": "img-left" },
-                        { "label": "Right", "value": "right", "key": "img-right" }
+                        {
+                            "label": "Left",
+                            "value": "left",
+                            "key": "img-left"
+                        },
+                        {
+                            "label": "Right",
+                            "value": "right",
+                            "key": "img-right"
+                        }
                     ],
                     "source": "Manual"
                 },
                 {
                     "type": "string",
                     "id": "label",
-                    "label": { "en": "Section Label", "ar": "تسمية القسم" },
+                    "label": {
+                        "en": "Section Label",
+                        "ar": "تسمية القسم"
+                    },
                     "format": "text",
-                    "value": ""
+                    "value": "The Collection"
                 },
                 {
                     "type": "string",
                     "id": "title",
-                    "label": { "en": "Title", "ar": "العنوان" },
+                    "label": {
+                        "en": "Title",
+                        "ar": "العنوان"
+                    },
                     "format": "text",
-                    "value": ""
+                    "value": "Heritage of Craftsmanship"
                 },
                 {
                     "type": "string",
                     "id": "description",
-                    "label": { "en": "Description", "ar": "الوصف" },
+                    "label": {
+                        "en": "Description",
+                        "ar": "الوصف"
+                    },
                     "format": "text",
-                    "value": ""
+                    "value": "Each piece in our collection tells a story of artisanal excellence, blending traditional techniques with contemporary design."
                 },
                 {
                     "type": "string",
                     "id": "btn_text",
-                    "label": { "en": "Button Text", "ar": "نص الزر" },
+                    "label": {
+                        "en": "Button Text",
+                        "ar": "نص الزر"
+                    },
                     "format": "text",
-                    "value": ""
+                    "value": "Explore Collection"
                 },
                 {
                     "type": "string",
                     "id": "btn_link",
-                    "label": { "en": "Button Link", "ar": "رابط الزر" },
+                    "label": {
+                        "en": "Button Link",
+                        "ar": "رابط الزر"
+                    },
                     "format": "text",
-                    "value": "#"
+                    "value": "/products"
                 },
                 {
                     "type": "string",
                     "id": "bg_color",
-                    "label": { "en": "Background Color", "ar": "لون الخلفية" },
+                    "label": {
+                        "en": "Background Color",
+                        "ar": "لون الخلفية"
+                    },
                     "format": "color",
                     "value": "#ffffff"
                 },
                 {
                     "type": "items",
                     "id": "text_align",
-                    "label": { "en": "Text Alignment", "ar": "محاذاة النص" },
+                    "label": {
+                        "en": "Text Alignment",
+                        "ar": "محاذاة النص"
+                    },
                     "format": "dropdown-list",
-                    "selected": [{ "label": "Left", "value": "left", "key": "align-left" }],
+                    "selected": [
+                        {
+                            "label": "Left",
+                            "value": "left",
+                            "key": "align-left"
+                        }
+                    ],
                     "options": [
-                        { "label": "Left", "value": "left", "key": "align-left" },
-                        { "label": "Center", "value": "center", "key": "align-center" }
+                        {
+                            "label": "Left",
+                            "value": "left",
+                            "key": "align-left"
+                        },
+                        {
+                            "label": "Center",
+                            "value": "center",
+                            "key": "align-center"
+                        }
                     ],
                     "source": "Manual"
                 }
@@ -655,13 +971,19 @@
         },
         {
             "key": "nr-tabbed-collection-004",
-            "name": { "en": "Tabbed Collection", "ar": "مجموعة بتبويبات" },
+            "name": {
+                "en": "Tabbed Collection",
+                "ar": "مجموعة بتبويبات"
+            },
             "path": "home.tabbed-collection",
             "fields": [
                 {
                     "type": "boolean",
                     "id": "show",
-                    "label": { "en": "Show Section", "ar": "إظهار القسم" },
+                    "label": {
+                        "en": "Show Section",
+                        "ar": "إظهار القسم"
+                    },
                     "format": "switch",
                     "value": true,
                     "selected": true
@@ -669,35 +991,50 @@
                 {
                     "type": "string",
                     "id": "label",
-                    "label": { "en": "Section Label", "ar": "تسمية القسم" },
+                    "label": {
+                        "en": "Section Label",
+                        "ar": "تسمية القسم"
+                    },
                     "format": "text",
-                    "value": ""
+                    "value": "Curated For You"
                 },
                 {
                     "type": "string",
                     "id": "title",
-                    "label": { "en": "Title", "ar": "العنوان" },
+                    "label": {
+                        "en": "Title",
+                        "ar": "العنوان"
+                    },
                     "format": "text",
-                    "value": ""
+                    "value": "Shop Our Collection"
                 },
                 {
                     "type": "number",
                     "id": "columns",
-                    "label": { "en": "Columns (2-4)", "ar": "عدد الأعمدة (2-4)" },
+                    "label": {
+                        "en": "Columns (2-4)",
+                        "ar": "عدد الأعمدة (2-4)"
+                    },
                     "format": "number",
                     "value": 4
                 },
                 {
                     "type": "number",
                     "id": "products_count",
-                    "label": { "en": "Products Per Tab", "ar": "المنتجات لكل تبويب" },
+                    "label": {
+                        "en": "Products Per Tab",
+                        "ar": "المنتجات لكل تبويب"
+                    },
                     "format": "number",
                     "value": 4
                 },
                 {
                     "type": "boolean",
                     "id": "show_rating",
-                    "label": { "en": "Show Rating Stars", "ar": "إظهار نجوم التقييم" },
+                    "label": {
+                        "en": "Show Rating Stars",
+                        "ar": "إظهار نجوم التقييم"
+                    },
                     "format": "switch",
                     "value": true,
                     "selected": true
@@ -705,7 +1042,10 @@
                 {
                     "type": "boolean",
                     "id": "show_quick_add",
-                    "label": { "en": "Show Quick Add Button", "ar": "إظهار زر الإضافة السريعة" },
+                    "label": {
+                        "en": "Show Quick Add Button",
+                        "ar": "إظهار زر الإضافة السريعة"
+                    },
                     "format": "switch",
                     "value": true,
                     "selected": true
@@ -713,7 +1053,10 @@
                 {
                     "type": "boolean",
                     "id": "show_wishlist",
-                    "label": { "en": "Show Wishlist Icon", "ar": "إظهار أيقونة المفضلة" },
+                    "label": {
+                        "en": "Show Wishlist Icon",
+                        "ar": "إظهار أيقونة المفضلة"
+                    },
                     "format": "switch",
                     "value": true,
                     "selected": true
@@ -721,34 +1064,68 @@
                 {
                     "type": "collection",
                     "id": "tabs",
-                    "label": { "en": "Tabs", "ar": "التبويبات" },
+                    "label": {
+                        "en": "Tabs",
+                        "ar": "التبويبات"
+                    },
                     "format": "collection",
                     "fields": [
                         {
                             "type": "string",
                             "id": "label",
-                            "label": { "en": "Tab Label", "ar": "عنوان التبويب" },
+                            "label": {
+                                "en": "Tab Label",
+                                "ar": "عنوان التبويب"
+                            },
                             "format": "text",
                             "value": ""
                         },
                         {
                             "type": "items",
                             "id": "source",
-                            "label": { "en": "Product Source", "ar": "مصدر المنتجات" },
+                            "label": {
+                                "en": "Product Source",
+                                "ar": "مصدر المنتجات"
+                            },
                             "format": "dropdown-list",
-                            "selected": [{ "label": "Latest", "value": "latest", "key": "src-latest" }],
+                            "selected": [
+                                {
+                                    "label": "Latest",
+                                    "value": "latest",
+                                    "key": "src-latest"
+                                }
+                            ],
                             "options": [
-                                { "label": "Latest", "value": "latest", "key": "src-latest" },
-                                { "label": "Best Sellers", "value": "best-selling", "key": "src-best" },
-                                { "label": "Offers", "value": "offers", "key": "src-offers" },
-                                { "label": "Category", "value": "category", "key": "src-category" }
+                                {
+                                    "label": "Latest",
+                                    "value": "latest",
+                                    "key": "src-latest"
+                                },
+                                {
+                                    "label": "Best Sellers",
+                                    "value": "best-selling",
+                                    "key": "src-best"
+                                },
+                                {
+                                    "label": "Offers",
+                                    "value": "offers",
+                                    "key": "src-offers"
+                                },
+                                {
+                                    "label": "Category",
+                                    "value": "category",
+                                    "key": "src-category"
+                                }
                             ],
                             "source": "Manual"
                         },
                         {
                             "type": "string",
                             "id": "category_id",
-                            "label": { "en": "Category ID (if source = Category)", "ar": "معرف التصنيف" },
+                            "label": {
+                                "en": "Category ID (if source = Category)",
+                                "ar": "معرف التصنيف"
+                            },
                             "format": "text",
                             "value": ""
                         }
@@ -758,13 +1135,19 @@
         },
         {
             "key": "nr-editorial-statement-005",
-            "name": { "en": "Editorial Statement", "ar": "نص تحريري" },
+            "name": {
+                "en": "Editorial Statement",
+                "ar": "نص تحريري"
+            },
             "path": "home.editorial-statement",
             "fields": [
                 {
                     "type": "boolean",
                     "id": "show",
-                    "label": { "en": "Show Section", "ar": "إظهار القسم" },
+                    "label": {
+                        "en": "Show Section",
+                        "ar": "إظهار القسم"
+                    },
                     "format": "switch",
                     "value": true,
                     "selected": true
@@ -772,40 +1155,69 @@
                 {
                     "type": "string",
                     "id": "quote_text",
-                    "label": { "en": "Quote Text", "ar": "نص الاقتباس" },
+                    "label": {
+                        "en": "Quote Text",
+                        "ar": "نص الاقتباس"
+                    },
                     "format": "text",
-                    "value": ""
+                    "value": "Every piece we create is a testament to the enduring beauty of fine craftsmanship — where tradition meets modern elegance."
                 },
                 {
                     "type": "string",
                     "id": "bg_color",
-                    "label": { "en": "Background Color", "ar": "لون الخلفية" },
+                    "label": {
+                        "en": "Background Color",
+                        "ar": "لون الخلفية"
+                    },
                     "format": "color",
                     "value": "#f8f2ea"
                 },
                 {
                     "type": "string",
                     "id": "text_color",
-                    "label": { "en": "Text Color", "ar": "لون النص" },
+                    "label": {
+                        "en": "Text Color",
+                        "ar": "لون النص"
+                    },
                     "format": "color",
                     "value": "#1f1f1f"
                 },
                 {
                     "type": "items",
                     "id": "font_style",
-                    "label": { "en": "Font Style", "ar": "نمط الخط" },
+                    "label": {
+                        "en": "Font Style",
+                        "ar": "نمط الخط"
+                    },
                     "format": "dropdown-list",
-                    "selected": [{ "label": "Italic", "value": "italic", "key": "fs-italic" }],
+                    "selected": [
+                        {
+                            "label": "Italic",
+                            "value": "italic",
+                            "key": "fs-italic"
+                        }
+                    ],
                     "options": [
-                        { "label": "Italic", "value": "italic", "key": "fs-italic" },
-                        { "label": "Normal", "value": "normal", "key": "fs-normal" }
+                        {
+                            "label": "Italic",
+                            "value": "italic",
+                            "key": "fs-italic"
+                        },
+                        {
+                            "label": "Normal",
+                            "value": "normal",
+                            "key": "fs-normal"
+                        }
                     ],
                     "source": "Manual"
                 },
                 {
                     "type": "boolean",
                     "id": "show_dividers",
-                    "label": { "en": "Show Diamond Dividers", "ar": "إظهار الفواصل الماسية" },
+                    "label": {
+                        "en": "Show Diamond Dividers",
+                        "ar": "إظهار الفواصل الماسية"
+                    },
                     "format": "switch",
                     "value": true,
                     "selected": true
@@ -814,13 +1226,19 @@
         },
         {
             "key": "nr-featured-products-006",
-            "name": { "en": "Featured Products", "ar": "منتجات مميزة" },
+            "name": {
+                "en": "Featured Products",
+                "ar": "منتجات مميزة"
+            },
             "path": "home.featured-products",
             "fields": [
                 {
                     "type": "boolean",
                     "id": "show",
-                    "label": { "en": "Show Section", "ar": "إظهار القسم" },
+                    "label": {
+                        "en": "Show Section",
+                        "ar": "إظهار القسم"
+                    },
                     "format": "switch",
                     "value": true,
                     "selected": true
@@ -828,21 +1246,30 @@
                 {
                     "type": "string",
                     "id": "label",
-                    "label": { "en": "Section Label", "ar": "تسمية القسم" },
+                    "label": {
+                        "en": "Section Label",
+                        "ar": "تسمية القسم"
+                    },
                     "format": "text",
-                    "value": ""
+                    "value": "Featured"
                 },
                 {
                     "type": "string",
                     "id": "title",
-                    "label": { "en": "Title", "ar": "العنوان" },
+                    "label": {
+                        "en": "Title",
+                        "ar": "العنوان"
+                    },
                     "format": "text",
-                    "value": ""
+                    "value": "Our Bestsellers"
                 },
                 {
                     "type": "boolean",
                     "id": "show_view_all",
-                    "label": { "en": "Show 'View All' Link", "ar": "إظهار رابط عرض الكل" },
+                    "label": {
+                        "en": "Show 'View All' Link",
+                        "ar": "إظهار رابط عرض الكل"
+                    },
                     "format": "switch",
                     "value": true,
                     "selected": true
@@ -850,28 +1277,40 @@
                 {
                     "type": "string",
                     "id": "view_all_link",
-                    "label": { "en": "'View All' URL", "ar": "رابط عرض الكل" },
+                    "label": {
+                        "en": "'View All' URL",
+                        "ar": "رابط عرض الكل"
+                    },
                     "format": "text",
                     "value": "/products"
                 },
                 {
                     "type": "number",
                     "id": "columns",
-                    "label": { "en": "Columns (2-4)", "ar": "عدد الأعمدة (2-4)" },
+                    "label": {
+                        "en": "Columns (2-4)",
+                        "ar": "عدد الأعمدة (2-4)"
+                    },
                     "format": "number",
                     "value": 4
                 },
                 {
                     "type": "number",
                     "id": "products_count",
-                    "label": { "en": "Number of Products", "ar": "عدد المنتجات" },
+                    "label": {
+                        "en": "Number of Products",
+                        "ar": "عدد المنتجات"
+                    },
                     "format": "number",
                     "value": 4
                 },
                 {
                     "type": "boolean",
                     "id": "show_rating",
-                    "label": { "en": "Show Rating Stars", "ar": "إظهار نجوم التقييم" },
+                    "label": {
+                        "en": "Show Rating Stars",
+                        "ar": "إظهار نجوم التقييم"
+                    },
                     "format": "switch",
                     "value": true,
                     "selected": true
@@ -879,7 +1318,10 @@
                 {
                     "type": "boolean",
                     "id": "show_quick_add",
-                    "label": { "en": "Show Quick Add Button", "ar": "إظهار زر الإضافة السريعة" },
+                    "label": {
+                        "en": "Show Quick Add Button",
+                        "ar": "إظهار زر الإضافة السريعة"
+                    },
                     "format": "switch",
                     "value": true,
                     "selected": true
@@ -887,7 +1329,10 @@
                 {
                     "type": "boolean",
                     "id": "show_wishlist",
-                    "label": { "en": "Show Wishlist Icon", "ar": "إظهار أيقونة المفضلة" },
+                    "label": {
+                        "en": "Show Wishlist Icon",
+                        "ar": "إظهار أيقونة المفضلة"
+                    },
                     "format": "switch",
                     "value": true,
                     "selected": true
@@ -896,13 +1341,19 @@
         },
         {
             "key": "nr-cta-banner-007",
-            "name": { "en": "CTA Banner", "ar": "بانر إجراء" },
+            "name": {
+                "en": "CTA Banner",
+                "ar": "بانر إجراء"
+            },
             "path": "home.cta-banner",
             "fields": [
                 {
                     "type": "boolean",
                     "id": "show",
-                    "label": { "en": "Show Section", "ar": "إظهار القسم" },
+                    "label": {
+                        "en": "Show Section",
+                        "ar": "إظهار القسم"
+                    },
                     "format": "switch",
                     "value": true,
                     "selected": true
@@ -910,75 +1361,123 @@
                 {
                     "type": "string",
                     "id": "bg_image",
-                    "label": { "en": "Background Image", "ar": "صورة الخلفية" },
+                    "label": {
+                        "en": "Background Image",
+                        "ar": "صورة الخلفية"
+                    },
                     "format": "image"
                 },
                 {
                     "type": "string",
                     "id": "label",
-                    "label": { "en": "Section Label", "ar": "تسمية القسم" },
+                    "label": {
+                        "en": "Section Label",
+                        "ar": "تسمية القسم"
+                    },
                     "format": "text",
-                    "value": ""
+                    "value": "Limited Time"
                 },
                 {
                     "type": "string",
                     "id": "title",
-                    "label": { "en": "Title", "ar": "العنوان" },
+                    "label": {
+                        "en": "Title",
+                        "ar": "العنوان"
+                    },
                     "format": "text",
-                    "value": ""
+                    "value": "The Anniversary Collection"
                 },
                 {
                     "type": "string",
                     "id": "description",
-                    "label": { "en": "Description", "ar": "الوصف" },
+                    "label": {
+                        "en": "Description",
+                        "ar": "الوصف"
+                    },
                     "format": "text",
-                    "value": ""
+                    "value": "Celebrate with us — exclusive pieces crafted for this special occasion. Available for a limited time only."
                 },
                 {
                     "type": "string",
                     "id": "btn_text",
-                    "label": { "en": "Button Text", "ar": "نص الزر" },
+                    "label": {
+                        "en": "Button Text",
+                        "ar": "نص الزر"
+                    },
                     "format": "text",
-                    "value": ""
+                    "value": "Shop The Collection"
                 },
                 {
                     "type": "string",
                     "id": "btn_link",
-                    "label": { "en": "Button Link", "ar": "رابط الزر" },
+                    "label": {
+                        "en": "Button Link",
+                        "ar": "رابط الزر"
+                    },
                     "format": "text",
-                    "value": "#"
+                    "value": "/products"
                 },
                 {
                     "type": "string",
                     "id": "overlay_color",
-                    "label": { "en": "Overlay Color", "ar": "لون التعتيم" },
+                    "label": {
+                        "en": "Overlay Color",
+                        "ar": "لون التعتيم"
+                    },
                     "format": "color",
                     "value": "#000000"
                 },
                 {
                     "type": "number",
                     "id": "overlay_opacity",
-                    "label": { "en": "Overlay Opacity (0-100)", "ar": "شفافية التعتيم (0-100)" },
+                    "label": {
+                        "en": "Overlay Opacity (0-100)",
+                        "ar": "شفافية التعتيم (0-100)"
+                    },
                     "format": "number",
                     "value": 45
                 },
                 {
                     "type": "items",
                     "id": "content_position",
-                    "label": { "en": "Content Position", "ar": "موقع المحتوى" },
+                    "label": {
+                        "en": "Content Position",
+                        "ar": "موقع المحتوى"
+                    },
                     "format": "dropdown-list",
-                    "selected": [{ "label": "Left", "value": "left", "key": "cta-left" }],
+                    "selected": [
+                        {
+                            "label": "Left",
+                            "value": "left",
+                            "key": "cta-left"
+                        }
+                    ],
                     "options": [
-                        { "label": "Left", "value": "left", "key": "cta-left" },
-                        { "label": "Center", "value": "center", "key": "cta-center" },
-                        { "label": "Right", "value": "right", "key": "cta-right" }
+                        {
+                            "label": "Left",
+                            "value": "left",
+                            "key": "cta-left"
+                        },
+                        {
+                            "label": "Center",
+                            "value": "center",
+                            "key": "cta-center"
+                        },
+                        {
+                            "label": "Right",
+                            "value": "right",
+                            "key": "cta-right"
+                        }
                     ],
                     "source": "Manual"
                 },
                 {
                     "type": "boolean",
                     "id": "show_countdown",
-                    "label": { "en": "Show Countdown Timer", "ar": "إظهار العد التنازلي" },
+                    "label": {
+                        "en": "Show Countdown Timer",
+                        "ar": "إظهار العد التنازلي"
+                    },
                     "format": "switch",
                     "value": false,
                     "selected": false
@@ -986,7 +1485,10 @@
                 {
                     "type": "string",
                     "id": "countdown_date",
-                    "label": { "en": "Countdown Target Date (YYYY-MM-DD)", "ar": "تاريخ العد التنازلي" },
+                    "label": {
+                        "en": "Countdown Target Date (YYYY-MM-DD)",
+                        "ar": "تاريخ العد التنازلي"
+                    },
                     "format": "text",
                     "value": ""
                 }
@@ -994,13 +1496,19 @@
         },
         {
             "key": "nr-trust-strip-008",
-            "name": { "en": "Trust / Award Strip", "ar": "شريط الثقة والجوائز" },
+            "name": {
+                "en": "Trust / Award Strip",
+                "ar": "شريط الثقة والجوائز"
+            },
             "path": "home.trust-strip",
             "fields": [
                 {
                     "type": "boolean",
                     "id": "show",
-                    "label": { "en": "Show Section", "ar": "إظهار القسم" },
+                    "label": {
+                        "en": "Show Section",
+                        "ar": "إظهار القسم"
+                    },
                     "format": "switch",
                     "value": true,
                     "selected": true
@@ -1008,14 +1516,20 @@
                 {
                     "type": "string",
                     "id": "bg_color",
-                    "label": { "en": "Background Color", "ar": "لون الخلفية" },
+                    "label": {
+                        "en": "Background Color",
+                        "ar": "لون الخلفية"
+                    },
                     "format": "color",
                     "value": "#ffffff"
                 },
                 {
                     "type": "boolean",
                     "id": "show_separators",
-                    "label": { "en": "Show Separators", "ar": "إظهار الفواصل" },
+                    "label": {
+                        "en": "Show Separators",
+                        "ar": "إظهار الفواصل"
+                    },
                     "format": "switch",
                     "value": true,
                     "selected": true
@@ -1023,19 +1537,28 @@
                 {
                     "type": "collection",
                     "id": "items",
-                    "label": { "en": "Trust Items", "ar": "عناصر الثقة" },
+                    "label": {
+                        "en": "Trust Items",
+                        "ar": "عناصر الثقة"
+                    },
                     "format": "collection",
                     "fields": [
                         {
                             "type": "string",
                             "id": "icon",
-                            "label": { "en": "Icon Image", "ar": "صورة الأيقونة" },
+                            "label": {
+                                "en": "Icon Image",
+                                "ar": "صورة الأيقونة"
+                            },
                             "format": "image"
                         },
                         {
                             "type": "string",
                             "id": "label",
-                            "label": { "en": "Label", "ar": "العنوان" },
+                            "label": {
+                                "en": "Label",
+                                "ar": "العنوان"
+                            },
                             "format": "text",
                             "value": ""
                         }
@@ -1045,13 +1568,19 @@
         },
         {
             "key": "nr-testimonials-009",
-            "name": { "en": "Testimonials", "ar": "آراء العملاء" },
+            "name": {
+                "en": "Testimonials",
+                "ar": "آراء العملاء"
+            },
             "path": "home.testimonials",
             "fields": [
                 {
                     "type": "boolean",
                     "id": "show",
-                    "label": { "en": "Show Section", "ar": "إظهار القسم" },
+                    "label": {
+                        "en": "Show Section",
+                        "ar": "إظهار القسم"
+                    },
                     "format": "switch",
                     "value": true,
                     "selected": true
@@ -1059,21 +1588,30 @@
                 {
                     "type": "string",
                     "id": "label",
-                    "label": { "en": "Section Label", "ar": "تسمية القسم" },
+                    "label": {
+                        "en": "Section Label",
+                        "ar": "تسمية القسم"
+                    },
                     "format": "text",
-                    "value": ""
+                    "value": "Testimonials"
                 },
                 {
                     "type": "string",
                     "id": "title",
-                    "label": { "en": "Title", "ar": "العنوان" },
+                    "label": {
+                        "en": "Title",
+                        "ar": "العنوان"
+                    },
                     "format": "text",
-                    "value": ""
+                    "value": "What Our Clients Say"
                 },
                 {
                     "type": "boolean",
                     "id": "autoplay",
-                    "label": { "en": "Auto-play Carousel", "ar": "تشغيل تلقائي" },
+                    "label": {
+                        "en": "Auto-play Carousel",
+                        "ar": "تشغيل تلقائي"
+                    },
                     "format": "switch",
                     "value": true,
                     "selected": true
@@ -1081,69 +1619,118 @@
                 {
                     "type": "number",
                     "id": "speed",
-                    "label": { "en": "Auto-play Speed (ms)", "ar": "سرعة التشغيل (مللي ثانية)" },
+                    "label": {
+                        "en": "Auto-play Speed (ms)",
+                        "ar": "سرعة التشغيل (مللي ثانية)"
+                    },
                     "format": "number",
                     "value": 5000
                 },
                 {
                     "type": "number",
                     "id": "cards_per_view",
-                    "label": { "en": "Cards Per View (1-3)", "ar": "عدد البطاقات (1-3)" },
+                    "label": {
+                        "en": "Cards Per View (1-3)",
+                        "ar": "عدد البطاقات (1-3)"
+                    },
                     "format": "number",
                     "value": 3
                 },
                 {
                     "type": "string",
                     "id": "bg_color",
-                    "label": { "en": "Background Color", "ar": "لون الخلفية" },
+                    "label": {
+                        "en": "Background Color",
+                        "ar": "لون الخلفية"
+                    },
                     "format": "color",
                     "value": "#f8f2ea"
                 },
                 {
                     "type": "items",
                     "id": "nav_style",
-                    "label": { "en": "Navigation Style", "ar": "نمط التنقل" },
+                    "label": {
+                        "en": "Navigation Style",
+                        "ar": "نمط التنقل"
+                    },
                     "format": "dropdown-list",
-                    "selected": [{ "label": "Dots & Arrows", "value": "both", "key": "tnav-both" }],
+                    "selected": [
+                        {
+                            "label": "Dots & Arrows",
+                            "value": "both",
+                            "key": "tnav-both"
+                        }
+                    ],
                     "options": [
-                        { "label": "Dots & Arrows", "value": "both", "key": "tnav-both" },
-                        { "label": "Dots Only", "value": "dots", "key": "tnav-dots" },
-                        { "label": "Arrows Only", "value": "arrows", "key": "tnav-arrows" },
-                        { "label": "None", "value": "none", "key": "tnav-none" }
+                        {
+                            "label": "Dots & Arrows",
+                            "value": "both",
+                            "key": "tnav-both"
+                        },
+                        {
+                            "label": "Dots Only",
+                            "value": "dots",
+                            "key": "tnav-dots"
+                        },
+                        {
+                            "label": "Arrows Only",
+                            "value": "arrows",
+                            "key": "tnav-arrows"
+                        },
+                        {
+                            "label": "None",
+                            "value": "none",
+                            "key": "tnav-none"
+                        }
                     ],
                     "source": "Manual"
                 },
                 {
                     "type": "collection",
                     "id": "testimonials",
-                    "label": { "en": "Testimonials", "ar": "الآراء" },
+                    "label": {
+                        "en": "Testimonials",
+                        "ar": "الآراء"
+                    },
                     "format": "collection",
                     "fields": [
                         {
                             "type": "number",
                             "id": "stars",
-                            "label": { "en": "Stars (1-5)", "ar": "النجوم (1-5)" },
+                            "label": {
+                                "en": "Stars (1-5)",
+                                "ar": "النجوم (1-5)"
+                            },
                             "format": "number",
                             "value": 5
                         },
                         {
                             "type": "string",
                             "id": "text",
-                            "label": { "en": "Review Text", "ar": "نص المراجعة" },
+                            "label": {
+                                "en": "Review Text",
+                                "ar": "نص المراجعة"
+                            },
                             "format": "text",
                             "value": ""
                         },
                         {
                             "type": "string",
                             "id": "author",
-                            "label": { "en": "Author Name", "ar": "اسم الكاتب" },
+                            "label": {
+                                "en": "Author Name",
+                                "ar": "اسم الكاتب"
+                            },
                             "format": "text",
                             "value": ""
                         },
                         {
                             "type": "string",
                             "id": "location",
-                            "label": { "en": "Location", "ar": "الموقع" },
+                            "label": {
+                                "en": "Location",
+                                "ar": "الموقع"
+                            },
                             "format": "text",
                             "value": ""
                         }
@@ -1153,13 +1740,19 @@
         },
         {
             "key": "nr-image-promos-010",
-            "name": { "en": "Image Promos", "ar": "بطاقات ترويجية بالصور" },
+            "name": {
+                "en": "Image Promos",
+                "ar": "بطاقات ترويجية بالصور"
+            },
             "path": "home.image-promos",
             "fields": [
                 {
                     "type": "boolean",
                     "id": "show",
-                    "label": { "en": "Show Section", "ar": "إظهار القسم" },
+                    "label": {
+                        "en": "Show Section",
+                        "ar": "إظهار القسم"
+                    },
                     "format": "switch",
                     "value": true,
                     "selected": true
@@ -1167,66 +1760,107 @@
                 {
                     "type": "string",
                     "id": "label",
-                    "label": { "en": "Section Label", "ar": "تسمية القسم" },
+                    "label": {
+                        "en": "Section Label",
+                        "ar": "تسمية القسم"
+                    },
                     "format": "text",
-                    "value": ""
+                    "value": "Categories"
                 },
                 {
                     "type": "string",
                     "id": "title",
-                    "label": { "en": "Title", "ar": "العنوان" },
+                    "label": {
+                        "en": "Title",
+                        "ar": "العنوان"
+                    },
                     "format": "text",
-                    "value": ""
+                    "value": "Shop By Category"
                 },
                 {
                     "type": "number",
                     "id": "columns",
-                    "label": { "en": "Columns (2-4)", "ar": "عدد الأعمدة (2-4)" },
+                    "label": {
+                        "en": "Columns (2-4)",
+                        "ar": "عدد الأعمدة (2-4)"
+                    },
                     "format": "number",
                     "value": 3
                 },
                 {
                     "type": "items",
                     "id": "overlay_style",
-                    "label": { "en": "Overlay Style", "ar": "نمط التعتيم" },
+                    "label": {
+                        "en": "Overlay Style",
+                        "ar": "نمط التعتيم"
+                    },
                     "format": "dropdown-list",
-                    "selected": [{ "label": "Gradient", "value": "gradient", "key": "ov-gradient" }],
+                    "selected": [
+                        {
+                            "label": "Gradient",
+                            "value": "gradient",
+                            "key": "ov-gradient"
+                        }
+                    ],
                     "options": [
-                        { "label": "Gradient", "value": "gradient", "key": "ov-gradient" },
-                        { "label": "None", "value": "none", "key": "ov-none" }
+                        {
+                            "label": "Gradient",
+                            "value": "gradient",
+                            "key": "ov-gradient"
+                        },
+                        {
+                            "label": "None",
+                            "value": "none",
+                            "key": "ov-none"
+                        }
                     ],
                     "source": "Manual"
                 },
                 {
                     "type": "collection",
                     "id": "promos",
-                    "label": { "en": "Promo Cards", "ar": "بطاقات العروض" },
+                    "label": {
+                        "en": "Promo Cards",
+                        "ar": "بطاقات العروض"
+                    },
                     "format": "collection",
                     "fields": [
                         {
                             "type": "string",
                             "id": "image",
-                            "label": { "en": "Image", "ar": "الصورة" },
+                            "label": {
+                                "en": "Image",
+                                "ar": "الصورة"
+                            },
                             "format": "image"
                         },
                         {
                             "type": "string",
                             "id": "title",
-                            "label": { "en": "Title", "ar": "العنوان" },
+                            "label": {
+                                "en": "Title",
+                                "ar": "العنوان"
+                            },
                             "format": "text",
                             "value": ""
                         },
                         {
                             "type": "string",
                             "id": "link_text",
-                            "label": { "en": "Link Text", "ar": "نص الرابط" },
+                            "label": {
+                                "en": "Link Text",
+                                "ar": "نص الرابط"
+                            },
                             "format": "text",
                             "value": ""
                         },
                         {
                             "type": "string",
                             "id": "link",
-                            "label": { "en": "Link URL", "ar": "رابط URL" },
+                            "label": {
+                                "en": "Link URL",
+                                "ar": "رابط URL"
+                            },
                             "format": "text",
                             "value": "#"
                         }
@@ -1236,13 +1870,19 @@
         },
         {
             "key": "nr-instagram-feed-011",
-            "name": { "en": "Instagram Feed", "ar": "صور انستقرام" },
+            "name": {
+                "en": "Instagram Feed",
+                "ar": "صور انستقرام"
+            },
             "path": "home.instagram-feed",
             "fields": [
                 {
                     "type": "boolean",
                     "id": "show",
-                    "label": { "en": "Show Section", "ar": "إظهار القسم" },
+                    "label": {
+                        "en": "Show Section",
+                        "ar": "إظهار القسم"
+                    },
                     "format": "switch",
                     "value": true,
                     "selected": true
@@ -1250,35 +1890,50 @@
                 {
                     "type": "string",
                     "id": "label",
-                    "label": { "en": "Section Label", "ar": "تسمية القسم" },
+                    "label": {
+                        "en": "Section Label",
+                        "ar": "تسمية القسم"
+                    },
                     "format": "text",
-                    "value": ""
+                    "value": "Follow Us"
                 },
                 {
                     "type": "string",
                     "id": "title",
-                    "label": { "en": "Title", "ar": "العنوان" },
+                    "label": {
+                        "en": "Title",
+                        "ar": "العنوان"
+                    },
                     "format": "text",
-                    "value": ""
+                    "value": "Join Our Community"
                 },
                 {
                     "type": "string",
                     "id": "handle",
-                    "label": { "en": "Instagram Handle", "ar": "حساب الانستقرام" },
+                    "label": {
+                        "en": "Instagram Handle",
+                        "ar": "حساب الانستقرام"
+                    },
                     "format": "text",
                     "value": "@noor.jewelry"
                 },
                 {
                     "type": "number",
                     "id": "columns",
-                    "label": { "en": "Columns (4/6/8)", "ar": "عدد الأعمدة (4/6/8)" },
+                    "label": {
+                        "en": "Columns (4/6/8)",
+                        "ar": "عدد الأعمدة (4/6/8)"
+                    },
                     "format": "number",
                     "value": 6
                 },
                 {
                     "type": "boolean",
                     "id": "show_overlay",
-                    "label": { "en": "Show Instagram Icon Overlay", "ar": "إظهار أيقونة انستقرام" },
+                    "label": {
+                        "en": "Show Instagram Icon Overlay",
+                        "ar": "إظهار أيقونة انستقرام"
+                    },
                     "format": "switch",
                     "value": true,
                     "selected": true
@@ -1286,19 +1941,28 @@
                 {
                     "type": "collection",
                     "id": "images",
-                    "label": { "en": "Images", "ar": "الصور" },
+                    "label": {
+                        "en": "Images",
+                        "ar": "الصور"
+                    },
                     "format": "collection",
                     "fields": [
                         {
                             "type": "string",
                             "id": "image",
-                            "label": { "en": "Image", "ar": "الصورة" },
+                            "label": {
+                                "en": "Image",
+                                "ar": "الصورة"
+                            },
                             "format": "image"
                         },
                         {
                             "type": "string",
                             "id": "link",
-                            "label": { "en": "Post Link", "ar": "رابط المنشور" },
+                            "label": {
+                                "en": "Post Link",
+                                "ar": "رابط المنشور"
+                            },
                             "format": "text",
                             "value": "#"
                         }
@@ -1308,13 +1972,19 @@
         },
         {
             "key": "nr-newsletter-012",
-            "name": { "en": "Newsletter", "ar": "النشرة البريدية" },
+            "name": {
+                "en": "Newsletter",
+                "ar": "النشرة البريدية"
+            },
             "path": "home.newsletter",
             "fields": [
                 {
                     "type": "boolean",
                     "id": "show",
-                    "label": { "en": "Show Section", "ar": "إظهار القسم" },
+                    "label": {
+                        "en": "Show Section",
+                        "ar": "إظهار القسم"
+                    },
                     "format": "switch",
                     "value": true,
                     "selected": true
@@ -1322,48 +1992,84 @@
                 {
                     "type": "string",
                     "id": "title",
-                    "label": { "en": "Title", "ar": "العنوان" },
+                    "label": {
+                        "en": "Title",
+                        "ar": "العنوان"
+                    },
                     "format": "text",
-                    "value": ""
+                    "value": "Stay in the Know"
                 },
                 {
                     "type": "string",
                     "id": "description",
-                    "label": { "en": "Description", "ar": "الوصف" },
+                    "label": {
+                        "en": "Description",
+                        "ar": "الوصف"
+                    },
                     "format": "text",
-                    "value": ""
+                    "value": "Be the first to discover new collections, exclusive offers, and styling inspiration."
                 },
                 {
                     "type": "string",
                     "id": "btn_text",
-                    "label": { "en": "Button Text", "ar": "نص الزر" },
+                    "label": {
+                        "en": "Button Text",
+                        "ar": "نص الزر"
+                    },
                     "format": "text",
                     "value": "Subscribe"
                 },
                 {
                     "type": "items",
                     "id": "bg_style",
-                    "label": { "en": "Background Style", "ar": "نمط الخلفية" },
+                    "label": {
+                        "en": "Background Style",
+                        "ar": "نمط الخلفية"
+                    },
                     "format": "dropdown-list",
-                    "selected": [{ "label": "Warm Cream", "value": "warm", "key": "bg-warm" }],
+                    "selected": [
+                        {
+                            "label": "Warm Cream",
+                            "value": "warm",
+                            "key": "bg-warm"
+                        }
+                    ],
                     "options": [
-                        { "label": "Warm Cream", "value": "warm", "key": "bg-warm" },
-                        { "label": "White", "value": "white", "key": "bg-white" },
-                        { "label": "Custom Color", "value": "custom", "key": "bg-custom" }
+                        {
+                            "label": "Warm Cream",
+                            "value": "warm",
+                            "key": "bg-warm"
+                        },
+                        {
+                            "label": "White",
+                            "value": "white",
+                            "key": "bg-white"
+                        },
+                        {
+                            "label": "Custom Color",
+                            "value": "custom",
+                            "key": "bg-custom"
+                        }
                     ],
                     "source": "Manual"
                 },
                 {
                     "type": "string",
                     "id": "bg_color",
-                    "label": { "en": "Custom Background Color", "ar": "لون الخلفية المخصص" },
+                    "label": {
+                        "en": "Custom Background Color",
+                        "ar": "لون الخلفية المخصص"
+                    },
                     "format": "color",
                     "value": "#f8f2ea"
                 },
                 {
                     "type": "boolean",
                     "id": "show_dividers",
-                    "label": { "en": "Show Diamond Dividers", "ar": "إظهار الفواصل الماسية" },
+                    "label": {
+                        "en": "Show Diamond Dividers",
+                        "ar": "إظهار الفواصل الماسية"
+                    },
                     "format": "switch",
                     "value": true,
                     "selected": true

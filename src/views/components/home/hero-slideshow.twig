@@ -1,6 +1,12 @@
 {# Hero Slideshow — Noor Theme #}
 {% set show        = component.show|default(true) %}
 {% set slides      = component.slides|default([]) %}
+{% if not slides|length %}
+  {% set slides = [
+    { image: 'https://cdn.salla.sa/KVlQp/TJbMRBsDCxSqy4Zzq3HqJAbyyPNgOVoMNODHRXCw.jpg', title: 'Timeless Elegance', subtitle: 'New Collection 2026', btn_text: 'Shop Now', btn_link: '/products', content_position: 'left' },
+    { image: 'https://cdn.salla.sa/KVlQp/QXbW8dnCCKbkMoiqRQlfuWKUJiOBh1ERHgRFiVVj.jpg', title: 'Crafted with Passion', subtitle: 'Handmade Luxury Pieces', btn_text: 'Explore', btn_link: '/products', content_position: 'center' }
+  ] %}
+{% endif %}
 {% set autoplay    = component.autoplay|default(true) %}
 {% set speed       = component.speed|default(6000) %}
 {% set nav_style   = component.nav_style|default('both') %}

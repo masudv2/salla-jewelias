@@ -3,6 +3,14 @@
 {% set label         = component.label|default('') %}
 {% set title         = component.title|default('') %}
 {% set testimonials  = component.testimonials|default([]) %}
+{% if not testimonials|length %}
+  {% set testimonials = [
+    { stars: 5, text: 'Absolutely stunning craftsmanship. The necklace exceeded my expectations — the detail is exquisite.', author: 'Sarah M.', location: 'Riyadh' },
+    { stars: 5, text: 'I ordered a gift for my wife and she was thrilled. Beautiful packaging and fast delivery.', author: 'Ahmed K.', location: 'Jeddah' },
+    { stars: 5, text: 'The quality is remarkable. I have purchased from many jewelers but Noor stands apart.', author: 'Fatima A.', location: 'Dubai' },
+    { stars: 4, text: 'Elegant pieces at fair prices. The bracelet I bought is now my everyday accessory.', author: 'Layla R.', location: 'Dammam' }
+  ] %}
+{% endif %}
 {% set autoplay      = component.autoplay|default(true) %}
 {% set speed         = component.speed|default(5000) %}
 {% set cards_per_view = component.cards_per_view|default(3) %}

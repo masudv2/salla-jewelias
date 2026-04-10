@@ -1,6 +1,14 @@
 {# Marquee Ticker — Noor Theme #}
 {% set show       = component.show|default(true) %}
 {% set items      = component.items|default([]) %}
+{% if not items|length %}
+  {% set items = [
+    { text: 'Free Shipping on Orders Over SAR 500' },
+    { text: 'Handcrafted with Love' },
+    { text: 'Lifetime Warranty on All Pieces' },
+    { text: 'New Arrivals Every Week' }
+  ] %}
+{% endif %}
 {% set bg_color   = component.bg_color|default('#263D30') %}
 {% set text_color = component.text_color|default('#ffffff') %}
 {% set speed      = component.speed|default(20) %}

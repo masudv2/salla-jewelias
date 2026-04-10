@@ -3,6 +3,13 @@
 {% set label     = component.label|default('') %}
 {% set title     = component.title|default('') %}
 {% set promos    = component.promos|default([]) %}
+{% if not promos|length %}
+  {% set promos = [
+    { image: 'https://cdn.salla.sa/KVlQp/TJbMRBsDCxSqy4Zzq3HqJAbyyPNgOVoMNODHRXCw.jpg', title: 'Rings', link_text: 'Shop Now', link: '/products' },
+    { image: 'https://cdn.salla.sa/KVlQp/QXbW8dnCCKbkMoiqRQlfuWKUJiOBh1ERHgRFiVVj.jpg', title: 'Necklaces', link_text: 'Shop Now', link: '/products' },
+    { image: 'https://cdn.salla.sa/KVlQp/TJbMRBsDCxSqy4Zzq3HqJAbyyPNgOVoMNODHRXCw.jpg', title: 'Bracelets', link_text: 'Shop Now', link: '/products' }
+  ] %}
+{% endif %}
 {% set columns   = component.columns|default(3) %}
 {% set overlay_style = component.overlay_style|default('gradient') %}
 

@@ -4,6 +4,16 @@
 {% set title        = component.title|default('') %}
 {% set handle       = component.handle|default('@noor.jewelry') %}
 {% set images       = component.images|default([]) %}
+{% if not images|length %}
+  {% set images = [
+    { image: 'https://cdn.salla.sa/KVlQp/TJbMRBsDCxSqy4Zzq3HqJAbyyPNgOVoMNODHRXCw.jpg', link: '#' },
+    { image: 'https://cdn.salla.sa/KVlQp/QXbW8dnCCKbkMoiqRQlfuWKUJiOBh1ERHgRFiVVj.jpg', link: '#' },
+    { image: 'https://cdn.salla.sa/KVlQp/TJbMRBsDCxSqy4Zzq3HqJAbyyPNgOVoMNODHRXCw.jpg', link: '#' },
+    { image: 'https://cdn.salla.sa/KVlQp/QXbW8dnCCKbkMoiqRQlfuWKUJiOBh1ERHgRFiVVj.jpg', link: '#' },
+    { image: 'https://cdn.salla.sa/KVlQp/TJbMRBsDCxSqy4Zzq3HqJAbyyPNgOVoMNODHRXCw.jpg', link: '#' },
+    { image: 'https://cdn.salla.sa/KVlQp/QXbW8dnCCKbkMoiqRQlfuWKUJiOBh1ERHgRFiVVj.jpg', link: '#' }
+  ] %}
+{% endif %}
 {% set columns      = component.columns|default(6) %}
 {% set show_overlay = component.show_overlay|default(true) %}
 

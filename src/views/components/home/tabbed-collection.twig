@@ -3,6 +3,13 @@
 {% set label         = component.label|default('') %}
 {% set title         = component.title|default('') %}
 {% set tabs          = component.tabs|default([]) %}
+{% if not tabs|length %}
+  {% set tabs = [
+    { label: 'New Arrivals', source: 'latest' },
+    { label: 'Best Sellers', source: 'best-selling' },
+    { label: 'On Sale', source: 'offers' }
+  ] %}
+{% endif %}
 {% set columns       = component.columns|default(4) %}
 {% set show_rating   = component.show_rating|default(true) %}
 {% set show_quick_add = component.show_quick_add|default(true) %}

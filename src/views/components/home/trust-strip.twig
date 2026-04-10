@@ -1,6 +1,15 @@
 {# Trust / Award Icon Strip — Noor Theme #}
 {% set show       = component.show|default(true) %}
 {% set items      = component.items|default([]) %}
+{% if not items|length %}
+  {% set items = [
+    { label: 'Free Shipping' },
+    { label: 'Secure Payment' },
+    { label: 'Lifetime Warranty' },
+    { label: '24/7 Support' },
+    { label: 'Easy Returns' }
+  ] %}
+{% endif %}
 {% set bg_color   = component.bg_color|default('#ffffff') %}
 {% set show_separators = component.show_separators|default(true) %}
 
