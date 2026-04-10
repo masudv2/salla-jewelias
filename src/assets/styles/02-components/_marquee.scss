@@ -1,0 +1,41 @@
+.nr-marquee {
+  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+
+  &:hover .nr-marquee__track {
+    animation-play-state: paused;
+  }
+}
+
+.nr-marquee__track {
+  display: flex;
+  gap: var(--nr-space-xl);
+  animation: nr-scrollX var(--nr-marquee-duration, 20s) linear infinite;
+
+  [dir="rtl"] & {
+    animation-name: nr-scrollX-rtl;
+  }
+}
+
+.nr-marquee__item {
+  flex-shrink: 0;
+  font-family: var(--nr-font-body);
+  font-size: var(--nr-label);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  gap: var(--nr-space-lg);
+}
+
+.nr-marquee__dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.4;
+  flex-shrink: 0;
+}

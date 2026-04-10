@@ -1,0 +1,68 @@
+.nr-carousel {
+  position: relative;
+  overflow: hidden;
+}
+
+.nr-carousel__track {
+  display: flex;
+  transition: transform var(--nr-transition-slow);
+}
+
+.nr-carousel__slide {
+  flex: 0 0 100%;
+  min-width: 0;
+
+  @media (min-width: 769px) {
+    flex: 0 0 calc(100% / 3);
+  }
+}
+
+.nr-carousel__arrows {
+  display: flex;
+  gap: var(--nr-space-sm);
+}
+
+.nr-carousel__arrow {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--nr-border);
+  border-radius: var(--nr-radius);
+  color: var(--nr-text);
+  transition: background-color var(--nr-transition), color var(--nr-transition);
+
+  &:hover {
+    background: var(--nr-primary);
+    border-color: var(--nr-primary);
+    color: var(--nr-dark-text);
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.nr-carousel__dots {
+  display: flex;
+  justify-content: center;
+  gap: var(--nr-space-sm);
+  margin-top: var(--nr-space-lg);
+}
+
+.nr-carousel__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--nr-border);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background-color var(--nr-transition);
+
+  &.is-active {
+    background: var(--nr-primary);
+  }
+}
