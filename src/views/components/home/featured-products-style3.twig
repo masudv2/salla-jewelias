@@ -1,0 +1,40 @@
+{#
+| Variable                      | Type      | Description                                                         |
+|-------------------------------|-----------|---------------------------------------------------------------------|
+| items                         | array     |                                                                     |
+| items[].title                 | string    | Section title                                                       |
+| items[].name                  | string    | Alias for title                                                     |
+| items[].type                  | string    | category,most_sales,latest_products,chosen_products                 |
+| items[].featured_product      | Product   |                                                                     |
+| items[].special_product.id    | string    | Product string id                                                   |
+| items[].special_product.title | string    | Product Name                                                        |
+| items[].products[]            | Product[] |                                                                     |
+| items[].limit                 | Int       | Number of products to be shown                                      |
+| items[].id                    | string    | Section id                                                          |
+| position                      | int       | Sorting number starts from zero                                     |
+#}
+<section class="nr-section" id="featured-style3-{{ position }}">
+  <div class="nr-container">
+    {% for section in items %}
+    <div style="margin-bottom:var(--nr-space-xl)">
+      <div class="nr-section-header">
+        <div><h2>{{ section.title }}</h2></div>
+      </div>
+      <div class="nr-product-grid" style="grid-template-columns:repeat(2,1fr)">
+        {% if section.featured_product %}
+          <salla-product-card product="{{ section.featured_product }}" shadow-on-hover></salla-product-card>
+          <div style="display:grid;gap:var(--nr-space-md)">
+            {% for product in section.products|slice(0,3) %}
+              <salla-product-card product="{{ product }}" shadow-on-hover></salla-product-card>
+            {% endfor %}
+          </div>
+        {% else %}
+          {% for product in section.products %}
+            <salla-product-card product="{{ product }}" shadow-on-hover></salla-product-card>
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>

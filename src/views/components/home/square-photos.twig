@@ -1,0 +1,34 @@
+{#
+| Variable          | Type   | Description                                                      |
+|-------------------|--------|------------------------------------------------------------------|
+| title             | string | Section title                                                    |
+| items[]           | array  | List of images                                                   |
+| items[].url       | string | Link                                                             |
+| items[].link_type | string | category,product,offers,page,external_link,brand                 |
+| items[].image.url | string |                                                                  |
+| items[].image.alt | string |                                                                  |
+| items[].text      | string | Visible title for the photo                                      |
+| position          | Int    | Sorting number start from zero                                   |
+#}
+<section class="nr-section">
+  <div class="nr-container">
+    {% if title %}
+    <div class="nr-section-header" style="justify-content:center;text-align:center">
+      <div><h2>{{ title }}</h2></div>
+    </div>
+    {% endif %}
+
+    <div class="nr-promos" style="grid-template-columns:repeat({{ items|length <= 3 ? items|length : 3 }},1fr)">
+      {% for item in items %}
+        <a href="{{ item.url }}" class="nr-promo" {% if item.link_type == 'external_link' %}target="_blank" rel="noopener"{% endif %}>
+          <img src="{{ item.image.url }}" alt="{{ item.image.alt|default(item.text|default('')) }}" loading="lazy">
+          {% if item.text %}
+          <div class="nr-promo__overlay">
+            <h3 class="nr-promo__title">{{ item.text }}</h3>
+          </div>
+          {% endif %}
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>

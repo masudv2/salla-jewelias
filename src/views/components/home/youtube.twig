@@ -1,0 +1,12 @@
+{#
+| Variable    | Type   | Description                                                      |
+| youtube_id  | string |                                                                  |
+| position    | Int    | Sorting number start from zero                                   |
+#}
+<section class="nr-section">
+  <div class="nr-container">
+    <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:var(--nr-radius)">
+      <lite-youtube videoid="{{ youtube_id }}" params="rel=0" style="position:absolute;top:0;left:0;width:100%;height:100%"></lite-youtube>
+    </div>
+  </div>
+</section>

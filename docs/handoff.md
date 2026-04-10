@@ -4,31 +4,39 @@ _Last updated: 2026-04-10_
 
 ## Latest completed work
 
-- **Theme rebranded to Noor** — Jewelias identity removed, Eurus Whiff design reference adopted.
-- **SCSS architecture established:** `00-tokens/`, `01-base/`, `02-components/`, `04-utilities/` all written. `app.scss` is a clean import hub.
-- **Tailwind config** updated with `nr-*` color tokens, Cormorant + Jost fonts.
-- **JS modernized:** Lenis smooth scroll + IntersectionObserver scroll reveal in `app.js`. Old `jw-*` announcement/header JS removed.
-- **Clean slate:** All old home Twig sections deleted, `twilight.json` components cleared, Glow docs removed, preview mocks removed.
+- **All 3 phases complete for homepage.** 24 Twig home components with matching `twilight.json` schema entries.
+- **Header** restyled with Noor announcement bar (marquee/slider, countdown, social links, CTA button, close).
+- **Footer** restyled with `nr-footer` classes and Salla web components.
+- **Section SCSS** complete in `03-sections/` (announcement, header, hero, collections, products, editorial, social-proof, newsletter, footer).
+- **JS modules** for interactive sections: hero-slideshow, marquee, tabs, carousel.
+- **Security:** No `|raw` on merchant-editable component fields.
+- **Build:** `pnpm run production` passes cleanly (size warnings only).
 
 ## What changed (files)
 
-- **Deleted:** 9 home Twig sections, preview/* (old mocks), docs/GLOW-*.md, 01-settings/fonts.scss
-- **Created:** 00-tokens/, 01-base/, 02-components/, 04-utilities/ (all SCSS partials), js/modules/lenis.js, js/modules/scroll-reveal.js
-- **Rewritten:** app.scss, tailwind.config.js, app.js, home.js, master.twig, twilight.json, package.json
-- **Updated:** AGENTS.md, docs/current-status.md, docs/plan.md, docs/decisions.md, this file
+- **Created:** 24 Twig files in `src/views/components/home/`, 4 JS modules in `src/assets/js/modules/`, 9 SCSS partials in `03-sections/`
+- **Rewritten:** `header.twig` (announcement + nav), `footer.twig` (nr-footer), `twilight.json` (24 component entries + settings), `home.js`
+- **Updated:** docs/current-status.md, docs/handoff.md, docs/plan.md
+
+## Home components (24)
+
+hero-slideshow, marquee-ticker, split-collection, tabbed-collection, editorial-statement, featured-products, featured-products-style1/2/3, cta-banner, trust-strip, testimonials, image-promos, instagram-feed, newsletter, fixed-banner, fixed-products, latest-products, parallax-background, photos-slider, products-slider, square-photos, store-features, youtube
 
 ## Known issues
 
-1. **No homepage sections yet** — `03-sections/` is empty, `twilight.json` components array is empty.
-2. **Header/footer** still have old Theme Raed markup — needs Noor restyling.
-3. **Preview HTML** not yet created — needed for visual sign-off before Twig port.
+1. **Inner pages** (product, cart, customer, blog) not yet audited or restyled.
+2. **RTL** — logical properties used throughout but full RTL pass not done.
+3. **Lighthouse** audit not yet run.
+4. **Preview HTML** pages not yet built (optional — Twig components serve as source of truth).
+5. **CSS bundle size** at 471 KiB — may need optimization for marketplace submission.
 
 ## Exact next step
 
-**Build `preview/noor-design-system.html`** — a standalone HTML page loading the compiled CSS that renders all tokens, components, and animations. Visual sign-off page before building homepage sections.
+**Inner pages audit** — review product, cart, customer, and blog templates for Noor design consistency. Then run full RTL pass and Lighthouse audit.
 
 ## Warnings
 
 - Do not add `home.*` in `twilight.json` without a matching Twig file.
 - Section styles go in `03-sections/`, not in component files.
 - Components in `02-components/` must be section-agnostic.
+- No `|raw` on merchant-editable text fields in Twig components.

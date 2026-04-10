@@ -28,14 +28,22 @@ _Design reference: [Eurus Whiff](https://eurus-whiff.myshopify.com/). Full spec:
 
 ## Phase 2 — Section previews (HTML)
 
-- [ ] Build `preview/noor-home.html` with all 15 homepage sections
-- [ ] All animations working (Ken Burns, scroll reveal, marquee, carousel)
+- [x] Section SCSS in `03-sections/` (9 partials)
+- [x] JS modules: hero-slideshow, marquee, tabs, carousel
+- [ ] Build `preview/noor-home.html` with all sections (optional — Twig is source of truth)
 
-## Phase 3 — Salla Twig port
+## Phase 3 — Salla Twig port (complete)
 
-- [ ] Port each section to `src/views/components/home/<name>.twig`
-- [ ] Add `twilight.json` component entries with merchant-configurable schema
-- [ ] Restyle header and footer
+- [x] Port 24 sections to `src/views/components/home/<name>.twig`
+- [x] Add `twilight.json` component entries with merchant-configurable schema
+- [x] Restyle header (announcement bar + nav)
+- [x] Restyle footer (`nr-footer` classes)
+- [x] Security pass (no `|raw` on merchant fields)
+- [x] Production build passes
+
+## Phase 4 — Polish (remaining)
+
 - [ ] Inner pages audit (product, cart, customer, blog)
-- [ ] RTL pass on all sections
+- [ ] Full RTL pass on all sections
 - [ ] Lighthouse + marketplace checklist
+- [ ] CSS bundle size optimization (currently 471 KiB)

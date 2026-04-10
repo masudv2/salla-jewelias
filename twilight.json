@@ -2075,6 +2075,291 @@
                     "selected": true
                 }
             ]
+        },
+        {
+            "key": "nr-featured-style1-013",
+            "name": {
+                "en": "Featured Products — Style 1",
+                "ar": "منتجات مميزة — نمط 1"
+            },
+            "path": "home.featured-products-style1",
+            "fields": [
+                {
+                    "type": "boolean",
+                    "id": "show",
+                    "label": {
+                        "en": "Show Section",
+                        "ar": "إظهار القسم"
+                    },
+                    "format": "switch",
+                    "value": true,
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "key": "nr-featured-style2-014",
+            "name": {
+                "en": "Featured Products — Style 2",
+                "ar": "منتجات مميزة — نمط 2"
+            },
+            "path": "home.featured-products-style2",
+            "fields": [
+                {
+                    "type": "boolean",
+                    "id": "show",
+                    "label": {
+                        "en": "Show Section",
+                        "ar": "إظهار القسم"
+                    },
+                    "format": "switch",
+                    "value": true,
+                    "selected": true
+                },
+                {
+                    "type": "boolean",
+                    "id": "is_slider",
+                    "label": {
+                        "en": "Show as Slider",
+                        "ar": "عرض كسلايدر"
+                    },
+                    "format": "switch",
+                    "value": false,
+                    "selected": false
+                }
+            ]
+        },
+        {
+            "key": "nr-featured-style3-015",
+            "name": {
+                "en": "Featured Products — Style 3",
+                "ar": "منتجات مميزة — نمط 3"
+            },
+            "path": "home.featured-products-style3",
+            "fields": [
+                {
+                    "type": "boolean",
+                    "id": "show",
+                    "label": {
+                        "en": "Show Section",
+                        "ar": "إظهار القسم"
+                    },
+                    "format": "switch",
+                    "value": true,
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "key": "nr-fixed-banner-016",
+            "name": {
+                "en": "Fixed Banner",
+                "ar": "بانر ثابت"
+            },
+            "path": "home.fixed-banner",
+            "fields": [
+                {
+                    "type": "boolean",
+                    "id": "show",
+                    "label": {
+                        "en": "Show Section",
+                        "ar": "إظهار القسم"
+                    },
+                    "format": "switch",
+                    "value": true,
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "key": "nr-fixed-products-017",
+            "name": {
+                "en": "Fixed Products",
+                "ar": "منتجات ثابتة"
+            },
+            "path": "home.fixed-products",
+            "fields": [
+                {
+                    "type": "boolean",
+                    "id": "show",
+                    "label": {
+                        "en": "Show Section",
+                        "ar": "إظهار القسم"
+                    },
+                    "format": "switch",
+                    "value": true,
+                    "selected": true
+                },
+                {
+                    "type": "boolean",
+                    "id": "vertical_fixed_products",
+                    "label": {
+                        "en": "Vertical Layout",
+                        "ar": "تخطيط عمودي"
+                    },
+                    "format": "switch",
+                    "value": true,
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "key": "nr-latest-products-018",
+            "name": {
+                "en": "Latest Products",
+                "ar": "أحدث المنتجات"
+            },
+            "path": "home.latest-products",
+            "fields": [
+                {
+                    "type": "boolean",
+                    "id": "show",
+                    "label": {
+                        "en": "Show Section",
+                        "ar": "إظهار القسم"
+                    },
+                    "format": "switch",
+                    "value": true,
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "key": "nr-parallax-bg-019",
+            "name": {
+                "en": "Parallax Background",
+                "ar": "خلفية متحركة"
+            },
+            "path": "home.parallax-background",
+            "fields": [
+                {
+                    "type": "boolean",
+                    "id": "show",
+                    "label": {
+                        "en": "Show Section",
+                        "ar": "إظهار القسم"
+                    },
+                    "format": "switch",
+                    "value": true,
+                    "selected": true
+                },
+                {
+                    "type": "boolean",
+                    "id": "is_opacity",
+                    "label": {
+                        "en": "Show Overlay",
+                        "ar": "إظهار طبقة التعتيم"
+                    },
+                    "format": "switch",
+                    "value": true,
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "key": "nr-photos-slider-020",
+            "name": {
+                "en": "Photos Slider",
+                "ar": "سلايدر صور"
+            },
+            "path": "home.photos-slider",
+            "fields": [
+                {
+                    "type": "boolean",
+                    "id": "show",
+                    "label": {
+                        "en": "Show Section",
+                        "ar": "إظهار القسم"
+                    },
+                    "format": "switch",
+                    "value": true,
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "key": "nr-products-slider-021",
+            "name": {
+                "en": "Products Slider",
+                "ar": "سلايدر منتجات"
+            },
+            "path": "home.products-slider",
+            "fields": [
+                {
+                    "type": "boolean",
+                    "id": "show",
+                    "label": {
+                        "en": "Show Section",
+                        "ar": "إظهار القسم"
+                    },
+                    "format": "switch",
+                    "value": true,
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "key": "nr-square-photos-022",
+            "name": {
+                "en": "Square Photos",
+                "ar": "صور مربعة"
+            },
+            "path": "home.square-photos",
+            "fields": [
+                {
+                    "type": "boolean",
+                    "id": "show",
+                    "label": {
+                        "en": "Show Section",
+                        "ar": "إظهار القسم"
+                    },
+                    "format": "switch",
+                    "value": true,
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "key": "nr-store-features-023",
+            "name": {
+                "en": "Store Features",
+                "ar": "مميزات المتجر"
+            },
+            "path": "home.store-features",
+            "fields": [
+                {
+                    "type": "boolean",
+                    "id": "show",
+                    "label": {
+                        "en": "Show Section",
+                        "ar": "إظهار القسم"
+                    },
+                    "format": "switch",
+                    "value": true,
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "key": "nr-youtube-024",
+            "name": {
+                "en": "YouTube Video",
+                "ar": "فيديو يوتيوب"
+            },
+            "path": "home.youtube",
+            "fields": [
+                {
+                    "type": "boolean",
+                    "id": "show",
+                    "label": {
+                        "en": "Show Section",
+                        "ar": "إظهار القسم"
+                    },
+                    "format": "switch",
+                    "value": true,
+                    "selected": true
+                }
+            ]
         }
     ],
     "support_url": "https://salla.com/"

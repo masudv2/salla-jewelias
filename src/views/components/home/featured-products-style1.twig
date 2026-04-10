@@ -1,0 +1,56 @@
+{#
+| Variable                 | Type      | Description                                                         |
+|--------------------------|-----------|---------------------------------------------------------------------|
+| items                    | array     |                                                                     |
+| items[].title            | string    | Section title                                                       |
+| items[].name             | string    | Alias for title                                                     |
+| items[].type             | string    | category,most_sales,latest_products,chosen_products                 |
+| items[].featured_product | Null      |                                                                     |
+| items[].products[]       | Product[] |                                                                     |
+| items[].limit            | Int       | Number of products to be shown                                      |
+| items[].id               | string    | Section id                                                          |
+| main_product             | array     |                                                                     |
+| main_product.id          | string    | string product id                                                   |
+| main_product.title       | string    | Offer title                                                         |
+| main_product.value       | string    | Product Name                                                        |
+| main_product.product     | Product   |                                                                     |
+| position                 | int       | sorting block                                                       |
+#}
+{% set component_id='featured-products-style1-' ~ position %}
+<section class="nr-section" id="{{ component_id }}">
+  <div class="nr-container">
+    <div class="nr-section-header">
+      <div>
+        <h2>{{ main_product.title }}</h2>
+      </div>
+      {% if items|length > 1 %}
+      <div class="nr-tabs">
+        {% for section in items %}
+          <button class="nr-tab {{ loop.first ? 'is-active' : '' }}"
+                  data-target="{{ component_id }}-{{ section.id }}"
+                  data-component-id="{{ component_id }}">
+            {{ section.title }}
+          </button>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="nr-product-grid" style="grid-template-columns:repeat(4,1fr)">
+      {% if main_product %}
+        <div style="grid-column:span 2;grid-row:span 2">
+          <salla-product-card product="{{ main_product.product }}" shadow-on-hover></salla-product-card>
+        </div>
+      {% endif %}
+      <div class="tabs-wrapper">
+        {% for section in items %}
+          <div id="{{ component_id }}-{{ section.id }}" class="tabs__item {{ loop.first ? 'is-active' : '' }}">
+            {% for product in section.products|slice(0, main_product ? 4 : 8) %}
+              <salla-product-card product="{{ product }}" shadow-on-hover></salla-product-card>
+            {% endfor %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>

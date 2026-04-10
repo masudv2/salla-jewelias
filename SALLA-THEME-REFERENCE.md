@@ -1,8 +1,15 @@
 # Salla Theme Development Reference — Jewelias
 
+**Process and standards:** See [`AGENTS.md`](./AGENTS.md) for CSS/JS/Twig rules, documentation workflow after changes, and review expectations. Roadmap: [`docs/plan.md`](./docs/plan.md).
+
 ## 1. DIRECTORY STRUCTURE (FIXED — cannot change names)
 
 ```
+preview/                    # Static HTML mocks (Glow) — not part of Salla build
+├── home.html               # Full homepage (ecommerce / Shopify-style — convert to Twig next)
+├── design-system-v3.html   # Full design system / UI kit (canonical)
+└── announcement-bar-v2.html
+
 src/
 ├── assets/
 │   ├── images/
@@ -50,6 +57,8 @@ src/
                 ├── index.twig
                 └── single.twig
 ```
+
+`preview/` holds static HTML mocks (Glow design system and announcement bar). They are for local browser review only — not part of the Webpack build or the theme package uploaded to Salla.
 
 ## 2. GLOBAL TWIG VARIABLES
 

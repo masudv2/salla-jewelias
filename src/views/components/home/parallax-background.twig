@@ -1,0 +1,23 @@
+{#
+| Variable    | Type   | Description                                                      |
+|-------------|--------|------------------------------------------------------------------|
+| image       | string | Image url                                                        |
+| url         | string | Link url                                                         |
+| title       | string | Section title                                                    |
+| link_text   | String | Link title                                                       |
+| is_opacity  | Bool   | Should set overlay on the background or not                      |
+| position    | Int    | Sorting number start from zero                                   |
+#}
+<section class="nr-parallax" style="background-image:url({{ image.url }});background-attachment:fixed;background-size:cover;background-position:center;min-height:400px;display:flex;align-items:center;justify-content:center;position:relative">
+  {% if is_opacity %}
+    <div style="position:absolute;inset:0;background:rgba(0,0,0,0.5)"></div>
+  {% endif %}
+  <div class="nr-container" style="position:relative;text-align:center;color:#fff;padding:var(--nr-space-xl) 0">
+    {% if title %}
+      <h2 style="font-size:2.5rem;margin-bottom:var(--nr-space-md)">{{ title }}</h2>
+    {% endif %}
+    {% if url and link_text %}
+      <a href="{{ url }}" class="nr-btn-solid" style="display:inline-block">{{ link_text }}</a>
+    {% endif %}
+  </div>
+</section>

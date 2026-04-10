@@ -1,0 +1,23 @@
+{#
+| Variable          | Type    | Description                                                      |
+|-------------------|---------|------------------------------------------------------------------|
+| items             | array   | List of sliders                                                  |
+| items[].url       | string  |                                                                  |
+| items[].link_type | ?String | category,product,offers,page,external_link,brand                 |
+| items[].image.url | string  |                                                                  |
+| items[].image.alt | string  |                                                                  |
+| position          | Int     | Sorting number start from zero                                   |
+#}
+<section class="nr-section">
+  <salla-slider type="carousel" class="nr-photos-slider" centered auto-play pagination id="photos-{{ position }}-slider">
+    <div slot="items">
+      {% for index, item in items %}
+        <div class="swiper-slide">
+          <a href="{{ item.url }}">
+            <img loading="lazy" src="{{ item.image.url }}" alt="{{ item.image.alt|default(store.name ~ ' slider ' ~ index) }}" style="width:100%;height:auto;object-fit:contain;border-radius:var(--nr-radius)">
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </salla-slider>
+</section>
