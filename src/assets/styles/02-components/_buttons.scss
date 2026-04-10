@@ -1,0 +1,68 @@
+.nr-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--nr-font-body);
+  font-weight: 400;
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+  padding: 0.875rem 2rem;
+  border: none;
+  border-radius: var(--nr-radius);
+  cursor: pointer;
+  transition: background-color var(--nr-transition), color var(--nr-transition), border-color var(--nr-transition);
+}
+
+.nr-btn-solid {
+  @extend .nr-btn;
+  background-color: var(--nr-primary);
+  color: var(--nr-dark-text);
+
+  &:hover {
+    background-color: var(--nr-primary-hover);
+  }
+}
+
+.nr-btn-outline {
+  @extend .nr-btn;
+  background: transparent;
+  color: var(--nr-primary);
+  border: 1px solid var(--nr-primary);
+
+  &:hover {
+    background-color: var(--nr-primary);
+    color: var(--nr-dark-text);
+  }
+}
+
+.nr-btn-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--nr-font-body);
+  font-weight: 400;
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+  color: var(--nr-primary);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: currentColor;
+    transition: width 400ms var(--nr-ease);
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+}

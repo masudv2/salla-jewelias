@@ -1,0 +1,47 @@
+.nr-input {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  font-family: var(--nr-font-body);
+  font-size: var(--nr-body);
+  color: var(--nr-text);
+  background: var(--nr-bg);
+  border: 1px solid var(--nr-border);
+  border-radius: var(--nr-radius);
+  transition: border-color var(--nr-transition);
+
+  &:focus {
+    outline: none;
+    border-color: var(--nr-primary);
+    box-shadow: 0 0 0 1px var(--nr-primary);
+  }
+
+  &::placeholder {
+    color: var(--nr-text-light);
+  }
+}
+
+.nr-label {
+  display: block;
+  font-family: var(--nr-font-body);
+  font-size: var(--nr-label);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--nr-text);
+  margin-bottom: var(--nr-space-xs);
+}
+
+.nr-select {
+  @extend .nr-input;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23747474' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+
+  [dir="rtl"] & {
+    background-position: left 1rem center;
+    padding-right: 1rem;
+    padding-left: 2.5rem;
+  }
+}

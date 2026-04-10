@@ -1,0 +1,33 @@
+.nr-badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--nr-font-body);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--nr-radius);
+}
+
+.nr-badge-sale {
+  @extend .nr-badge;
+  background: var(--nr-sale);
+  color: var(--nr-dark-text);
+}
+
+.nr-badge-new {
+  @extend .nr-badge;
+  background: var(--nr-primary);
+  color: var(--nr-dark-text);
+}
+
+.nr-stock-low {
+  font-size: var(--nr-small);
+  color: rgba(165, 8, 8, 1);
+}
+
+.nr-stock-in {
+  font-size: var(--nr-small);
+  color: var(--nr-primary);
+}

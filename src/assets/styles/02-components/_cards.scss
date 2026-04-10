@@ -1,0 +1,129 @@
+.nr-card {
+  display: block;
+  color: inherit;
+  text-align: left;
+
+  [dir="rtl"] & {
+    text-align: right;
+  }
+}
+
+.nr-card__media {
+  position: relative;
+  overflow: hidden;
+  padding-top: var(--nr-card-ratio);
+  background: var(--nr-bg-warm);
+  border-radius: var(--nr-radius);
+}
+
+.nr-card__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--nr-transition-slow);
+}
+
+.nr-card:hover .nr-card__img {
+  transform: scale(1.1);
+}
+
+.nr-card__info {
+  padding: var(--nr-space-md) 0;
+
+  @media (min-width: 769px) {
+    padding: 1.25rem;
+  }
+}
+
+.nr-card__title {
+  font-family: var(--nr-font-display);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.35;
+  margin-bottom: var(--nr-space-xs);
+}
+
+.nr-card__price {
+  font-family: var(--nr-font-body);
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--nr-text);
+}
+
+.nr-card__price-was {
+  color: var(--nr-text-light);
+  text-decoration: line-through;
+  margin-inline-start: 0.5rem;
+}
+
+.nr-card__price-sale {
+  color: var(--nr-sale);
+}
+
+.nr-card__swatches {
+  display: flex;
+  gap: 0.375rem;
+  margin-top: var(--nr-space-sm);
+}
+
+.nr-card__swatch {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid var(--nr-border);
+  cursor: pointer;
+  transition: border-color var(--nr-transition);
+
+  &:hover,
+  &.is-active {
+    border-color: var(--nr-primary);
+  }
+
+  @media (min-width: 769px) {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+.nr-card-collection {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: var(--nr-radius);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--nr-transition-slow);
+  }
+
+  &:hover img {
+    transform: scale(1.05);
+  }
+}
+
+.nr-card-collection__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--nr-space-lg);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.55), transparent 60%);
+}
+
+.nr-card-collection__title {
+  font-family: var(--nr-font-display);
+  font-size: var(--nr-h3);
+  color: var(--nr-dark-text);
+}
+
+.nr-card-collection__subtitle {
+  font-family: var(--nr-font-body);
+  font-size: var(--nr-small);
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: var(--nr-space-xs);
+}
