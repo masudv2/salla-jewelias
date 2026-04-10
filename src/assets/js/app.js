@@ -3,6 +3,8 @@ import Swal from 'sweetalert2';
 import Anime from './partials/anime';
 import initTootTip from './partials/tooltip';
 import AppHelpers from "./app-helpers";
+import { initLenis } from './modules/lenis';
+import { initScrollReveal } from './modules/scroll-reveal';
 
 class App extends AppHelpers {
   constructor() {
@@ -15,24 +17,24 @@ class App extends AppHelpers {
     this.initiateNotifier();
     this.initiateMobileMenu();
     this.initAddToCart();
-    this.initAnnouncementBar();
-    this.initJeweliasHeader();
     this.initiateDropdowns();
     this.initiateModals();
     this.initiateCollapse();
 
     initTootTip();
+    initLenis();
+    initScrollReveal();
     this.loadModalImgOnclick();
 
     salla.comment.event.onAdded(() => window.location.reload());
 
     this.status = 'ready';
     document.dispatchEvent(new CustomEvent('theme::ready'));
-    this.log('Theme Loaded 🎉');
+    this.log('Theme Loaded');
   }
 
   log(message) {
-    salla.log(`ThemeApp(Raed)::${message}`);
+    salla.log(`Noor::${message}`);
     return this;
   }
 
@@ -95,7 +97,7 @@ isElementLoaded(selector){
    },160)
 }))
 
-  
+
   };
 
   copyToClipboard(event) {
@@ -145,7 +147,7 @@ isElementLoaded(selector){
 
   this.isElementLoaded('#mobile-menu').then((menu) => {
 
- 
+
   const mobileMenu = new MobileMenu(menu, "(max-width: 1024px)", "( slidingSubmenus: false)");
 
   salla.lang.onLoaded(() => {
@@ -156,7 +158,7 @@ isElementLoaded(selector){
   this.onClick("a[href='#mobile-menu']", event => {
     document.body.classList.add('menu-opened');
     event.preventDefault() || drawer.close() || drawer.open()
-    
+
   });
   this.onClick(".close-mobile-menu", event => {
     document.body.classList.remove('menu-opened');
@@ -164,29 +166,6 @@ isElementLoaded(selector){
   });
   });
 
-  }
-
-  initiateStickyMenu() {
-    let header = this.element('#mainnav'),
-      height = this.element('#mainnav .inner')?.clientHeight;
-    //when it's landing page, there is no header
-    if (!header) {
-      return;
-    }
-
-    window.addEventListener('load', () => setTimeout(() => this.setHeaderHeight(), 500))
-    window.addEventListener('resize', () => this.setHeaderHeight())
-
-    window.addEventListener('scroll', () => {
-      window.scrollY >= header.offsetTop + height ? header.classList.add('fixed-pinned', 'animated') : header.classList.remove('fixed-pinned');
-      window.scrollY >= 200 ? header.classList.add('fixed-header') : header.classList.remove('fixed-header', 'animated');
-    }, { passive: true });
-  }
-
-  setHeaderHeight() {
-    let height = this.element('#mainnav .inner').clientHeight,
-      header = this.element('#mainnav');
-    header.style.height = height + 'px';
   }
 
   initiateDropdowns() {
@@ -257,104 +236,6 @@ isElementLoaded(selector){
   anime(selector, options = null) {
     let anime = new Anime(selector, options);
     return options === false ? anime : anime.play();
-  }
-
-  /**
-   * These actions are responsible for pressing "add to cart" button,
-   * they can be from any page, especially when mega-menu is enabled
-   */
-  initAnnouncementBar() {
-    const bar = document.getElementById('jw-announce');
-    if (!bar) return;
-
-    // Close button
-    const closeBtn = document.getElementById('jw-announce-close');
-    if (closeBtn) {
-      if (sessionStorage.getItem('jw-ann-closed')) { bar.style.display = 'none'; return; }
-      closeBtn.addEventListener('click', () => { bar.style.display = 'none'; sessionStorage.setItem('jw-ann-closed', '1'); });
-    }
-
-    // Slider
-    const slider = document.getElementById('jw-ann-slider');
-    if (slider) {
-      const slides = slider.querySelector('.jw-announce-slides');
-      const total = slides.children.length;
-      if (total < 2) return;
-      let cur = 0;
-      const isRtl = document.documentElement.dir === 'rtl';
-      const goTo = (i) => { cur = ((i % total) + total) % total; slides.style.transform = `translateX(${isRtl ? '' : '-'}${cur * 100}%)`; };
-      const prev = document.getElementById('jw-ann-prev');
-      const next = document.getElementById('jw-ann-next');
-      if (prev) prev.addEventListener('click', () => goTo(cur - 1));
-      if (next) next.addEventListener('click', () => goTo(cur + 1));
-      let autoId = setInterval(() => goTo(cur + 1), 4000);
-      bar.addEventListener('mouseenter', () => clearInterval(autoId));
-      bar.addEventListener('mouseleave', () => { autoId = setInterval(() => goTo(cur + 1), 4000); });
-    }
-
-    // Countdown
-    const cdEl = document.getElementById('jw-countdown');
-    if (cdEl) {
-      const target = new Date(bar.dataset.cdTarget).getTime();
-      const update = () => {
-        const diff = Math.max(0, target - Date.now());
-        const d = Math.floor(diff / 86400000);
-        const h = Math.floor((diff % 86400000) / 3600000);
-        const m = Math.floor((diff % 3600000) / 60000);
-        const s = Math.floor((diff % 60000) / 1000);
-        cdEl.querySelector('[data-cd="d"]').textContent = String(d).padStart(2, '0');
-        cdEl.querySelector('[data-cd="h"]').textContent = String(h).padStart(2, '0');
-        cdEl.querySelector('[data-cd="m"]').textContent = String(m).padStart(2, '0');
-        cdEl.querySelector('[data-cd="s"]').textContent = String(s).padStart(2, '0');
-      };
-      update();
-      setInterval(update, 1000);
-    }
-  }
-
-  initJeweliasHeader() {
-    const header = document.getElementById('jw-header');
-    if (!header) return;
-
-    const smart = window.header_nav_smart_sticky !== false && window.header_nav_smart_sticky !== 'false';
-    if (!smart) {
-      const onScrollSimple = () => {
-        header.classList.toggle('jw-header--elevated', window.scrollY > 12);
-      };
-      onScrollSimple();
-      window.addEventListener('scroll', onScrollSimple, { passive: true });
-      return;
-    }
-
-    let lastY = window.scrollY || 0;
-    let ticking = false;
-
-    const update = () => {
-      const y = window.scrollY || 0;
-      header.classList.toggle('jw-header--elevated', y > 16);
-
-      const announce = document.getElementById('jw-announce');
-      const topThreshold = (announce && announce.offsetParent !== null ? announce.offsetHeight : 0) + 8;
-
-      if (y <= topThreshold) {
-        header.classList.remove('jw-header--hidden');
-      } else if (y > lastY + 4) {
-        header.classList.add('jw-header--hidden');
-      } else if (y < lastY - 4) {
-        header.classList.remove('jw-header--hidden');
-      }
-
-      lastY = y;
-      ticking = false;
-    };
-
-    update();
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        ticking = true;
-        requestAnimationFrame(update);
-      }
-    }, { passive: true });
   }
 
   initAddToCart() {
