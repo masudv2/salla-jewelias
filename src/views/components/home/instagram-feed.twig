@@ -1,17 +1,17 @@
 {# Instagram Grid — Noor Theme #}
 {% set show         = component.show|default(true) %}
-{% set label        = component.label|default('') %}
-{% set title        = component.title|default('') %}
+{% set label        = component.label|default('Follow Us') %}
+{% set title        = component.title|default('@noor.jewelry on Instagram') %}
 {% set handle       = component.handle|default('@noor.jewelry') %}
 {% set images       = component.images|default([]) %}
 {% if not images|length %}
   {% set images = [
-    { image: 'https://cdn.salla.sa/KVlQp/TJbMRBsDCxSqy4Zzq3HqJAbyyPNgOVoMNODHRXCw.jpg', link: '#' },
-    { image: 'https://cdn.salla.sa/KVlQp/QXbW8dnCCKbkMoiqRQlfuWKUJiOBh1ERHgRFiVVj.jpg', link: '#' },
-    { image: 'https://cdn.salla.sa/KVlQp/TJbMRBsDCxSqy4Zzq3HqJAbyyPNgOVoMNODHRXCw.jpg', link: '#' },
-    { image: 'https://cdn.salla.sa/KVlQp/QXbW8dnCCKbkMoiqRQlfuWKUJiOBh1ERHgRFiVVj.jpg', link: '#' },
-    { image: 'https://cdn.salla.sa/KVlQp/TJbMRBsDCxSqy4Zzq3HqJAbyyPNgOVoMNODHRXCw.jpg', link: '#' },
-    { image: 'https://cdn.salla.sa/KVlQp/QXbW8dnCCKbkMoiqRQlfuWKUJiOBh1ERHgRFiVVj.jpg', link: '#' }
+    { image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400&q=80', link: '#' },
+    { image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&q=80', link: '#' },
+    { image: 'https://images.unsplash.com/photo-1515562141589-67f0d4e2f1b6?w=400&q=80', link: '#' },
+    { image: 'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=400&q=80', link: '#' },
+    { image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400&q=80', link: '#' },
+    { image: 'https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=400&q=80', link: '#' }
   ] %}
 {% endif %}
 {% set columns      = component.columns|default(6) %}

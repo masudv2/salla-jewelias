@@ -1,16 +1,16 @@
 {# CTA Banner — Noor Theme #}
 {% set show             = component.show|default(true) %}
-{% set bg_image         = component.bg_image|default('') %}
-{% set title            = component.title|default('') %}
-{% set description      = component.description|default('') %}
-{% set btn_text         = component.btn_text|default('') %}
-{% set btn_link         = component.btn_link|default('#') %}
+{% set bg_image         = component.bg_image|default('https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=1920&q=80') %}
+{% set title            = component.title|default('A Gift That Lasts Forever') %}
+{% set description      = component.description|default('Discover our curated selection of handcrafted pieces, perfect for every milestone and celebration.') %}
+{% set btn_text         = component.btn_text|default('Shop the Collection') %}
+{% set btn_link         = component.btn_link|default('/products') %}
 {% set overlay_color    = component.overlay_color|default('#000000') %}
 {% set overlay_opacity  = component.overlay_opacity|default(45) %}
 {% set content_position = component.content_position|default('left') %}
 {% set show_countdown   = component.show_countdown|default(false) %}
 {% set countdown_date   = component.countdown_date|default('') %}
-{% set label            = component.label|default('') %}
+{% set label            = component.label|default('Limited Time') %}
 
 {% if show %}
 <section class="nr-cta nr-reveal">

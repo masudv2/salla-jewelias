@@ -1,13 +1,13 @@
 {# Image Promos (3-up) — Noor Theme #}
 {% set show      = component.show|default(true) %}
-{% set label     = component.label|default('') %}
-{% set title     = component.title|default('') %}
+{% set label     = component.label|default('Curated For You') %}
+{% set title     = component.title|default('Shop by Style') %}
 {% set promos    = component.promos|default([]) %}
 {% if not promos|length %}
   {% set promos = [
-    { image: 'https://cdn.salla.sa/KVlQp/TJbMRBsDCxSqy4Zzq3HqJAbyyPNgOVoMNODHRXCw.jpg', title: 'Rings', link_text: 'Shop Now', link: '/products' },
-    { image: 'https://cdn.salla.sa/KVlQp/QXbW8dnCCKbkMoiqRQlfuWKUJiOBh1ERHgRFiVVj.jpg', title: 'Necklaces', link_text: 'Shop Now', link: '/products' },
-    { image: 'https://cdn.salla.sa/KVlQp/TJbMRBsDCxSqy4Zzq3HqJAbyyPNgOVoMNODHRXCw.jpg', title: 'Bracelets', link_text: 'Shop Now', link: '/products' }
+    { image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=80', title: 'Rings', link_text: 'Shop Now', link: '/products' },
+    { image: 'https://images.unsplash.com/photo-1515562141589-67f0d4e2f1b6?w=800&q=80', title: 'Necklaces', link_text: 'Shop Now', link: '/products' },
+    { image: 'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=800&q=80', title: 'Bracelets', link_text: 'Shop Now', link: '/products' }
   ] %}
 {% endif %}
 {% set columns   = component.columns|default(3) %}
