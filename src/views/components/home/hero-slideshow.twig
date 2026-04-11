@@ -1,80 +1,85 @@
-{# Hero Slideshow — Noor Theme #}
+{# Hero Slideshow — Noor Theme (salla-slider / Splide) #}
 {% set show        = component.show|default(true) %}
 {% set slides      = component.slides|default([]) %}
 {% if not slides|length %}
   {% set slides = [
-    { image: 'https://cdn.salla.sa/KVlQp/TJbMRBsDCxSqy4Zzq3HqJAbyyPNgOVoMNODHRXCw.jpg', title: 'Timeless Elegance', subtitle: 'New Collection 2026', btn_text: 'Shop Now', btn_link: '/products', content_position: 'left' },
-    { image: 'https://cdn.salla.sa/KVlQp/QXbW8dnCCKbkMoiqRQlfuWKUJiOBh1ERHgRFiVVj.jpg', title: 'Crafted with Passion', subtitle: 'Handmade Luxury Pieces', btn_text: 'Explore', btn_link: '/products', content_position: 'center' }
+    { image: 'https://cdn.salla.sa/KVlQp/TJbMRBsDCxSqy4Zzq3HqJAbyyPNgOVoMNODHRXCw.jpg', title: 'Timeless Elegance', subtitle: 'New Collection 2026', description: 'Discover handcrafted pieces that tell your story', btn_text: 'Shop Now', btn_link: '/products', content_position: 'left' },
+    { image: 'https://cdn.salla.sa/KVlQp/QXbW8dnCCKbkMoiqRQlfuWKUJiOBh1ERHgRFiVVj.jpg', title: 'Crafted with Passion', subtitle: 'Handmade Luxury Pieces', description: 'Each piece is a work of art, made with love and precision', btn_text: 'Explore', btn_link: '/products', content_position: 'center' },
+    { image: 'https://images.unsplash.com/photo-1515562141589-67f0d4e2f1b6?w=1920&q=80', title: 'The Art of Adornment', subtitle: 'Limited Edition', description: 'Exclusive designs available for a limited time only', btn_text: 'View Collection', btn_link: '/products', btn2_text: 'Learn More', btn2_link: '/about', content_position: 'left' }
   ] %}
 {% endif %}
 {% set autoplay    = component.autoplay|default(true) %}
 {% set speed       = component.speed|default(6000) %}
-{% set nav_style   = component.nav_style|default('both') %}
 {% set height      = component.height|default('full') %}
 {% set overlay_color   = component.overlay_color|default('#000000') %}
 {% set overlay_opacity = component.overlay_opacity|default(50) %}
 {% set ken_burns   = component.ken_burns|default(true) %}
+{% set show_counter = component.show_counter|default(true) %}
 
 {% if show and slides|length %}
-{% set height_class = height == 'full' ? 'min-height:90vh' : (height == 'large' ? 'min-height:70vh' : 'min-height:50vh') %}
+{% set height_class = height == 'full' ? 'min-height:100vh' : (height == 'large' ? 'min-height:75vh' : 'min-height:55vh') %}
 
 <section class="nr-hero{% if ken_burns %} nr-hero--ken-burns{% endif %}"
          data-nr-hero
-         data-nr-autoplay="{{ speed }}"
          style="{{ height_class }}">
 
-  {% for slide in slides %}
-  <div class="nr-hero__slide{% if loop.first %} is-active{% endif %}" data-nr-slide>
-    {% if slide.image %}
-      <img class="nr-hero__img" src="{{ slide.image }}" alt="{{ slide.title|default('') }}" loading="{% if loop.first %}eager{% else %}lazy{% endif %}">
-    {% endif %}
+  <salla-slider
+    type="fade"
+    auto-play
+    loop
+    auto-play-speed="{{ speed }}"
+    arrows
+    class="nr-hero__slider"
+    id="nr-hero-slider">
 
-    <div class="nr-hero__overlay" style="background:linear-gradient(to right, {{ overlay_color }}{{ '%02x'|format((overlay_opacity / 100 * 255)|round) }} 0%, {{ overlay_color }}33 50%, transparent 100%)"></div>
-
-    <div class="nr-hero__content" style="{% if slide.content_position == 'center' %}text-align:center;align-items:center;max-width:800px;margin:0 auto{% elseif slide.content_position == 'right' %}align-items:flex-end;text-align:right;margin-inline-start:auto{% endif %}">
-      {% if slide.subtitle %}
-        <p class="nr-hero__subtitle">{{ slide.subtitle }}</p>
-      {% endif %}
-
-      {% if slide.title %}
-        <h1 class="nr-hero__title">{{ slide.title }}</h1>
-      {% endif %}
-
-      <div class="nr-hero__actions">
-        {% if slide.btn_text %}
-          <a href="{{ slide.btn_link|default('#') }}" class="nr-btn-solid"{% if slide.btn_color %} style="background:{{ slide.btn_color }}"{% endif %}>
-            {{ slide.btn_text }} <span class="nr-btn__arrow">&rarr;</span>
-          </a>
+    <div slot="items">
+      {% for slide in slides %}
+      <div class="nr-hero__slide">
+        {% if slide.image %}
+          <img class="nr-hero__img" src="{{ slide.image }}" alt="{{ slide.title|default('') }}" loading="{% if loop.first %}eager{% else %}lazy{% endif %}">
         {% endif %}
-        {% if slide.btn2_text %}
-          <a href="{{ slide.btn2_link|default('#') }}" class="nr-btn-outline" style="border-color:rgba(255,255,255,0.4);color:#fff">
-            {{ slide.btn2_text }}
-          </a>
-        {% endif %}
+
+        <div class="nr-hero__overlay" style="background:linear-gradient(to right, {{ overlay_color }}{{ '%02x'|format((overlay_opacity / 100 * 255)|round) }} 0%, {{ overlay_color }}33 50%, transparent 100%)"></div>
+
+        <div class="nr-hero__content nr-hero__content--{{ slide.content_position|default('left') }}">
+          {% if slide.subtitle %}
+            <p class="nr-hero__subtitle nr-hero__anim" data-nr-anim="1">{{ slide.subtitle }}</p>
+          {% endif %}
+
+          {% if slide.title %}
+            <h2 class="nr-hero__title nr-hero__anim" data-nr-anim="2">{{ slide.title }}</h2>
+          {% endif %}
+
+          {% if slide.description %}
+            <p class="nr-hero__desc nr-hero__anim" data-nr-anim="3">{{ slide.description }}</p>
+          {% endif %}
+
+          <div class="nr-hero__actions nr-hero__anim" data-nr-anim="4">
+            {% if slide.btn_text %}
+              <a href="{{ slide.btn_link|default('#') }}" class="nr-btn-solid"{% if slide.btn_color %} style="background:{{ slide.btn_color }}"{% endif %}>
+                {{ slide.btn_text }} <span class="nr-btn__arrow">&rarr;</span>
+              </a>
+            {% endif %}
+            {% if slide.btn2_text %}
+              <a href="{{ slide.btn2_link|default('#') }}" class="nr-btn-outline" style="border-color:rgba(255,255,255,0.4);color:#fff">
+                {{ slide.btn2_text }}
+              </a>
+            {% endif %}
+          </div>
+        </div>
       </div>
+      {% endfor %}
     </div>
-  </div>
-  {% endfor %}
+  </salla-slider>
 
-  {# Dots #}
-  {% if nav_style == 'dots' or nav_style == 'both' %}
-  <div class="nr-hero__dots">
-    {% for slide in slides %}
-      <button class="nr-hero__dot{% if loop.first %} is-active{% endif %}" data-nr-dot aria-label="Slide {{ loop.index }}"></button>
-    {% endfor %}
+  {# Slide counter #}
+  {% if show_counter and slides|length > 1 %}
+  <div class="nr-hero__counter">
+    <span class="nr-hero__counter-current">01</span>
+    <span class="nr-hero__counter-sep">/</span>
+    <span class="nr-hero__counter-total">{{ '%02d'|format(slides|length) }}</span>
   </div>
   {% endif %}
 
-  {# Arrows #}
-  {% if nav_style == 'arrows' or nav_style == 'both' %}
-  <div class="nr-hero__arrows">
-    <button class="nr-hero__arrow" data-nr-prev aria-label="{{ trans('common.elements.previous') }}">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15 18 9 12 15 6"/></svg>
-    </button>
-    <button class="nr-hero__arrow" data-nr-next aria-label="{{ trans('common.elements.next') }}">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg>
-    </button>
-  </div>
-  {% endif %}
 </section>
 {% endif %}

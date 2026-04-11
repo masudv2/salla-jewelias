@@ -1,61 +1,100 @@
-{# Featured Products Grid — Noor Theme #}
-{% set show          = component.show|default(true) %}
-{% set label         = component.label|default('') %}
-{% set title         = component.title|default('') %}
-{% set show_view_all = component.show_view_all|default(true) %}
-{% set view_all_link = component.view_all_link|default('/products') %}
-{% set columns       = component.columns|default(4) %}
-{% set show_rating   = component.show_rating|default(true) %}
-{% set show_quick_add = component.show_quick_add|default(true) %}
-{% set show_wishlist = component.show_wishlist|default(true) %}
-{% set products_count = component.products_count|default(4) %}
+{# Featured Products Carousel — Noor Theme #}
+{#
+| Variable                 | Type      | Description                                                         |
+|--------------------------|-----------|---------------------------------------------------------------------|
+| items                    | array     | Tab groups with products                                            |
+| items[].title            | string    | Section/tab title                                                   |
+| items[].products[]       | Product[] | Products in this group                                              |
+| items[].type             | string    | category,most_sales,latest_products,chosen_products                 |
+| items[].limit            | Int       | Number of products                                                  |
+| items[].id               | string    | Section id                                                          |
+| products.source          | string    | For salla-products-list source                                      |
+| products.source_value    | int[]     | Source values                                                       |
+| display_all_url          | ?string   | View all link                                                       |
+| title                    | string    | Section title                                                       |
+| position                 | Int       | Sorting number                                                      |
+| limit                    | int       | Number of products to show                                          |
+#}
+{% set component_id = 'featured-products-' ~ position|default(0) %}
+{% set section_title = title|default(component.title|default('Featured Products')) %}
+{% set section_label = component.label|default('Our Selection') %}
+{% set view_all_url  = display_all_url|default(component.view_all_link|default('/products')) %}
 
-{% if show %}
-<section class="nr-section">
+<section class="nr-section" id="{{ component_id }}">
   <div class="nr-container">
-    <div class="nr-section-header nr-reveal">
+    <div class="nr-section__header nr-reveal">
       <div>
-        {% if label %}<span class="nr-section-label">{{ label }}</span>{% endif %}
-        {% if title %}<h2>{{ title }}</h2>{% endif %}
+        <span class="nr-section-label">{{ section_label }}</span>
+        <h2 class="nr-section__title">{{ section_title }}</h2>
       </div>
-      {% if show_view_all %}
-        <a href="{{ view_all_link }}" class="nr-btn-text">{{ trans('common.elements.show_all') }} <span class="nr-btn__arrow">&rarr;</span></a>
+      {% if view_all_url %}
+        <a href="{{ view_all_url }}" class="nr-btn-text">{{ trans('common.elements.show_all') }} <span class="nr-btn__arrow">&rarr;</span></a>
       {% endif %}
     </div>
-    <div class="nr-product-grid" style="grid-template-columns:repeat({{ columns }},1fr)">
-      <salla-products-list source="latest" limit="{{ products_count }}">
+
+    {# Tabs if multiple groups #}
+    {% if items|length > 1 %}
+    <div class="nr-tabs__list">
+      {% for section in items %}
+        <button class="nr-tabs__tab{% if loop.first %} is-active{% endif %}"
+                data-target="{{ component_id }}-{{ section.id }}"
+                data-component-id="{{ component_id }}">
+          {{ section.title|default(section.name) }}
+        </button>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if items is defined and items|length %}
+      {# Merchant-configured product groups with actual product data #}
+      {% for section in items %}
+      <div id="{{ component_id }}-{{ section.id }}" class="nr-tabs__panel{% if loop.first %} is-active{% endif %}">
+        <salla-slider type="carousel" loop auto-play id="{{ component_id }}-slider-{{ section.id }}"
+          class="nr-products-slider">
+          <div slot="items">
+            {% for product in section.products %}
+            <div>
+              <noor-product-card product='{{ product|json_encode }}'></noor-product-card>
+            </div>
+            {% endfor %}
+          </div>
+        </salla-slider>
+      </div>
+      {% endfor %}
+    {% elseif products is defined and products.source is defined %}
+      {# Dynamic product source (Salla auto-fetched) #}
+      <salla-products-slider
+        source="{{ products.source }}"
+        limit="{{ limit|default(8) }}"
+        autoplay
+        source-value="{{ products.source_value|json_encode }}"
+        display-all-url="{{ view_all_url }}"
+        block-title=""
+        slider-id="{{ component_id }}-slider">
+      </salla-products-slider>
+    {% else %}
+      {# Fallback: latest products via salla-products-list with Noor styling #}
+      <salla-products-list source="latest" limit="8">
         <div slot="product-card" class="nr-card nr-reveal">
           <div class="nr-card__media">
             <a href="{product_url}">
               <img class="nr-card__img nr-card__img--primary" src="{product_image}" alt="{product_name}" loading="lazy">
             </a>
-            {% if show_wishlist %}
-            <div class="nr-card__actions">
-              <salla-button shape="icon" color="light" aria-label="Wishlist" onclick="salla.wishlist.toggle({product_id})">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-              </salla-button>
-            </div>
-            {% endif %}
-            {% if show_quick_add %}
+            <button class="nr-card__wishlist" onclick="salla.wishlist.toggle({product_id})" aria-label="{{ trans('pages.products.add_to_wishlist') }}">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
             <div class="nr-card__quick-add">
               <salla-add-product-button product-id="{product_id}" class="nr-btn-solid" style="width:100%;padding:0.65rem;font-size:0.75rem;letter-spacing:0.06em;text-transform:uppercase">
                 {{ trans('pages.products.add_to_cart') }}
               </salla-add-product-button>
             </div>
-            {% endif %}
           </div>
           <div class="nr-card__info">
             <a href="{product_url}"><h4 class="nr-card__title">{product_name}</h4></a>
             <div class="nr-card__price">{product_price}</div>
-            {% if show_rating %}
-            <div class="nr-card__rating">
-              <salla-rating-stars value="{product_rating}"></salla-rating-stars>
-            </div>
-            {% endif %}
           </div>
         </div>
       </salla-products-list>
-    </div>
+    {% endif %}
   </div>
 </section>
-{% endif %}

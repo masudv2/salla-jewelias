@@ -1,38 +1,94 @@
 .nr-hero {
   position: relative;
   width: 100%;
-  min-height: 90vh;
+  min-height: 100vh;
   overflow: hidden;
 
   @media (max-width: 768px) {
-    min-height: 60vh;
+    min-height: 70vh;
+  }
+}
+
+// Make salla-slider fill the hero
+.nr-hero__slider {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+
+  .splide,
+  .splide__track,
+  .splide__list {
+    height: 100%;
+  }
+
+  // Hide Splide default arrows — we use our own positioning or the counter area
+  .splide__arrows {
+    position: absolute;
+    bottom: var(--nr-space-xl);
+    right: 8%;
+    z-index: 5;
+    display: flex;
+    gap: var(--nr-space-sm);
+
+    [dir="rtl"] & {
+      right: auto;
+      left: 8%;
+    }
+
+    @media (max-width: 768px) {
+      bottom: var(--nr-space-lg);
+      right: var(--nr-space-md);
+
+      [dir="rtl"] & {
+        right: auto;
+        left: var(--nr-space-md);
+      }
+    }
+  }
+
+  .splide__arrow {
+    position: static;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: transparent;
+    color: var(--nr-dark-text);
+    border-radius: 0;
+    opacity: 1;
+    transition: background-color var(--nr-transition), border-color var(--nr-transition);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.7);
+    }
+
+    svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+  }
+
+  // Hide default pagination
+  .splide__pagination {
+    display: none;
   }
 }
 
 .nr-hero__slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transition: opacity var(--nr-transition-slow);
-
-  &.is-active {
-    opacity: 1;
-    z-index: 1;
-  }
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 .nr-hero__img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.nr-hero__slide.is-active .nr-hero__img {
-  animation: nr-ken-burns 8s ease forwards;
-}
-
-.nr-hero__slide:nth-child(even).is-active .nr-hero__img {
-  animation-name: nr-ken-burns-alt;
 }
 
 .nr-hero__overlay {
@@ -72,6 +128,19 @@
   }
 }
 
+.nr-hero__content--center {
+  text-align: center;
+  align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.nr-hero__content--right {
+  align-items: flex-end;
+  text-align: right;
+  margin-inline-start: auto;
+}
+
 .nr-hero__subtitle {
   font-family: var(--nr-font-body);
   font-size: var(--nr-label);
@@ -79,9 +148,7 @@
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: rgba(255, 255, 255, 0.8);
-  margin-bottom: var(--nr-space-md);
-  opacity: 0;
-  animation: nr-slide-up 600ms ease 300ms forwards;
+  margin-bottom: var(--nr-space-sm);
 }
 
 .nr-hero__title {
@@ -90,75 +157,78 @@
   font-weight: 500;
   color: var(--nr-dark-text);
   line-height: 1.08;
+  margin-bottom: var(--nr-space-md);
+}
+
+.nr-hero__desc {
+  font-family: var(--nr-font-body);
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.6;
   margin-bottom: var(--nr-space-lg);
-  opacity: 0;
-  animation: nr-slide-up 800ms ease 500ms forwards;
+  max-width: 480px;
+
+  .nr-hero__content--center & {
+    margin-inline: auto;
+  }
 }
 
 .nr-hero__actions {
   display: flex;
   gap: var(--nr-space-md);
-  opacity: 0;
-  animation: nr-slide-up 800ms ease 700ms forwards;
 
   @media (max-width: 768px) {
     flex-direction: column;
   }
 }
 
-// Hero navigation
-.nr-hero__arrows {
-  position: absolute;
-  bottom: var(--nr-space-xl);
-  right: 8%;
-  z-index: 4;
-  display: flex;
-  gap: var(--nr-space-sm);
-
-  [dir="rtl"] & {
-    right: auto;
-    left: 8%;
-  }
-
-  @media (max-width: 768px) {
-    bottom: var(--nr-space-lg);
-    right: var(--nr-space-md);
-
-    [dir="rtl"] & {
-      right: auto;
-      left: var(--nr-space-md);
-    }
-  }
+// Staggered text animations — triggered on active slide
+.nr-hero__anim {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 600ms ease, transform 600ms ease;
 }
 
-.nr-hero__arrow {
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  color: var(--nr-dark-text);
-  transition: background-color var(--nr-transition), border-color var(--nr-transition);
-
-  &:hover {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.7);
-  }
-
-  svg {
-    width: 18px;
-    height: 18px;
-  }
+// Active slide triggers animations with staggered delays
+.is-active .nr-hero__anim,
+.splide__slide.is-active .nr-hero__anim {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.nr-hero__dots {
+.is-active [data-nr-anim="1"],
+.splide__slide.is-active [data-nr-anim="1"] {
+  transition-delay: 200ms;
+}
+
+.is-active [data-nr-anim="2"],
+.splide__slide.is-active [data-nr-anim="2"] {
+  transition-delay: 450ms;
+}
+
+.is-active [data-nr-anim="3"],
+.splide__slide.is-active [data-nr-anim="3"] {
+  transition-delay: 650ms;
+}
+
+.is-active [data-nr-anim="4"],
+.splide__slide.is-active [data-nr-anim="4"] {
+  transition-delay: 800ms;
+}
+
+// Slide counter
+.nr-hero__counter {
   position: absolute;
   bottom: var(--nr-space-xl);
   left: 8%;
-  z-index: 4;
+  z-index: 5;
   display: flex;
-  gap: var(--nr-space-sm);
+  align-items: baseline;
+  gap: 0.35em;
+  color: var(--nr-dark-text);
+  font-family: var(--nr-font-body);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
 
   [dir="rtl"] & {
     left: auto;
@@ -177,26 +247,30 @@
   }
 }
 
-.nr-hero__dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.4);
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  transition: background-color var(--nr-transition);
-
-  &.is-active {
-    background: var(--nr-dark-text);
-  }
+.nr-hero__counter-current {
+  font-size: 1.25rem;
+  font-weight: 500;
 }
 
-// Ken Burns variant
-.nr-hero--ken-burns .nr-hero__slide.is-active .nr-hero__img {
-  animation: nr-ken-burns 8s ease forwards;
+.nr-hero__counter-sep {
+  opacity: 0.5;
 }
 
-.nr-hero--ken-burns .nr-hero__slide:nth-child(even).is-active .nr-hero__img {
-  animation-name: nr-ken-burns-alt;
+.nr-hero__counter-total {
+  opacity: 0.5;
+}
+
+// Ken Burns
+.nr-hero--ken-burns .nr-hero__img {
+  transform: scale(1);
+  transition: transform 8s ease;
+}
+
+.nr-hero--ken-burns .is-active .nr-hero__img,
+.nr-hero--ken-burns .splide__slide.is-active .nr-hero__img {
+  transform: scale(1.08);
+}
+
+.nr-hero--ken-burns .splide__slide:nth-child(even).is-active .nr-hero__img {
+  transform: scale(1.08) translateX(-2%);
 }

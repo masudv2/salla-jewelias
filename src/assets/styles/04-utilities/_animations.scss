@@ -68,7 +68,8 @@
 
 // --- Reveal system ---
 
-.nr-reveal {
+.nr-reveal,
+.nr-reveal--up {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 600ms ease, transform 600ms var(--nr-ease);
@@ -93,6 +94,7 @@
 }
 
 .nr-reveal.nr-visible,
+.nr-reveal--up.nr-visible,
 .nr-reveal--left.nr-visible,
 .nr-reveal--right.nr-visible,
 .nr-reveal--scale.nr-visible {

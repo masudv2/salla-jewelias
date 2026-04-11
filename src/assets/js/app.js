@@ -7,6 +7,8 @@ import { initLenis } from './modules/lenis';
 import { initScrollReveal } from './modules/scroll-reveal';
 import { initHeaderScroll } from './modules/header-scroll';
 import { initDarkMode } from './modules/dark-mode';
+import { initAnnouncement } from './modules/announcement';
+import { initCountdowns } from './modules/countdown';
 
 class App extends AppHelpers {
   constructor() {
@@ -28,6 +30,8 @@ class App extends AppHelpers {
     initScrollReveal();
     initHeaderScroll();
     initDarkMode();
+    initAnnouncement();
+    initCountdowns();
     this.loadModalImgOnclick();
 
     salla.comment.event.onAdded(() => window.location.reload());

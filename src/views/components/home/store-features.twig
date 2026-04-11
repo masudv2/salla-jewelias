@@ -1,3 +1,4 @@
+{# Store Features — Noor Theme #}
 {#
 | Variable      | Type   | Description                                                      |
 |---------------|--------|------------------------------------------------------------------|
@@ -7,18 +8,33 @@
 | items[].text  | string | Subtitle for the feature                                         |
 | position      | Int    | Sorting number start from zero                                   |
 #}
-<section class="nr-section" style="border-top:1px solid var(--nr-border);border-bottom:1px solid var(--nr-border)">
+{% set feature_items = items|default([]) %}
+{% if not feature_items|length %}
+  {% set feature_items = [
+    { icon: 'sicon-shipping-fast', title: 'Free Shipping', text: 'On orders over SAR 500' },
+    { icon: 'sicon-shield-check', title: 'Lifetime Warranty', text: 'On every piece we craft' },
+    { icon: 'sicon-gift', title: 'Gift Wrapping', text: 'Complimentary luxury packaging' },
+    { icon: 'sicon-undo', title: 'Easy Returns', text: '30-day hassle-free returns' }
+  ] %}
+{% endif %}
+
+{% set columns   = component.columns|default(4) %}
+{% set bg_style  = component.bg_style|default('bordered') %}
+
+<section class="nr-section nr-features{% if bg_style == 'bordered' %} nr-features--bordered{% elseif bg_style == 'warm' %} nr-features--warm{% endif %}">
   <div class="nr-container">
-    <div class="nr-trust-strip">
-      {% for item in items %}
-      <div class="nr-trust-item">
+    <div class="nr-features__grid" style="grid-template-columns:repeat({{ columns }},1fr)">
+      {% for item in feature_items %}
+      <div class="nr-features__item nr-reveal--up">
         {% if item.icon %}
-          <i class="{{ item.icon }}" style="font-size:1.5rem;opacity:0.7"></i>
+          <i class="{{ item.icon }} nr-features__icon"></i>
         {% endif %}
-        <div>
-          {% if item.title %}<strong>{{ item.title }}</strong>{% endif %}
-          {% if item.text %}<p style="font-size:0.85rem;opacity:0.7;margin:0">{{ item.text }}</p>{% endif %}
-        </div>
+        {% if item.title %}
+          <h4 class="nr-features__title">{{ item.title }}</h4>
+        {% endif %}
+        {% if item.text %}
+          <p class="nr-features__text">{{ item.text }}</p>
+        {% endif %}
       </div>
       {% endfor %}
     </div>

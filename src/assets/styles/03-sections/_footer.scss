@@ -37,6 +37,18 @@
   font-size: var(--nr-small);
   line-height: 1.7;
   max-width: 320px;
+  margin-bottom: var(--nr-space-md);
+}
+
+.nr-footer__social {
+  margin-top: var(--nr-space-md);
+}
+
+.nr-footer__newsletter-desc {
+  font-size: var(--nr-small);
+  color: var(--nr-text-light);
+  line-height: 1.6;
+  margin-bottom: var(--nr-space-md);
 }
 
 .nr-footer__heading {

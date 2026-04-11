@@ -3,6 +3,23 @@
   padding: var(--nr-space-2xl) var(--nr-space-lg);
 }
 
+.nr-newsletter--warm {
+  background: var(--nr-bg-warm);
+}
+
+.nr-newsletter--dark {
+  background: var(--nr-dark-bg);
+  .nr-newsletter__title { color: var(--nr-dark-text); }
+  .nr-newsletter__desc { color: rgba(255, 255, 255, 0.6); }
+  .nr-newsletter__input {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+  }
+  .nr-divider__line { background: rgba(255, 255, 255, 0.2); }
+  .nr-divider__diamond { border-color: rgba(255, 255, 255, 0.3); }
+}
+
 .nr-newsletter__title {
   font-family: var(--nr-font-display);
   font-size: var(--nr-h2);

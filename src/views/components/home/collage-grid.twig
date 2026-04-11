@@ -1,0 +1,39 @@
+{# Collage / Image Grid — Noor Theme #}
+{% set show  = component.show|default(true) %}
+{% set label = component.label|default('') %}
+{% set title = component.title|default('') %}
+{% set items = component.items|default([]) %}
+
+{% if not items|length %}
+  {% set items = [
+    { image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=80', title: 'Statement Rings', link: '/products' },
+    { image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&q=80', title: 'Gold Collection', link: '/products' },
+    { image: 'https://images.unsplash.com/photo-1515562141589-67f0d4e2f1b6?w=600&q=80', title: 'Pearl Necklaces', link: '/products' },
+    { image: 'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=600&q=80', title: 'Diamond Cuts', link: '/products' },
+    { image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600&q=80', title: 'Vintage Pieces', link: '/products' }
+  ] %}
+{% endif %}
+
+{% if show and items|length %}
+<section class="nr-section">
+  {% if label or title %}
+  <div class="nr-section__header">
+    {% if label %}<span class="nr-section-label">{{ label }}</span>{% endif %}
+    {% if title %}<h2 class="nr-section__title">{{ title }}</h2>{% endif %}
+  </div>
+  {% endif %}
+
+  <div class="nr-collage">
+    {% for item in items|slice(0, 5) %}
+    <a href="{{ item.link|default('#') }}" class="nr-collage__item{% if loop.first %} nr-collage__item--featured{% endif %} nr-reveal--up">
+      <img src="{{ item.image }}" alt="{{ item.title|default('') }}" loading="lazy">
+      {% if item.title %}
+      <div class="nr-collage__overlay">
+        <span class="nr-collage__title">{{ item.title }}</span>
+      </div>
+      {% endif %}
+    </a>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}

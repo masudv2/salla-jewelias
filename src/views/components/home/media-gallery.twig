@@ -1,0 +1,48 @@
+{# Media Gallery — Noor Theme #}
+{% set show          = component.show|default(true) %}
+{% set label         = component.label|default('Gallery') %}
+{% set title         = component.title|default('Our World') %}
+{% set images        = component.images|default([]) %}
+{% set show_lightbox = component.show_lightbox|default(true) %}
+
+{% if not images|length %}
+  {% set images = [
+    { image: 'https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=1200&q=80', caption: 'Artisan at work' },
+    { image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&q=80', caption: 'Gold collection' },
+    { image: 'https://images.unsplash.com/photo-1515562141589-67f0d4e2f1b6?w=600&q=80', caption: 'Pearl necklaces' },
+    { image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=80', caption: 'Statement rings' },
+    { image: 'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=600&q=80', caption: 'Bracelet detail' },
+    { image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600&q=80', caption: 'Heritage pieces' }
+  ] %}
+{% endif %}
+
+{% if show and images|length %}
+<section class="nr-section">
+  {% if label or title %}
+  <div class="nr-section__header">
+    {% if label %}<span class="nr-section-label">{{ label }}</span>{% endif %}
+    {% if title %}<h2 class="nr-section__title">{{ title }}</h2>{% endif %}
+  </div>
+  {% endif %}
+
+  <div class="nr-media-gallery" data-nr-gallery>
+    <div class="nr-media-gallery__main nr-reveal--up">
+      <img src="{{ images[0].image }}" alt="{{ images[0].caption|default('') }}" data-nr-gallery-main>
+      {% if images[0].caption %}
+        <p class="nr-media-gallery__caption" data-nr-gallery-caption>{{ images[0].caption }}</p>
+      {% endif %}
+    </div>
+    <div class="nr-media-gallery__thumbs">
+      {% for item in images %}
+      <button class="nr-media-gallery__thumb{% if loop.first %} is-active{% endif %}"
+              data-nr-gallery-thumb
+              data-src="{{ item.image }}"
+              data-caption="{{ item.caption|default('') }}"
+              aria-label="{{ item.caption|default('Image ' ~ loop.index) }}">
+        <img src="{{ item.image }}" alt="{{ item.caption|default('') }}" loading="lazy">
+      </button>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}

@@ -1,23 +1,23 @@
 {# Editorial Statement Block — Noor Theme #}
-{% set show        = component.show|default(true) %}
-{% set quote_text  = component.quote_text|default('') %}
-{% set bg_color    = component.bg_color|default('#f8f2ea') %}
-{% set text_color  = component.text_color|default('#1f1f1f') %}
-{% set font_style  = component.font_style|default('italic') %}
-{% set show_dividers = component.show_dividers|default(true) %}
+{% set show         = component.show|default(true) %}
+{% set quote_text   = component.quote_text|default('Jewelry is not just an accessory — it is a reflection of your story, your journey, and the moments that define you. Each piece we create carries the spirit of timeless craftsmanship.') %}
+{% set bg_style     = component.bg_style|default('warm') %}
+{% set show_divider = component.show_divider|default(true) %}
+
+{% set bg_class = bg_style == 'warm' ? 'nr-statement--warm' : (bg_style == 'dark' ? 'nr-statement--dark' : '') %}
 
 {% if show and quote_text %}
-<section class="nr-statement nr-reveal" style="background:{{ bg_color }}">
+<section class="nr-statement {{ bg_class }} nr-reveal">
   <div class="nr-container" style="max-width:900px">
-    {% if show_dividers %}
+    {% if show_divider %}
     <div class="nr-divider" style="margin-bottom:3rem">
       <span class="nr-divider__line"></span>
       <span class="nr-divider__diamond"></span>
       <span class="nr-divider__line"></span>
     </div>
     {% endif %}
-    <p class="nr-statement__text" style="color:{{ text_color }};{% if font_style == 'normal' %}font-style:normal{% endif %}">{{ quote_text }}</p>
-    {% if show_dividers %}
+    <p class="nr-statement__text">{{ quote_text }}</p>
+    {% if show_divider %}
     <div class="nr-divider" style="margin-top:3rem">
       <span class="nr-divider__line"></span>
       <span class="nr-divider__diamond"></span>

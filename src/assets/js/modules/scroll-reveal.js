@@ -1,5 +1,5 @@
 export function initScrollReveal() {
-  const targets = document.querySelectorAll('.nr-reveal');
+  const targets = document.querySelectorAll('.nr-reveal, [class*="nr-reveal--"]');
   if (!targets.length) return;
 
   const observer = new IntersectionObserver(

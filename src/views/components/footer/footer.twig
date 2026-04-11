@@ -3,17 +3,18 @@
     <div class="nr-footer__grid">
 
       <div class="nr-footer__brand">
-        <div class="nr-footer__logo">
-          {% if store.logo %}
-            <img src="{{ store.logo }}" alt="{{ store.name }}" style="height:32px; filter:brightness(0) invert(1);">
+        <a href="{{ store.url }}" class="nr-footer__logo">
+          {% set footer_logo = theme.settings.get('logo_dark', store.logo) %}
+          {% if footer_logo %}
+            <img src="{{ footer_logo }}" alt="{{ store.name }}" style="height:32px;">
           {% else %}
             {{ store.name }}
           {% endif %}
-        </div>
+        </a>
         {% if store.description %}
-          <p class="nr-footer__about">{{ store.description|raw }}</p>
+          <p class="nr-footer__about">{{ store.description|striptags|slice(0, 200) }}</p>
         {% endif %}
-        <div style="margin-top:1.5rem">
+        <div class="nr-footer__social">
           <salla-social></salla-social>
         </div>
       </div>
@@ -28,6 +29,7 @@
 
       <div class="nr-footer__links">
         <h4 class="nr-footer__heading">{{ trans('common.elements.newsletter') }}</h4>
+        <p class="nr-footer__newsletter-desc">{{ trans('blocks.footer.subscribe_text')|default('Get updates on new arrivals and exclusive offers.') }}</p>
         <salla-newsletter></salla-newsletter>
       </div>
     </div>

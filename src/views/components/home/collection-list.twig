@@ -1,0 +1,53 @@
+{# Collection List — Noor Theme #}
+{% set show      = component.show|default(true) %}
+{% set title     = component.title|default('Shop by Category') %}
+{% set label     = component.label|default('Collections') %}
+{% set style     = component.style|default('overlay') %}
+{% set show_cats = component.show_cats|default(true) %}
+{% set links     = component.links|default([]) %}
+
+{% if not links|length and not show_cats %}
+  {% set links = [
+    { image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&q=80', title: 'Rings', url: '/products' },
+    { image: 'https://images.unsplash.com/photo-1515562141589-67f0d4e2f1b6?w=600&q=80', title: 'Necklaces', url: '/products' },
+    { image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=80', title: 'Earrings', url: '/products' },
+    { image: 'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=600&q=80', title: 'Bracelets', url: '/products' }
+  ] %}
+{% endif %}
+
+{% if show %}
+<section class="nr-section">
+  {% if label or title %}
+  <div class="nr-section__header">
+    {% if label %}<span class="nr-section-label">{{ label }}</span>{% endif %}
+    {% if title %}<h2 class="nr-section__title">{{ title }}</h2>{% endif %}
+  </div>
+  {% endif %}
+
+  <div class="nr-collection-grid">
+    {% if show_cats and component.categories is defined %}
+      {% for cat in component.categories %}
+      <a href="{{ cat.url }}" class="nr-collection-card nr-collection-card--{{ style }} nr-reveal--up">
+        <div class="nr-collection-card__media">
+          <img src="{{ cat.image.url|default(cat.icon|default('')) }}" alt="{{ cat.name }}" loading="lazy">
+        </div>
+        <div class="nr-collection-card__info">
+          <h3 class="nr-collection-card__title">{{ cat.name }}</h3>
+        </div>
+      </a>
+      {% endfor %}
+    {% else %}
+      {% for item in links %}
+      <a href="{{ item.url|default('#') }}" class="nr-collection-card nr-collection-card--{{ style }} nr-reveal--up">
+        <div class="nr-collection-card__media">
+          <img src="{{ item.image }}" alt="{{ item.title }}" loading="lazy">
+        </div>
+        <div class="nr-collection-card__info">
+          <h3 class="nr-collection-card__title">{{ item.title }}</h3>
+        </div>
+      </a>
+      {% endfor %}
+    {% endif %}
+  </div>
+</section>
+{% endif %}

@@ -1,0 +1,50 @@
+{# Video with Products — Noor Theme #}
+{% set show       = component.show|default(true) %}
+{% set label      = component.label|default('Behind the Craft') %}
+{% set title      = component.title|default('Watch Our Story') %}
+{% set video_url  = component.video_url|default('https://www.youtube.com/watch?v=dQw4w9WgXcQ') %}
+{% set video_type = component.video_type|default('youtube') %}
+{% set layout     = component.layout|default('left') %}
+{% set products_source = component.products_source|default('latest') %}
+{% set products_limit  = component.products_limit|default(4) %}
+
+{% if show %}
+<section class="nr-section">
+  <div class="nr-container">
+    {% if label or title %}
+    <div class="nr-section__header nr-reveal">
+      <div>
+        {% if label %}<span class="nr-section-label">{{ label }}</span>{% endif %}
+        {% if title %}<h2 class="nr-section__title">{{ title }}</h2>{% endif %}
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="nr-video-products{% if layout == 'right' %} nr-video-products--reverse{% endif %}">
+      <div class="nr-video-products__video nr-reveal--left">
+        {% if video_type == 'youtube' %}
+          {% set yt_id = video_url|split('v=')|last|split('&')|first %}
+          <lite-youtube videoid="{{ yt_id }}" style="background-image:url('https://i.ytimg.com/vi/{{ yt_id }}/hqdefault.jpg')"></lite-youtube>
+        {% else %}
+          <video src="{{ video_url }}" controls preload="metadata" style="width:100%;height:100%;object-fit:cover"></video>
+        {% endif %}
+      </div>
+      <div class="nr-video-products__list nr-reveal--right">
+        <salla-products-list source="{{ products_source }}" limit="{{ products_limit }}">
+          <div slot="product-card" class="nr-card nr-card--horizontal">
+            <div class="nr-card__media" style="width:100px;flex-shrink:0">
+              <a href="{product_url}">
+                <img class="nr-card__img nr-card__img--primary" src="{product_image}" alt="{product_name}" loading="lazy" style="aspect-ratio:1;object-fit:cover">
+              </a>
+            </div>
+            <div class="nr-card__info" style="padding:0.5rem">
+              <a href="{product_url}"><h4 class="nr-card__title" style="font-size:0.9rem">{product_name}</h4></a>
+              <div class="nr-card__price" style="font-size:0.8rem">{product_price}</div>
+            </div>
+          </div>
+        </salla-products-list>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}

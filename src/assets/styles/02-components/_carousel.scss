@@ -45,6 +45,14 @@
   }
 }
 
+.nr-carousel__nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--nr-space-md);
+  margin-top: var(--nr-space-lg);
+}
+
 .nr-carousel__dots {
   display: flex;
   justify-content: center;

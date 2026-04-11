@@ -1,18 +1,17 @@
 {# Newsletter — Noor Theme #}
-{% set show          = component.show|default(true) %}
-{% set title         = component.title|default('') %}
-{% set description   = component.description|default('') %}
-{% set btn_text      = component.btn_text|default('Subscribe') %}
-{% set bg_style      = component.bg_style|default('warm') %}
-{% set bg_color      = component.bg_color|default('#f8f2ea') %}
-{% set show_dividers = component.show_dividers|default(true) %}
+{% set show         = component.show|default(true) %}
+{% set title        = component.title|default('Stay in the Know') %}
+{% set description  = component.description|default('Subscribe to receive updates on new collections, exclusive offers, and styling inspiration.') %}
+{% set btn_text     = component.btn_text|default('Subscribe') %}
+{% set bg_style     = component.bg_style|default('warm') %}
+{% set show_divider = component.show_divider|default(true) %}
 
-{% set bg = bg_style == 'warm' ? '#f8f2ea' : (bg_style == 'white' ? '#ffffff' : bg_color) %}
+{% set bg_class = bg_style == 'warm' ? 'nr-newsletter--warm' : (bg_style == 'dark' ? 'nr-newsletter--dark' : '') %}
 
 {% if show %}
-<section class="nr-newsletter nr-reveal" style="background:{{ bg }}">
+<section class="nr-newsletter {{ bg_class }} nr-reveal">
   <div class="nr-container">
-    {% if show_dividers %}
+    {% if show_divider %}
     <div class="nr-divider" style="margin-bottom:2.5rem">
       <span class="nr-divider__line"></span>
       <span class="nr-divider__diamond"></span>

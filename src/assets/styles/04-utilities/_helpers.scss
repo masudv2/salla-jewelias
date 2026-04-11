@@ -16,7 +16,8 @@
   }
 }
 
-.nr-section-header {
+.nr-section-header,
+.nr-section__header {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -28,6 +29,13 @@
     gap: var(--nr-space-md);
     margin-bottom: var(--nr-space-lg);
   }
+}
+
+.nr-section__title {
+  font-family: var(--nr-font-display);
+  font-size: var(--nr-h2);
+  font-weight: 500;
+  color: var(--nr-text);
 }
 
 .nr-sr-only {
@@ -59,13 +67,4 @@
   background: var(--nr-bg-warm);
 }
 
-.nr-reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 600ms ease, transform 600ms ease;
-
-  &.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+// nr-reveal is defined in _animations.scss — uses .nr-visible class
