@@ -6,7 +6,8 @@
 {% set show_cats = component.show_cats|default(true) %}
 {% set links     = component.links|default([]) %}
 
-{% if not links|length and not show_cats %}
+{% set has_categories = show_cats and component.categories is defined and component.categories|length %}
+{% if not links|length and not has_categories %}
   {% set links = [
     { image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&q=80', title: 'Rings', url: '/products' },
     { image: 'https://images.unsplash.com/photo-1515562141589-67f0d4e2f1b6?w=600&q=80', title: 'Necklaces', url: '/products' },
@@ -25,7 +26,7 @@
   {% endif %}
 
   <div class="nr-collection-grid">
-    {% if show_cats and component.categories is defined %}
+    {% if has_categories %}
       {% for cat in component.categories %}
       <a href="{{ cat.url }}" class="nr-collection-card nr-collection-card--{{ style }} nr-reveal--up">
         <div class="nr-collection-card__media">

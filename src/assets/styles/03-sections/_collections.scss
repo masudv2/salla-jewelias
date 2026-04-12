@@ -131,13 +131,18 @@
 }
 
 .nr-tabs__panel {
-  display: none;
+  display: block;
+  height: 0;
+  overflow: hidden;
   opacity: 0;
+  visibility: hidden;
   transition: opacity 300ms ease;
 
   &.is-active {
-    display: block;
+    height: auto;
+    overflow: visible;
     opacity: 1;
+    visibility: visible;
   }
 }
 
