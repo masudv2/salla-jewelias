@@ -3,10 +3,10 @@
 {% set label      = component.label|default('Behind the Craft') %}
 {% set title      = component.title|default('Watch Our Story') %}
 {% set video_url  = component.video_url|default('https://www.youtube.com/watch?v=O5gCaQnFWHQ') %}
-{% set video_type = component.video_type|default('youtube') %}
-{% set layout     = component.layout|default('left') %}
-{% set products_source = component.products_source|default('latest') %}
-{% set products_limit  = component.products_limit|default(4) %}
+{% set vtype_raw  = component.video_type|default('youtube') %}
+{% set video_type = vtype_raw is iterable ? (vtype_raw[0].value|default('youtube')) : vtype_raw %}
+{% set layout_raw = component.layout|default('left') %}
+{% set layout     = layout_raw is iterable ? (layout_raw[0].value|default('left')) : layout_raw %}
 
 {% if show %}
 <section class="nr-section">
@@ -30,7 +30,7 @@
         {% endif %}
       </div>
       <div class="nr-video-products__list nr-reveal--right">
-        <salla-products-list source="{{ products_source }}" limit="{{ products_limit }}">
+        <salla-products-list source="latest" limit="4">
           <div slot="product-card" class="nr-card nr-card--horizontal">
             <div class="nr-card__media" style="width:100px;flex-shrink:0">
               <a href="{product_url}">

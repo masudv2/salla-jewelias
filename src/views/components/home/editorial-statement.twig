@@ -1,13 +1,14 @@
 {# Editorial Statement Block — Noor Theme #}
 {% set show         = component.show|default(true) %}
 {% set quote_text   = component.quote_text|default('Jewelry is not just an accessory — it is a reflection of your story, your journey, and the moments that define you. Each piece we create carries the spirit of timeless craftsmanship.') %}
-{% set bg_style     = component.bg_style|default('warm') %}
-{% set show_divider = component.show_divider|default(true) %}
-
-{% set bg_class = bg_style == 'warm' ? 'nr-statement--warm' : (bg_style == 'dark' ? 'nr-statement--dark' : '') %}
+{% set bg_color     = component.bg_color|default('#f8f2ea') %}
+{% set text_color   = component.text_color|default('') %}
+{% set font_raw     = component.font_style|default('serif') %}
+{% set font_style   = font_raw is iterable ? (font_raw[0].value|default('serif')) : font_raw %}
+{% set show_divider = component.show_dividers|default(true) %}
 
 {% if show and quote_text %}
-<section class="nr-statement {{ bg_class }} nr-reveal">
+<section class="nr-statement nr-reveal" style="background:{{ bg_color }};{% if text_color %}color:{{ text_color }}{% endif %}">
   <div class="nr-container" style="max-width:900px">
     {% if show_divider %}
     <div class="nr-divider" style="margin-bottom:3rem">

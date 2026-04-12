@@ -2,7 +2,8 @@
 {% set show      = component.show|default(true) %}
 {% set title     = component.title|default('Shop by Category') %}
 {% set label     = component.label|default('Collections') %}
-{% set style     = component.style|default('overlay') %}
+{% set style_raw = component.style|default('overlay') %}
+{% set style     = style_raw is iterable ? (style_raw[0].value|default('overlay')) : style_raw %}
 {% set show_cats = component.show_cats|default(true) %}
 {% set links     = component.links|default([]) %}
 

@@ -15,7 +15,8 @@
 {% set speed         = component.speed|default(5000) %}
 {% set cards_per_view = component.cards_per_view|default(3) %}
 {% set bg_color      = component.bg_color|default('#f8f2ea') %}
-{% set nav_style     = component.nav_style|default('both') %}
+{% set nav_raw       = component.nav_style|default('both') %}
+{% set nav_style     = nav_raw is iterable ? (nav_raw[0].value|default('both')) : nav_raw %}
 
 {% if show and testimonials|length %}
 <section class="nr-testimonials nr-section" style="background:{{ bg_color }}">

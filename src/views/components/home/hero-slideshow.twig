@@ -10,11 +10,14 @@
 {% endif %}
 {% set autoplay    = component.autoplay|default(true) %}
 {% set speed       = component.speed|default(6000) %}
-{% set height      = component.height|default('full') %}
+{% set height_raw  = component.height|default('full') %}
+{% set height      = height_raw is iterable ? (height_raw[0].value|default('full')) : height_raw %}
 {% set overlay_color   = component.overlay_color|default('#000000') %}
 {% set overlay_opacity = component.overlay_opacity|default(50) %}
 {% set ken_burns   = component.ken_burns|default(true) %}
-{% set show_counter = component.show_counter|default(true) %}
+{% set nav_style_raw = component.nav_style|default('counter') %}
+{% set nav_style   = nav_style_raw is iterable ? (nav_style_raw[0].value|default('counter')) : nav_style_raw %}
+{% set show_counter = nav_style == 'counter' or nav_style == 'both' %}
 
 {% if show and slides|length %}
 {% set height_class = height == 'full' ? 'min-height:100vh' : (height == 'large' ? 'min-height:75vh' : 'min-height:55vh') %}

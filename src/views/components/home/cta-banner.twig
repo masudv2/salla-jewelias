@@ -7,7 +7,8 @@
 {% set btn_link         = component.btn_link|default('/products') %}
 {% set overlay_color    = component.overlay_color|default('#000000') %}
 {% set overlay_opacity  = component.overlay_opacity|default(45) %}
-{% set content_position = component.content_position|default('left') %}
+{% set pos_raw          = component.content_position|default('left') %}
+{% set content_position = pos_raw is iterable ? (pos_raw[0].value|default('left')) : pos_raw %}
 {% set show_countdown   = component.show_countdown|default(false) %}
 {% set countdown_date   = component.countdown_date|default('') %}
 {% set label            = component.label|default('Limited Time') %}

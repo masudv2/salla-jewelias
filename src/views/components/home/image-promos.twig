@@ -11,7 +11,8 @@
   ] %}
 {% endif %}
 {% set columns   = component.columns|default(3) %}
-{% set overlay_style = component.overlay_style|default('gradient') %}
+{% set overlay_raw   = component.overlay_style|default('gradient') %}
+{% set overlay_style = overlay_raw is iterable ? (overlay_raw[0].value|default('gradient')) : overlay_raw %}
 
 {% if show and promos|length %}
 <section class="nr-section">

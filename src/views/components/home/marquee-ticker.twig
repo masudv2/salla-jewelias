@@ -12,7 +12,8 @@
 {% set bg_color   = component.bg_color|default('#263D30') %}
 {% set text_color = component.text_color|default('#ffffff') %}
 {% set speed      = component.speed|default(20) %}
-{% set direction  = component.direction|default('left') %}
+{% set dir_raw    = component.direction|default('left') %}
+{% set direction  = dir_raw is iterable ? (dir_raw[0].value|default('left')) : dir_raw %}
 {% set pause_hover = component.pause_hover|default(true) %}
 
 {% if show and items|length %}

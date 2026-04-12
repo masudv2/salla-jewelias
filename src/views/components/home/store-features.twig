@@ -18,12 +18,9 @@
   ] %}
 {% endif %}
 
-{% set columns   = component.columns|default(4) %}
-{% set bg_style  = component.bg_style|default('bordered') %}
-
-<section class="nr-section nr-features{% if bg_style == 'bordered' %} nr-features--bordered{% elseif bg_style == 'warm' %} nr-features--warm{% endif %}">
+<section class="nr-section nr-features nr-features--bordered">
   <div class="nr-container">
-    <div class="nr-features__grid" style="grid-template-columns:repeat({{ columns }},1fr)">
+    <div class="nr-features__grid" style="grid-template-columns:repeat(4,1fr)">
       {% for item in feature_items %}
       <div class="nr-features__item nr-reveal--up">
         {% if item.icon %}

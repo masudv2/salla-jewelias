@@ -1,13 +1,15 @@
 {# Split Collection Banner — Noor Theme #}
 {% set show        = component.show|default(true) %}
 {% set image       = component.image|default('https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=960&q=80') %}
-{% set reverse     = component.reverse|default(false) %}
+{% set pos_raw     = component.image_position|default('left') %}
+{% set img_pos     = pos_raw is iterable ? (pos_raw[0].value|default('left')) : pos_raw %}
+{% set reverse     = img_pos == 'right' %}
 {% set label       = component.label|default('The Collection') %}
 {% set title       = component.title|default('Pieces That Define You') %}
 {% set description = component.description|default('Every jewel in our collection is handcrafted by master artisans, combining traditional techniques with contemporary design to create pieces that are as unique as you are.') %}
 {% set btn_text    = component.btn_text|default('Discover More') %}
 {% set btn_link    = component.btn_link|default('/products') %}
-{% set bg_style    = component.bg_style|default('warm') %}
+{% set bg_color    = component.bg_color|default('#f8f2ea') %}
 
 {% if show %}
 <section class="nr-section">
@@ -17,7 +19,7 @@
         <img src="{{ image }}" alt="{{ title }}" loading="lazy">
       {% endif %}
     </div>
-    <div class="nr-split__content nr-reveal--right{% if bg_style == 'warm' %} nr-split__content--warm{% endif %}">
+    <div class="nr-split__content nr-reveal--right" style="background:{{ bg_color }}">
       {% if label %}
         <span class="nr-section-label">{{ label }}</span>
       {% endif %}

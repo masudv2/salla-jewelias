@@ -3,10 +3,12 @@
 {% set title        = component.title|default('Stay in the Know') %}
 {% set description  = component.description|default('Subscribe to receive updates on new collections, exclusive offers, and styling inspiration.') %}
 {% set btn_text     = component.btn_text|default('Subscribe') %}
-{% set bg_style     = component.bg_style|default('warm') %}
-{% set show_divider = component.show_divider|default(true) %}
+{% set bg_style_raw = component.bg_style|default('warm') %}
+{% set bg_style     = bg_style_raw is iterable ? (bg_style_raw[0].value|default('warm')) : bg_style_raw %}
+{% set bg_color     = component.bg_color|default('#f8f2ea') %}
+{% set show_divider = component.show_dividers|default(true) %}
 
-{% set bg_class = bg_style == 'warm' ? 'nr-newsletter--warm' : (bg_style == 'dark' ? 'nr-newsletter--dark' : '') %}
+{% set bg_class = bg_style == 'warm' ? 'nr-newsletter--warm' : (bg_style == 'custom' ? '' : '') %}
 
 {% if show %}
 <section class="nr-newsletter {{ bg_class }} nr-reveal">

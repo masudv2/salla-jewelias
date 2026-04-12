@@ -3,7 +3,6 @@
 {% set label         = component.label|default('Gallery') %}
 {% set title         = component.title|default('Our World') %}
 {% set images        = component.images|default([]) %}
-{% set show_lightbox = component.show_lightbox|default(true) %}
 
 {% if not images|length %}
   {% set images = [

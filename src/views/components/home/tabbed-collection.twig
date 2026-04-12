@@ -28,13 +28,16 @@
     <div class="nr-tabs nr-reveal" data-nr-tabs>
       <div class="nr-tabs__list" style="justify-content:center">
         {% for tab in tabs %}
-          <button class="nr-tabs__tab{% if loop.first %} is-active{% endif %}" data-nr-tab>{{ tab.label }}</button>
+          <button class="nr-tabs__tab{% if loop.first %} is-active{% endif %}" data-nr-tab>{{ tab['tabs.label']|default(tab.label|default('Tab')) }}</button>
         {% endfor %}
       </div>
       {% for tab in tabs %}
+      {% set tab_source_raw = tab['tabs.source']|default(tab.source|default('latest')) %}
+      {% set tab_source = tab_source_raw is iterable ? (tab_source_raw[0].value|default('latest')) : tab_source_raw %}
+      {% set tab_cat_id = tab['tabs.category_id']|default(tab.category_id|default('')) %}
       <div class="nr-tabs__panel{% if loop.first %} is-active{% endif %}" data-nr-panel>
         <div class="nr-product-grid" style="grid-template-columns:repeat({{ columns }},1fr)">
-          <salla-products-list source="{{ tab.source|default('latest') }}" limit="{{ products_count }}"{% if tab.category_id %} category-id="{{ tab.category_id }}"{% endif %}>
+          <salla-products-list source="{{ tab_source }}" limit="{{ products_count }}"{% if tab_cat_id %} category-id="{{ tab_cat_id }}"{% endif %}>
             <div slot="product-card" class="nr-card nr-reveal">
               <div class="nr-card__media">
                 <a href="{product_url}">
