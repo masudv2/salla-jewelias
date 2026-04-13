@@ -136,7 +136,7 @@
                 "ar": "لون الخلفية"
             },
             "format": "color",
-            "value": "#0D0D0D"
+            "value": "#1f1f1f"
         },
         {
             "type": "string",
@@ -146,7 +146,7 @@
                 "ar": "لون النص"
             },
             "format": "color",
-            "value": "#DDB87E"
+            "value": "#ffffff"
         },
         {
             "type": "string",
@@ -156,7 +156,7 @@
                 "ar": "لون الفاصل النقطي"
             },
             "format": "color",
-            "value": "#C6975B"
+            "value": "#c2a27a"
         },
         {
             "type": "boolean",
@@ -341,7 +341,7 @@
                 "ar": "لون زر الإجراء"
             },
             "format": "color",
-            "value": "#DDB87E"
+            "value": "#c2a27a"
         },
         {
             "type": "boolean",
