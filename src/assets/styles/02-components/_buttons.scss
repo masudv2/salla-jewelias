@@ -135,6 +135,52 @@
   }
 }
 
+// Outline light — for use on dark backgrounds (hero, etc.)
+.nr-btn-outline--light {
+  @extend .nr-btn;
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.35);
+  z-index: 0;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #fff;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 500ms var(--nr-ease);
+    z-index: -1;
+  }
+
+  [dir="rtl"] &::before {
+    transform-origin: right;
+  }
+
+  &:hover {
+    color: var(--nr-text);
+    border-color: #fff;
+  }
+
+  &:hover::before {
+    transform: scaleX(1);
+  }
+
+  .nr-btn__arrow {
+    display: inline-block;
+    transition: transform 400ms var(--nr-ease);
+  }
+
+  &:hover .nr-btn__arrow {
+    transform: translateX(4px);
+  }
+
+  [dir="rtl"] &:hover .nr-btn__arrow {
+    transform: translateX(-4px);
+  }
+}
+
 // Icon-only button (wishlist, quick-view)
 .nr-btn-icon {
   display: inline-flex;

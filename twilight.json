@@ -566,21 +566,16 @@
                     "format": "dropdown-list",
                     "selected": [
                         {
-                            "label": "Dots & Arrows",
-                            "value": "both",
-                            "key": "nav-both"
+                            "label": "Counter + Arrows (Bottom Bar)",
+                            "value": "counter",
+                            "key": "nav-counter"
                         }
                     ],
                     "options": [
                         {
-                            "label": "Dots & Arrows",
-                            "value": "both",
-                            "key": "nav-both"
-                        },
-                        {
-                            "label": "Dots Only",
-                            "value": "dots",
-                            "key": "nav-dots"
+                            "label": "Counter + Arrows (Bottom Bar)",
+                            "value": "counter",
+                            "key": "nav-counter"
                         },
                         {
                             "label": "Arrows Only",
@@ -655,6 +650,80 @@
                     "label": {
                         "en": "Ken Burns Zoom Effect",
                         "ar": "تأثير الزوم البطيء"
+                    },
+                    "format": "switch",
+                    "value": true,
+                    "selected": true
+                },
+                {
+                    "type": "items",
+                    "id": "btn_style",
+                    "label": {
+                        "en": "Button Style",
+                        "ar": "نمط الزر"
+                    },
+                    "format": "dropdown-list",
+                    "selected": [
+                        {
+                            "label": "Outline Light",
+                            "value": "outline-light",
+                            "key": "bs-outline-light"
+                        }
+                    ],
+                    "options": [
+                        {
+                            "label": "Outline Light",
+                            "value": "outline-light",
+                            "key": "bs-outline-light"
+                        },
+                        {
+                            "label": "Solid",
+                            "value": "solid",
+                            "key": "bs-solid"
+                        }
+                    ],
+                    "source": "Manual"
+                },
+                {
+                    "type": "items",
+                    "id": "btn_position",
+                    "label": {
+                        "en": "Button Alignment",
+                        "ar": "محاذاة الزر"
+                    },
+                    "format": "dropdown-list",
+                    "selected": [
+                        {
+                            "label": "Follow Content",
+                            "value": "left",
+                            "key": "bp-left"
+                        }
+                    ],
+                    "options": [
+                        {
+                            "label": "Follow Content",
+                            "value": "left",
+                            "key": "bp-left"
+                        },
+                        {
+                            "label": "Center",
+                            "value": "center",
+                            "key": "bp-center"
+                        },
+                        {
+                            "label": "Right",
+                            "value": "right",
+                            "key": "bp-right"
+                        }
+                    ],
+                    "source": "Manual"
+                },
+                {
+                    "type": "boolean",
+                    "id": "show_progress",
+                    "label": {
+                        "en": "Show Progress Bar",
+                        "ar": "إظهار شريط التقدم"
                     },
                     "format": "switch",
                     "value": true,
