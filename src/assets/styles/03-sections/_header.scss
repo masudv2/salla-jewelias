@@ -29,6 +29,11 @@
   .nr-header__logo-dark { display: block; }
 }
 
+// Offset header when announcement bar is visible
+.nr-header--has-announcement {
+  top: 38px;
+}
+
 // Solid state (scrolled past hero)
 .nr-header--transparent.nr-header--solid {
   background: var(--nr-bg);

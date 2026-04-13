@@ -8,6 +8,8 @@ export function initAnnouncement() {
     closeBtn.addEventListener('click', () => {
       bar.style.display = 'none';
       document.body.classList.add('nr-announcement-closed');
+      const header = document.getElementById('nr-header');
+      if (header) header.classList.remove('nr-header--has-announcement');
     });
   }
 
