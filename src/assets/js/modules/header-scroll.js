@@ -1,6 +1,17 @@
 export function initHeaderScroll() {
   const header = document.getElementById('nr-header');
-  if (!header || !header.classList.contains('nr-header--transparent')) return;
+  if (!header) return;
+
+  const announcement = document.getElementById('announcement-bar');
+
+  if (announcement && header.classList.contains('nr-header--transparent')) {
+    header.classList.add('nr-header--with-announcement');
+    const h = announcement.offsetHeight;
+    document.documentElement.style.setProperty('--announcement-bar-height', `${h}px`);
+  }
+
+  // If not transparent, no hero-based scroll logic needed
+  if (!header.classList.contains('nr-header--transparent')) return;
 
   const hero = document.querySelector('[data-nr-hero]');
   if (!hero) {

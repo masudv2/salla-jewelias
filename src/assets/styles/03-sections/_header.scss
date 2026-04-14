@@ -23,21 +23,15 @@
   width: 100%;
   background: transparent;
   border-bottom-color: transparent;
+  color: #fff;
 
-  .nr-header__icon,
-  .nr-header__nav-link,
-  .nr-header__logo {
-    color: var(--nr-dark-text);
-  }
-
-  .nr-header__icon:hover,
-  .nr-header__nav-link:hover {
-    color: rgba(255, 255, 255, 0.7);
-  }
-
-  // In transparent mode: show dark logo, hide light logo
   .nr-header__logo-light { display: none; }
   .nr-header__logo-dark { display: block; }
+}
+
+// Offset header when announcement bar is visible (transparent header on homepage)
+.nr-header--with-announcement {
+  top: var(--announcement-bar-height, 38px);
 }
 
 // Solid state (scrolled past hero)
@@ -45,19 +39,8 @@
   background: var(--nr-bg);
   border-bottom-color: var(--nr-border);
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+  color: var(--nr-text);
 
-  .nr-header__icon,
-  .nr-header__nav-link,
-  .nr-header__logo {
-    color: var(--nr-text);
-  }
-
-  .nr-header__icon:hover,
-  .nr-header__nav-link:hover {
-    color: var(--nr-primary);
-  }
-
-  // In solid mode: show light logo, hide dark logo
   .nr-header__logo-light { display: block; }
   .nr-header__logo-dark { display: none; }
 }
@@ -79,6 +62,7 @@
   gap: 1rem;
 }
 
+// Left section
 .nr-header__left {
   display: flex;
   align-items: center;
@@ -92,14 +76,11 @@
   align-items: center;
 }
 
+// Logo
 .nr-header__logo {
   justify-self: center;
   text-align: center;
-  font-family: var(--nr-font-display);
-  font-size: 1.75rem;
-  font-weight: 500;
-  color: var(--nr-text);
-  letter-spacing: 0.02em;
+  color: inherit;
   line-height: 1;
 
   img {
@@ -109,6 +90,14 @@
   }
 }
 
+.nr-header__logo-text {
+  font-family: var(--nr-font-display);
+  font-size: 1.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+}
+
+// Actions
 .nr-header__actions {
   display: flex;
   align-items: center;
@@ -116,35 +105,139 @@
   gap: 0.25rem;
 }
 
+// Icon buttons
 .nr-header__icon {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 42px;
-  color: var(--nr-text);
-  transition: color var(--nr-transition);
+  width: 40px;
+  height: 40px;
+  color: inherit;
+  transition: opacity 200ms ease, transform 350ms var(--nr-ease);
 
   &:hover {
-    color: var(--nr-primary);
+    opacity: 0.6;
+    transform: scale(1.05);
   }
 
-  svg, i {
+  svg {
+    width: 19px;
+    height: 19px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.4;
+  }
+
+  i {
     font-size: 20px;
   }
 }
 
+// Cart icon override — style the SVG inside salla-cart-summary
+.nr-header__cart-icon {
+  width: 19px;
+  height: 19px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.4;
+}
+
+// Override salla-cart-summary default styles
+salla-cart-summary {
+  color: inherit;
+
+  .s-cart-summary-wrapper {
+    color: inherit;
+  }
+
+  .s-cart-summary-icon {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 200ms ease, transform 350ms var(--nr-ease);
+
+    &:hover {
+      opacity: 0.6;
+      transform: scale(1.05);
+    }
+  }
+
+  // Style the count badge
+  .s-cart-summary-count {
+    position: absolute;
+    top: 2px;
+    inset-inline-end: 0;
+    min-width: 16px;
+    height: 16px;
+    background: var(--nr-gold, #c2a27a);
+    border-radius: 50%;
+    font-size: 0.55rem;
+    font-weight: 600;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+    line-height: 1;
+  }
+
+  // Hide the label and total
+  .s-cart-summary-content,
+  .s-cart-summary-label,
+  .s-cart-summary-total {
+    display: none;
+  }
+}
+
+// Language / Currency button
+.nr-header__locale-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: inherit;
+  font-family: var(--nr-font-body);
+  font-size: var(--nr-label, 0.75rem);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid transparent;
+  border-radius: 0;
+  background: none;
+  transition: opacity 200ms ease, border-color 200ms ease;
+
+  &:hover {
+    opacity: 0.7;
+    border-color: currentColor;
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.4;
+  }
+}
+
+.nr-header__locale-label {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+// Badge
 .nr-header__badge {
   position: absolute;
   top: 4px;
-  right: 4px;
+  inset-inline-end: 4px;
   min-width: 16px;
   height: 16px;
-  background: var(--nr-primary);
+  background: var(--nr-gold, #c2a27a);
   border-radius: 50%;
   font-size: 0.55rem;
-  color: var(--nr-dark-text);
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -162,32 +255,45 @@
 
   .nr-header__nav-link {
     font-family: var(--nr-font-body);
-    font-size: 0.8rem;
+    font-size: var(--nr-label, 0.75rem);
     font-weight: 400;
-    letter-spacing: 0.04em;
-    color: var(--nr-text-light);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: inherit;
+    opacity: 0.85;
     padding: 0.625rem 0;
     display: inline-flex;
     align-items: center;
     position: relative;
-    transition: color var(--nr-transition);
+    transition: opacity var(--nr-transition);
 
     &::after {
       content: '';
       position: absolute;
       bottom: 0;
       left: 0;
-      width: 0;
+      right: 0;
       height: 1px;
-      background: var(--nr-primary);
-      transition: width 400ms var(--nr-ease);
+      background: currentColor;
+      transform: scaleX(0);
+      transition: transform 400ms var(--nr-ease);
+      transform-origin: right;
+
+      [dir="rtl"] & {
+        transform-origin: left;
+      }
     }
 
     &:hover {
-      color: var(--nr-primary);
+      opacity: 1;
 
       &::after {
-        width: 100%;
+        transform: scaleX(1);
+        transform-origin: left;
+
+        [dir="rtl"] & {
+          transform-origin: right;
+        }
       }
     }
   }
@@ -214,5 +320,9 @@
 
   .nr-header__logo {
     font-size: 1.35rem;
+  }
+
+  .nr-header__locale-btn .nr-header__locale-label {
+    display: none;
   }
 }

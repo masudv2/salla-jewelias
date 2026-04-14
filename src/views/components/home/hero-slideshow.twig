@@ -1,4 +1,4 @@
-{# Hero Slideshow — Noor Theme (salla-slider / Splide) #}
+{# Hero Slideshow — Noor Theme #}
 {% set show        = component.show|default(true) %}
 {% set slides      = component.slides|default([]) %}
 {% if not slides|length %}
@@ -15,72 +15,103 @@
 {% set overlay_color   = component.overlay_color|default('#000000') %}
 {% set overlay_opacity = component.overlay_opacity|default(50) %}
 {% set ken_burns   = component.ken_burns|default(true) %}
-{% set nav_style_raw = component.nav_style|default('counter') %}
-{% set nav_style   = nav_style_raw is iterable ? (nav_style_raw[0].value|default('counter')) : nav_style_raw %}
-{% set show_counter = nav_style == 'counter' or nav_style == 'both' %}
+{% set btn_style_raw = component.btn_style|default('outline-light') %}
+{% set btn_style   = btn_style_raw is iterable ? (btn_style_raw[0].value|default('outline-light')) : btn_style_raw %}
+{% set btn_pos_raw = component.btn_position|default('left') %}
+{% set btn_pos     = btn_pos_raw is iterable ? (btn_pos_raw[0].value|default('left')) : btn_pos_raw %}
+{% set show_progress = component.show_progress|default(true) %}
 
 {% if show and slides|length %}
-{% set height_class = height == 'full' ? 'min-height:100vh' : (height == 'large' ? 'min-height:75vh' : 'min-height:55vh') %}
+{% set height_class = height == 'full' ? 'min-height:100vh;min-height:100dvh' : (height == 'large' ? 'min-height:75vh' : 'min-height:55vh') %}
 
 <section class="nr-hero{% if ken_burns %} nr-hero--ken-burns{% endif %}"
          data-nr-hero
+         data-slide-speed="{{ speed }}"
          style="{{ height_class }}">
 
-  <salla-slider
-    type="fade"
-    auto-play
-    loop
-    auto-play-speed="{{ speed }}"
-    arrows
-    class="nr-hero__slider"
-    id="nr-hero-slider">
+  <div class="nr-hero__slides" id="nr-hero-slides">
+    {% for slide in slides %}
+    {% set pos_raw = slide.content_position|default(slide['slides.content_position']|default('left')) %}
+    {% set pos = pos_raw is iterable ? (pos_raw[0].value|default('left')) : pos_raw %}
+    <div class="nr-hero__slide{% if loop.first %} is-active{% endif %}">
 
-    <div slot="items">
-      {% for slide in slides %}
-      <div class="nr-hero__slide">
-        {% if slide.image %}
-          <img class="nr-hero__img" src="{{ slide.image }}" alt="{{ slide.title|default('') }}" loading="{% if loop.first %}eager{% else %}lazy{% endif %}">
+      {% set img = slide.image|default(slide['slides.image']|default('')) %}
+      {% if img %}
+        <img class="nr-hero__img" src="{{ img }}" alt="{{ slide.title|default(slide['slides.title']|default('')) }}" loading="{% if loop.first %}eager{% else %}lazy{% endif %}">
+      {% endif %}
+
+      <div class="nr-hero__overlay" style="background:linear-gradient(180deg, {{ overlay_color }}{{ '%02x'|format((overlay_opacity / 100 * 0.15 * 255)|round) }} 0%, transparent 40%), linear-gradient(90deg, {{ overlay_color }}{{ '%02x'|format((overlay_opacity / 100 * 255)|round) }} 0%, {{ overlay_color }}{{ '%02x'|format((overlay_opacity / 100 * 0.3 * 255)|round) }} 55%, transparent 100%)"></div>
+
+      {% set title = slide.title|default(slide['slides.title']|default('')) %}
+      {% set subtitle = slide.subtitle|default(slide['slides.subtitle']|default('')) %}
+      {% set desc = slide.description|default(slide['slides.description']|default('')) %}
+      {% set btn1 = slide.btn_text|default(slide['slides.btn_text']|default('')) %}
+      {% set btn1_link = slide.btn_link|default(slide['slides.btn_link']|default('#')) %}
+      {% set btn1_color = slide.btn_color|default(slide['slides.btn_color']|default('')) %}
+      {% set btn2 = slide.btn2_text|default(slide['slides.btn2_text']|default('')) %}
+      {% set btn2_link = slide.btn2_link|default(slide['slides.btn2_link']|default('#')) %}
+
+      <div class="nr-hero__content nr-hero__content--{{ pos }}">
+        {% if subtitle %}
+          <span class="nr-hero__label">{{ subtitle }}</span>
         {% endif %}
 
-        <div class="nr-hero__overlay" style="background:linear-gradient(to right, {{ overlay_color }}{{ '%02x'|format((overlay_opacity / 100 * 255)|round) }} 0%, {{ overlay_color }}33 50%, transparent 100%)"></div>
+        {% if title %}
+          <h2 class="nr-hero__title">{{ title|raw }}</h2>
+        {% endif %}
 
-        <div class="nr-hero__content nr-hero__content--{{ slide.content_position|default('left') }}">
-          {% if slide.subtitle %}
-            <p class="nr-hero__subtitle nr-hero__anim" data-nr-anim="1">{{ slide.subtitle }}</p>
-          {% endif %}
+        {% if desc %}
+          <p class="nr-hero__desc">{{ desc }}</p>
+        {% endif %}
 
-          {% if slide.title %}
-            <h2 class="nr-hero__title nr-hero__anim" data-nr-anim="2">{{ slide.title }}</h2>
-          {% endif %}
-
-          {% if slide.description %}
-            <p class="nr-hero__desc nr-hero__anim" data-nr-anim="3">{{ slide.description }}</p>
-          {% endif %}
-
-          <div class="nr-hero__actions nr-hero__anim" data-nr-anim="4">
-            {% if slide.btn_text %}
-              <a href="{{ slide.btn_link|default('#') }}" class="nr-btn-solid"{% if slide.btn_color %} style="background:{{ slide.btn_color }}"{% endif %}>
-                {{ slide.btn_text }} <span class="nr-btn__arrow">&rarr;</span>
+        {% if btn1 or btn2 %}
+        <div class="nr-hero__actions nr-hero__actions--{{ btn_pos }}">
+          {% if btn1 %}
+            {% if btn_style == 'solid' %}
+              <a href="{{ btn1_link }}" class="nr-btn-solid"{% if btn1_color %} style="background:{{ btn1_color }}"{% endif %}>
+                {{ btn1 }} <span class="nr-btn__arrow">&rarr;</span>
+              </a>
+            {% else %}
+              <a href="{{ btn1_link }}" class="nr-btn-outline--light">
+                {{ btn1 }} <span class="nr-btn__arrow">&rarr;</span>
               </a>
             {% endif %}
-            {% if slide.btn2_text %}
-              <a href="{{ slide.btn2_link|default('#') }}" class="nr-btn-outline" style="border-color:rgba(255,255,255,0.4);color:#fff">
-                {{ slide.btn2_text }}
-              </a>
-            {% endif %}
-          </div>
+          {% endif %}
+          {% if btn2 %}
+            <a href="{{ btn2_link }}" class="nr-btn-outline--light">
+              {{ btn2 }}
+            </a>
+          {% endif %}
         </div>
+        {% endif %}
       </div>
-      {% endfor %}
     </div>
-  </salla-slider>
+    {% endfor %}
+  </div>
 
-  {# Slide counter #}
-  {% if show_counter and slides|length > 1 %}
-  <div class="nr-hero__counter">
-    <span class="nr-hero__counter-current">01</span>
-    <span class="nr-hero__counter-sep">/</span>
-    <span class="nr-hero__counter-total">{{ '%02d'|format(slides|length) }}</span>
+  {# Bottom bar: counter | progress | arrows #}
+  {% if slides|length > 1 %}
+  <div class="nr-hero__bottom">
+    <div class="nr-hero__counter">
+      <span class="nr-hero__counter-current">01</span>
+      <span class="nr-hero__counter-sep">/</span>
+      <span class="nr-hero__counter-total">{{ '%02d'|format(slides|length) }}</span>
+    </div>
+
+    {% if show_progress %}
+    <div class="nr-hero__progress">
+      <div class="nr-hero__progress-bar" id="nr-hero-progress"></div>
+    </div>
+    {% endif %}
+
+    <div class="nr-hero__nav">
+      <button class="nr-hero__nav-btn" id="nr-hero-prev" aria-label="{{ trans('common.elements.previous') }}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button class="nr-hero__nav-btn" id="nr-hero-next" aria-label="{{ trans('common.elements.next') }}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
   </div>
   {% endif %}
 
