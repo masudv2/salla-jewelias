@@ -1,11 +1,13 @@
 {% include 'components/header/announcement-bar.twig' %}
+
 {# ═══ Header — Noor: nav left, logo center, actions right ═══ #}
+{% set is_theme_preview = theme is defined and theme.mode is defined and theme.mode == 'preview' %}
 {% set header_transparent = theme.settings.get('header_transparent', true) %}
 {% set logo_light = theme.settings.get('logo_light', store.logo) %}
 {% set logo_dark  = theme.settings.get('logo_dark', store.logo) %}
 {% set logo_h     = theme.settings.get('logo_height', '36') %}
 
-<header class="nr-header{% if header_transparent and is_page('index') %} nr-header--transparent{% endif %}" id="nr-header">
+<header class="nr-header{% if header_transparent and (is_page('index') or is_theme_preview) %} nr-header--transparent{% endif %}" id="nr-header">
   <div class="nr-header__inner">
 
     {# Left: menu toggle + nav #}
@@ -30,7 +32,7 @@
         <span class="nr-header__logo-text">{{ store.name }}</span>
       {% endif %}
     </a>
-    {% if is_page('index') %}
+    {% if is_page('index') or is_theme_preview %}
     <h1 class="sr-only">{{ store.name }}</h1>
     {% endif %}
 

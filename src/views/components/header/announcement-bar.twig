@@ -157,7 +157,8 @@
 {% endif %}
 
 {% set show_toolbar = ab_show_lang or ab_show_cur or ab_show_soc %}
-{% set visible = ab_show and blocks|length and (not ab_home_only or is_page('index')) %}
+{% set is_theme_preview = theme is defined and theme.mode is defined and theme.mode == 'preview' %}
+{% set visible = ab_show and blocks|length and (not ab_home_only or is_page('index') or is_theme_preview) %}
 
 {% if visible %}
 <div
