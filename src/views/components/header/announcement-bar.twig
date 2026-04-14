@@ -1,0 +1,301 @@
+{# Eurus-parity announcement bar — settings from theme (twilight) #}
+{% set ab_show = theme.settings.get('announce_show', true) %}
+{% set ab_home_only = theme.settings.get('announce_homepage_only', false) %}
+{% set ab_sticky = theme.settings.get('announce_sticky', false) %}
+{% set ab_bg = theme.settings.get('announce_bg', '#000000') %}
+{% set ab_bg_dark = theme.settings.get('announce_bg_dark', '#000000') %}
+{% set ab_color = theme.settings.get('announce_color', '#ffffff') %}
+{% set ab_color_dark = theme.settings.get('announce_color_dark', '#ffffff') %}
+{% set ab_tlink = theme.settings.get('announce_textlink_light', '') %}
+{% set ab_tlink_d = theme.settings.get('announce_textlink_dark', '') %}
+{% set ab_car_desk = theme.settings.get('announce_carousel_desktop', true) %}
+{% set ab_auto = theme.settings.get('announce_auto_switch', true) %}
+{% set ab_every = theme.settings.get('announce_change_every', theme.settings.get('announce_slider_interval', 5)) %}
+{% set ab_arrows = theme.settings.get('announce_show_nav_arrows', true) %}
+{% set ab_tool_align = theme.settings.get('announce_toolbar_alignment', 'right') %}
+{% set raw_align = ab_tool_align %}
+{% set ab_tool_align = raw_align is iterable ? (raw_align[0].value|default('right')) : (raw_align|default('right')) %}
+{% set _loc = theme.settings.get('announce_show_locale', false) %}
+{% set ab_show_lang = theme.settings.get('announce_show_language', _loc) %}
+{% set ab_show_cur = theme.settings.get('announce_show_currency', _loc) %}
+{% set ab_show_soc = theme.settings.get('announce_show_social', false) %}
+{% set ab_tool_fs = theme.settings.get('announce_toolbar_text_size', 80) %}
+{% set ab_show_close = theme.settings.get('announce_show_close', true) %}
+
+{% set menu_raw = theme.settings.get('announce_menu_links', []) %}
+{% set blocks_raw = theme.settings.get('announce_blocks', []) %}
+{% set items_raw = theme.settings.get('announce_items', []) %}
+
+{# Legacy fallback texts #}
+{% set t1 = theme.settings.get('announce_text_1', '') %}
+{% set t2 = theme.settings.get('announce_text_2', '') %}
+{% set t3 = theme.settings.get('announce_text_3', '') %}
+{% set t4 = theme.settings.get('announce_text_4', '') %}
+{% set legacy_link = theme.settings.get('announce_link', '') %}
+
+{% set menu_links = [] %}
+{% if menu_raw is iterable %}
+  {% for m in menu_raw %}
+    {% set ml = m['menu.label']|default(m.label|default('')) %}
+    {% set mu = m['menu.url']|default(m.url|default('')) %}
+    {% if ml and mu %}
+      {% set menu_links = menu_links|merge([{ label: ml, url: mu }]) %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% set blocks = [] %}
+{% if blocks_raw is iterable and blocks_raw|length %}
+  {% for row in blocks_raw %}
+    {% set txt = row['blocks.text']|default(row.text|default('')) %}
+    {% if txt %}
+      {% set bt = row['blocks.block_type']|default(row.block_type|default('announcement')) %}
+      {% set bt = bt is iterable ? (bt[0].value|default('announcement')) : bt %}
+      {% set ic = row['blocks.icon']|default(row.icon|default('none')) %}
+      {% set ic = ic is iterable ? (ic[0].value|default('none')) : ic %}
+      {% set bst = row['blocks.button_style']|default(row.button_style|default('primary')) %}
+      {% set bst = bst is iterable ? (bst[0].value|default('primary')) : bst %}
+      {% set cdt = row['blocks.cd_type']|default(row.cd_type|default('standard')) %}
+      {% set cdt = cdt is iterable ? (cdt[0].value|default('standard')) : cdt %}
+      {% set cdu = row['blocks.cd_unit']|default(row.cd_unit|default('day')) %}
+      {% set cdu = cdu is iterable ? (cdu[0].value|default('day')) : cdu %}
+      {% set ow = row['blocks.open_new_window']|default(row.open_new_window|default(false)) %}
+      {% if ow is iterable and ow[0] is defined %}
+        {% set ow = ow[0].selected|default(false) %}
+      {% endif %}
+      {% set owb = row['blocks.open_new_window_btn']|default(row.open_new_window_btn|default(false)) %}
+      {% if owb is iterable and owb[0] is defined %}
+        {% set owb = owb[0].selected|default(false) %}
+      {% endif %}
+      {% set blocks = blocks|merge([{
+        block_type: bt,
+        icon: ic,
+        text: txt,
+        text_size: row['blocks.text_size']|default(row.text_size|default(80)),
+        link: row['blocks.link']|default(row.link|default('')),
+        open_new_window: ow,
+        button_label: row['blocks.button_label']|default(row.button_label|default('')),
+        button_link: row['blocks.button_link']|default(row.button_link|default('')),
+        open_new_window_btn: owb,
+        button_style: bst,
+        coupon_color: row['blocks.coupon_color']|default(row.coupon_color|default('')),
+        coupon_color_dark: row['blocks.coupon_color_dark']|default(row.coupon_color_dark|default('')),
+        cd_type: cdt,
+        cd_interval: row['blocks.cd_interval']|default(row.cd_interval|default(7)),
+        cd_unit: cdu,
+        tz: row['blocks.tz']|default(row.tz|default(0)),
+        end_year: row['blocks.end_year']|default(row.end_year|default(2026)),
+        end_month: row['blocks.end_month']|default(row.end_month|default(12)),
+        end_day: row['blocks.end_day']|default(row.end_day|default(31)),
+        end_hour: row['blocks.end_hour']|default(row.end_hour|default(23)),
+        end_minute: row['blocks.end_minute']|default(row.end_minute|default(0))
+      }]) %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% if not blocks|length and items_raw is iterable and items_raw|length %}
+  {% for row in items_raw %}
+    {% set txt = row['items.text']|default(row.text|default('')) %}
+    {% if txt %}
+      {% set lk = row['items.link']|default(row.link|default('')) %}
+      {% set blocks = blocks|merge([{
+        block_type: 'announcement',
+        icon: 'none',
+        text: txt,
+        text_size: 80,
+        link: lk,
+        open_new_window: false,
+        button_label: '',
+        button_link: '',
+        open_new_window_btn: false,
+        button_style: 'primary',
+        coupon_color: '',
+        coupon_color_dark: '',
+        cd_type: 'standard',
+        cd_interval: 7,
+        cd_unit: 'day',
+        tz: 0,
+        end_year: 2026,
+        end_month: 12,
+        end_day: 31,
+        end_hour: 23,
+        end_minute: 0
+      }]) %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% if not blocks|length %}
+  {% for t in [t1, t2, t3, t4] %}
+    {% if t %}
+      {% set blocks = blocks|merge([{
+        block_type: 'announcement',
+        icon: 'none',
+        text: t,
+        text_size: 80,
+        link: legacy_link,
+        open_new_window: false,
+        button_label: '',
+        button_link: '',
+        open_new_window_btn: false,
+        button_style: 'primary',
+        coupon_color: '',
+        coupon_color_dark: '',
+        cd_type: 'standard',
+        cd_interval: 7,
+        cd_unit: 'day',
+        tz: 0,
+        end_year: 2026,
+        end_month: 12,
+        end_day: 31,
+        end_hour: 23,
+        end_minute: 0
+      }]) %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% set show_toolbar = ab_show_lang or ab_show_cur or ab_show_soc %}
+{% set visible = ab_show and blocks|length and (not ab_home_only or is_page('index')) %}
+
+{% if visible %}
+<div
+  id="announcement-bar"
+  class="announcement-bar{% if ab_sticky %} announcement-bar--sticky{% endif %}{% if menu_links|length %} announcement-bar--has-menu{% endif %}{% if show_toolbar %} announcement-bar--has-toolbar{% endif %}"
+  style="--announcement-bg: {{ ab_bg }}; --announcement-bg-dark: {{ ab_bg_dark }}; --announcement-fg: {{ ab_color }}; --announcement-fg-dark: {{ ab_color_dark }};{% if ab_tlink %} --announcement-link: {{ ab_tlink }};{% endif %}{% if ab_tlink_d %} --announcement-link-dark: {{ ab_tlink_d }};{% endif %} --announcement-toolbar-fs: {{ ab_tool_fs }}%;"
+  data-splide-autoplay="{{ ab_auto ? '1' : '0' }}"
+  data-splide-interval="{{ ab_every * 1000 }}"
+  data-splide-arrows="{{ ab_arrows ? '1' : '0' }}"
+  data-splide-carousel-desktop="{{ ab_car_desk ? '1' : '0' }}"
+  data-rtl="{{ salla.config.get('theme.is_rtl') ? '1' : '0' }}"
+>
+
+  {% if menu_links|length %}
+  <nav class="announcement-bar__menu" aria-label="Menu">
+    <ul class="announcement-bar__menu-list">
+      {% for item in menu_links %}
+      <li><a href="{{ item.url }}" class="announcement-bar__menu-link">{{ item.label }}</a></li>
+      {% endfor %}
+    </ul>
+  </nav>
+  {% endif %}
+
+  <div class="announcement-bar__splide-wrap">
+    <div id="announcement-bar-splide" class="splide announcement-bar__splide" role="region" aria-label="Promotions">
+      <div class="splide__track">
+        <ul class="splide__list">
+          {% for b in blocks %}
+          {% set idx = loop.index0 %}
+          <li class="splide__slide announcement-bar__slide{% if not ab_car_desk and loop.index > 1 %} announcement-bar__slide--stack-desktop{% endif %}" data-block-index="{{ idx }}">
+            <div class="announcement-bar__slide-inner" style="font-size: calc(0.7rem * {{ b.text_size|default(80) }} / 100);">
+              <div class="announcement-bar__row">
+                {% if b.icon|default('none') != 'none' %}
+                <span class="announcement-bar__icon" aria-hidden="true">
+                  {% include 'components/header/partials/announcement-icon.twig' with { icon: b.icon } %}
+                </span>
+                {% endif %}
+                <div class="announcement-bar__text">
+                  {% set body = b.text %}
+                  {% if body contains '{count_down}' %}
+                    {% set parts = body|split('{count_down}') %}
+                    <p class="announcement-bar__text-p">
+                      {% if parts[0] is defined and parts[0]|trim %}<span>{{ parts[0]|trim }}</span>{% endif %}
+                      <span class="announcement-bar__inline-countdown"
+                        data-acd-type="{{ b.cd_type }}"
+                        data-acd-interval="{{ b.cd_interval }}"
+                        data-acd-unit="{{ b.cd_unit }}"
+                        data-acd-tz="{{ b.tz }}"
+                        data-acd-y="{{ b.end_year }}"
+                        data-acd-mo="{{ b.end_month }}"
+                        data-acd-d="{{ b.end_day }}"
+                        data-acd-h="{{ b.end_hour }}"
+                        data-acd-mi="{{ b.end_minute }}"
+                        data-acd-block="{{ idx }}"
+                      >
+                        <span class="announcement-bar__cd-part"><span data-part="d">--</span><span class="announcement-bar__cd-suffix">D</span></span>
+                        <span class="announcement-bar__cd-gap"></span>
+                        <span class="announcement-bar__cd-part" data-part="h">--</span><span class="announcement-bar__cd-colon">:</span>
+                        <span class="announcement-bar__cd-part" data-part="m">--</span><span class="announcement-bar__cd-colon">:</span>
+                        <span class="announcement-bar__cd-part" data-part="s">--</span>
+                      </span>
+                      {% if parts[1] is defined and parts[1]|trim %}<span>{{ parts[1]|trim }}</span>{% endif %}
+                    </p>
+                  {% elseif b.link|default('') %}
+                    <p class="announcement-bar__text-p"><a href="{{ b.link }}" class="announcement-bar__link"{% if b.open_new_window %} target="_blank" rel="noopener"{% endif %}>{{ body }}</a></p>
+                  {% else %}
+                    <p class="announcement-bar__text-p">{{ body }}</p>
+                  {% endif %}
+                </div>
+
+                {% if b.block_type == 'promo_code' and b.button_label|default('') %}
+                <button type="button" class="announcement-bar__coupon" data-coupon-copy="{{ b.button_label|e('html_attr') }}"
+                  style="{% if b.coupon_color %}--coupon-fg: {{ b.coupon_color }}; --coupon-border: {{ b.coupon_color }};{% endif %}{% if b.coupon_color_dark %} --coupon-fg-dark: {{ b.coupon_color_dark }}; --coupon-border-dark: {{ b.coupon_color_dark }};{% endif %}">
+                  <span class="announcement-bar__coupon-text">{{ b.button_label }}</span>
+                  <span class="announcement-bar__coupon-icon" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                  </span>
+                </button>
+                {% elseif b.block_type == 'announcement' and b.button_label|default('') %}
+                  {% if b.button_style == 'text_arrow' %}
+                    {% if b.button_link|default('') %}
+                    <a href="{{ b.button_link }}" class="announcement-bar__btn-text announcement-bar__btn-text--arrow"{% if b.open_new_window_btn %} target="_blank" rel="noopener"{% endif %}>
+                      <span class="announcement-bar__btn-dot"></span>{{ b.button_label }}
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                    </a>
+                    {% else %}
+                    <span class="announcement-bar__btn-text announcement-bar__btn-text--arrow is-disabled">
+                      <span class="announcement-bar__btn-dot"></span>{{ b.button_label }}
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                    </span>
+                    {% endif %}
+                  {% else %}
+                    {% if b.button_link|default('') %}
+                    <a href="{{ b.button_link }}" class="announcement-bar__btn-primary"{% if b.open_new_window_btn %} target="_blank" rel="noopener"{% endif %}>{{ b.button_label }}</a>
+                    {% else %}
+                    <span class="announcement-bar__btn-primary is-disabled">{{ b.button_label }}</span>
+                    {% endif %}
+                  {% endif %}
+                {% endif %}
+              </div>
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  {% if show_toolbar or ab_show_close %}
+  <div class="announcement-bar__toolbar announcement-bar__toolbar--{{ ab_tool_align }}">
+    {% if ab_show_lang or ab_show_cur %}
+      {% if store.settings.is_multilingual or store.settings.currencies_enabled %}
+      <button type="button" class="announcement-bar__toolbar-btn" onclick="salla.event.dispatch('localization::open')">
+        {% if ab_show_lang %}<span>{{ user.language.code|upper }}</span>{% endif %}
+        {% if ab_show_lang and ab_show_cur %}<span class="announcement-bar__toolbar-sep">/</span>{% endif %}
+        {% if ab_show_cur %}<span>{{ currency.symbol|default('') }}</span>{% endif %}
+      </button>
+      {% endif %}
+    {% endif %}
+    {% if ab_show_soc %}
+    <div class="announcement-bar__toolbar-social">
+      {% if store.social.instagram %}
+      <a href="{{ store.social.instagram }}" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+      {% endif %}
+      {% if store.social.twitter %}
+      <a href="{{ store.social.twitter }}" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      {% endif %}
+      {% if store.social.facebook %}
+      <a href="{{ store.social.facebook }}" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+      {% endif %}
+    </div>
+    {% endif %}
+    {% if ab_show_close %}
+    <button type="button" class="announcement-bar__close" id="announcement-bar-close" aria-label="{{ trans('common.elements.close') }}">
+      <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 1l8 8M9 1L1 9" stroke="currentColor" stroke-width="1.5"/></svg>
+    </button>
+    {% endif %}
+  </div>
+  {% endif %}
+</div>
+{% endif %}

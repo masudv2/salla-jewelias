@@ -2,11 +2,12 @@ export function initHeaderScroll() {
   const header = document.getElementById('nr-header');
   if (!header) return;
 
-  const announcement = document.getElementById('nr-announcement');
+  const announcement = document.getElementById('announcement-bar');
 
-  // Offset transparent header when announcement bar is visible
   if (announcement && header.classList.contains('nr-header--transparent')) {
-    header.classList.add('nr-header--has-announcement');
+    header.classList.add('nr-header--with-announcement');
+    const h = announcement.offsetHeight;
+    document.documentElement.style.setProperty('--announcement-bar-height', `${h}px`);
   }
 
   // If not transparent, no hero-based scroll logic needed

@@ -129,6 +129,525 @@
             "selected": true
         },
         {
+            "type": "boolean",
+            "id": "announce_homepage_only",
+            "label": {
+                "en": "Show only on homepage",
+                "ar": "العرض على الصفحة الرئيسية فقط"
+            },
+            "format": "switch",
+            "value": false,
+            "selected": false
+        },
+        {
+            "type": "boolean",
+            "id": "announce_sticky",
+            "label": {
+                "en": "Sticky announcement bar",
+                "ar": "شريط إعلانات ثابت أعلى الصفحة"
+            },
+            "format": "switch",
+            "value": false,
+            "selected": false
+        },
+        {
+            "type": "boolean",
+            "id": "announce_carousel_desktop",
+            "label": {
+                "en": "Carousel on desktop (off = stacked messages on large screens)",
+                "ar": "عرض دوّار على الشاشات الكبيرة"
+            },
+            "format": "switch",
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "boolean",
+            "id": "announce_auto_switch",
+            "label": {
+                "en": "Autoplay carousel",
+                "ar": "تشغيل تلقائي للدوّار"
+            },
+            "format": "switch",
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "number",
+            "id": "announce_change_every",
+            "label": {
+                "en": "Carousel slide interval (seconds)",
+                "ar": "فاصل الشرائح (ثوانٍ)"
+            },
+            "format": "number",
+            "value": 5
+        },
+        {
+            "type": "boolean",
+            "id": "announce_show_nav_arrows",
+            "label": {
+                "en": "Show carousel arrows",
+                "ar": "إظهار أسهم التنقل"
+            },
+            "format": "switch",
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "items",
+            "id": "announce_toolbar_alignment",
+            "label": {
+                "en": "Toolbar alignment (language / social / close)",
+                "ar": "محاذاة شريط الأدوات"
+            },
+            "format": "dropdown-list",
+            "selected": [
+                {
+                    "label": "Right",
+                    "value": "right",
+                    "key": "ann-tb-r"
+                }
+            ],
+            "options": [
+                {
+                    "label": "Right",
+                    "value": "right",
+                    "key": "ann-tb-r"
+                },
+                {
+                    "label": "Left",
+                    "value": "left",
+                    "key": "ann-tb-l"
+                },
+                {
+                    "label": "Center",
+                    "value": "center",
+                    "key": "ann-tb-c"
+                }
+            ]
+        },
+        {
+            "type": "boolean",
+            "id": "announce_show_language",
+            "label": {
+                "en": "Toolbar: show language code",
+                "ar": "إظهار رمز اللغة"
+            },
+            "format": "switch",
+            "value": false,
+            "selected": false
+        },
+        {
+            "type": "boolean",
+            "id": "announce_show_currency",
+            "label": {
+                "en": "Toolbar: show currency symbol",
+                "ar": "إظهار رمز العملة"
+            },
+            "format": "switch",
+            "value": false,
+            "selected": false
+        },
+        {
+            "type": "number",
+            "id": "announce_toolbar_text_size",
+            "label": {
+                "en": "Toolbar text size (percent)",
+                "ar": "حجم نص شريط الأدوات (٪)"
+            },
+            "format": "number",
+            "value": 80
+        },
+        {
+            "type": "collection",
+            "id": "announce_menu_links",
+            "label": {
+                "en": "Announcement menu links (left column)",
+                "ar": "روابط القائمة بجانب الإعلان"
+            },
+            "format": "collection",
+            "fields": [
+                {
+                    "type": "string",
+                    "id": "menu.label",
+                    "label": {
+                        "en": "Label",
+                        "ar": "العنوان"
+                    },
+                    "format": "text",
+                    "value": ""
+                },
+                {
+                    "type": "string",
+                    "id": "menu.url",
+                    "label": {
+                        "en": "URL",
+                        "ar": "الرابط"
+                    },
+                    "format": "text",
+                    "value": ""
+                }
+            ],
+            "required": false,
+            "minLength": 0,
+            "maxLength": 8,
+            "item_label": "Link",
+            "value": []
+        },
+        {
+            "type": "collection",
+            "id": "announce_blocks",
+            "label": {
+                "en": "Announcement slides (icons, countdown {count_down}, coupon, buttons)",
+                "ar": "شرائح الإعلان"
+            },
+            "format": "collection",
+            "fields": [
+                {
+                    "type": "string",
+                    "id": "blocks.text",
+                    "label": {
+                        "en": "Text (use {count_down} for inline timer)",
+                        "ar": "النص"
+                    },
+                    "format": "text",
+                    "value": ""
+                },
+                {
+                    "type": "items",
+                    "id": "blocks.block_type",
+                    "label": {
+                        "en": "Block type",
+                        "ar": "نوع الكتلة"
+                    },
+                    "format": "dropdown-list",
+                    "selected": [
+                        {
+                            "label": "Announcement",
+                            "value": "announcement",
+                            "key": "abt-ann"
+                        }
+                    ],
+                    "options": [
+                        {
+                            "label": "Announcement",
+                            "value": "announcement",
+                            "key": "abt-ann"
+                        },
+                        {
+                            "label": "Promo code (copy button)",
+                            "value": "promo_code",
+                            "key": "abt-promo"
+                        }
+                    ]
+                },
+                {
+                    "type": "items",
+                    "id": "blocks.icon",
+                    "label": {
+                        "en": "Icon",
+                        "ar": "أيقونة"
+                    },
+                    "format": "dropdown-list",
+                    "selected": [
+                        {
+                            "label": "None",
+                            "value": "none",
+                            "key": "abi-none"
+                        }
+                    ],
+                    "options": [
+                        {
+                            "label": "None",
+                            "value": "none",
+                            "key": "abi-none"
+                        },
+                        {
+                            "label": "Gift",
+                            "value": "gift",
+                            "key": "abi-gift"
+                        },
+                        {
+                            "label": "Truck",
+                            "value": "truck",
+                            "key": "abi-truck"
+                        },
+                        {
+                            "label": "Percent",
+                            "value": "percent",
+                            "key": "abi-pct"
+                        },
+                        {
+                            "label": "Star",
+                            "value": "star",
+                            "key": "abi-star"
+                        },
+                        {
+                            "label": "Heart",
+                            "value": "heart",
+                            "key": "abi-heart"
+                        },
+                        {
+                            "label": "Tag",
+                            "value": "tag",
+                            "key": "abi-tag"
+                        },
+                        {
+                            "label": "Clock",
+                            "value": "clock",
+                            "key": "abi-clock"
+                        },
+                        {
+                            "label": "Megaphone",
+                            "value": "megaphone",
+                            "key": "abi-mega"
+                        }
+                    ]
+                },
+                {
+                    "type": "number",
+                    "id": "blocks.text_size",
+                    "label": {
+                        "en": "Text size (percent)",
+                        "ar": "حجم النص (٪)"
+                    },
+                    "format": "number",
+                    "value": 80
+                },
+                {
+                    "type": "string",
+                    "id": "blocks.link",
+                    "label": {
+                        "en": "Link URL (wraps main text)",
+                        "ar": "رابط النص"
+                    },
+                    "format": "text",
+                    "value": ""
+                },
+                {
+                    "type": "boolean",
+                    "id": "blocks.open_new_window",
+                    "label": {
+                        "en": "Open main link in new tab",
+                        "ar": "فتح الرابط في تبويب جديد"
+                    },
+                    "format": "switch",
+                    "value": false,
+                    "selected": false
+                },
+                {
+                    "type": "string",
+                    "id": "blocks.button_label",
+                    "label": {
+                        "en": "Button label (or promo code if type = Promo code)",
+                        "ar": "نص الزر أو الكوبون"
+                    },
+                    "format": "text",
+                    "value": ""
+                },
+                {
+                    "type": "string",
+                    "id": "blocks.button_link",
+                    "label": {
+                        "en": "Button URL (announcement type only)",
+                        "ar": "رابط الزر"
+                    },
+                    "format": "text",
+                    "value": ""
+                },
+                {
+                    "type": "boolean",
+                    "id": "blocks.open_new_window_btn",
+                    "label": {
+                        "en": "Open button link in new tab",
+                        "ar": "فتح رابط الزر في تبويب جديد"
+                    },
+                    "format": "switch",
+                    "value": false,
+                    "selected": false
+                },
+                {
+                    "type": "items",
+                    "id": "blocks.button_style",
+                    "label": {
+                        "en": "Button style",
+                        "ar": "نمط الزر"
+                    },
+                    "format": "dropdown-list",
+                    "selected": [
+                        {
+                            "label": "Primary",
+                            "value": "primary",
+                            "key": "abs-pri"
+                        }
+                    ],
+                    "options": [
+                        {
+                            "label": "Primary",
+                            "value": "primary",
+                            "key": "abs-pri"
+                        },
+                        {
+                            "label": "Text + arrow",
+                            "value": "text_arrow",
+                            "key": "abs-arr"
+                        }
+                    ]
+                },
+                {
+                    "type": "string",
+                    "id": "blocks.coupon_color",
+                    "label": {
+                        "en": "Coupon border/text (light theme)",
+                        "ar": "لون الكوبون (فاتح)"
+                    },
+                    "format": "color",
+                    "value": ""
+                },
+                {
+                    "type": "string",
+                    "id": "blocks.coupon_color_dark",
+                    "label": {
+                        "en": "Coupon border/text (dark theme)",
+                        "ar": "لون الكوبون (داكن)"
+                    },
+                    "format": "color",
+                    "value": ""
+                },
+                {
+                    "type": "items",
+                    "id": "blocks.cd_type",
+                    "label": {
+                        "en": "Countdown type (for {count_down})",
+                        "ar": "نوع العد التنازلي"
+                    },
+                    "format": "dropdown-list",
+                    "selected": [
+                        {
+                            "label": "Fixed end date",
+                            "value": "standard",
+                            "key": "acd-std"
+                        }
+                    ],
+                    "options": [
+                        {
+                            "label": "Fixed end date",
+                            "value": "standard",
+                            "key": "acd-std"
+                        },
+                        {
+                            "label": "Evergreen (per visitor)",
+                            "value": "evergreen",
+                            "key": "acd-evg"
+                        }
+                    ]
+                },
+                {
+                    "type": "number",
+                    "id": "blocks.cd_interval",
+                    "label": {
+                        "en": "Evergreen interval (number)",
+                        "ar": "فترة العد التنازلي المتجدد"
+                    },
+                    "format": "number",
+                    "value": 7
+                },
+                {
+                    "type": "items",
+                    "id": "blocks.cd_unit",
+                    "label": {
+                        "en": "Evergreen unit",
+                        "ar": "وحدة الفترة"
+                    },
+                    "format": "dropdown-list",
+                    "selected": [
+                        {
+                            "label": "Days",
+                            "value": "day",
+                            "key": "acu-day"
+                        }
+                    ],
+                    "options": [
+                        {
+                            "label": "Days",
+                            "value": "day",
+                            "key": "acu-day"
+                        },
+                        {
+                            "label": "Hours",
+                            "value": "hour",
+                            "key": "acu-hour"
+                        }
+                    ]
+                },
+                {
+                    "type": "number",
+                    "id": "blocks.tz",
+                    "label": {
+                        "en": "Timezone offset hours (optional)",
+                        "ar": "إزاحة المنطقة الزمنية"
+                    },
+                    "format": "number",
+                    "value": 0
+                },
+                {
+                    "type": "number",
+                    "id": "blocks.end_year",
+                    "label": {
+                        "en": "End year (fixed date)",
+                        "ar": "سنة الانتهاء"
+                    },
+                    "format": "number",
+                    "value": 2026
+                },
+                {
+                    "type": "number",
+                    "id": "blocks.end_month",
+                    "label": {
+                        "en": "End month 1–12",
+                        "ar": "شهر الانتهاء"
+                    },
+                    "format": "number",
+                    "value": 12
+                },
+                {
+                    "type": "number",
+                    "id": "blocks.end_day",
+                    "label": {
+                        "en": "End day",
+                        "ar": "يوم الانتهاء"
+                    },
+                    "format": "number",
+                    "value": 31
+                },
+                {
+                    "type": "number",
+                    "id": "blocks.end_hour",
+                    "label": {
+                        "en": "End hour 0–23",
+                        "ar": "ساعة الانتهاء"
+                    },
+                    "format": "number",
+                    "value": 23
+                },
+                {
+                    "type": "number",
+                    "id": "blocks.end_minute",
+                    "label": {
+                        "en": "End minute 0–59",
+                        "ar": "دقيقة الانتهاء"
+                    },
+                    "format": "number",
+                    "value": 0
+                }
+            ],
+            "required": false,
+            "minLength": 0,
+            "maxLength": 12,
+            "item_label": "Slide",
+            "value": []
+        },
+        {
             "type": "string",
             "id": "announce_bg",
             "label": {
@@ -140,6 +659,16 @@
         },
         {
             "type": "string",
+            "id": "announce_bg_dark",
+            "label": {
+                "en": "Background (dark mode)",
+                "ar": "الخلفية (الوضع الداكن)"
+            },
+            "format": "color",
+            "value": "#0a0a0a"
+        },
+        {
+            "type": "string",
             "id": "announce_color",
             "label": {
                 "en": "Text Color",
@@ -147,6 +676,36 @@
             },
             "format": "color",
             "value": "#ffffff"
+        },
+        {
+            "type": "string",
+            "id": "announce_color_dark",
+            "label": {
+                "en": "Text color (dark mode)",
+                "ar": "لون النص (الوضع الداكن)"
+            },
+            "format": "color",
+            "value": "#ffffff"
+        },
+        {
+            "type": "string",
+            "id": "announce_textlink_light",
+            "label": {
+                "en": "Link underline color (light)",
+                "ar": "لون روابط النص (فاتح)"
+            },
+            "format": "color",
+            "value": ""
+        },
+        {
+            "type": "string",
+            "id": "announce_textlink_dark",
+            "label": {
+                "en": "Link underline color (dark mode)",
+                "ar": "لون روابط النص (داكن)"
+            },
+            "format": "color",
+            "value": ""
         },
         {
             "type": "string",
@@ -168,6 +727,62 @@
             "format": "switch",
             "value": false,
             "selected": false
+        },
+        {
+            "type": "number",
+            "id": "announce_marquee_speed",
+            "label": {
+                "en": "Marquee duration (seconds, one full cycle)",
+                "ar": "مدة الشريط (ثوانٍ)"
+            },
+            "format": "number",
+            "value": 20
+        },
+        {
+            "type": "number",
+            "id": "announce_slider_interval",
+            "label": {
+                "en": "Slider autoplay interval (seconds)",
+                "ar": "فاصل التشغيل التلقائي للسلايدر (ثوانٍ)"
+            },
+            "format": "number",
+            "value": 5
+        },
+        {
+            "type": "collection",
+            "id": "announce_items",
+            "label": {
+                "en": "Legacy: simple messages (used only if Announcement slides is empty)",
+                "ar": "رسائل بسيطة (تُستخدم إذا كانت شرائح الإعلان فارغة)"
+            },
+            "format": "collection",
+            "fields": [
+                {
+                    "type": "string",
+                    "id": "items.text",
+                    "label": {
+                        "en": "Text",
+                        "ar": "النص"
+                    },
+                    "format": "text",
+                    "value": ""
+                },
+                {
+                    "type": "string",
+                    "id": "items.link",
+                    "label": {
+                        "en": "Link (optional)",
+                        "ar": "رابط (اختياري)"
+                    },
+                    "format": "text",
+                    "value": ""
+                }
+            ],
+            "required": false,
+            "minLength": 0,
+            "maxLength": 12,
+            "item_label": "Message",
+            "value": []
         },
         {
             "type": "string",
